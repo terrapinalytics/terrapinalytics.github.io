@@ -1,0 +1,9 @@
+---
+title: "About"
+---
+
+**Terrapinalytics** is an independent personal research site for sports statistics, data analysis, and visualization.
+
+The name is a nod to Maryland's Terrapins, but the scope is broader than one school or one sport.
+
+Projects may be revised as new data arrives. Unless otherwise noted, the work is unaffiliated with any university or athletic program.
