@@ -2,7 +2,6 @@
 title: "Why Terrapinalytics?"
 date: 2026-11-20
 categories: [site-notes]
-description: "Sports, data, economics, and learning what AI can actually do."
 ---
 
 For over a decade, I’ve built little pet projects around the things I’m most interested in, inspired by the likes of FiveThirtyEight, KenPom, and all sorts of nerds online. I like to engage with the world through data and economics, and I’ve generally expressed that through college sports with a Maryland flair.
