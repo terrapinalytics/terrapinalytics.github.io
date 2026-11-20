@@ -1,0 +1,9 @@
+---
+title: "Articles"
+listing:
+  contents: "*.qmd"
+  sort: "date desc"
+  type: default
+---
+
+Research notes and occasional long-form analyses.
