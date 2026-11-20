@@ -1,0 +1,7 @@
+---
+title: "Officiating Lab"
+---
+
+Exploring college basketball foul rates, referee tendencies, home-court effects, and how different play styles influence calls.
+
+*Data and interactive referee profiles coming soon.*
