@@ -4,8 +4,46 @@ page-layout: full
 toc: false
 ---
 
+Program tiers are subjective assessments of head-coaching job desirability, informed by football resources, recruiting geography, conference economics and stability, fan support and tradition, and sustainable competitive potential. [How to read these rankings](#how-to-read-these-rankings).
+
 ```{=html}
 <iframe src="../assets/coaching/rankings.html" title="FBS program rankings and supporting data" class="coaching-frame" loading="eager"></iframe>
 ```
 
 [Open dashboard](../assets/coaching/rankings.html) · [Rankings CSV](../assets/coaching/program_rankings.csv) · [Supporting data](../assets/coaching/supporting_data.zip)
+
+
+## How to read these rankings
+
+The rankings and tiers summarize our judgment about the attractiveness of a head-coaching job. They are informed by the evidence below, but are not measured facts or the output of a fitted statistical model. Tier boundaries and small differences between neighboring schools involve judgment.
+
+### Source observations, calculations, and judgment
+
+| Layer | Examples | How to interpret it |
+|---|---|---|
+| Source observations | EADA and NCAA financial records, reported attendance, recruiting ratings, SP+/FPI, disclosed contracts | Values attributed to their original source, year, and definition. Recruiting and performance ratings are themselves evaluations produced by their providers. |
+| Calculated comparisons | Multi-year averages, inflation-adjusted spending, national or conference comparisons | Summaries derived from source observations. Their meaning depends on the years covered, formula, and source completeness. |
+| Reported estimates | Private-school compensation, NIL/roster spending, undisclosed buyouts | Source-specific estimates with varying confidence, rather than audited or contract-verified amounts. Competing estimates and missing disclosure remain relevant. |
+| Editorial judgments | Overall ranks, program tiers, competitive ceiling, and departure probabilities | Our interpretation of the evidence. These require assumptions and may change when new information arrives. |
+
+### Ranking framework
+
+These category weights describe the intended editorial emphasis. They do not represent a reproducible weighted-score calculation: the current master does not contain school-level category scores or a numerical decomposition that produces each rank.
+
+| Category | Editorial emphasis | Considerations |
+|---|---:|---|
+| Football resources | 30% | Football budget, staff pay, roster spending, facilities, donor support |
+| Recruiting geography | 20% | Access to high school and transfer talent |
+| Conference and realignment | 20% | Media revenue, CFP access, future league stability |
+| Fans and tradition | 15% | Engagement, history, institutional priorities |
+| Competitive ceiling | 15% | Sustainable success potential, difficulty of league |
+
+### Evidence and limitations
+
+Use the dashboard’s metric controls and school details to inspect financial resources, recruiting, performance, fan support, and roster-spending inputs. The downloads include the source registry, reporting definitions, coverage, and unresolved conflicts. The inputs support and challenge our assessments; they do not mechanically determine the published order.
+
+Financial sources retain their own accounting definitions; NCAA and EADA figures should not be treated as interchangeable. Annual observations and multi-year summaries may cover different periods. Attendance includes both official totals and reconstructed observations. NIL estimates can refer to different measures of spending. Missing private-school disclosures are not evidence of zero resources.
+
+The carousel probabilities are separate editorial forecasts for the stated deadline, informed by attributed reporting, results, contracts and buyout costs, and institutional circumstances. Fan sentiment and unsourced speculation carry less weight than original reporting or official statements. A coach’s intention to return does not establish an institutional guarantee. Announced departures are distinguished from forecasts.
+
+[Browse the source registry](../assets/coaching/source_registry.csv) · [Download supporting source tables and methodology](../assets/coaching/supporting_data.zip) · [Read data-quality findings](../assets/coaching/data_quality.md)
