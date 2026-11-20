@@ -2,13 +2,10 @@
 title: "About"
 ---
 
-**Terrapinalytics** is a personal site for college sports research, data analysis, and dashboards.
+For over a decade, I’ve built little pet projects around the things I’m most interested in, inspired by the likes of FiveThirtyEight, KenPom, and all sorts of nerds online. I like to engage with the world through data and economics, and I’ve generally expressed that through college sports with a Maryland flair.
 
-Primary topics:
+A lot of the projects on this site began in college on a random Google Sheet. The early ones were copied data and a few rudimentary Excel formulas. Some later ones dabbled in web scraping and R as I tried to learn new skills the old-fashioned way. Few ever saw the light of day and most were limited by my own abilities. Terrapinalytics is an opportunity to revisit some of those, expand on them, and maybe learn a few more skills along the way.
 
-- football recruiting
-- coaching changes and job markets
-- college basketball officiating
-- Big Ten championships and historical comparisons
+It’s 2026 and everything on the internet is now AI-generated. It’s hard not to feel conflicted about it - the rapidly changing economy, our future job security, a world full of low-effort slop. But the optimistic side of me is excited about opportunities I never had the time or ability to pursue before. So I’m going to lean into that and bring those projects to life rather than produce content for the sake of content and engagement. The tools and even the analysis will be heavily AI-generated. I’ve only got so much spare time, and the robots haven’t taken my day job just yet. But I want to do this with a level of quality I’d be proud of in my own work. I want the questions, arguments, and conclusions to reflect my own curiosity and judgment.
 
-The site is independent and unaffiliated with any university or athletic department.
+There will almost certainly be errors, hallucinations, incomplete datasets, and biases in the analysis as the AI caters to my preferences. I’ll try to distinguish the underlying data from my own assumptions and subjective judgments. I'll try to make the good stuff - the actual data and methods often buried in a report, stored in some hidden dataset, or just scattered across the internet - readily available. And then there will be places where I made up a formula or a ground rule or developed a completely arbitrary set of criteria for the heck of it. I’m not an analytics expert, I’m not trying to create a tool for gambling, and I’m certainly not pretending this is academically rigorous research. I just want to see where this next little pet project goes.
