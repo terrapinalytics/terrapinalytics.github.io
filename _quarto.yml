@@ -1,0 +1,29 @@
+project:
+  type: website
+website:
+  title: "Terrapinalytics"
+  description: "Independent sports research, data visualizations, and dashboards."
+  site-url: "https://bryanfarrell21.github.io/terrapinalytics/"
+  navbar:
+    background: '#171717'
+    foreground: '#ffffff'
+    left:
+      - href: index.qmd
+        text: Home
+      - href: projects/index.qmd
+        text: Projects
+      - href: articles/index.qmd
+        text: Articles
+      - href: about.qmd
+        text: About
+  page-footer:
+    center: "Terrapinalytics · Independent analysis"
+  search: true
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    link-external-newwindow: true
+execute:
+  freeze: auto
