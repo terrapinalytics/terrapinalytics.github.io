@@ -1,0 +1,27 @@
+---
+title: "Home"
+page-layout: full
+---
+
+::: {.container}
+::: {.hero}
+# Terrapinalytics
+
+**Sports, statistics, and everything in between.**
+
+An independent home for college sports research, interactive data visualizations, and experiments in analytics. No posting schedule—just questions worth exploring.
+:::
+
+## Explore the projects
+
+::: {.project-grid}
+<a class="project-card" href="projects/recruiting.html"><span class="eyebrow">Recruiting</span><h3>Recruiting Geography</h3><p>How distance, local competition, and program strength shape where recruits commit.</p></a>
+<a class="project-card" href="projects/coaching.html"><span class="eyebrow">Football</span><h3>Coaching Carousel</h3><p>Coaching job desirability, departure probabilities, and program comparisons.</p></a>
+<a class="project-card" href="projects/officiating.html"><span class="eyebrow">Basketball</span><h3>Officiating Lab</h3><p>Foul rates, referee tendencies, and the relationship between play style and whistles.</p></a>
+<a class="project-card" href="projects/championships.html"><span class="eyebrow">Big Ten</span><h3>Championship Tracker</h3><p>Comparing conference championships across schools, sports, and eras.</p></a>
+:::
+
+## Latest writing
+
+The [Articles](articles/index.qmd) section will collect completed write-ups and methodological notes as they're published.
+:::
