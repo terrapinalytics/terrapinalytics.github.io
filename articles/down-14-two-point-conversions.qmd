@@ -1,0 +1,51 @@
+---
+title: "Down 14: Why Don't More Teams Go for Two?"
+date: 2026-11-20
+categories: [football, strategy]
+description: "Fourth-quarter decisions after a touchdown cuts a 14-point deficit to eight."
+---
+
+The question is specific: **a team trails by exactly 14 points, scores a fourth-quarter touchdown, and now trails by eight before the try.** Does it kick the extra point or go for two?
+
+Going for two first gives the team information. Convert, and another touchdown plus an extra point can win in regulation. Fail, and the team can still try for two after the next touchdown to tie. The decision depends on conversion probability, time, and the chance of getting another possession—not just the raw success rate.
+
+## What teams actually did
+
+| Level | Qualifying TDs | Went for 2 | 2PA rate | Successful 2PA |
+|:--|--:|--:|--:|--:|
+| NFL | 82 | 32 | 39.0% | 17 / 32 (53.1%) |
+| FBS vs. FBS | 251 | 41 | 16.3% | 13 / 41 (31.7%) |
+
+```{=html}
+<div class="mini-bars" role="img" aria-label="Two-point attempt rate: NFL 39.0 percent; FBS 16.3 percent">
+  <div class="mini-bar-row"><b>NFL</b><div class="mini-bar-track"><span style="width:39%"></span></div><strong>39.0%</strong></div>
+  <div class="mini-bar-row"><b>FBS</b><div class="mini-bar-track"><span style="width:16.3%"></span></div><strong>16.3%</strong></div>
+</div>
+```
+
+These are **observed decisions**, not evidence that one strategy caused more wins. The NFL sample is regular season, 2021–2026; FBS is FBS-vs-FBS regular-season games, including conference championship games, through November 1, 2026. All events are in the fourth quarter.
+
+## Season-by-season
+
+| Season | NFL 2PA / qualifying TDs | FBS 2PA / qualifying TDs |
+|---|---:|---:|
+| 2021 | 3 / 12 | 5 / 56 |
+| 2022 | 4 / 12 | 9 / 39 |
+| 2023 | 6 / 21 | 7 / 49 |
+| 2024 | 6 / 13 | 13 / 47 |
+| 2025 | 9 / 17 | 6 / 33 |
+| 2026* | 4 / 7 | 1 / 27 |
+
+*2026 is incomplete. The NFL and FBS cutoffs differ; don't read the 2026 rates as full-season comparisons.*
+
+## What happened after the first try?
+
+In the FBS sample, **3 of 13** teams that converted their first two-point attempt scored the next touchdown in the game; **2 of those 3** eventually won. After a failed first try, **7 of 28** scored the next touchdown; **5 of those 7** eventually won. These are tiny, selected samples, and subsequent touchdowns can include overtime.
+
+The observed FBS conversion rate on these specific attempts (31.7%) is also well below the broader FBS two-point rate from the companion study (44.3%). That difference may reflect selection and game situation; it is not proof that going for two is inherently worse in this spot.
+
+**My takeaway:** NFL coaches use the early two-point strategy substantially more often than college coaches. Whether the college gap is justified needs a possession-level win-probability model, with time remaining and team strength accounted for. The raw win-loss outcomes aren't enough.
+
+**Data:** [NFL event log (CSV)](../assets/articles/nfl_down14_events.csv) · [FBS event log (CSV)](../assets/articles/fbs_down14_events.csv) · [Season summary (CSV)](../assets/articles/down14_season_summary.csv)
+
+**Sources and scope:** NFLverse play-by-play for NFL events; SportsDataverse/CFBD candidate plays and ESPN scoring summaries for FBS. The logs retain source URLs, game identifiers, clock fields, and conversion outcomes. A qualifying touchdown leaves the scoring team eight points behind before the try.

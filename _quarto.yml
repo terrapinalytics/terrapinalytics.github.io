@@ -5,6 +5,7 @@ project:
     - assets/coaching/**
     - assets/championships/**
     - assets/finance/**
+    - assets/articles/**
 
 website:
   title: "Terrapinalytics"

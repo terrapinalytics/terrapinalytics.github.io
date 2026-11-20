@@ -1,0 +1,47 @@
+---
+title: "How Far Do Blue-Chip Recruits Travel?"
+date: 2026-11-20
+categories: [recruiting, geography]
+description: "A first pass at distance, recruiting geography, and Maryland's local market."
+---
+
+Recruiting maps usually show where talent is produced. I'm more interested in the recruit's decision: **how far does a player go, and how much does a nearby program's reputation change the choice?**
+
+This first cut looks at the distances traveled by four- and five-star recruits who committed to selected programs. It uses the listed high-school city as a proxy for origin and straight-line distance to campus.
+
+## Blue-chip commitments by distance, 2010–2025
+
+| School | Total | Per year | Within 100 mi | Within 250 mi | Share within 250 mi |
+|---|---:|---:|---:|---:|---:|
+| Maryland | 58 | 3.6 | 39 | 48 | 82.8% |
+| Penn State | 180 | 11.3 | 13 | 127 | 70.6% |
+| Ohio State | 275 | 17.2 | 52 | 115 | 41.8% |
+| NC State | 43 | 2.7 | 20 | 31 | 72.1% |
+| Georgia | 268 | 16.8 | 99 | 172 | 64.2% |
+| Alabama | 309 | 19.3 | 46 | 139 | 45.0% |
+
+```{=html}
+<div class="mini-bars" role="img" aria-label="Average annual blue-chip commitments: Maryland 3.6, Penn State 11.3, Ohio State 17.2, NC State 2.7, Georgia 16.8, Alabama 19.3">
+  <div class="mini-bar-row"><b>Maryland</b><div class="mini-bar-track"><span style="width:18.8%"></span></div><strong>3.6</strong></div>
+  <div class="mini-bar-row"><b>Penn State</b><div class="mini-bar-track"><span style="width:58.3%"></span></div><strong>11.3</strong></div>
+  <div class="mini-bar-row"><b>Ohio State</b><div class="mini-bar-track"><span style="width:89.1%"></span></div><strong>17.2</strong></div>
+  <div class="mini-bar-row"><b>Georgia</b><div class="mini-bar-track"><span style="width:87%"></span></div><strong>16.8</strong></div>
+  <div class="mini-bar-row"><b>Alabama</b><div class="mini-bar-track"><span style="width:100%"></span></div><strong>19.3</strong></div>
+</div>
+```
+
+Maryland's blue-chip signees are overwhelmingly local. Penn State recruits many more blue-chip players overall, including a large number from roughly 100–250 miles away. Ohio State and Alabama operate across a much wider geographic footprint.
+
+But **these are commitment-distance distributions, not the probability that a recruit picks a school at a given distance**. That distinction matters. A program can have a high local share because it recruits locally, because it struggles nationally, or both.
+
+## The next question: competing options
+
+A recruit near College Park isn't choosing between Maryland and *no school*. Penn State, Virginia Tech, Rutgers, and other programs compete for overlapping parts of the region. The same problem is even more obvious for NC State, with multiple major programs in North Carolina.
+
+A useful next model needs to consider **every plausible destination** for each recruit, not simply compare Maryland's nearby talent count with its signing total. Distance, program strength, and the number of competing schools all belong in the denominator.
+
+For now, the table establishes the baseline. A proper choice-probability curve—and any claim about what Maryland could recruit at Penn State's level—requires that more complete model.
+
+**Data:** [Distance summary and bins (CSV)](../assets/articles/recruiting_distance_summary.csv) · [Interactive recruiting geography dashboard](../projects/recruiting.qmd)
+
+**Method:** 247Sports Composite four-/five-star records, classes 2010–2025, with geocoded U.S. high-school cities and recorded commitment destinations. Great-circle distance to approximate campus coordinates. Counts are observed commitments, not offers, visits, or signed-and-enrolled rosters. The historical snapshot and school names may differ from later revised recruiting databases.

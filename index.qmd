@@ -47,6 +47,9 @@ title-block-banner: false
 ::: {.content-band .last-band}
 ::: {.content-container}
 <div class="section-heading section-heading-tight"><div><div class="section-kicker">Writing</div><h2>Articles</h2></div><a class="section-link" href="articles/index.html">All articles</a></div>
-<a class="article-teaser" href="articles/welcome.html"><div><h3>Welcome to Terrapinalytics</h3><p>Scope, methods, and what will be posted here.</p></div><span class="teaser-arrow">↗</span></a>
+<a class="article-teaser" href="articles/down-14-two-point-conversions.html"><div><h3>Down 14: Why Don't More Teams Go for Two?</h3><p>Fourth-quarter decisions in the NFL and FBS.</p></div><span class="teaser-arrow">↗</span></a>
+<a class="article-teaser" href="articles/mandatory-athletics-fees.html"><div><h3>Mandatory Student Athletics Fees</h3><p>Published Power Four charges and reporting gaps.</p></div><span class="teaser-arrow">↗</span></a>
+<a class="article-teaser" href="articles/recruiting-distance.html"><div><h3>How Far Do Blue-Chip Recruits Travel?</h3><p>Distance distributions and the Maryland recruiting market.</p></div><span class="teaser-arrow">↗</span></a>
+<a class="article-teaser" href="articles/welcome.html"><div><h3>Why Terrapinalytics?</h3><p>Sports, data, economics, and learning to work with AI.</p></div><span class="teaser-arrow">↗</span></a>
 :::
 :::

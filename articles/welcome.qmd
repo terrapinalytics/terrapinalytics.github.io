@@ -1,11 +1,18 @@
 ---
-title: "Welcome to Terrapinalytics"
-date: 2026-11-19
+title: "Why Terrapinalytics?"
+date: 2026-11-20
 categories: [site-notes]
+description: "Sports, data, economics, and a reason to learn what AI can actually do."
 ---
 
-Terrapinalytics is a home for exploratory analysis of college sports and other interesting data questions.
+I've spent a lot of time following college sports, usually with a spreadsheet open somewhere nearby. I like the games, but I'm also interested in the economics behind them: where the money comes from, what programs can realistically compete for, and how geography and incentives shape decisions.
 
-The aim is to share methods, data, charts, and conclusions—with the freedom to revisit and improve projects over time.
+A lot of the projects on this site started years ago in Google Sheets. Some were fairly simple comparisons; others became sprawling datasets that were difficult to maintain, let alone share. Terrapinalytics is an attempt to revisit that work, clean it up, and put it somewhere useful.
 
-This is a starter post. Replace it with your first finished analysis whenever you're ready.
+I'm also using this as a way to learn how to work with AI. That doesn't mean asking it to write a bunch of articles and calling that research. The interesting part is whether it can help me gather and reconcile data, write code, test assumptions, and build visualizations I couldn't have made as easily on my own.
+
+I want AI to be a tool for bringing my existing interests and questions to life, **not a machine for generating low-calorie slop**.
+
+There will be errors, incomplete datasets, and ideas that don't hold up. I'll try to make the sources and methods visible, distinguish observed results from estimates, and update the work when I find something better. Most of this is personal research, not an attempt to pass myself off as an expert.
+
+The initial topics are [recruiting geography](../projects/recruiting.qmd), [coaching and program economics](../projects/program-rankings.qmd), [athletics finances](../projects/finance.qmd), [officiating](../projects/officiating.qmd), and [conference championships](../projects/championships.qmd).

@@ -1,0 +1,13 @@
+level,season,qualifying_touchdowns,two_point_attempts,pat_attempts,two_point_successes,two_point_attempt_rate_pct
+NFL,2021,12,3,9,3,25.0
+NFL,2022,12,4,8,2,33.33
+NFL,2023,21,6,15,4,28.57
+NFL,2024,13,6,7,3,46.15
+NFL,2025,17,9,8,4,52.94
+NFL,2026,7,4,3,1,57.14
+FBS_vs_FBS,2021,56,5,51,2,8.93
+FBS_vs_FBS,2022,39,9,30,3,23.08
+FBS_vs_FBS,2023,49,7,42,0,14.29
+FBS_vs_FBS,2024,47,13,34,4,27.66
+FBS_vs_FBS,2025,33,6,27,4,18.18
+FBS_vs_FBS,2026,27,1,26,0,3.7
