@@ -4,45 +4,50 @@ page-layout: full
 title-block-banner: false
 ---
 
-::: {.landing-hero .landing-hero-compact}
+::: {.landing-hero}
 ::: {.hero-inner}
 ::: {.hero-copy}
-<div class="hero-kicker"><span class="signal-dot"></span> TERRAPINALYTICS</div>
+<div class="hero-kicker"><span class="signal-dot"></span> INDEPENDENT COLLEGE SPORTS RESEARCH</div>
 
-# College sports research and dashboards
+# Follow the data. Find the story.
 
-<ul class="topic-list">
-<li><a href="projects/recruiting.html">Recruiting Geography</a></li>
-<li><a href="projects/coaching.html">Coaching Carousel</a></li>
-<li><a href="projects/officiating.html">Officiating Lab</a></li>
-<li><a href="projects/championships.html">Big Ten Championship Tracker</a></li>
-</ul>
+College sports are full of assumptions. Terrapinalytics explores the numbers behind them — from recruiting geography to coaching changes, officiating, and conference success.
 
-<div class="hero-actions"><a class="btn-main" href="projects/index.html">View research</a><a class="btn-quiet" href="articles/index.html">Articles</a></div>
+<div class="hero-actions"><a class="btn-main" href="projects/index.html">Explore the research <span aria-hidden="true">↗</span></a><a class="btn-quiet" href="about.html">What we're about <span aria-hidden="true">→</span></a></div>
+
+<div class="hero-tags"><span>FOOTBALL</span><span>BASKETBALL</span><span>BIG TEN</span><span>DATA VISUALIZATION</span></div>
 :::
 
 ::: {.hero-art}
 <img class="hero-shell" src="assets/shell-network.png" alt="Terrapin shell drawn as a connected network of data nodes" />
+<div class="hero-art-caption"><span class="caption-line"></span> SHELL / SIGNAL / STORY</div>
 :::
 :::
 :::
 
-::: {.content-band .first-band}
+::: {.content-band}
 ::: {.content-container}
-<div class="section-heading section-heading-tight"><div><div class="section-kicker">Research</div><h2>Projects</h2></div></div>
+<div class="section-heading"><div><div class="section-kicker">01 / EXPLORE</div><h2>Research in progress</h2></div><p>Long-running questions, live investigations, and new ideas worth testing.</p></div>
 
 ::: {.project-grid}
-<a class="project-card" href="projects/recruiting.html"><div class="card-top"><span class="eyebrow">Football</span></div><h3>Recruiting Geography</h3><p>Distance, local competition, and blue-chip recruiting patterns.</p></a>
-<a class="project-card" href="projects/coaching.html"><div class="card-top"><span class="eyebrow">Football</span></div><h3>Coaching Carousel</h3><p>Job desirability, departures, and the coaching market.</p></a>
-<a class="project-card" href="projects/officiating.html"><div class="card-top"><span class="eyebrow">Basketball</span></div><h3>Officiating Lab</h3><p>Foul rates, referee tendencies, and whistle profiles.</p></a>
-<a class="project-card" href="projects/championships.html"><div class="card-top"><span class="eyebrow">Big Ten</span></div><h3>Championship Tracker</h3><p>Conference titles by school, sport, and era.</p></a>
+<a class="project-card" href="projects/recruiting.html"><div class="card-top"><span class="eyebrow">01 / FOOTBALL</span><span class="card-arrow">↗</span></div><div class="card-icon icon-recruiting" aria-hidden="true"><span>◎</span></div><h3>Recruiting Geography</h3><p>How distance, nearby competition, and program reputation shape where blue-chip talent commits.</p><span class="card-meta">Explore the project <b>→</b></span></a>
+<a class="project-card" href="projects/coaching.html"><div class="card-top"><span class="eyebrow">02 / FOOTBALL</span><span class="card-arrow">↗</span></div><div class="card-icon icon-coaching" aria-hidden="true"><span>↗</span></div><h3>Coaching Carousel</h3><p>Tracking head-coaching markets, job desirability, and the forces behind program decisions.</p><span class="card-meta">Explore the project <b>→</b></span></a>
+<a class="project-card" href="projects/officiating.html"><div class="card-top"><span class="eyebrow">03 / BASKETBALL</span><span class="card-arrow">↗</span></div><div class="card-icon icon-officiating" aria-hidden="true"><span>∑</span></div><h3>Foul Analysis</h3><p>Foul rates, referee tendencies, play styles, and what the whistle actually tells us.</p><span class="card-meta">Explore the project <b>→</b></span></a>
+<a class="project-card" href="projects/championships.html"><div class="card-top"><span class="eyebrow">04 / BIG TEN</span><span class="card-arrow">↗</span></div><div class="card-icon icon-championships" aria-hidden="true"><span>▥</span></div><h3>Championship Tracker</h3><p>Comparing conference championships across schools, sports, and eras — with context.</p><span class="card-meta">Explore the project <b>→</b></span></a>
 :::
+:::
+:::
+
+::: {.dark-band}
+::: {.content-container .insight-strip}
+<div><span class="section-kicker">02 / THE APPROACH</span><h2>Not just the result.<br><em>The reasoning behind it.</em></h2></div>
+<div><p>Transparent methodology. Reproducible research. Visualizations designed to reveal patterns, not decorate them.</p><a class="text-link" href="about.html">More about Terrapinalytics <span>↗</span></a></div>
 :::
 :::
 
 ::: {.content-band .last-band}
 ::: {.content-container}
-<div class="section-heading section-heading-tight"><div><div class="section-kicker">Writing</div><h2>Articles</h2></div><a class="section-link" href="articles/index.html">All articles</a></div>
-<a class="article-teaser" href="articles/welcome.html"><div><h3>Welcome to Terrapinalytics</h3><p>Scope, methods, and what will be posted here.</p></div><span class="teaser-arrow">↗</span></a>
+<div class="section-heading"><div><div class="section-kicker">03 / THE NOTEBOOK</div><h2>From the notebook</h2></div><a class="section-link" href="articles/index.html">View articles <span>↗</span></a></div>
+<a class="article-teaser" href="articles/welcome.html"><div><span class="eyebrow">FIELD NOTES</span><h3>Welcome to Terrapinalytics</h3><p>The questions behind the work, and a place to follow the research as it develops.</p></div><span class="teaser-arrow">↗</span></a>
 :::
 :::
