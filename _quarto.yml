@@ -3,7 +3,7 @@ project:
 website:
   title: "Terrapinalytics"
   description: "Independent sports research, data visualizations, and dashboards."
-  site-url: "https://bryanfarrell21.github.io/terrapinalytics/"
+  site-url: "https://terrapinalytics.github.io/"
   navbar:
     background: '#171717'
     foreground: '#ffffff'
