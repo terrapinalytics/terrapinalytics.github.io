@@ -4,6 +4,7 @@ const kinds = ['shooting','other_personal','offensive','looseball','flagrant','t
 const names = ['Shooting','Other non-shooting','Offensive','Loose-ball','Flagrant','Technical','Unresolved'];
 const colors = ['#118c91','#557cc2','#d17a49','#9370bc','#bf5d85','#b39439','#97a4ae'];
 const state = {view:'teams', year:2027, conference:'', stage:'', location:'', type:'', search:'', minimum:3, sort:'margin', page:0, entity:'120', mixRole:'committed'};
+let playerPositions = {};
 let games = [], players = [], rows = [], visible = [], request = 0;
 const cache = new Map();
 const safe = value => String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -93,6 +94,10 @@ async function loadSeason() {
       state.view==='players'?fetchData(state.year===2027?'players-2027.json.gz':'players-edey.json'):Promise.resolve([])]);
     if(current!==request)return;
     games=g;players=p;
+    if(state.view==='players'&&state.year===2027) {
+      try {playerPositions=(await fetchData('player-positions-2027.json')).positions;}catch(e){playerPositions={};}
+      if(current!==request)return;
+    } else playerPositions={};
     if(state.conference&&!games.some(g=>g.hc===state.conference||g.ac===state.conference))state.conference='';
     if(state.stage&&!games.some(g=>g.stage===state.stage))state.stage='';
     syncFilters();render();
@@ -144,12 +149,19 @@ function renderProfile() {
   setOptions('entity',rows.slice().sort((a,b)=>a.name.localeCompare(b.name)).map(x=>[x.id,x.name]),state.entity);
   $('entitytitle').textContent=entity?.name||'No profile available';
   $('entity').disabled=!entity;
-  if(!entity){$('profilemetrics').innerHTML='';$('mix').innerHTML='';$('gamechart').innerHTML='';$('gamelog').innerHTML='';$('profilenote').textContent='Try broader filters to view a profile.';return;}
+  if(!entity){$('peer-context').innerHTML='';$('profilemetrics').innerHTML='';$('mix').innerHTML='';$('gamechart').innerHTML='';$('gamelog').innerHTML='';$('profilenote').textContent='Try broader filters to view a profile.';return;}
   $('profilenote').textContent=ref?'All fouls in this official’s assignments; individual whistles are unattributed.':
     player?(entity.team+' · reconstructed on-court possession exposure'):(entity.conference+' · '+entity.n+' games');
   const metrics=ref?[['Games worked',entity.n],['Combined / 100',fmt(entity.committed)],['Home edge / 100',fmt(entity.home)]]:
     [['Committed / 100',fmt(entity.committed)],['Drawn / 100',fmt(entity.drawn)],['Margin / 100',(entity.margin>0?'+':'')+fmt(entity.margin)]];
   $('profilemetrics').innerHTML=metrics.map(([k,v])=>'<div>'+k+'<strong>'+v+'</strong></div>').join('');
+  const qualified=rows.filter(x=>x.n>=state.minimum&&x.p>0&&(!player||x.p>=100)),position=playerPositions[entity.id]?.position;
+  const peerGroups=[{label:(ref?'Officials':player?'Players':'Teams')+' in filtered season sample',members:qualified},
+    ...(!ref?[{label:entity.conference+' filtered sample',members:qualified.filter(x=>x.conference===entity.conference)}]:[]),
+    ...(player&&position?[{label:position+' position · filtered season sample',members:qualified.filter(x=>playerPositions[x.id]?.position===position)}]:[])];
+  const keys=ref?['committed','home']:['committed','drawn','margin'];
+  $('peer-context').innerHTML=keys.map(key=>PeerContext.comparison({value:entity[key],label:(key==='committed'?(ref?'Combined':'Committed'):key==='home'?'Home edge':key==='drawn'?'Drawn':'Margin')+' per 100 · season ending '+state.year+' · minimum '+state.minimum+' games'+(player?' and 100 on-court possessions':''),format:v=>fmt(v),cohorts:peerGroups.map(g=>({label:g.label,values:g.members.map(x=>x[key]),includesSelected:g.members.some(x=>x.id===entity.id)}))})).join('')+
+    '<p class="peer-note">Same season and active conference, game-type, location and foul-type filters; name search does not change peers. Historical player coverage is Edey only, so no historical player ranks are shown. '+(player?(position?'Position from ESPN 2026–27 roster: '+safe(position)+'. Joined by unique normalized name and team because source IDs differ. Unknown positions excluded from position peers.':'Position unavailable; no position-specific comparison.'):'')+' Referee comparisons describe crews, not individual whistles.</p>';
   const eligible=entity.records.filter(r=>player?Boolean(r.ct&&r.dt):r.g.clean);
   let denom=0,mix=kinds.map(()=>0);
   eligible.forEach(r=>{denom+=r.p;(ref||state.mixRole==='committed'?r.ct:r.dt).forEach((n,i)=>{mix[i]+=n;});});

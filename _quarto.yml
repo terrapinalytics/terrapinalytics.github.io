@@ -1,6 +1,9 @@
 project:
   type: website
   resources:
+    - assets/peer-context.js
+    - assets/peer-context.css
+    - assets/peer-context-methodology.md
     - assets/recruiting/**
     - assets/coaching/**
     - assets/championships/**

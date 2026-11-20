@@ -32,18 +32,26 @@ async function start() {
     const keys = ['eada_football_expenses_mean_FY2022_2024_2025usd','sp_rank_mean_2016_2025','recruiting_rank_mean_2021_2025','attendance_average_mean_2022_2024_phase4'];
     return data.metrics.filter(metric => group === 'Overview' ? keys.includes(metric.key) : metric.group === group);
   }
+  function metricPeers(row,metric) {
+    const cohort=data.programs.map(p=>({...data.panel.find(x=>x.school===p.school),...p}));
+    const groups=[{label:'Ranked-program sample (79)',members:cohort},
+      {label:'Current P4 sample',members:cohort.filter(x=>String(x.p4_2026)==='True')},
+      {label:row.conference+' (current membership)',members:cohort.filter(x=>x.conference===row.conference)}];
+    return PeerContext.comparison({value:row[metric.key],lower:metric.key.includes('rank'),format:v=>format(v,metric.format),label:metric.label+' · '+metric.definition,
+      cohorts:groups.map(g=>({label:g.label,values:g.members.map(x=>x[metric.key]),includesSelected:g.members.some(x=>x.school===row.school)}))});
+  }
   function showDetail(row) {
     const detail = document.getElementById('detail');
     detail.hidden = false;
     let content = `<div class="details-head"><h2>${escapeHtml(row.school)}</h2>${tier(row.tier)}<button id="close" aria-label="Close program details">Close</button></div><p>#${row.rank} · ${escapeHtml(row.conference)}</p>`;
     if (isOdds) {
-      content += `<p><strong>${escapeHtml(row.coach)}</strong> · ${escapeHtml(row.status)}</p><div class="metric-grid"><div class="metric">December 7<strong>${row.dec7_probability_pct}%</strong></div><div class="metric">February 1<strong>${row.feb1_probability_pct}%</strong></div><div class="metric">Dismissal buyout estimate<strong>${format(row.dismissal_buyout.amount_usd,'money')}</strong></div></div><p>${escapeHtml(row.research_note)}</p><p>${sourceLinks(row.research_source)}</p><details><summary>Buyout notes</summary><p>${escapeHtml(row.dismissal_buyout.notes)}</p><p>${escapeHtml(row.dismissal_buyout.applicable_date_or_period)}</p><p>${sourceLinks(row.dismissal_buyout.source_url)}</p></details>`;
+      content += `<p><strong>${escapeHtml(row.coach)}</strong> · ${escapeHtml(row.status)}</p><div class="metric-grid"><div class="metric">December 7<strong>${row.dec7_probability_pct}%</strong></div><div class="metric">February 1<strong>${row.feb1_probability_pct}%</strong></div><div class="metric">Dismissal buyout estimate<strong>${format(row.dismissal_buyout.amount_usd,'money')}</strong></div></div><p>${escapeHtml(row.research_note)}</p><p>${sourceLinks(row.research_source)}</p>${PeerContext.comparison({value:row.dismissal_buyout.amount_usd,label:'Dismissal buyout estimate · mixed reporting dates; estimates, not synchronized contract valuations',format:v=>format(v,'money'),cohorts:[{label:'Tracked situations (25)',values:rows.map(x=>x.dismissal_buyout.amount_usd)},{label:row.conference+' tracked situations',values:rows.filter(x=>x.conference===row.conference).map(x=>x.dismissal_buyout.amount_usd)}]})}<details><summary>Buyout notes</summary><p>${escapeHtml(row.dismissal_buyout.notes)}</p><p>${escapeHtml(row.dismissal_buyout.applicable_date_or_period)}</p><p>${sourceLinks(row.dismissal_buyout.source_url)}</p></details>`;
     } else {
       const metrics = group === 'Overview' ? data.metrics : selectedMetrics();
       content += '<div class="metric-grid">' + metrics.map(metric => {
         const sources = data.provenance.filter(p=>p.school === row.school && p.metric === metric.key);
         const provenance = sources.map(p=>`<div class="source">${escapeHtml(p.observation_year || p.period || '')} · ${escapeHtml(p.confidence || 'Confidence unclassified')}<br>${escapeHtml(p.definition || metric.definition)}${p.completeness ? '<br>Completeness '+escapeHtml(p.completeness) : ''}<br>${sourceLinks(p.source_urls || p.sources)}</div>`).join('');
-        return `<div class="metric">${escapeHtml(metric.label)}<strong>${format(row[metric.key],metric.format)}</strong><small>${escapeHtml(metric.definition)}</small>${provenance || '<div class="source">See the supporting tables for source-level coverage.</div>'}</div>`;
+        return `<div class="metric">${escapeHtml(metric.label)}<strong>${format(row[metric.key],metric.format)}</strong><small>${escapeHtml(metric.definition)}</small>${provenance || '<div class="source">See the supporting tables for source-level coverage.</div>'}${metricPeers(row,metric)}</div>`;
       }).join('') + '</div>';
       const coverage = data.coverage.filter(c=>c.school===row.school);
       content += '<details><summary>Field-level source coverage</summary><div class="table-wrap"><table><thead><tr><th>Source family</th><th>Usable metric slots</th><th>Completeness</th></tr></thead><tbody>' + coverage.map(c=>`<tr><td>${escapeHtml(c.source_family)}</td><td>${c.observed_usable_metric_slots} / ${c.eligible_metric_slots}</td><td>${c.field_completeness_percent}%</td></tr>`).join('') + '</tbody></table></div></details>';
