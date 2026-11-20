@@ -1,7 +1,7 @@
 ---
-title: "Big Ten Championship Tracker"
+title: "Big Ten Championships"
 ---
 
-Comparing conference titles across Big Ten schools, sports, and seasons, including different approaches to weighting sports.
+A cross-sport look at Big Ten championships, including sport-specific comparisons and alternative weighting schemes.
 
-*Interactive championship tables coming soon.*
+*Dashboard and research write-up coming soon.*

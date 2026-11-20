@@ -1,18 +1,14 @@
 ---
-title: "About Terrapinalytics"
-subtitle: "Independent analysis at the intersection of college sports and statistics."
+title: "About"
 ---
 
-**Terrapinalytics** is a home for questions that deserve a closer look: How much does geography matter in recruiting? What makes a coaching job desirable? Are fouls called consistently across teams and conferences? How should we compare success across sports?
+**Terrapinalytics** is a personal site for college sports research, data analysis, and dashboards.
 
-The name nods to Maryland's Terrapins, but the research extends beyond one school, conference, or sport.
+Primary topics:
 
-## How the work is approached
+- football recruiting
+- coaching changes and job markets
+- college basketball officiating
+- Big Ten championships and historical comparisons
 
-The goal is to make analysis useful, readable, and transparent. Research projects can include documented data sources, reproducible methodology, downloadable datasets, and interactive visualizations as they are developed.
-
-Findings may change as new evidence becomes available. Published material will distinguish observed results from estimates, models, and interpretation.
-
-## Independence
-
-Terrapinalytics is an independent personal research project. It is not affiliated with, endorsed by, or operated by the University of Maryland or any athletic program.
+The site is independent and unaffiliated with any university or athletic department.

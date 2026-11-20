@@ -2,6 +2,6 @@
 title: "Coaching Carousel"
 ---
 
-Tracking coaching changes, program desirability, and estimated departure probabilities across college football.
+A framework for comparing FBS coaching jobs, estimating departure probabilities, and tracking the coaching carousel over time.
 
-*Rankings and interactive dashboards coming soon.*
+*Dashboard and research write-up coming soon.*

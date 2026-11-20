@@ -1,9 +1,11 @@
 ---
 title: "Welcome to Terrapinalytics"
 date: 2026-11-19
-categories: [Site Notes]
+categories: [site-notes]
 ---
 
-Terrapinalytics is a place to share independent research, explore questions through data, and experiment with visualizations.
+Terrapinalytics is a home for exploratory analysis of college sports and other interesting data questions.
 
-The focus will often be college sports, but the methods and curiosities can go well beyond them.
+The aim is to share methods, data, charts, and conclusions—with the freedom to revisit and improve projects over time.
+
+This is a starter post. Replace it with your first finished analysis whenever you're ready.

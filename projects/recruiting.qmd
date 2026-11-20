@@ -2,8 +2,8 @@
 title: "Recruiting Geography"
 ---
 
-How does geography influence where blue-chip football recruits commit?
+How does distance influence a recruit's college choice? How much does nearby competition matter? What would a stronger Maryland recruiting program mean for its local footprint?
 
-This project will explore distance from campus, competing nearby programs, local talent density, and differences between national powers and other schools.
+**Planned analyses:** blue-chip commitment probability by distance, regional recruiting maps, and program-strength comparisons.
 
-*Interactive maps and analysis coming soon.*
+*Dashboard and research write-up coming soon.*

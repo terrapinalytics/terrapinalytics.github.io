@@ -1,21 +1,15 @@
 # Terrapinalytics
 
-Independent college sports research, data visualizations, and dashboards.
+Quarto source for an independent sports analytics website.
 
-This is a [Quarto](https://quarto.org/) website deployed to GitHub Pages.
+## Publish on GitHub Pages
 
-## Publishing
+1. Create a **public** GitHub repository named `terrapinalytics` (initialize it empty).
+2. Upload all files in this starter kit, including the `.github/workflows/deploy.yml` file, to the `main` branch. You can use Git or GitHub's web uploader; preserve folder paths.
+3. In repository **Settings → Pages**, choose **GitHub Actions** as the source.
+4. In **Actions**, confirm the `Publish Terrapinalytics` workflow runs successfully (or run it manually).
+5. Visit `https://YOUR-USERNAME.github.io/terrapinalytics/`.
 
-Edit the `.qmd` files, commit to `main`, and GitHub Actions will build and deploy the website automatically once GitHub Pages is configured to use **GitHub Actions**.
+To preview locally, install Quarto and run `quarto preview` in the project directory.
 
-## Local preview
-
-Install Quarto, then run `quarto preview`.
-
-## Structure
-
-- `index.qmd`: homepage
-- `projects/`: ongoing analytics projects
-- `articles/`: written research and notes
-- `styles.css`: site styling
-- `.github/workflows/deploy.yml`: automatic deployment
+Replace placeholder project pages with verified results and interactive graphics before publicizing them.

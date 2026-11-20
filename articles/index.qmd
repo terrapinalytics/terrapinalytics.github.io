@@ -6,4 +6,4 @@ listing:
   type: default
 ---
 
-Research notes and occasional long-form analyses.
+Notes, methods, and project updates.
