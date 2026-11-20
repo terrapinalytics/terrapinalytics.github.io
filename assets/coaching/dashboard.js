@@ -43,7 +43,7 @@ async function start() {
   function showDetail(row) {
     const detail = document.getElementById('detail');
     detail.hidden = false;
-    let content = `<div class="details-head"><h2>${escapeHtml(row.school)}</h2>${tier(row.tier)}<button id="close" aria-label="Close program details">Close</button></div><p>#${row.rank} · ${escapeHtml(row.conference)}</p>`;
+    let content = `<div class="details-head"><h2>${TeamLogos.label(row.school)}</h2>${tier(row.tier)}<button id="close" aria-label="Close program details">Close</button></div><p>#${row.rank} · ${escapeHtml(row.conference)}</p>`;
     if (isOdds) {
       content += `<p><strong>${escapeHtml(row.coach)}</strong> · ${escapeHtml(row.status)}</p><div class="metric-grid"><div class="metric">December 7<strong>${row.dec7_probability_pct}%</strong></div><div class="metric">February 1<strong>${row.feb1_probability_pct}%</strong></div><div class="metric">Dismissal buyout estimate<strong>${format(row.dismissal_buyout.amount_usd,'money')}</strong></div></div><p>${escapeHtml(row.research_note)}</p><p>${sourceLinks(row.research_source)}</p>${PeerContext.comparison({value:row.dismissal_buyout.amount_usd,label:'Dismissal buyout estimate · mixed reporting dates; estimates, not synchronized contract valuations',format:v=>format(v,'money'),cohorts:[{label:'Tracked situations (25)',values:rows.map(x=>x.dismissal_buyout.amount_usd)},{label:row.conference+' tracked situations',values:rows.filter(x=>x.conference===row.conference).map(x=>x.dismissal_buyout.amount_usd)}]})}<details><summary>Buyout notes</summary><p>${escapeHtml(row.dismissal_buyout.notes)}</p><p>${escapeHtml(row.dismissal_buyout.applicable_date_or_period)}</p><p>${sourceLinks(row.dismissal_buyout.source_url)}</p></details>`;
     } else {
@@ -80,7 +80,7 @@ async function start() {
     else columns += selectedMetrics().map(m=>header(m.key,m.label,m.definition)).join('');
     document.getElementById('head').innerHTML = '<tr>'+columns+'</tr>';
     document.getElementById('body').innerHTML = filtered.map(row=>{
-      const school = `<button class="school" data-school="${escapeHtml(row.school)}">${isOdds?'<img class="school-logo" src="'+escapeHtml(row.logo)+'" alt="">':''}${escapeHtml(row.school)}</button>`;
+      const school = `<button class="school" data-school="${escapeHtml(row.school)}">${TeamLogos.label(row.school)}</button>`;
       if (isOdds) {
         const probability = row[checkpoint];
         const delta = row.two_week_change_pp;

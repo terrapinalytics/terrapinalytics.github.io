@@ -6,3 +6,8 @@
 .mix-tabs[hidden] {display:none}
 .mix-tabs button {border:1px solid var(--line);border-radius:5px;background:white;padding:7px 12px;font-size:13px;color:var(--muted)}
 .mix-tabs button[aria-pressed=true] {background:#e1f1f2;border-color:#20848c;color:#15585e}
+
+/* School marks alongside names; readable text remains when a logo is unavailable. */
+.team-label{display:inline-flex;align-items:center;gap:7px;vertical-align:middle;min-width:0;max-width:100%;font-weight:inherit}
+.team-logo{width:23px;height:23px;object-fit:contain;flex:0 0 23px;vertical-align:middle}
+.team-label>span{min-width:0;overflow-wrap:anywhere}

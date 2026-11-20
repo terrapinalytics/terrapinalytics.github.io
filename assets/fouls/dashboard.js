@@ -147,7 +147,7 @@ function renderProfile() {
   const ref=state.view==='refs',player=state.view==='players';
   const entity=rows.find(x=>x.id===state.entity);
   setOptions('entity',rows.slice().sort((a,b)=>a.name.localeCompare(b.name)).map(x=>[x.id,x.name]),state.entity);
-  $('entitytitle').textContent=entity?.name||'No profile available';
+  $('entitytitle').innerHTML=entity?(ref?safe(entity.name):TeamLogos.label(player?entity.team:entity.name,player?null:entity.id)+(player?' '+safe(entity.name):'')):'No profile available';
   $('entity').disabled=!entity;
   if(!entity){$('peer-context').innerHTML='';$('profilemetrics').innerHTML='';$('mix').innerHTML='';$('gamechart').innerHTML='';$('gamelog').innerHTML='';$('profilenote').textContent='Try broader filters to view a profile.';return;}
   $('profilenote').textContent=ref?'All fouls in this official’s assignments; individual whistles are unattributed.':
