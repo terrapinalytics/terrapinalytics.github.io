@@ -1,50 +1,109 @@
 ---
-title: "Down 14: Why Don't More Teams Go for Two?"
+title: "Down 14: The 2PA Strategy: Game Theory and Football"
 date: 2026-11-20
 categories: [football, strategy]
-description: "Fourth-quarter decisions after a touchdown cuts a 14-point deficit to eight."
+description: "Why going for two after a touchdown cuts a 14-point deficit to eight can improve the chance of winning."
 ---
 
-The question is specific: **a team trails by exactly 14 points, scores a fourth-quarter touchdown, and now trails by eight before the try.** Does it kick the extra point or go for two?
+> **Research note:** This article includes an illustrative probability model and observed fourth-quarter decisions. League-wide conversion-rate verification, team-strength adjustments, and additional graphics remain in progress. The model's conditional win probabilities are not full-game win probabilities.
 
-Going for two first gives the team information. Convert, and another touchdown plus an extra point can win in regulation. Fail, and the team can still try for two after the next touchdown to tie. The decision depends on conversion probability, time, and the chance of getting another possession—not just the raw success rate.
+Here’s the general scenario: Maryland trails by two touchdowns. Unfortunately, not very uncommon. It’s getting late in the game and the paths to victory are narrowing. Maryland scores a touchdown and maybe there’s a glimmer of hope. Then rather than the kicker trotting out, the offense stays on the field.
 
-## What teams actually did
+This general scenario has actually happened twice recently. In one, against USC, Maryland succeeded, scored the next touchdown, and fans stormed the field. In another against Virginia Tech, Maryland failed on the 2PA, scored another TD and failed on that 2PA too, and never got another chance. Similar scenarios, different outcomes, big fan reactions.
+
+## The Game Theory
+
+The premise is this: let’s forget all the complexities and the difficulty of coming back from 2 TDs. The only option is to score two TDs and make two try decisions. Let’s even round some numbers now and then we’ll try to prove the theory later with hard data. A PAT is close to 100% success, a 2PA is near enough to 50% success. The decision tree looks like this:
+
+```{mermaid}
+flowchart TD
+ A["After first touchdown: down eight"] --> B["Kick PAT"]
+ A --> C["Go for two"]
+ B --> D["After second TD: kick PAT → overtime"]
+ D --> E["Win overtime: 50%"]
+ C --> F["Convert first: 50%"]
+ C --> G["Fail first: 50%"]
+ F --> H["Second TD + PAT → win (50% branch)"]
+ G --> I["Second TD + convert two: 50%"]
+ G --> J["Second TD + fail two: 50% → lose"]
+ I --> K["Overtime: win 50% (12.5% branch)"]
+```
+
+If you score on the first 2PA, you simply win on the next TD, assuming you make the extra point. Already a 50% win rate in that scenario alone. If you fail, well then you still have a 50% chance of making the second 2PA, sending it to OT, where you win 50% of games. That nets out to a 12.5% chance of winning through that branch. Combined **62.5% win rate *if you score the two TDs***.
+
+The PAT scenario results in guaranteed OT and a 50% win rate. So why wouldn’t you take that 12.5-percentage-point edge? One possible explanation is loss aversion. Coaches may be more comfortable losing in overtime than risking an embarrassing outcome in the fourth quarter. The 2PA strategy maximizes the expected probability of winning by leveraging the information gained from the result of the first 2PA, then weaponizing it on the second 2PA decision. It’s about winning in the 4th quarter rather than playing for a tie. It’s about overcoming the fear of losing the “wrong way” and prioritizing winning.
+
+## The Hard Math
+
+The reality isn’t so clean as the coin flip math implies. Actual two-point and extra-point conversion rates vary by league, season, and team. League-wide NFL and FBS figures for the study window still need independent verification; the **53.1% NFL** and **31.7% FBS** figures below describe only the selected down-14 attempts, not all two-point plays.
+
+Define **p** as two-point conversion probability, **k** as extra-point success probability, and **q** as overtime win probability. In a simplified model that assumes two touchdowns are scored and follows the specified choices:
+
+\[
+P(\\text{win | go for two first}) = pk + (1-p)pq
+\]
+
+\[
+P(\\text{win | kick twice}) = k^2q
+\]
+
+The first formula captures winning outright after a successful first two-point attempt, plus reaching and winning overtime after a failed first attempt and successful second attempt. The second represents two successful extra points followed by an overtime win. These are **illustrative paths**, not a complete optimal-decision model: missed PATs, additional possessions, changing game situations, and alternative follow-up choices can change the result.
+
+The advantage depends on the team's conversion probability. With automatic PATs and a 50% overtime win probability, going for two first becomes preferable above roughly **38.2%** conversion success.
+
+| Two-point success | Go for two first | Kick twice |
+|---:|---:|---:|
+| 30% | 40.5% | 50.0% |
+| 35% | 46.4% | 50.0% |
+| 38.2% | 50.0% | 50.0% |
+| 40% | 52.0% | 50.0% |
+| 45% | 57.4% | 50.0% |
+| 50% | 62.5% | 50.0% |
+| 55% | 67.4% | 50.0% |
+| 60% | 72.0% | 50.0% |
+
+*The table is a sensitivity analysis under the illustrative assumptions. A percentile-annotated chart and league-specific calculations are planned once the source rates are verified.*
+
+## What Teams Actually Did
+
+So now let’s leave the realm of game theory formulas and see what teams have actually decided in recent years.
 
 | Level | Qualifying TDs | Went for 2 | 2PA rate | Successful 2PA |
 |:--|--:|--:|--:|--:|
 | NFL | 82 | 32 | 39.0% | 17 / 32 (53.1%) |
 | FBS vs. FBS | 251 | 41 | 16.3% | 13 / 41 (31.7%) |
 
-```{=html}
-<div class="mini-bars" role="img" aria-label="Two-point attempt rate: NFL 39.0 percent; FBS 16.3 percent">
-  <div class="mini-bar-row"><b>NFL</b><div class="mini-bar-track"><span style="width:39%"></span></div><strong>39.0%</strong></div>
-  <div class="mini-bar-row"><b>FBS</b><div class="mini-bar-track"><span style="width:16.3%"></span></div><strong>16.3%</strong></div>
-</div>
-```
+NFL adoption appears to have accelerated beginning in 2024. College football saw an increase that year, but the pattern has been less consistent. The NFL sample is regular season, 2021–2026; FBS is FBS-vs-FBS regular-season games, including conference championship games, through November 1, 2026. All events are in the fourth quarter.
 
-These are **observed decisions**, not evidence that one strategy caused more wins. The NFL sample is regular season, 2021–2026; FBS is FBS-vs-FBS regular-season games, including conference championship games, through November 1, 2026. All events are in the fourth quarter.
-
-## Season-by-season
+## Season-by-Season
 
 | Season | NFL 2PA / qualifying TDs | FBS 2PA / qualifying TDs |
 |---|---:|---:|
-| 2021 | 3 / 12 | 5 / 56 |
-| 2022 | 4 / 12 | 9 / 39 |
-| 2023 | 6 / 21 | 7 / 49 |
-| 2024 | 6 / 13 | 13 / 47 |
-| 2025 | 9 / 17 | 6 / 33 |
-| 2026* | 4 / 7 | 1 / 27 |
+| 2021 | 3 / 12 (25.0%) | 5 / 56 (8.9%) |
+| 2022 | 4 / 12 (33.3%) | 9 / 39 (23.1%) |
+| 2023 | 6 / 21 (28.6%) | 7 / 49 (14.3%) |
+| 2024 | 6 / 13 (46.2%) | 13 / 47 (27.7%) |
+| 2025 | 9 / 17 (52.9%) | 6 / 33 (18.2%) |
+| 2026* | 4 / 7 (57.1%) | 1 / 27 (3.7%) |
 
-*2026 is incomplete. The NFL and FBS cutoffs differ; don't read the 2026 rates as full-season comparisons.*
+*2026 is incomplete. FBS data runs through November 1, 2026. The NFL and FBS cutoffs differ.*
 
-## What happened after the first try?
+## What Happened After the First Try?
 
 In the FBS sample, **3 of 13** teams that converted their first two-point attempt scored the next touchdown in the game; **2 of those 3** eventually won. After a failed first try, **7 of 28** scored the next touchdown; **5 of those 7** eventually won. These are tiny, selected samples, and subsequent touchdowns can include overtime.
 
-The observed FBS conversion rate on these specific attempts (31.7%) is also well below the broader FBS two-point rate from the companion study (44.3%). That difference may reflect selection and game situation; it is not proof that going for two is inherently worse in this spot.
+| First two-point try | Attempts | Scored next TD | Won after next TD |
+|---|---:|---:|---:|
+| Converted | 13 | 3 | 2 |
+| Failed | 28 | 7 | 5 |
 
-**My takeaway:** NFL coaches use the early two-point strategy substantially more often than college coaches. Whether the college gap is justified needs a possession-level win-probability model, with time remaining and team strength accounted for. The raw win-loss outcomes aren't enough.
+*A flow diagram tracing these outcomes is planned; the table preserves the observed counts in the meantime.*
+
+The observed FBS conversion rate on these specific attempts (31.7%) is also well below the broader FBS two-point rate from the companion study (44.3%). One possibility is that teams trailing by two touchdowns are overmatched or playing poorly. But opponent strength, play selection, and sample noise could also explain the gap. We'd need to test those possibilities before drawing a conclusion.
+
+## So Why Don't More Teams Do It?
+
+The next time Maryland goes for two while trailing by eight, the instinct might be to complain about passing up the easy point. But the relevant question isn't whether the scoreboard looks better immediately. It's whether the decision improves Maryland's chance of winning. And depending on the offense, the opponent, and the time remaining, that unconventional decision might be exactly right.
 
 **Data:** [NFL event log (CSV)](../assets/articles/nfl_down14_events.csv) · [FBS event log (CSV)](../assets/articles/fbs_down14_events.csv) · [Season summary (CSV)](../assets/articles/down14_season_summary.csv)
 
