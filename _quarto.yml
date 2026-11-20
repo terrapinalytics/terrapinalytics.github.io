@@ -10,7 +10,7 @@ website:
   title: "Terrapinalytics"
   description: "College sports research, data visualizations, and dashboards."
   site-url: "https://terrapinalytics.github.io/"
-  favicon: assets/shell-network.png
+  favicon: assets/shell-network-white.png
   search: true
   navbar:
     background: "#15191e"
