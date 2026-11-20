@@ -88,3 +88,17 @@ body:not(:has(.landing-hero)) .content a{text-underline-offset:3px}
 #quarto-header .navbar-brand .navbar-title::after{content:"ALYTICS";color:#e31837}
 @media(max-width:480px){#quarto-header .navbar-brand .navbar-title::before,#quarto-header .navbar-brand .navbar-title::after{font-size:.95rem}}
 .hero-kicker .wordmark-prefix{color:#fff}.hero-kicker .wordmark-suffix{color:#e31837}
+
+/* Homepage research category accordions */
+.topic-accordions{display:grid;gap:.65rem;max-width:640px;margin:1.6rem 0 0}
+.topic-group{border:1px solid #ffffff38;background:#ffffff08;border-radius:6px;overflow:hidden}
+.topic-group summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.85rem 1.05rem;color:#fff;font-weight:760;font-size:1.08rem}
+.topic-group summary::-webkit-details-marker{display:none}
+.topic-group summary::after{content:"+";font-size:1.3rem;line-height:1;color:#ffcf54;font-weight:400}
+.topic-group[open] summary::after{content:"−"}
+.topic-group summary:hover,.topic-group summary:focus-visible{background:#ffffff0d}
+.topic-group summary:focus-visible{outline:2px solid #ffcf54;outline-offset:-2px}
+.topic-group ul{list-style:none;padding:0 .95rem .7rem;margin:0}
+.topic-group li{margin:0}
+.topic-group li a{display:block;padding:.53rem .35rem;color:#e2e5e8;border-top:1px solid #ffffff1c;text-decoration:none;font-size:.96rem;font-weight:550;line-height:1.35}
+.topic-group li a:hover{color:#ffcf54}
