@@ -1,0 +1,10 @@
+---
+title: "Projects"
+---
+
+Ongoing research, datasets, and interactive explorations.
+
+- [Recruiting Geography](recruiting.qmd)
+- [Coaching Carousel](coaching.qmd)
+- [Officiating Lab](officiating.qmd)
+- [Big Ten Championship Tracker](championships.qmd)
