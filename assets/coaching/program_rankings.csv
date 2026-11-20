@@ -1,0 +1,80 @@
+rank,school,conference,tier
+1,Texas,SEC,1
+2,Ohio State,Big Ten,1
+3,Georgia,SEC,1
+4,Alabama,SEC,1
+5,LSU,SEC,1
+6,Michigan,Big Ten,1
+7,Notre Dame,Independent,1
+8,Oregon,Big Ten,1
+9,Penn State,Big Ten,1
+10,Florida,SEC,1
+11,Texas A&M,SEC,2
+12,USC,Big Ten,2
+13,Oklahoma,SEC,2
+14,Tennessee,SEC,2
+15,Miami,ACC,2
+16,Auburn,SEC,2
+17,Clemson,ACC,2
+18,Florida State,ACC,2
+19,Ole Miss,SEC,2
+20,Washington,Big Ten,3
+21,Nebraska,Big Ten,3
+22,Wisconsin,Big Ten,3
+23,Texas Tech,Big 12,3
+24,Iowa,Big Ten,3
+25,South Carolina,SEC,3
+26,Utah,Big 12,3
+27,Indiana,Big Ten,3
+28,Missouri,SEC,3
+29,North Carolina,ACC,3
+30,Michigan State,Big Ten,3
+31,BYU,Big 12,3
+32,Louisville,ACC,3
+33,Virginia Tech,ACC,3
+34,SMU,ACC,3
+35,TCU,Big 12,4
+36,Arkansas,SEC,4
+37,Oklahoma State,Big 12,4
+38,UCLA,Big Ten,4
+39,Kansas State,Big 12,4
+40,Kentucky,SEC,4
+41,Baylor,Big 12,4
+42,Illinois,Big Ten,4
+43,Maryland,Big Ten,4
+44,NC State,ACC,4
+45,Arizona State,Big 12,4
+46,West Virginia,Big 12,4
+47,Mississippi State,SEC,4
+48,Boise State,Pac-12,4
+49,Georgia Tech,ACC,4
+50,Iowa State,Big 12,4
+51,South Florida,American,5
+52,Colorado,Big 12,5
+53,Minnesota,Big Ten,5
+54,UCF,Big 12,5
+55,Oregon State,Pac-12,5
+56,Pittsburgh,ACC,5
+57,Houston,Big 12,5
+58,Memphis,American,5
+59,Duke,ACC,5
+60,Virginia,ACC,5
+61,Tulane,American,5
+62,Kansas,Big 12,5
+63,Arizona,Big 12,5
+64,Purdue,Big Ten,5
+65,Washington State,Pac-12,5
+66,Cincinnati,Big 12,6
+67,Syracuse,ACC,6
+68,UNLV,Mountain West,6
+69,Rutgers,Big Ten,6
+70,Vanderbilt,SEC,6
+71,Boston College,ACC,6
+72,San Diego State,Pac-12,6
+73,Northwestern,Big Ten,6
+74,California,ACC,6
+75,Colorado State,Pac-12,6
+76,Stanford,ACC,6
+77,Wake Forest,ACC,6
+78,James Madison,Sun Belt,6
+79,Liberty,C-USA,6

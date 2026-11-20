@@ -1,7 +1,11 @@
 ---
 title: "Coaching Carousel"
+page-layout: full
+toc: false
 ---
 
-A framework for comparing FBS coaching jobs, estimating departure probabilities, and tracking the coaching carousel over time.
+```{=html}
+<iframe src="../assets/coaching/odds.html" title="2026 coaching departure odds" class="coaching-frame" loading="eager"></iframe>
+```
 
-*Dashboard and research write-up coming soon.*
+[Open dashboard](../assets/coaching/odds.html) · [Odds CSV](../assets/coaching/departure_odds.csv) · [Research notes and data](../assets/coaching/departure_support.zip)

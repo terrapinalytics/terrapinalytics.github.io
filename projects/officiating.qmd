@@ -1,35 +1,7 @@
 ---
-title: "Foul Analysis"
-page-layout: full
-toc: false
-title-block-banner: false
+title: "Basketball Officiating"
 ---
 
-```{=html}
-<style>
-#title-block-header { display: none; }
-#quarto-content main.content { max-width: 1300px; width: 100%; }
-#foul-dashboard { width: 100%; border: 0; min-height: 1500px; display: block; }
-.foul-links { display: flex; gap: 1.2rem; padding: .5rem 1rem; font-size: .9rem; flex-wrap: wrap; }
-</style>
-<div class="foul-links"><a href="?view=teams">Teams</a><a href="?view=players">Players</a><a href="?view=refs">Referees</a></div>
-<iframe id="foul-dashboard" src="../assets/fouls/dashboard.html" title="Foul Analysis dashboard with team, player, and referee views" loading="eager"></iframe>
-<script>
-const frame = document.getElementById('foul-dashboard');
-const params = new URLSearchParams(window.location.search);
-const clean = new URLSearchParams();
-if (['teams','players','refs'].includes(params.get('view'))) clean.set('view',params.get('view'));
-if (/^202[1-7]$/.test(params.get('season') || '')) clean.set('season',params.get('season'));
-frame.src = '../assets/fouls/dashboard.html?' + clean.toString();
-window.addEventListener('message', event => {
-  if (event.origin !== window.location.origin || event.source !== frame.contentWindow) return;
-  if (Number.isFinite(event.data?.foulHeight)) frame.style.height = Math.max(800,Math.min(20000,event.data.foulHeight+20))+'px';
-  if (['teams','players','refs'].includes(event.data?.foulView)) {
-    const next = new URL(window.location);
-    next.searchParams.set('view',event.data.foulView);
-    next.searchParams.set('season',event.data.season);
-    window.history.replaceState(null,'',next);
-  }
-});
-</script>
-```
+Exploring fouls per possession, foul types, team tendencies, referee assignments, and differences across conferences and tournaments.
+
+*Dashboard and research write-up coming soon.*

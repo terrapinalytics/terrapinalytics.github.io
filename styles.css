@@ -70,3 +70,5 @@ body:not(:has(.landing-hero)) .content a{text-underline-offset:3px}
 @media(max-width:750px){.hero-inner{grid-template-columns:1fr;padding:3.2rem 1.4rem 3.4rem;gap:2.2rem}.hero-copy h1{font-size:clamp(2.5rem,10vw,3.8rem)}.hero-art{max-width:300px}.content-band{padding:3rem 1.25rem}.section-heading{display:block}.section-heading>p{margin-top:1rem}}
 @media(max-width:480px){.project-grid{grid-template-columns:1fr}.project-card{min-height:200px}.hero-copy h1{font-size:2.6rem}.hero-actions{gap:1rem}.navbar .navbar-brand{font-size:1rem}.hero-art{max-width:260px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+
+.coaching-frame{width:100%;height:1100px;border:1px solid #dfe4ea;border-radius:8px;background:white}.coaching-frame:focus{outline:2px solid #c8102e}@media(max-width:700px){.coaching-frame{height:1150px}}

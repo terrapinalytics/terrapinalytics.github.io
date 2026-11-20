@@ -1,18 +1,18 @@
 project:
   type: website
   resources:
-    - assets/fouls/**
+    - assets/coaching/**
 
 website:
   title: "Terrapinalytics"
-  description: "Independent college sports research, data visualizations, and dashboards."
+  description: "College sports research, data visualizations, and dashboards."
   site-url: "https://terrapinalytics.github.io/"
-  favicon: assets/favicon.svg
+  favicon: assets/shell-network.png
   search: true
   navbar:
     background: "#15191e"
     foreground: "#ffffff"
-    logo: assets/favicon.svg
+    logo: assets/shell-network.png
     logo-alt: "Terrapinalytics shell"
     title: "Terrapinalytics"
     left:
@@ -20,8 +20,6 @@ website:
         text: Home
       - href: projects/index.qmd
         text: Research
-      - href: projects/officiating.qmd
-        text: Foul Analysis
       - href: articles/index.qmd
         text: Articles
       - href: about.qmd
@@ -31,8 +29,8 @@ website:
         href: https://github.com/terrapinalytics
         aria-label: GitHub
   page-footer:
-    left: "© Terrapinalytics · Independent sports analysis"
-    right: "Built for the curious."
+    left: "Terrapinalytics"
+    right: ""
 
 format:
   html:
