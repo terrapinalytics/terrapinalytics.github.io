@@ -1,0 +1,7 @@
+---
+title: "Coaching Carousel"
+---
+
+Tracking coaching changes, program desirability, and estimated departure probabilities across college football.
+
+*Rankings and interactive dashboards coming soon.*
