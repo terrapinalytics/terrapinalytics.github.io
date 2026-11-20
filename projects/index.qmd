@@ -9,3 +9,4 @@ title: "Research"
 - [Coaching Carousel](coaching.qmd) — departure odds, tiers, buyout estimates, and reporting.
 - [Officiating Lab](officiating.qmd) — foul rates, referee tendencies, and whistle patterns.
 - [Big Ten Championship Tracker](championships.qmd) — conference titles by school, sport, and era.
+- [Athletics Financials](finance.qmd) — NCAA/Knight-Newhouse and EADA reporting, fiscal trends, and school comparisons.

@@ -17,6 +17,7 @@ title-block-banner: false
 <li><a href="projects/coaching.html">Coaching Carousel</a></li>
 <li><a href="projects/officiating.html">Officiating Lab</a></li>
 <li><a href="projects/championships.html">Big Ten Championship Tracker</a></li>
+<li><a href="projects/finance.html">Athletics Financials</a></li>
 </ul>
 
 <div class="hero-actions"><a class="btn-main" href="projects/index.html">View research</a><a class="btn-quiet" href="articles/index.html">Articles</a></div>
@@ -38,6 +39,7 @@ title-block-banner: false
 <a class="project-card" href="projects/coaching.html"><div class="card-top"><span class="eyebrow">Football</span></div><h3>Coaching Carousel</h3><p>Departure odds, job tiers, buyout estimates, and reporting.</p></a>
 <a class="project-card" href="projects/officiating.html"><div class="card-top"><span class="eyebrow">Basketball</span></div><h3>Officiating Lab</h3><p>Foul rates, referee tendencies, and whistle profiles.</p></a>
 <a class="project-card" href="projects/championships.html"><div class="card-top"><span class="eyebrow">Big Ten</span></div><h3>Championship Tracker</h3><p>Conference titles by school, sport, and era.</p></a>
+<a class="project-card" href="projects/finance.html"><div class="card-top"><span class="eyebrow">Financials</span></div><h3>Athletics Financials</h3><p>NCAA and EADA revenue, expenses, and football spending.</p></a>
 :::
 :::
 :::

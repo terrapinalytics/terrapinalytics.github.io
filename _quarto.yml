@@ -3,6 +3,8 @@ project:
   resources:
     - assets/recruiting/**
     - assets/coaching/**
+    - assets/championships/**
+    - assets/finance/**
 
 website:
   title: "Terrapinalytics"
