@@ -4,10 +4,6 @@ page-layout: full
 toc: false
 ---
 
-Probabilities are subjective estimates based on insider reporting, national and local coverage, team performance, contracts and buyout costs, and institutional context. They are editorial judgments, not outputs of a statistical model.
-
-Program tiers are subjective assessments of head-coaching job desirability, informed by football resources, recruiting geography, conference economics and stability, fan support and tradition, and sustainable competitive potential. [See the ranking research, framework, and supporting data](program-rankings.qmd#how-to-read-these-rankings).
-
 ```{=html}
 <iframe src="../assets/coaching/odds.html" title="2026 coaching departure odds" class="coaching-frame" loading="eager"></iframe>
 ```

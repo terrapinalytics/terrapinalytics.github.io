@@ -50,7 +50,10 @@
       "rank": 43,
       "research_note": "November 15 weekend review. See the saved research notes for the assessment.",
       "research_source": "",
-      "logo": "logos/Maryland.png"
+      "logo": "logos/Maryland.png",
+      "two_week_baseline_dec7_pct": 100,
+      "two_week_baseline_source_date": "2026-11-01",
+      "two_week_change_pp": 0
     },
     {
       "school": "NC State",
@@ -100,7 +103,10 @@
       "rank": 44,
       "research_note": "November 15 weekend review. See the saved research notes for the assessment.",
       "research_source": "",
-      "logo": "logos/NC_State.png"
+      "logo": "logos/NC_State.png",
+      "two_week_baseline_dec7_pct": 100,
+      "two_week_baseline_source_date": "2026-11-01",
+      "two_week_change_pp": 0
     },
     {
       "school": "Baylor",
@@ -152,7 +158,10 @@
       "rank": 41,
       "research_note": "November 15 weekend review. See the saved research notes for the assessment.",
       "research_source": "",
-      "logo": "logos/Baylor.png"
+      "logo": "logos/Baylor.png",
+      "two_week_baseline_dec7_pct": 100,
+      "two_week_baseline_source_date": "2026-11-01",
+      "two_week_change_pp": 0
     },
     {
       "school": "USC",
@@ -206,7 +215,10 @@
       "rank": 12,
       "research_note": "Lower 30 to 25. Fresh national framing is cooler; private-contract expense and absence of verified decision evidence temper pressure. Final games remain important.",
       "research_source": "https://247sports.com/college/usc/board/102339/contents/cbs-sports-on-lincoln-riley-292992989/?page=1",
-      "logo": "logos/USC.png"
+      "logo": "logos/USC.png",
+      "two_week_baseline_dec7_pct": 30,
+      "two_week_baseline_source_date": "2026-11-01",
+      "two_week_change_pp": -5
     },
     {
       "school": "Florida State",
@@ -260,7 +272,10 @@
       "rank": 18,
       "research_note": "November 15 weekend review. See the saved research notes for the assessment.",
       "research_source": "",
-      "logo": "logos/Florida_State.png"
+      "logo": "logos/Florida_State.png",
+      "two_week_baseline_dec7_pct": 50,
+      "two_week_baseline_source_date": "2026-11-01",
+      "two_week_change_pp": 50
     },
     {
       "school": "Rutgers",
@@ -320,7 +335,10 @@
       "rank": 69,
       "research_note": "November 15 weekend review. See the saved research notes for the assessment.",
       "research_source": "",
-      "logo": "logos/Rutgers.png"
+      "logo": "logos/Rutgers.png",
+      "two_week_baseline_dec7_pct": 25,
+      "two_week_baseline_source_date": "2026-11-01",
+      "two_week_change_pp": -23
     },
     {
       "school": "TCU",
@@ -397,7 +415,10 @@
       "rank": 35,
       "research_note": "Lower 30 to 25. Jeremy Clark Nov15-16 reports continuing major-donor support and no completed firing arrangement; some trustees want change. He reports installment structure, not a reduced total buyout. Staff-plus-roster transition costs are distinct from HC buyout. National pressure coverage remains a contrary signal.",
       "research_source": "https://247sports.com/college/tcu/board/101445/contents/fire-sonny-new-hc-board-290448911/?page=1",
-      "logo": "logos/TCU.png"
+      "logo": "logos/TCU.png",
+      "two_week_baseline_dec7_pct": 25,
+      "two_week_baseline_source_date": "2026-11-01",
+      "two_week_change_pp": 0
     },
     {
       "school": "Boston College",
@@ -449,7 +470,10 @@
       "rank": 71,
       "research_note": "Hold 45. The hot-board opening is fan opinion; its lone staff reply rejects a fake reporter account, not confirms a search. No fresh decision reporting recovered. Syracuse and Miami remain pivotal.",
       "research_source": "https://247sports.com/college/boston-college/board/59454/contents/football-head-coach-hot-board-290166726/?page=1",
-      "logo": "logos/Boston_College.png"
+      "logo": "logos/Boston_College.png",
+      "two_week_baseline_dec7_pct": 35,
+      "two_week_baseline_source_date": "2026-11-01",
+      "two_week_change_pp": 10
     },
     {
       "school": "South Carolina",
@@ -504,7 +528,10 @@
       "rank": 25,
       "research_note": "Nov 15 \u00b7 Arkansas loss increases pressure. Sellers had limited mobility. McGranahan's successor discussion is opinion.",
       "research_source": "https://247sports.com/college/south-carolina/board/44/contents/glenn-schumann--292801380/#M292802164",
-      "logo": "logos/South_Carolina.png"
+      "logo": "logos/South_Carolina.png",
+      "two_week_baseline_dec7_pct": 8,
+      "two_week_baseline_source_date": "2026-11-01",
+      "two_week_change_pp": -2
     },
     {
       "school": "Colorado",
@@ -558,7 +585,10 @@
       "rank": 52,
       "research_note": "Hold 10. Jack Carlough Nov17 reports 2027 player-retention conversations. This is operational continuity, not a guarantee; no fresh sourced institutional move recovered.",
       "research_source": "https://247sports.com/college/colorado/board/104133/contents/takeaways-from-coach-primes-precincinnati-press-conference-292896649/?page=1",
-      "logo": "logos/Colorado.png"
+      "logo": "logos/Colorado.png",
+      "two_week_baseline_dec7_pct": 10,
+      "two_week_baseline_source_date": "2026-11-01",
+      "two_week_change_pp": 0
     },
     {
       "school": "Syracuse",
@@ -611,7 +641,10 @@
       "rank": 67,
       "research_note": "November 15 weekend review. See the saved research notes for the assessment.",
       "research_source": "",
-      "logo": "logos/Syracuse.png"
+      "logo": "logos/Syracuse.png",
+      "two_week_baseline_dec7_pct": 10,
+      "two_week_baseline_source_date": "2026-11-01",
+      "two_week_change_pp": -3
     },
     {
       "school": "Michigan",
@@ -667,7 +700,10 @@
       "rank": 6,
       "research_note": "Sam Webb Nov19 reports football urgency accelerated the AD timetable. Much of his case for a change is analysis, not a sourced decision. Alberts hire is confirmed; Whittingham publicly wants to return. Raise 35 to 50; no verified football search.",
       "research_source": "https://247sports.com/college/michigan/longformarticle/3r-report-trev-alberts-michigan-kyle-whittingham-future-copy-slug-292990539/",
-      "logo": "logos/Michigan.png"
+      "logo": "logos/Michigan.png",
+      "two_week_baseline_dec7_pct": 10,
+      "two_week_baseline_source_date": "2026-11-01",
+      "two_week_change_pp": 40
     },
     {
       "school": "Kansas",
@@ -719,7 +755,10 @@
       "rank": 62,
       "research_note": "November 15 weekend review. See the saved research notes for the assessment.",
       "research_source": "",
-      "logo": "logos/Kansas.png"
+      "logo": "logos/Kansas.png",
+      "two_week_baseline_dec7_pct": 12,
+      "two_week_baseline_source_date": "2026-11-01",
+      "two_week_change_pp": -7
     },
     {
       "school": "Clemson",
@@ -771,7 +810,10 @@
       "rank": 17,
       "research_note": "Hold 15. Austin Hannon Nov17 and Cory Fravel Nov18 document a combative press conference; Swinney intentions do not constitute institutional backing. No new sourced dismissal decision or active-search evidence recovered.",
       "research_source": "https://247sports.com/college/clemson/board/22/contents/making-sense-of-what-dabo-swinney-said-in-outoftouch-duke-press-conference-292887019/?page=1",
-      "logo": "logos/Clemson.png"
+      "logo": "logos/Clemson.png",
+      "two_week_baseline_dec7_pct": 8,
+      "two_week_baseline_source_date": "2026-11-01",
+      "two_week_change_pp": 7
     },
     {
       "school": "Washington",
@@ -821,7 +863,10 @@
       "rank": 20,
       "research_note": "November 15 weekend review. See the saved research notes for the assessment.",
       "research_source": "",
-      "logo": "logos/Washington.png"
+      "logo": "logos/Washington.png",
+      "two_week_baseline_dec7_pct": 7,
+      "two_week_baseline_source_date": "2026-11-01",
+      "two_week_change_pp": -2
     },
     {
       "school": "North Carolina",
@@ -871,7 +916,10 @@
       "rank": 29,
       "research_note": "November 15 weekend review. See the saved research notes for the assessment.",
       "research_source": "",
-      "logo": "logos/North_Carolina.png"
+      "logo": "logos/North_Carolina.png",
+      "two_week_baseline_dec7_pct": 5,
+      "two_week_baseline_source_date": "2026-11-01",
+      "two_week_change_pp": 0
     },
     {
       "school": "Arkansas",
@@ -921,7 +969,10 @@
       "rank": 36,
       "research_note": "November 15 weekend review. See the saved research notes for the assessment.",
       "research_source": "",
-      "logo": "logos/Arkansas.png"
+      "logo": "logos/Arkansas.png",
+      "two_week_baseline_dec7_pct": 6,
+      "two_week_baseline_source_date": "2026-11-01",
+      "two_week_change_pp": -3
     },
     {
       "school": "Purdue",
@@ -971,7 +1022,10 @@
       "rank": 64,
       "research_note": "November 15 weekend review. See the saved research notes for the assessment.",
       "research_source": "",
-      "logo": "logos/Purdue.png"
+      "logo": "logos/Purdue.png",
+      "two_week_baseline_dec7_pct": 6,
+      "two_week_baseline_source_date": "2026-11-01",
+      "two_week_change_pp": 0
     },
     {
       "school": "Wisconsin",
@@ -1024,7 +1078,10 @@
       "rank": 22,
       "research_note": "Raise 35 to 40. Chancellor selection clears part of the previously reported governance uncertainty, but Bashir starts February 2027 and interim leadership continues. McNamara Nov15 expected a change after Minnesota; this is his assessment, not confirmation. Nov18 announcement buzz concerned the chancellor. Nov19 adds no decision.",
       "research_source": "https://247sports.com/college/wisconsin/board/23/contents/hot-board-20--289889901/?page=1",
-      "logo": "logos/Wisconsin.png"
+      "logo": "logos/Wisconsin.png",
+      "two_week_baseline_dec7_pct": 3,
+      "two_week_baseline_source_date": "2026-11-01",
+      "two_week_change_pp": 37
     },
     {
       "school": "Mississippi State",
@@ -1074,7 +1131,10 @@
       "rank": 47,
       "research_note": "November 15 weekend review. See the saved research notes for the assessment.",
       "research_source": "",
-      "logo": "logos/Mississippi_State.png"
+      "logo": "logos/Mississippi_State.png",
+      "two_week_baseline_dec7_pct": 4,
+      "two_week_baseline_source_date": "2026-11-01",
+      "two_week_change_pp": 4
     },
     {
       "school": "Texas A&M",
@@ -1124,7 +1184,10 @@
       "rank": 11,
       "research_note": "November 15 weekend review. See the saved research notes for the assessment.",
       "research_source": "",
-      "logo": "logos/Texas_A&M.png"
+      "logo": "logos/Texas_A&M.png",
+      "two_week_baseline_dec7_pct": 2,
+      "two_week_baseline_source_date": "2026-11-01",
+      "two_week_change_pp": 0
     },
     {
       "school": "Alabama",
@@ -1174,7 +1237,10 @@
       "rank": 4,
       "research_note": "November 15 weekend review. See the saved research notes for the assessment.",
       "research_source": "",
-      "logo": "logos/Alabama.png"
+      "logo": "logos/Alabama.png",
+      "two_week_baseline_dec7_pct": 1,
+      "two_week_baseline_source_date": "2026-11-01",
+      "two_week_change_pp": 0
     },
     {
       "school": "Texas",
@@ -1224,7 +1290,10 @@
       "rank": 1,
       "research_note": "November 15 weekend review. See the saved research notes for the assessment.",
       "research_source": "",
-      "logo": "logos/Texas.png"
+      "logo": "logos/Texas.png",
+      "two_week_baseline_dec7_pct": 1,
+      "two_week_baseline_source_date": "2026-11-01",
+      "two_week_change_pp": 0
     },
     {
       "school": "Penn State",
@@ -1274,7 +1343,10 @@
       "rank": 9,
       "research_note": "November 15 weekend review. See the saved research notes for the assessment.",
       "research_source": "",
-      "logo": "logos/Penn_State.png"
+      "logo": "logos/Penn_State.png",
+      "two_week_baseline_dec7_pct": 1,
+      "two_week_baseline_source_date": "2026-11-01",
+      "two_week_change_pp": 0
     },
     {
       "school": "Nebraska",
@@ -1327,7 +1399,13 @@
       "rank": 21,
       "research_note": "November 15 weekend review. See the saved research notes for the assessment.",
       "research_source": "",
-      "logo": "logos/Nebraska.png"
+      "logo": "logos/Nebraska.png",
+      "two_week_baseline_dec7_pct": null,
+      "two_week_baseline_source_date": null,
+      "two_week_change_pp": null
     }
-  ]
+  ],
+  "comparison_reference_date": "2026-11-06",
+  "comparison_source_date": "2026-11-01",
+  "comparison_method": "Latest saved forecast on or before Nov6; Nov1 snapshot carried forward without interpolation. No Nov6 revision available."
 }

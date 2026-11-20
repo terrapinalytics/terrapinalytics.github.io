@@ -4,8 +4,6 @@ page-layout: full
 toc: false
 ---
 
-Program tiers are subjective assessments of head-coaching job desirability, informed by football resources, recruiting geography, conference economics and stability, fan support and tradition, and sustainable competitive potential. [How to read these rankings](#how-to-read-these-rankings).
-
 ```{=html}
 <iframe src="../assets/coaching/rankings.html" title="FBS program rankings and supporting data" class="coaching-frame" loading="eager"></iframe>
 ```
