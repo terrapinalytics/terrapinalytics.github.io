@@ -4,6 +4,8 @@ page-layout: full
 toc: false
 ---
 
+Probabilities are subjective estimates based on insider reporting, national and local coverage, team performance, contracts and buyout costs, and institutional context. They are editorial judgments, not outputs of a statistical model.
+
 ```{=html}
 <iframe src="../assets/coaching/odds.html" title="2026 coaching departure odds" class="coaching-frame" loading="eager"></iframe>
 ```
