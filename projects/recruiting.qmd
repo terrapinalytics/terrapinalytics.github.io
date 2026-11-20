@@ -1,0 +1,9 @@
+---
+title: "Recruiting Geography"
+---
+
+How does geography influence where blue-chip football recruits commit?
+
+This project will explore distance from campus, competing nearby programs, local talent density, and differences between national powers and other schools.
+
+*Interactive maps and analysis coming soon.*
