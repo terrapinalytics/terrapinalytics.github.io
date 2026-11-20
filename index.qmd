@@ -7,7 +7,7 @@ title-block-banner: false
 ::: {.landing-hero .landing-hero-compact}
 ::: {.hero-inner}
 ::: {.hero-copy}
-<div class="hero-kicker"><span class="signal-dot"></span> TERRAPINALYTICS</div>
+<div class="hero-kicker"><span class="signal-dot"></span> <span class="wordmark-prefix">TERRAPIN</span><span class="wordmark-suffix">ALYTICS</span></div>
 
 # College sports research and dashboards
 
