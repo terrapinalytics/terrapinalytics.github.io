@@ -1,6 +1,7 @@
 project:
   type: website
   resources:
+    - assets/recruiting/**
     - assets/coaching/**
 
 website:
