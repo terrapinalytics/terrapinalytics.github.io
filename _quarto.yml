@@ -6,6 +6,7 @@ project:
     - assets/championships/**
     - assets/finance/**
     - assets/articles/**
+    - assets/fouls/**
 
 website:
   title: "Terrapinalytics"
