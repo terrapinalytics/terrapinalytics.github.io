@@ -1,0 +1,14 @@
+:root { --terp-red:#c7353e; --terp-gold:#e6b84a; }
+.navbar { border-bottom: 3px solid var(--terp-gold); }
+h1,h2,h3 { letter-spacing: -.025em; }
+a { color: #a82932; }
+a:hover { color: #731d25; }
+.hero { padding: 3.5rem 0 2rem; max-width: 850px; }
+.hero h1 { font-size: clamp(2.5rem, 6vw, 4.6rem); font-weight: 750; }
+.hero p { font-size: 1.25rem; color: #555; }
+.project-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(235px,1fr)); gap:1rem; margin:2rem 0; }
+.project-card { display:block; padding:1.5rem; border:1px solid #ddd; border-radius:12px; text-decoration:none; color:#222; transition:transform .15s,box-shadow .15s; }
+.project-card:hover { transform:translateY(-3px); box-shadow:0 6px 18px #0001; color:#222; }
+.project-card h3 { margin-top:.2rem; }
+.project-card p { color:#666; margin-bottom:0; }
+.project-card .eyebrow { color:#a82932; font-size:.8rem; text-transform:uppercase; letter-spacing:.09em; font-weight:700; }
