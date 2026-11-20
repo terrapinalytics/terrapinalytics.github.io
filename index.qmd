@@ -7,18 +7,31 @@ title-block-banner: false
 ::: {.landing-hero .landing-hero-compact}
 ::: {.hero-inner}
 ::: {.hero-copy}
-<div class="hero-kicker"><span class="signal-dot"></span> <span class="wordmark-prefix">TERRAPIN</span><span class="wordmark-suffix">ALYTICS</span></div>
+# At the intersection of sports, data, and money.
 
-# College sports research and dashboards
-
-<ul class="topic-list">
+<div class="topic-accordions" aria-label="Research dashboards by topic">
+<details class="topic-group" open>
+<summary>College Football</summary>
+<ul>
 <li><a href="projects/recruiting.html">Recruiting Geography</a></li>
 <li><a href="projects/program-rankings.html">FBS Program Rankings</a></li>
 <li><a href="projects/coaching.html">Coaching Carousel</a></li>
+</ul>
+</details>
+<details class="topic-group">
+<summary>College Basketball</summary>
+<ul>
 <li><a href="projects/officiating.html">Officiating Lab</a></li>
+</ul>
+</details>
+<details class="topic-group">
+<summary>College Athletics</summary>
+<ul>
 <li><a href="projects/championships.html">Big Ten Championship Tracker</a></li>
 <li><a href="projects/finance.html">Athletics Financials</a></li>
 </ul>
+</details>
+</div>
 
 <div class="hero-actions"><a class="btn-main" href="projects/index.html">View research</a><a class="btn-quiet" href="articles/index.html">Articles</a></div>
 :::
