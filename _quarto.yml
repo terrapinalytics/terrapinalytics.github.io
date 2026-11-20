@@ -15,7 +15,7 @@ website:
   navbar:
     background: "#15191e"
     foreground: "#ffffff"
-    logo: assets/shell-network.png
+    logo: assets/shell-network-white.png
     logo-alt: "Terrapinalytics shell"
     title: "Terrapinalytics"
     left:

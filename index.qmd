@@ -24,7 +24,7 @@ title-block-banner: false
 :::
 
 ::: {.hero-art}
-<img class="hero-shell" src="assets/shell-network.png" alt="Terrapin shell drawn as a connected network of data nodes" />
+<img class="hero-shell" src="assets/shell-network-white.png" alt="Terrapin shell drawn as a connected network of data nodes" />
 :::
 :::
 :::
