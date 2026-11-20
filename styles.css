@@ -79,3 +79,12 @@ body:not(:has(.landing-hero)) .content a{text-underline-offset:3px}
 .mini-bar-row b{font-weight:650}.mini-bar-row strong{text-align:right;font-variant-numeric:tabular-nums}
 .mini-bar-track{height:15px;background:#f0f1f2;border-radius:2px;overflow:hidden}.mini-bar-track span{height:100%;display:block;background:#c8102e}
 @media(max-width:540px){.mini-bar-row{grid-template-columns:92px minmax(0,1fr) 65px;gap:8px;font-size:.78rem}}
+
+/* Terrapinalytics split-color wordmark, used across all Quarto pages. */
+#quarto-header .navbar-brand .navbar-title{font-size:0!important;white-space:nowrap;letter-spacing:0}
+#quarto-header .navbar-brand .navbar-title::before,
+#quarto-header .navbar-brand .navbar-title::after{font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:1.19rem;font-weight:850;font-style:italic;letter-spacing:-.055em;text-transform:uppercase}
+#quarto-header .navbar-brand .navbar-title::before{content:"TERRAPIN";color:#fff}
+#quarto-header .navbar-brand .navbar-title::after{content:"ALYTICS";color:#e31837}
+@media(max-width:480px){#quarto-header .navbar-brand .navbar-title::before,#quarto-header .navbar-brand .navbar-title::after{font-size:.95rem}}
+.hero-kicker .wordmark-prefix{color:#fff}.hero-kicker .wordmark-suffix{color:#e31837}
