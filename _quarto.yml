@@ -1,29 +1,41 @@
 project:
   type: website
+
 website:
   title: "Terrapinalytics"
-  description: "Independent sports research, data visualizations, and dashboards."
+  description: "Independent college sports research, data visualizations, and dashboards."
   site-url: "https://terrapinalytics.github.io/"
+  favicon: assets/favicon.svg
+  search: true
   navbar:
-    background: '#171717'
-    foreground: '#ffffff'
+    background: "#15191e"
+    foreground: "#ffffff"
+    logo: assets/favicon.svg
+    logo-alt: "Terrapinalytics shell"
+    title: "Terrapinalytics"
     left:
       - href: index.qmd
         text: Home
       - href: projects/index.qmd
-        text: Projects
+        text: Research
       - href: articles/index.qmd
         text: Articles
       - href: about.qmd
         text: About
+    right:
+      - icon: github
+        href: https://github.com/terrapinalytics
+        aria-label: GitHub
   page-footer:
-    center: "Terrapinalytics · Independent analysis"
-  search: true
+    left: "© Terrapinalytics · Independent sports analysis"
+    right: "Built for the curious."
+
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
     link-external-newwindow: true
+
 execute:
   freeze: auto

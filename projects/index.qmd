@@ -1,10 +1,13 @@
 ---
-title: "Projects"
+title: "Research projects"
+subtitle: "Open questions, working models, and interactive explorations."
 ---
 
-Ongoing research, datasets, and interactive explorations.
+Terrapinalytics organizes research around questions rather than posting schedules. These are the major areas of investigation; interactive views and published findings will be added as they are ready.
 
-- [Recruiting Geography](recruiting.qmd)
-- [Coaching Carousel](coaching.qmd)
-- [Officiating Lab](officiating.qmd)
-- [Big Ten Championship Tracker](championships.qmd)
+::: {.project-grid}
+<a class="project-card" href="recruiting.html"><div class="card-top"><span class="eyebrow">FOOTBALL / RECRUITING</span><span class="card-arrow">↗</span></div><div class="card-icon icon-recruiting">◎</div><h3>Recruiting Geography</h3><p>Distance, local competition, blue-chip recruiting, and regional talent.</p><span class="card-meta">Explore <b>→</b></span></a>
+<a class="project-card" href="coaching.html"><div class="card-top"><span class="eyebrow">FOOTBALL / COACHING</span><span class="card-arrow">↗</span></div><div class="card-icon icon-coaching">↗</div><h3>Coaching Carousel</h3><p>Coaching markets, program desirability, and turnover probabilities.</p><span class="card-meta">Explore <b>→</b></span></a>
+<a class="project-card" href="officiating.html"><div class="card-top"><span class="eyebrow">BASKETBALL / DATA</span><span class="card-arrow">↗</span></div><div class="card-icon icon-officiating">∑</div><h3>Officiating Lab</h3><p>Foul rates, referee tendencies, and play-style adjustments.</p><span class="card-meta">Explore <b>→</b></span></a>
+<a class="project-card" href="championships.html"><div class="card-top"><span class="eyebrow">BIG TEN / HISTORY</span><span class="card-arrow">↗</span></div><div class="card-icon icon-championships">▥</div><h3>Championship Tracker</h3><p>Comparing conference championships across schools, sports, and time.</p><span class="card-meta">Explore <b>→</b></span></a>
+:::
