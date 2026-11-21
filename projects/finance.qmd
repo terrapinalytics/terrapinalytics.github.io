@@ -6,7 +6,7 @@ toc: false
 
 ```{=html}
 <p><a href="../assets/finance/dashboard.html" target="_blank" rel="noopener">Open full-screen dashboard</a></p>
-<iframe src="../assets/finance/dashboard.html" title="Power Four athletics financial reporting" style="width:100%;height:1150px;border:0;border-radius:8px" loading="eager"></iframe>
+<iframe src="../assets/finance/dashboard.html" title="Power Four and ranked Group of Six athletics financial reporting" style="width:100%;height:1150px;border:0;border-radius:8px" loading="eager"></iframe>
 ```
 
-[NCAA/Knight-Newhouse source panel](../assets/finance/p4_ncaa_finances_FY2010_FY2025.csv) · [EADA source panel](../assets/finance/p4_eada_finances_FY2001_FY2025.csv)
+[NCAA/Knight-Newhouse source panel](../assets/finance/ranked_ncaa_finances_FY2010_FY2025.csv) · [EADA source panel](../assets/finance/ranked_eada_finances_FY2001_FY2025.csv)
