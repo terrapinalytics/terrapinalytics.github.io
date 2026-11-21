@@ -29,6 +29,7 @@ title-block-banner: false
 <ul>
 <li><a href="projects/championships.html">Big Ten Championship Tracker</a></li>
 <li><a href="projects/finance.html">Athletics Financials</a></li>
+<li><a href="projects/athletics-spending-index.html">College Athletics Spending Index</a></li>
 </ul>
 </details>
 </div>
@@ -60,6 +61,7 @@ title-block-banner: false
 ::: {.content-band .last-band}
 ::: {.content-container}
 <div class="section-heading section-heading-tight"><div><div class="section-kicker">Writing</div><h2>Articles</h2></div><a class="section-link" href="articles/index.html">All articles</a></div>
+<a class="article-teaser" href="articles/college-athletics-spending-index.html"><div><h3>How Fast Is College Athletics Spending Growing?</h3><p>Spending growth by sport and the breakdown of an athletics budget.</p></div></a>
 <a class="article-teaser" href="articles/down-14-two-point-conversions.html"><div><h3>Down 14: Why Don't More Teams Go for Two?</h3><p>Fourth-quarter decisions in the NFL and FBS.</p></div><span class="teaser-arrow">↗</span></a>
 <a class="article-teaser" href="articles/mandatory-athletics-fees.html"><div><h3>Mandatory Student Athletics Fees</h3><p>Published Power Four charges and reporting gaps.</p></div><span class="teaser-arrow">↗</span></a>
 <a class="article-teaser" href="articles/recruiting-distance.html"><div><h3>How Far Do Blue-Chip Recruits Travel?</h3><p>Distance distributions and the Maryland recruiting market.</p></div><span class="teaser-arrow">↗</span></a>

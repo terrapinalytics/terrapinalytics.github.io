@@ -10,3 +10,4 @@ toc: false
 ```
 
 [NCAA/Knight-Newhouse source panel](../assets/finance/ranked_ncaa_finances_FY2010_FY2025.csv) · [EADA source panel](../assets/finance/ranked_eada_finances_FY2001_FY2025.csv)
+[College Athletics Spending Index](athletics-spending-index.qmd) · [How Fast Is College Athletics Spending Growing?](../articles/college-athletics-spending-index.qmd)

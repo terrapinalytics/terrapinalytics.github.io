@@ -10,3 +10,4 @@ title: "Research"
 - [Officiating Lab](officiating.qmd) — foul rates, referee tendencies, and whistle patterns.
 - [Big Ten Championship Tracker](championships.qmd) — conference titles by school, sport, and era.
 - [Athletics Financials](finance.qmd) — NCAA/Knight-Newhouse and EADA reporting, fiscal trends, and school comparisons.
+- [College Athletics Spending Index](athletics-spending-index.qmd) — spending growth, sport benchmarks, and athletics budget shares.
