@@ -3,3 +3,15 @@
 .team-label{display:inline-flex;align-items:center;gap:7px;vertical-align:middle;min-width:0;max-width:100%;font-weight:inherit}
 .team-logo{width:23px;height:23px;object-fit:contain;flex:0 0 23px;vertical-align:middle}
 .team-label>span{min-width:0;overflow-wrap:anywhere}
+.trend-controls{display:flex;gap:12px;margin:0 0 12px}
+.chart{height:auto;min-height:140px}
+.chart svg{display:block;height:auto;overflow:visible;color:#566373}
+.chart text{fill:currentColor;font-size:13px}
+.chart circle:hover{r:6}
+.legend{align-items:center;font-size:12px}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+.legend i{height:0;width:15px;margin:0;border:0;border-top-width:3px;border-radius:0}
+.remove-school{border:1px solid #d4d9de;border-radius:4px;background:#fff;color:#3b424a;cursor:pointer;font-size:15px;line-height:1;padding:3px 6px}
+.trend-data{margin:12px 0;font-size:13px}
+.trend-data summary{cursor:pointer;color:#4c5662}
+.trend-data th,.trend-data td{white-space:nowrap}

@@ -1,20 +1,287 @@
 async function loadData(){const b64=await fetch('data.packed.txt').then(r=>{if(!r.ok)throw new Error('Data request '+r.status);return r.text()});const raw=Uint8Array.from(atob(b64.trim()),c=>c.charCodeAt(0));const stream=new Blob([raw]).stream().pipeThrough(new DecompressionStream('gzip'));return JSON.parse(await new Response(stream).text())}
-const $=id=>document.getElementById(id),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const METRICS={NCAA:[['rev','Athletics revenue'],['exp','Athletics expenditure'],['fbexp','Football expenditure'],['tickets','Ticket revenue (athletics-wide)'],['donors','Donor contributions (athletics-wide)'],['media','Conference / NCAA / media revenue'],['support','Total reported subsidies'],['fees','Student fees revenue'],['aid','Athlete aid / benefits expense'],['coaches','Coaches compensation expense'],['debt','Annual debt service']],EADA:[['rev','Athletics revenue'],['exp','Athletics expenditure'],['fbexp','Football allocated expenditure'],['fbrev','Football attributed revenue'],['recruit','Recruiting expense (athletics-wide)'],['aid','Athlete aid / benefits expense'],['mrev','Men’s basketball attributed revenue'],['wrev','Women’s basketball attributed revenue']]};let DATA=[],metric='rev';function money(v){return v==null?'—':'$'+(v/1e6).toLocaleString(undefined,{minimumFractionDigits:1,maximumFractionDigits:1})+'M'}function short(v){return v==null?'—':(v/1e6).toFixed(1)}function opt(id,values,label){$(id).innerHTML='<option value="">'+label+'</option>'+values.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('')}function sourceChanged(){let s=$('source').value,m=$('metric').value;let mlist=METRICS[s];$('metric').innerHTML=mlist.map(([v,n])=>`<option value="${v}">${n}</option>`).join('');$('metric').value=mlist.some(a=>a[0]===m)?m:'rev';let years=[...new Set(DATA.filter(r=>r.a===s).map(r=>r.y))].sort((a,b)=>b-a);$('year').innerHTML=years.map(y=>`<option value="${y}">FY${y}</option>`).join('');$('year').value=years[0];render()}function chart(values,years){const W=700,H=270,P=40;let nonnull=values.filter(v=>v!=null);if(!nonnull.length){$('trend').innerHTML='<p class="disabled">No reported values for these selections</p>';return}let ymax=Math.max(...nonnull,1)*1.1,ymin=0;const xy=(v,i)=>[P+i*(W-P*2)/Math.max(1,values.length-1),H-P-(v-ymin)/(ymax-ymin)*(H-2*P)];let segments=[],seg=[];values.forEach((v,i)=>{if(v==null){if(seg.length)segments.push(seg);seg=[]}else seg.push(xy(v,i))});if(seg.length)segments.push(seg);let pth=segments.map(a=>a.map((xy,i)=>(i?'L':'M')+xy.join(',')).join(' ')).map(d=>`<path d="${d}" stroke="#c8102e" fill="none" stroke-width="3"/>`).join('');$('trend').innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Annual financial trend"><line x1="${P}" x2="${W-P}" y1="${H-P}" y2="${H-P}" stroke="#bfc5cb"/><text x="4" y="22" font-size="11" fill="#68717a">${money(ymax)}</text>${pth}${values.map((v,i)=>v==null?'':`<circle cx="${xy(v,i)[0]}" cy="${xy(v,i)[1]}" r="4" fill="#c8102e"><title>FY${years[i]}: ${money(v)}</title></circle>`).join('')}${years.map((y,i)=>i%Math.max(1,Math.ceil(years.length/8))===0?`<text x="${P+i*(W-2*P)/Math.max(1,years.length-1)}" y="${H-12}" font-size="11" fill="#5c6772" text-anchor="middle">${y}</text>`:'').join('')}</svg>`}function render(){let s=$('source').value,m=$('metric').value,year=+$('year').value,conf=$('conference').value,school=$('school').value;let annual=DATA.filter(r=>r.a===s&&r.y===year&&(!conf||r.c===conf));let shown=annual.filter(r=>r[m]!=null).sort((a,b)=>b[m]-a[m]);let nums=shown.map(r=>r[m]);let max=Math.max(1,...nums),sum=nums.reduce((a,b)=>a+b,0);$('stats').innerHTML=[['Reporting schools',shown.length],['Median',nums.length?money(PeerContext.stats(0,nums).median):'—'],['Highest',nums.length?money(max):'—'],['Missing / not reported',annual.length-shown.length]].map(([a,b])=>`<div class="stat"><b>${b}</b><span>${a}</span></div>`).join('');$('bars').innerHTML=shown.length?shown.map(r=>`<div class="barrow"><span class="name" title="${esc(r.s)}">${TeamLogos.label(r.s)}</span><div class="track"><div class="fill" style="width:${100*r[m]/max}%"></div></div><b>${short(r[m])}</b></div>`).join(''):'<p class="disabled">No reported amounts</p>';let all=DATA.filter(r=>r.a===s&&(!conf||r.c===conf));let sel=school||(conf?all[0]?.s:'Maryland');let years=[...new Set(all.map(r=>r.y))].sort((a,b)=>a-b),values=years.map(y=>all.find(r=>r.y===y&&r.s===sel)?.[m]??null);$('trendlabel').textContent=sel+' · '+(METRICS[s].find(x=>x[0]===m)||[])[1]+' · nominal $';chart(values,years);const allYear=DATA.filter(r=>r.a===s&&r.y===year), selectedRow=allYear.find(r=>r.s===sel);
-const powerConferences=new Set(['ACC','Big 12','Big Ten','SEC']);
-const cohorts=[{label:'Power Four reporting sample (current membership)',values:allYear.filter(r=>powerConferences.has(r.c)).map(r=>r[m]),includesSelected:powerConferences.has(selectedRow?.c)}];
-if (selectedRow && !powerConferences.has(selectedRow.c)) {
-  cohorts.push({label:'Ranked Group of Six reporting sample',values:allYear.filter(r=>!powerConferences.has(r.c)).map(r=>r[m])});
+const METRICS={NCAA:[['rev','Athletics revenue'],['exp','Athletics expenditure'],['fbexp','Football expenditure'],['tickets','Ticket revenue (athletics-wide)'],['donors','Donor contributions (athletics-wide)'],['media','Conference / NCAA / media revenue'],['support','Total reported subsidies'],['fees','Student fees revenue'],['aid','Athlete aid / benefits expense'],['coaches','Coaches compensation expense'],['debt','Annual debt service']],EADA:[['rev','Athletics revenue'],['exp','Athletics expenditure'],['fbexp','Football allocated expenditure'],['fbrev','Football attributed revenue'],['recruit','Recruiting expense (athletics-wide)'],['aid','Athlete aid / benefits expense'],['mrev','Men’s basketball attributed revenue'],['wrev','Women’s basketball attributed revenue']]};
+
+const $ = id => document.getElementById(id);
+const esc = value => String(value).replace(/[&<>"']/g, char => (
+  {'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'}[char]
+));
+const CPI_BASE = 2025;
+// BLS CPI-U, U.S. city average, all items, calendar-year annual averages.
+const CPI = [
+  177.1, 179.9, 184.0, 188.9, 195.3, 201.6, 207.342, 215.303, 214.537,
+  218.056, 224.939, 229.594, 232.957, 236.736, 237.017, 240.007, 245.120,
+  251.107, 255.657, 258.811, 270.970, 292.655, 304.702, 313.689, 321.943
+];
+const POWER_CONFERENCES = new Set(['ACC', 'Big Ten', 'Big 12', 'SEC']);
+const COMPARISON_COLORS = ['#7c3da4', '#147e70', '#a86211', '#566b9c'];
+const FLAGGED_2012_FOOTBALL = new Set([
+  'Auburn', 'Clemson', 'Iowa State', 'Michigan', 'Missouri', 'North Carolina',
+  'Tennessee', 'Texas A&M', 'Virginia Tech'
+]);
+const amountFormat = new Intl.NumberFormat(undefined, {
+  minimumFractionDigits: 1, maximumFractionDigits: 1
+});
+let DATA = [];
+let comparisonSchools = [];
+
+function money(value) {
+  if (value == null) return '—';
+  return (value < 0 ? '−$' : '$') + amountFormat.format(Math.abs(value) / 1e6) + 'M';
 }
-cohorts.push({label:(selectedRow?.c||'Selected conference')+' (current membership)',values:allYear.filter(r=>r.c===selectedRow?.c).map(r=>r[m])});
-$('peer-context').innerHTML=PeerContext.comparison({value:selectedRow?.[m],format:money,label:sel+' · FY'+year+' · '+s+' · nominal USD',cohorts});
-$('legend').innerHTML='<span><i style="background:#c8102e"></i>'+TeamLogos.label(sel)+'</span>';let tab=(school?annual.filter(r=>r.s===school):annual).sort((a,b)=>a.s.localeCompare(b.s));$('rows').innerHTML=tab.map(r=>{
-  const source=r.metricSources?.[m]||r.source;
-  const coverage=m==='fbexp'&&r.footballExpenseNote?r.footballExpenseNote:r.status;
-  return `<tr><td>${TeamLogos.label(r.s)}</td><td>FY${r.y}</td><td>${r.a}</td><td>${esc(coverage)}</td><td class="num">${money(r[m])}</td><td>${source.startsWith('https://')?`<a href="${esc(source)}" target="_blank" rel="noopener">Source</a>`:'—'}</td></tr>`}).join('')}loadData().then(d=>{DATA=d.records;opt('school',[...new Set(DATA.map(r=>r.s))].sort(),'Maryland (default)');$('school').value='Maryland';$('source').addEventListener('change',sourceChanged);for(let id of ['metric','year','school'])$(id).addEventListener('change',render);$('conference').addEventListener('change',()=>{
-  const conference=$('conference').value;
-  const schools=[...new Set(DATA.filter(row=>!conference||row.c===conference).map(row=>row.s))].sort();
-  const selected=$('school').value;
-  opt('school',schools,conference?'All schools':'Maryland (default)');
-  $('school').value=schools.includes(selected)?selected:(conference?'':'Maryland');
+
+function fiscalPeriod(year, window) {
+  return window === 1 ? `FY${year}` : `FY${year - window + 1}–FY${year}`;
+}
+
+function option(value, label = value) {
+  return `<option value="${esc(value)}">${esc(label)}</option>`;
+}
+
+function setSchoolOptions() {
+  const selected = $('school').value;
+  const conference = $('conference').value;
+  const schools = [...new Set(DATA.filter(row => !conference || row.c === conference).map(row => row.s))].sort();
+  $('school').innerHTML = option('', conference ? 'All schools' : 'Maryland (default)') + schools.map(school => option(school)).join('');
+  $('school').value = schools.includes(selected) ? selected : '';
+}
+
+function setYearOptions() {
+  const selected = Number($('year').value);
+  const window = Number($('window').value);
+  const years = [...new Set(DATA.filter(row => row.a === $('source').value).map(row => row.y))].sort((a,b) => b-a);
+  const endingYears = years.filter(year => year >= years.at(-1) + window - 1);
+  $('year').innerHTML = endingYears.map(year => option(year, fiscalPeriod(year, window))).join('');
+  $('year').value = endingYears.includes(selected) ? String(selected) : String(endingYears[0]);
+}
+
+function sourceChanged() {
+  const metrics = METRICS[$('source').value];
+  const selected = $('metric').value;
+  $('metric').innerHTML = metrics.map(([key,label]) => option(key, label)).join('');
+  $('metric').value = metrics.some(([key]) => selected === key) ? selected : 'rev';
+  setYearOptions();
   render();
-});$('reset').onclick=()=>{$('source').value='NCAA';$('conference').value='';$('conference').dispatchEvent(new Event('change'));sourceChanged();$('school').value='Maryland';render()};sourceChanged()}).catch(e=>{$('stats').textContent='Unable to load financial data: '+e.message});
+}
+
+function isFlaggedFootballExpense(row, metric) {
+  return metric === 'fbexp' && row?.a === 'NCAA' && row.y === 2012 && FLAGGED_2012_FOOTBALL.has(row.s);
+}
+
+function metricValue(row, metric, real) {
+  if (!row || row[metric] == null) return null;
+  if (isFlaggedFootballExpense(row, metric)) return null;
+  if (!real) return row[metric];
+  const index = CPI[row.y - 2001];
+  return index ? row[metric] * CPI[CPI_BASE - 2001] / index : null;
+}
+
+function schoolSeries(records, years, metric, window, real) {
+  const schools = new Map();
+  for (const row of records) {
+    if (!schools.has(row.s)) schools.set(row.s, {school:row.s, conference:row.c, rows:new Map()});
+    schools.get(row.s).rows.set(row.y, row);
+  }
+  return [...schools.values()].sort((a,b) => a.school.localeCompare(b.school)).map(school => {
+    const periods = years.map(year => {
+      const rows = Array.from({length: window}, (_, index) => school.rows.get(year - window + 1 + index));
+      const values = rows.map(row => metricValue(row, metric, real)).filter(value => value != null);
+      return {
+        value: values.length === window ? values.reduce((sum,value) => sum + value, 0) / window : null,
+        count: values.length,
+        rows
+      };
+    });
+    return {...school, periods};
+  });
+}
+
+function peerLine(label, color, dash, schools, years) {
+  const counts = [];
+  const values = years.map((_, index) => {
+    const reported = schools.map(school => school.periods[index].value).filter(value => value != null);
+    counts.push(reported.length);
+    return reported.length ? reported.reduce((sum,value) => sum + value, 0) / reported.length : null;
+  });
+  return {label, color, dash, counts, values};
+}
+
+function pointLabel(line, index) {
+  const value = money(line.values[index]);
+  return line.counts ? `${value} (n=${line.counts[index]})` : value;
+}
+
+function renderChart(series, years, window) {
+  const amounts = series.flatMap(line => line.values).filter(value => value != null);
+  if (!amounts.length) {
+    $('trend').innerHTML = '<p class="disabled">No reported values for these selections</p>';
+    $('trend-values').innerHTML = '';
+    return;
+  }
+  const width = 700, height = 300, left = 78, right = 24, top = 18, bottom = 38;
+  const min = Math.min(0, ...amounts) * 1.05;
+  const max = Math.max(1, ...amounts) * 1.05;
+  const x = index => left + index * (width - left - right) / Math.max(1, years.length - 1);
+  const y = value => top + (max - value) * (height - top - bottom) / (max - min);
+  const baseline = `<line x1="${left}" y1="${y(0)}" x2="${width-right}" y2="${y(0)}" stroke="#bfc5cb"/>`;
+  const grid = Array.from({length:5}, (_,i) => min + (max-min)*i/4).map(value => `
+    <line x1="${left}" y1="${y(value)}" x2="${width-right}" y2="${y(value)}" stroke="#e9edf2"/>
+    <text x="${left-7}" y="${y(value)+4}" text-anchor="end">${money(value)}</text>`).join('');
+  const yearStep = Math.ceil(years.length / 6);
+  const ticks = years.map((year,i) => i % yearStep === 0 || i === years.length - 1
+    ? `<text x="${x(i)}" y="${height-12}" text-anchor="middle">${year}</text>` : '').join('');
+  const lines = series.map(line => {
+    let path = '';
+    let connected = false;
+    const points = line.values.map((value, i) => {
+      if (value == null) {
+        connected = false;
+        return '';
+      }
+      path += `${connected ? 'L' : 'M'}${x(i)},${y(value)} `;
+      connected = true;
+      return `<circle cx="${x(i)}" cy="${y(value)}" r="3.8" fill="${line.color}"><title>${esc(line.label)} · ${fiscalPeriod(years[i],window)} · ${pointLabel(line,i)}</title></circle>`;
+    }).join('');
+    return `<path d="${path}" fill="none" stroke="${line.color}" stroke-width="2.6" stroke-dasharray="${line.dash || 'none'}"/>${points}`;
+  }).join('');
+  $('trend').innerHTML = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="trend-chart-title">
+    <title id="trend-chart-title">School and peer financial trends by ending fiscal year</title>${grid}${baseline}${ticks}${lines}</svg>`;
+  $('trend-values').innerHTML = `<thead><tr><th scope="col">Fiscal period</th>${series.map(line => `<th scope="col">${esc(line.label)}</th>`).join('')}</tr></thead>
+    <tbody>${years.map((year,i) => `<tr><th scope="row">${fiscalPeriod(year,window)}</th>${series.map(line => `<td>${pointLabel(line,i)}</td>`).join('')}</tr>`).join('')}</tbody>`;
+}
+
+function renderSchoolComparison(schools, index, period, dollars) {
+  const shown = schools.filter(school => school.periods[index].value != null)
+    .sort((a,b) => b.periods[index].value - a.periods[index].value);
+  const values = shown.map(school => school.periods[index].value);
+  const max = Math.max(1, ...values.map(Math.abs));
+  $('comparison-period').textContent = `${period} · ${dollars}`;
+  $('stats').innerHTML = [
+    ['Reporting schools', shown.length],
+    ['Median', values.length ? money(PeerContext.stats(0,values).median) : '—'],
+    ['Highest', money(values[0])],
+    ['Missing / incomplete', schools.length - shown.length]
+  ].map(([label,value]) => `<div class="stat"><b>${value}</b><span>${label}</span></div>`).join('');
+  $('bars').innerHTML = shown.map(school => {
+    const value = school.periods[index].value;
+    return `<div class="barrow"><span class="name" title="${esc(school.school)}">${TeamLogos.label(school.school)}</span>
+      <div class="track"><div class="fill" style="width:${100 * Math.abs(value) / max}%"></div></div>
+      <b>${money(value).replace(/M$/, '')}</b></div>`;
+  }).join('') || '<p class="disabled">No reported amounts</p>';
+}
+
+function renderDetail(schools, index, metric, period, window) {
+  $('rows').innerHTML = schools.map(school => {
+    const {value,count,rows} = school.periods[index];
+    const row = rows.at(-1);
+    const flagged = rows.some(item => isFlaggedFootballExpense(item, metric));
+    const coverage = window === 1
+      ? flagged ? 'Flagged reported zero · excluded from comparisons' : row?.status || 'No report'
+      : `${count}/${window} usable years${flagged ? ' · includes a flagged FY2012 report' : ''}`;
+    const links = rows.filter(Boolean).map(item => {
+      const url = item.metricSources?.[metric] || item.source;
+      return url?.startsWith('https://') ? `<a href="${esc(url)}" target="_blank" rel="noopener">${window === 1 ? 'Source' : 'FY'+item.y}</a>` : '';
+    }).filter(Boolean).join(' · ');
+    return `<tr><td>${TeamLogos.label(school.school)}</td><td>${period}</td><td>${row?.a || '—'}</td>
+      <td>${esc(coverage)}</td><td class="num">${money(value)}</td><td>${links || '—'}</td></tr>`;
+  }).join('');
+}
+
+function render() {
+  const source = $('source').value;
+  const metric = $('metric').value;
+  const window = Number($('window').value);
+  const endYear = Number($('year').value);
+  const conference = $('conference').value;
+  const real = $('dollars').value === 'real';
+  const dollars = real ? '2025 USD (CPI-U)' : 'Nominal USD';
+  const records = DATA.filter(row => row.a === source);
+  const allYears = [...new Set(records.map(row => row.y))].sort((a,b) => a-b);
+  const years = allYears.slice(window-1);
+  const index = years.indexOf(endYear);
+  const period = fiscalPeriod(endYear, window);
+  const schools = schoolSeries(records, years, metric, window, real);
+  const filtered = schools.filter(school => !conference || school.conference === conference);
+  const selected = $('school').value;
+  const primary = schools.find(school => school.school === (selected || (conference ? filtered[0]?.school : 'Maryland')));
+  const peers = schools.filter(school => POWER_CONFERENCES.has(school.conference));
+  const conferencePeers = schools.filter(school => school.conference === primary.conference);
+  comparisonSchools = comparisonSchools.filter(name => name !== primary.school);
+  const groups = [
+    {label:'Power Four reporting sample', schools:peers},
+    {label:primary.conference+' reporting sample', schools:conferencePeers}
+  ];
+  if (!POWER_CONFERENCES.has(primary.conference)) {
+    groups.splice(1,0,{label:'Ranked G6 reporting sample', schools:schools.filter(school => !POWER_CONFERENCES.has(school.conference))});
+  }
+
+  renderSchoolComparison(filtered, index, period, dollars);
+  renderDetail(selected ? filtered.filter(school => school.school === selected) : filtered, index, metric, period, window);
+  const series = [
+    {label:primary.school, color:'#b51633', values:primary.periods.map(point => point.value)},
+    peerLine('Power Four average', '#1c4f88', '7 4', peers, years),
+    peerLine(primary.conference+' average', '#596474', '2 4', conferencePeers, years),
+    ...comparisonSchools.map((name,i) => ({
+      label:name, color:COMPARISON_COLORS[i], removable:true,
+      values:schools.find(school => school.school === name).periods.map(point => point.value)
+    }))
+  ];
+  const metricLabel = METRICS[source].find(([key]) => key === metric)[1];
+  const trendBasis = window === 1 ? 'Annual values' : `Trailing ${window}-year averages`;
+  $('trendlabel').textContent = `${metricLabel} · ${dollars} · ${trendBasis}`;
+  renderChart(series, years, window);
+  $('comparison-school').disabled = comparisonSchools.length >= COMPARISON_COLORS.length;
+  $('comparison-school').innerHTML = option('', $('comparison-school').disabled ? 'Four comparisons added' : 'Choose a school') +
+    schools.filter(school => school.school !== primary.school && !comparisonSchools.includes(school.school))
+      .map(school => option(school.school)).join('');
+  $('legend').innerHTML = series.map(line => `<span><i style="border-color:${line.color};border-top-style:${line.dash ? 'dashed' : 'solid'}"></i>${esc(line.label)}${line.removable ? ` <button type="button" class="remove-school" data-school="${esc(line.label)}" aria-label="Remove ${esc(line.label)}">×</button>` : ''}</span>`).join('');
+  $('peer-context').innerHTML = PeerContext.comparison({
+    value:primary.periods[index].value, format:money, label:`${primary.school} · ${period} · ${source} · ${dollars}`,
+    cohorts:groups.map(group => ({
+      label:group.label, values:group.schools.map(school => school.periods[index].value),
+      includesSelected:group.schools.includes(primary)
+    }))
+  });
+}
+
+loadData().then(data => {
+  DATA = data.records;
+  setSchoolOptions();
+  $('school').value = 'Maryland';
+  $('source').addEventListener('change', sourceChanged);
+  for (const id of ['metric','year','school','dollars']) $(id).addEventListener('change', render);
+  $('window').addEventListener('change', () => {
+    setYearOptions();
+    render();
+  });
+  $('conference').addEventListener('change', () => {
+    setSchoolOptions();
+    render();
+  });
+  $('comparison-school').addEventListener('change', event => {
+    if (!event.target.value) return;
+    comparisonSchools.push(event.target.value);
+    render();
+  });
+  $('legend').addEventListener('click', event => {
+    const name = event.target.dataset.school;
+    if (!name) return;
+    comparisonSchools = comparisonSchools.filter(school => school !== name);
+    render();
+    $('comparison-school').focus();
+  });
+  $('reset').addEventListener('click', () => {
+    $('source').value = 'NCAA';
+    $('metric').value = 'rev';
+    $('conference').value = '';
+    $('dollars').value = 'nominal';
+    $('window').value = '1';
+    $('year').value = '';
+    comparisonSchools = [];
+    setSchoolOptions();
+    $('school').value = 'Maryland';
+    sourceChanged();
+  });
+  sourceChanged();
+}).catch(error => {
+  $('stats').textContent = 'Unable to load financial data: ' + error.message;
+});

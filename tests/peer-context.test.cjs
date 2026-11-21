@@ -6,12 +6,12 @@ assert.equal(pc.stats(1,[1,2]).rank,null);assert.equal(pc.stats(0,[0,1,2,3,4]).p
 assert(pc.comparison({value:1,cohorts:[{label:'Small',values:[1,2]}]}).includes('<td>—</td>'));
 assert(pc.comparison({value:null,cohorts:[]}).includes('selected value is missing'));
 const els=new Proxy({}, {get:(o,k)=>o[k]??(o[k]={value:'',innerHTML:'',textContent:'',hidden:false,options:[{}],selectedOptions:[{textContent:'Blue chips'}],setAttribute(){},scrollIntoView(){},addEventListener(){}})});
-function ctx(){return {console,PeerContext:pc,document:{getElementById:k=>els[k],querySelectorAll:()=>[]},window:{},setTimeout(){}};}
+function ctx(){return {console,PeerContext:pc,TeamLogos:{label:name=>name},document:{getElementById:k=>els[k],querySelectorAll:()=>[]},window:{},setTimeout(){}};}
 // Real financial source/year filtering, retaining zero and source separation.
 let f=fs.readFileSync('assets/finance/dashboard.js','utf8').split('loadData().then')[0],c=ctx();vm.createContext(c);vm.runInContext(f,c);
 const finance=JSON.parse(zlib.gunzipSync(Buffer.from(fs.readFileSync('assets/finance/data.packed.txt','utf8'),'base64'))).records;
 vm.runInContext('DATA='+JSON.stringify(finance),c);
-els.source.value='EADA';els.metric.value='fbrev';els.year.value='2024';els.conference.value='';els.school.value='Maryland';vm.runInContext('render()',c);assert(els['peer-context'].innerHTML.includes('FY2024 · EADA'));assert(els['peer-context'].innerHTML.includes('Big Ten + ACC reporting sample'));
+els.source.value='EADA';els.metric.value='fbrev';els.year.value='2024';els.window.value='1';els.dollars.value='nominal';els.conference.value='';els.school.value='Maryland';vm.runInContext('render()',c);assert(els['peer-context'].innerHTML.includes('FY2024 · EADA'));assert(els['peer-context'].innerHTML.includes('Power Four reporting sample'));
 // Real current player data and positional joins, search-independent cohort.
 f=fs.readFileSync('assets/fouls/dashboard.js','utf8').split("document.querySelectorAll('[data-view]').forEach(b=>b.onclick")[0];c=ctx();vm.createContext(c);vm.runInContext(f,c);
 const games=JSON.parse(zlib.gunzipSync(fs.readFileSync('assets/fouls/games-2027.json.gz'))),players=JSON.parse(zlib.gunzipSync(fs.readFileSync('assets/fouls/players-2027.json.gz'))),positions=JSON.parse(fs.readFileSync('assets/fouls/player-positions-2027.json')).positions;
