@@ -24,9 +24,13 @@ async function start() {
   let group = 'Overview';
   let sortKey = isOdds ? 'dec7_probability_pct' : 'rank';
   let ascending = !isOdds;
-  let showAllOdds = false;
   const groups = ['Overview', ...new Set((data.metrics || []).map(metric => metric.group))];
-  app.innerHTML = `<div class="tools"><label>Find a program<input id="search" type="search" placeholder="School or coach" autocomplete="off"></label><label>Conference<select id="conference"><option value="">All conferences</option>${options([...new Set(rows.map(row=>row.conference))].sort())}</select></label><label>Job tier<select id="tier"><option value="">All tiers</option>${[1,2,3,4,5,6].map(n=>`<option value="${n}">Tier ${n}</option>`).join('')}</select></label>${isOdds ? '<label>Checkpoint<select id="checkpoint"><option value="dec7_probability_pct">December 7, 2026</option><option value="feb1_probability_pct">February 1, 2027</option></select></label><label>Openings<select id="status"><option value="">All tracked situations</option><option value="Forecast">Forecasts</option><option value="Announced departure">Announced departures</option></select></label>' : `<label>Metrics<select id="group">${options(groups)}</select></label>`}</div><p id="count" class="count" aria-live="polite"></p>${isOdds ? '<button id="show-all-odds" type="button" aria-pressed="false">Show all (including under 5%)</button>' : ''}<div class="table-wrap"><table><thead id="head"></thead><tbody id="body"></tbody></table></div><section id="detail" class="detail" hidden aria-live="polite"></section><div class="download">${isOdds ? '<a href="departure_odds.csv" download>Odds CSV</a><a href="departure_support.zip" download>Research notes and data</a>' : '<a href="program_rankings.csv" download>Rankings CSV</a><a href="program_inputs.csv" download>All 79-program inputs</a><a href="supporting_data.zip" download>Supporting source tables</a><a href="source_registry.csv" download>Source registry</a>'}</div><div class="notes">${isOdds ? '<p>Announced departures are shown at 100%. The February checkpoint includes later potential departures. Change is measured against a November 6 reference using the latest saved forecast available then (November 1). No November 6 revision is available; values are carried forward without interpolation. A dash means no comparable baseline. Tracked situations are drawn from the 79-program ranking universe.</p><p>Buyout estimates represent the school’s gross head-coach dismissal obligation. Click a school for the assessment and contract notes. Reporting dates and confidence vary.</p>' : '<p>Rankings and tiers are subjective judgments informed by source observations and calculated comparisons. Reported estimates retain their uncertainty. Category weights describe editorial emphasis, not a published school-level score calculation. See the ranking research above for the framework and limitations.</p><p>EADA and NCAA MFRS retain their own definitions. Private-school nondisclosure appears as missing. Attendance mixes official totals and reconstructed observations, and roster-spending amounts are source-specific estimates.</p><details><summary>Ranking framework and data quality</summary><div id="weights"></div><p><a href="data_quality.md" target="_blank">Phase 4 validation and limitations</a></p><p>The supporting download contains normalized source tables, the data dictionary, field coverage, provenance, and conflicts. Each source retains its reporting year, unit, and definition.</p></details>'}</div>`;
+  const controls = isOdds
+    ? `<label>Checkpoint<select id="checkpoint"><option value="dec7_probability_pct">December 7, 2026</option><option value="feb1_probability_pct">February 1, 2027</option></select></label>
+       <label>Openings<select id="status"><option value="">All tracked situations</option><option value="Announced departure">Announced departures</option><option value="Forecast">Forecasts</option></select></label>
+       <label>Minimum odds<select id="minimum-odds"><option value="5">5% or higher</option><option value="0">All odds</option></select></label>`
+    : `<label>Find a program<input id="search" type="search" placeholder="School or coach" autocomplete="off"></label><label>Conference<select id="conference"><option value="">All conferences</option>${options([...new Set(rows.map(row=>row.conference))].sort())}</select></label><label>Job tier<select id="tier"><option value="">All tiers</option>${[1,2,3,4,5,6].map(n=>`<option value="${n}">Tier ${n}</option>`).join('')}</select></label><label>Metrics<select id="group">${options(groups)}</select></label>`;
+  app.innerHTML = `<div class="tools">${controls}</div><p id="count" class="count" aria-live="polite"></p><div class="table-wrap"><table><thead id="head"></thead><tbody id="body"></tbody></table></div><section id="detail" class="detail" hidden aria-live="polite"></section><div class="download">${isOdds ? '<a href="departure_odds.csv" download>Odds CSV</a><a href="departure_support.zip" download>Research notes and data</a>' : '<a href="program_rankings.csv" download>Rankings CSV</a><a href="program_inputs.csv" download>All 79-program inputs</a><a href="supporting_data.zip" download>Supporting source tables</a><a href="source_registry.csv" download>Source registry</a>'}</div><div class="notes">${isOdds ? '<p>Announced departures are shown at 100%. The February checkpoint includes later potential departures. Change is measured against a November 6 reference using the latest saved forecast available then (November 1). No November 6 revision is available; values are carried forward without interpolation. A dash means no comparable baseline. Tracked situations are drawn from the 79-program ranking universe.</p><p>Buyout estimates represent the school’s gross head-coach dismissal obligation. Click a school for the assessment and contract notes. Reporting dates and confidence vary.</p>' : '<p>Rankings and tiers are subjective judgments informed by source observations and calculated comparisons. Reported estimates retain their uncertainty. Category weights describe editorial emphasis, not a published school-level score calculation. See the ranking research above for the framework and limitations.</p><p>EADA and NCAA MFRS retain their own definitions. Private-school nondisclosure appears as missing. Attendance mixes official totals and reconstructed observations, and roster-spending amounts are source-specific estimates.</p><details><summary>Ranking framework and data quality</summary><div id="weights"></div><p><a href="data_quality.md" target="_blank">Phase 4 validation and limitations</a></p><p>The supporting download contains normalized source tables, the data dictionary, field coverage, provenance, and conflicts. Each source retains its reporting year, unit, and definition.</p></details>'}</div>`;
   if (!isOdds) document.getElementById('weights').innerHTML = data.weights.map(([label, weight, definition]) => `<div class="weight"><b>${weight}%</b><span><strong>${escapeHtml(label)}</strong><br>${escapeHtml(definition)}</span></div>`).join('');
   function selectedMetrics() {
     const keys = ['eada_football_expenses_mean_FY2022_2024_2025usd','sp_rank_mean_2016_2025','recruiting_rank_mean_2021_2025','attendance_average_mean_2022_2024_phase4'];
@@ -61,12 +65,20 @@ async function start() {
     detail.scrollIntoView({behavior:'smooth',block:'start'});
   }
   function render() {
-    const query = document.getElementById('search').value.toLowerCase().trim();
-    const conference = document.getElementById('conference').value;
-    const chosenTier = document.getElementById('tier').value;
     const checkpoint = isOdds ? document.getElementById('checkpoint').value : '';
-    const status = isOdds ? document.getElementById('status').value : '';
-    const filtered = rows.filter(row=>(row.school+' '+(row.coach||'')).toLowerCase().includes(query) && (!conference||row.conference===conference) && (!chosenTier||row.tier===Number(chosenTier)) && (!status||row.status===status) && (!isOdds||showAllOdds||row[checkpoint]>=5));
+    let filtered;
+    if (isOdds) {
+      const status = document.getElementById('status').value;
+      const minimumOdds = Number(document.getElementById('minimum-odds').value);
+      filtered = rows.filter(row => (!status || row.status === status) && row[checkpoint] >= minimumOdds);
+    } else {
+      const query = document.getElementById('search').value.toLowerCase().trim();
+      const conference = document.getElementById('conference').value;
+      const chosenTier = document.getElementById('tier').value;
+      filtered = rows.filter(row => (row.school + ' ' + (row.coach || '')).toLowerCase().includes(query)
+        && (!conference || row.conference === conference)
+        && (!chosenTier || row.tier === Number(chosenTier)));
+    }
     filtered.sort((a,b)=>{
       const left = a[sortKey], right = b[sortKey];
       if (left === '' || left == null) return right === '' || right == null ? 0 : 1;
@@ -98,11 +110,25 @@ async function start() {
     document.querySelectorAll('[data-school]').forEach(button=>button.onclick=()=>showDetail(rows.find(row=>row.school===button.dataset.school)));
   }
   rows.forEach(row=>{row.buyout_sort=row.dismissal_buyout?.amount_usd;row.change_sort=row.two_week_change_pp;});
-  if(isOdds) document.getElementById('show-all-odds').onclick=()=>{showAllOdds=!showAllOdds;const b=document.getElementById('show-all-odds');b.textContent=showAllOdds?'Hide under 5%':'Show all (including under 5%)';b.setAttribute('aria-pressed',String(showAllOdds));render();};
-  document.getElementById('search').oninput=render;
-  for(const id of ['conference','tier','status']) {const element=document.getElementById(id);if(element) element.onchange=render;}
-  if (isOdds) document.getElementById('checkpoint').onchange=()=>{sortKey=document.getElementById('checkpoint').value;ascending=false;render();};
-  else document.getElementById('group').onchange=()=>{group=document.getElementById('group').value;sortKey='rank';ascending=true;document.getElementById('detail').hidden=true;render();};
+  if (isOdds) {
+    document.getElementById('minimum-odds').onchange = render;
+    document.getElementById('status').onchange = render;
+    document.getElementById('checkpoint').onchange = () => {
+      sortKey = document.getElementById('checkpoint').value;
+      ascending = false;
+      render();
+    };
+  } else {
+    document.getElementById('search').oninput = render;
+    for (const id of ['conference', 'tier']) document.getElementById(id).onchange = render;
+    document.getElementById('group').onchange = () => {
+      group = document.getElementById('group').value;
+      sortKey = 'rank';
+      ascending = true;
+      document.getElementById('detail').hidden = true;
+      render();
+    };
+  }
   render();
   app.setAttribute('aria-busy','false');
 }
