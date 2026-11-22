@@ -1,34 +1,19 @@
 ---
 title: "College Athletics Spending Index"
-description: "Annual spending benchmarks and FY2025 budget weights by sport and expense category."
-toc: true
+description: "Compare college athletics spending by sport and expense category, with FY2025 budget weights and downloadable data."
+page-layout: full
+toc: false
 ---
 
-The headline index tracks the median year-over-year change in total athletics expenses across **53 reporting Power Four schools**, with **FY2019 = 100**. It reached **146.9 in FY2025**, compared with **125.9 for CPI-U**. [Read the article](../articles/college-athletics-spending-index.qmd)
+From FY2019 to FY2025, the NCAA spending index rose **46.9%** across 53 reporting Power Four schools, or **16.6% after CPI-U**. The same 53 schools show **48.6%** growth in EADA. [Read the article](../articles/college-athletics-spending-index.qmd)
 
-![Power Four spending and CPI-U indexes from FY2010 through FY2025.](../assets/finance/escalation/spending_index.png)
+## Explore the data {#explorer}
 
-[Annual index and benchmark data (CSV)](../assets/finance/escalation/annual_series.csv) · [FY2025 budget weights (CSV)](../assets/finance/escalation/budget_weights_fy2025.csv) · [Reproduction script](https://github.com/terrapinalytics/terrapinalytics.github.io/blob/main/scripts/build-athletics-spending-index.py)
+Compare spending in dollars, as an index, or by growth rate. Use the date controls to go back to FY2005 for NCAA total spending and FY2001 for many EADA sports. [Open the explorer full screen](../assets/finance/escalation/explorer.html)
 
-## Annual benchmarks
-
-The download includes the 13 series below, with annual median spending, matched growth, the middle half of school-level growth rates, the number of usable school pairs, and indexes in nominal and CPI-adjusted terms. All changes below are from FY2019 through FY2025. Coverage starts in FY2010 except the facilities, debt and equipment series, which starts in FY2015.
-
-| Spending series | Source and sample | FY2025 matched index | Nominal growth | CPI-U adjusted growth |
-|---|---|---:|---:|---:|
-| Total athletics expenses | NCAA, 53 reporting Power Four | 146.9 | 46.9% | 16.6% |
-| Total athletics expenses | NCAA, 62 ranked publics | 146.8 | 46.8% | 16.6% |
-| Total athletics expenses | NCAA, 9 ranked public G6 | 151.3 | 51.3% | 20.2% |
-| Total athletics expenses | EADA, same 53 reporting Power Four | 148.6 | 48.6% | 18.0% |
-| Total athletics expenses | EADA, all 79 dashboard schools | 150.5 | 50.5% | 19.5% |
-| Football expenses | NCAA, reporting Power Four | 142.2 | 42.2% | 12.9% |
-| Football expenses | EADA, 68 Power Four including Notre Dame | 145.6 | 45.6% | 15.6% |
-| Men’s basketball expenses | EADA, same 68 | 139.6 | 39.6% | 10.9% |
-| Women’s basketball expenses | EADA, same 68 | 152.1 | 52.1% | 20.8% |
-| Coaches’ compensation | NCAA, 53 reporting Power Four | 145.1 | 45.1% | 15.2% |
-| Non-coaching staff compensation | NCAA, same 53 | 142.7 | 42.7% | 13.3% |
-| Facilities, debt and equipment | NCAA, same 53 | 130.3 | 30.3% | 3.5% |
-| Recruiting expenses, all sports | EADA, 68 Power Four including Notre Dame | 151.9 | 51.9% | 20.6% |
+```{=html}
+<iframe id="spending-explorer" src="../assets/finance/escalation/explorer.html" title="Interactive college athletics spending explorer" style="display:block;width:100%;height:1150px;border:0" loading="eager" allow="clipboard-write"></iframe>
+```
 
 ## Budget weights
 
@@ -69,11 +54,17 @@ The FY2025 scholarship and related support category reflects new reporting defin
 
 ## How the index is built
 
-1. For each metric and pair of adjacent fiscal years, calculate the percentage change at every school with a positive usable observation in both years. This keeps blanks, true zeros with undefined percentage growth, and flagged observations out of the link.
+1. For the matched-school series, take each pair of adjacent fiscal years and calculate the percentage change at every school with a positive usable observation in both years. This keeps blanks, true zeros with undefined percentage growth, and flagged observations out of the link.
 2. Take the median of those changes. Set FY2019 to 100 and multiply forward by one plus each annual median change. Divide back through earlier years.
 3. Compare it with the annual cross-sectional median spending level, also rebased to FY2019. The annual median-dollar figure describes the middle department each year. The matched calculation describes the median change at the school level.
 4. For the real series, divide the matched index by the CPI-U index and multiply by 100. CPI-U uses the U.S. city average for all items and is matched by the year in the fiscal-year label. [BLS annual CPI-U](https://www.bls.gov/regions/northeast/data/consumerpriceindex_us_table.htm)
 
-The headline has 53 usable pairs in every link. NCAA football has 44 links into and out of FY2012 because nine reported zeros were flagged in the financial audit. The G6 series is a benchmark for the nine ranked public G6 programs with NCAA data. It does not represent the entire Group of Six. The archive preserves source distinctions, and NCAA and EADA are calculated as separate series throughout. [Source panel and provenance](../assets/coaching/supporting_data.zip) · [Financial data audit](../assets/coaching/data_quality.md)
+The headline has 53 usable school pairs in every annual link from FY2019 through FY2025. Earlier coverage varies with available reports. For example, FY2005 has 48 reporting schools, and the FY2006 growth calculation has 47 matched pairs. The NCAA football series excludes nine flagged zero values in FY2012. The NCAA G6 benchmark covers nine ranked public programs. Each chart series reports its source, cohort, and coverage.
 
-The FY2025 budget mix describes where athletics dollars went. To estimate input price inflation separately, a future index would need stable spending weights, independent price measures for the major inputs, and a consistent way to handle athlete compensation and policy changes.
+The **fixed-weight composite** rose **39.7%** from FY2019 to FY2025. It combines the rebased indexes for coaches’ compensation, non-coaching staff compensation, facilities, debt and equipment, and all remaining expenses. It applies the FY2025 average-school budget shares of **19.33%, 16.92%, 21.63%, and 42.12%**, respectively. The comparable composite starts in FY2015 because NCAA facilities reporting changed that year.
+
+## Downloads
+
+- [All explorer series with historical backfills (CSV)](../assets/finance/escalation/explorer_series.csv) · [FY2025 budget weights (CSV)](../assets/finance/escalation/budget_weights_fy2025.csv)
+- [Original annual benchmark data, including growth quartiles (CSV)](../assets/finance/escalation/annual_series.csv) · [Original benchmark reproduction script](https://github.com/terrapinalytics/terrapinalytics.github.io/blob/main/scripts/build-athletics-spending-index.py)
+- [Source panel and provenance](../assets/coaching/supporting_data.zip) · [Financial data audit](../assets/coaching/data_quality.md)

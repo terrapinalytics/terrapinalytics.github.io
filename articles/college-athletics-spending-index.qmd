@@ -12,7 +12,7 @@ I wanted a benchmark for a question the dollar figures alone leave open. If a sc
 
 ![Two indexes of Power Four athletics spending and the U.S. CPI-U, all at 100 in FY2019. In FY2025 the matched-school index is 146.9, the annual median index is 148.4, and CPI-U is 125.9.](../assets/finance/escalation/spending_index.png)
 
-The matched-school index rose **46.9%** from FY2019 to FY2025, or **6.6% per year**. After CPI-U, that’s **16.6% cumulative real growth**. Including the nine ranked public G6 schools barely changes the headline, to **46.8%**. Using EADA for the same 53 Power Four schools gives **48.6%**. The annual median was almost unchanged in FY2020 even as the median school-level change was −2.3%. Spending then fell 11.8% in FY2021 and rebounded 26.6% in FY2022 on the matched measure. That swing is part of why I use FY2019 as the starting point for the recent comparison. [Annual data and methods](../projects/athletics-spending-index.qmd)
+The matched-school index rose **46.9%** from FY2019 to FY2025, or **6.6% per year**. After CPI-U, that’s **16.6% cumulative real growth**. Including the nine ranked public G6 schools barely changes the headline, to **46.8%**. Using EADA for the same 53 Power Four schools gives **48.6%**. The annual median was almost unchanged in FY2020 even as the median school-level change was −2.3%. Spending then fell 11.8% in FY2021 and rebounded 26.6% in FY2022 on the matched measure. That swing is part of why I use FY2019 as the starting point for the recent comparison. [Explore the spending data](../projects/athletics-spending-index.qmd)
 
 ## How much does each sport account for?
 
@@ -43,6 +43,10 @@ This is a separate cut of the budget. It uses the 53 NCAA/Knight-Newhouse school
 
 Coaches and other staff together account for **36.3%** of the average department’s spending. Both compensation series grew faster than CPI-U over this period. Facilities, debt and equipment was the largest single category, but grew only **3.5% after CPI-U**. Spending on that line can move with the timing of major projects, so I’d use it as a budget benchmark across years. The FY2025 athlete-support grouping changed, and the archive has limited earlier travel detail. Those rows have FY2025 weights and need more work before we can compare their growth over time. [Knight-Newhouse reporting definitions](https://knightnewhousedata.org/about-the-data) · [Full category table](../projects/athletics-spending-index.qmd#budget-weights)
 
-For a budget estimate, I’d keep three questions separate. CPI-U tells me how much purchasing power changed. The spending index tells me what comparable departments actually spent. An athletics price index would hold a basket of inputs fixed to estimate what it costs to buy the same labor, travel, equipment, and facilities. The budget shares show where to start building that basket.
+## What changes when the budget weights are held fixed?
+
+The fixed-weight composite rose **39.7%** from FY2019 to FY2025, compared with **46.9%** for the headline index. For the composite, I give coaching pay, other staff pay, facilities, and the rest of the budget their FY2025 shares throughout the series. For the headline, I calculate growth in each school’s reported total and take the median each year. Taking medians within expense categories and weighting them can give a different result from taking the median of total growth. The 7.2 percentage point gap reflects both the weights and how the two benchmarks aggregate spending.
+
+Both benchmarks reflect changes in what schools spend, including shifts in staffing, program scope, and reporting. An athletics price index would also need independent measures of what it costs to buy the same labor, travel, equipment, and facilities over time.
 
 [Research and downloads](../projects/athletics-spending-index.qmd) · [Athletics Financials dashboard](../projects/finance.qmd)
