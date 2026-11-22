@@ -9,15 +9,6 @@ title-block-banner: false
 ::: {.hero-copy}
 # At the intersection of sports, data, and money.
 
-::: {.home-feature}
-<p class="section-kicker">Featured analysis</p>
-
-## How does Maryland’s offense compare with the Big Ten on third down?
-
-Compare third-down success by season, then drill into drives and individual plays.
-
-[Explore Maryland on third down](https://maryland-football-success-rates.jubilantzebra3.chatgpt.site/?team=120&unit=offense&down=3&league=1&group=Season){.btn-main target="_self"}
-:::
 :::
 
 ::: {.hero-art}
@@ -26,7 +17,29 @@ Compare third-down success by season, then drill into drives and individual play
 :::
 :::
 
-::: {.content-band}
+::: {.content-band .first-band}
+::: {.content-container}
+<div class="section-heading section-heading-tight">
+<h2 id="dashboards">Dashboards</h2>
+<a class="section-link" href="projects/index.html">Explore directory</a>
+</div>
+
+<nav aria-labelledby="dashboards">
+<ul class="project-grid home-dashboard-grid">
+<li><a href="projects/football-success.html"><strong>Big Ten Football Success Rates</strong><span>Compare teams by down, play type, or quarter.</span></a></li>
+<li><a href="projects/recruiting.html"><strong>Recruiting Geography</strong><span>Map where blue-chip recruits come from.</span></a></li>
+<li><a href="projects/program-rankings.html"><strong>FBS Program Rankings</strong><span>Compare 79 head-coaching jobs.</span></a></li>
+<li><a href="projects/coaching.html"><strong>Coaching Carousel</strong><span>Track openings, departure estimates, and buyouts.</span></a></li>
+<li><a href="projects/officiating.html"><strong>Basketball Officiating</strong><span>Compare foul rates by team, player, or referee.</span></a></li>
+<li><a href="projects/championships.html"><strong>Big Ten Championships</strong><span>Compare titles by school, sport, and era.</span></a></li>
+<li><a href="projects/finance.html"><strong>Athletics Financials</strong><span>Compare school budgets with peer benchmarks.</span></a></li>
+<li><a href="projects/athletics-spending-index.html"><strong>College Athletics Spending Index</strong><span>Track spending growth by sport and category.</span></a></li>
+</ul>
+</nav>
+:::
+:::
+
+::: {.content-band .last-band}
 ::: {.content-container}
 <div class="section-heading section-heading-tight">
 <h2>From the articles</h2>
@@ -37,6 +50,5 @@ Compare third-down success by season, then drill into drives and individual play
 <a class="article-teaser" href="articles/recruiting-distance.html"><div><h3>How Far Do Blue-Chip Recruits Travel?</h3><p>Distance distributions and the Maryland recruiting market.</p></div></a>
 <a class="article-teaser" href="articles/down-14-two-point-conversions.html"><div><h3>Down 14: Why Don't More Teams Go for Two?</h3><p>Fourth-quarter decisions in the NFL and FBS.</p></div></a>
 
-[Browse all dashboards](projects/index.qmd){.home-directory-link}
 :::
 :::

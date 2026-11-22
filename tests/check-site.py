@@ -62,11 +62,13 @@ def main(site):
             dashboards.append(path.name)
     assert len(dashboards) >= 8, f"Missing dashboard pages: found {dashboards}"
 
-    football = preset_link(Page(site / "index.html"), path_end="/", field="down")
-    assert football.hostname == "maryland-football-success-rates.jubilantzebra3.chatgpt.site"
-    assert parse_qs(football.query) == {
-        "team": ["120"], "unit": ["offense"], "down": ["3"], "league": ["1"], "group": ["Season"]
-    }
+    home = Page(site / "index.html")
+    home_dashboard_links = {local_file(site, site / "index.html", url) for url in home.links}
+    for name in dashboards:
+        assert site / "projects" / name in home_dashboard_links, f"Homepage missing direct link to {name}"
+    assert not any((urlsplit(link).hostname or "").endswith(".chatgpt.site") for link in home.links), (
+        "Homepage dashboard links should go to the GitHub Pages project pages"
+    )
 
     recruiting = preset_link(Page(site / "articles/recruiting-distance.html"), path_end="dashboard.html")
     mapped = parse_qs(recruiting.fragment)
@@ -84,7 +86,7 @@ def main(site):
         "Total athletics expense|Same 53 reporting Power Four|EADA",
         "CPI-U comparator",
     ]
-    print(f"Checked local links, {len(dashboards)} dashboard pages, and three featured presets.")
+    print(f"Checked local links, {len(dashboards)} dashboard pages, homepage dashboard links, and two article presets.")
 
 
 if __name__ == "__main__":
