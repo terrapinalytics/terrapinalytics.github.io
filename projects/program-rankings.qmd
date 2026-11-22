@@ -43,7 +43,7 @@ These category weights describe the intended editorial emphasis. They do not rep
 
 ### Evidence and limitations
 
-Use the dashboard’s metric controls and school details to inspect financial resources, recruiting, performance, fan support, and roster-spending inputs. The downloads include the source registry, reporting definitions, coverage, and unresolved conflicts. The inputs support and challenge our assessments; they do not mechanically determine the published order.
+Use the five framework categories to compare key metrics across programs. Select a school to expand the evidence behind each category. The downloads include the source registry, reporting definitions, coverage, and unresolved conflicts. The inputs support and challenge our assessments; they do not mechanically determine the published order.
 
 Financial sources retain their own accounting definitions; NCAA and EADA figures should not be treated as interchangeable. Annual observations and multi-year summaries may cover different periods. Attendance includes both official totals and reconstructed observations. NIL estimates can refer to different measures of spending. Missing private-school disclosures are not evidence of zero resources.
 

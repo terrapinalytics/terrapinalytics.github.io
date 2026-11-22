@@ -3,8 +3,10 @@ const $ = id => document.getElementById(id);
 const kinds = ['shooting','other_personal','offensive','looseball','flagrant','technical','unknown'];
 const technicalType = kinds.indexOf('technical');
 const names = ['Shooting','Other non-shooting','Offensive','Loose-ball','Flagrant','Technical','Unresolved'];
-const colors = ['#118c91','#557cc2','#d17a49','#9370bc','#bf5d85','#b39439','#97a4ae'];
-const defaults = {view:'teams', year:2027, conference:'', stage:'', location:'', type:'', search:'', minimum:3, sort:'margin', page:0, entity:'120', mixRole:'committed'};
+const mixBuckets = ['Shooting', 'Non-shooting', 'Offensive', 'Other'];
+const bucketCounts = counts => [counts[0], counts[1], counts[2], counts.slice(3).reduce((a,b)=>a+b,0)];
+const sumCounts = counts => counts.reduce((total, count) => total + count, 0);
+const defaults = {view:'teams', year:2027, conference:'', stage:'', location:'', type:'', search:'', minimum:3, sort:'margin', page:0, entity:'120', mixRole:'committed', mixPeer:''};
 const state = {...defaults};
 let playerPositions = {};
 let games = [], players = [], rows = [], visible = [], request = 0;
@@ -18,9 +20,8 @@ async function fetchData(path) {
 }
 function reconcileGameTypes(game) {
   if (!game.clean) return game;
-  const total = counts => counts.reduce((sum, count) => sum + count, 0);
-  const home = total(game.ht);
-  const away = total(game.at);
+  const home = sumCounts(game.ht);
+  const away = sumCounts(game.at);
   if (home === game.hf && away === game.af) return game;
 
   // The source audit accepts games whose box score excludes technical fouls.
@@ -91,9 +92,7 @@ function syncFilters() {
   const ref=state.view==='refs';
   setOptions('location',ref?[['','All sites'],['home','Non-neutral sites'],['neutral','Neutral sites']]:
     [['','All locations'],['home','Home'],['away','Away'],['neutral','Neutral']],state.location);
-  const historical=state.view==='players'&&state.year!==2027;
-  $('type').disabled=false;
-  if($('type').disabled)state.type='';
+  if(!kinds.includes(state.type))state.type='';
   $('type').value=state.type;
   $('minimum').value=String(state.minimum);
   $('type').options[0].textContent=state.view==='players'?'All recorded fouls':'All box-score fouls';
@@ -168,16 +167,20 @@ function renderProfile() {
   setOptions('entity',rows.slice().sort((a,b)=>a.name.localeCompare(b.name)).map(x=>[x.id,x.name]),state.entity);
   $('entitytitle').innerHTML=entity?(ref?safe(entity.name):TeamLogos.label(player?entity.team:entity.name,player?null:entity.id)+(player?' '+safe(entity.name):'')):'No profile available';
   $('entity').disabled=!entity;
-  $('profile-counts').hidden=$('profile-peers').hidden=$('profile-games').hidden=!entity;
-  if(!entity){$('peer-context').innerHTML='';$('profilemetrics').innerHTML='';$('mix').innerHTML='';$('gamechart').innerHTML='';$('gamelog').innerHTML='';$('profilenote').textContent='Try broader filters to view a profile.';return;}
+  $('profile-mix').hidden=$('profile-peers').hidden=$('profile-games').hidden=!entity;
+  if(!entity){
+    for(const id of ['peer-context','profilemetrics','foul-counts','mix','gamelog','method'])$(id).innerHTML='';
+    $('profilenote').textContent='Try broader filters to view a profile.';
+    return;
+  }
   $('profilenote').textContent=ref?'All fouls in this official’s assignments; individual whistles are unattributed.':
     player?(entity.team+' · reconstructed on-court possession exposure'):entity.conference;
   const qualified=rows.filter(x=>x.n>=state.minimum&&x.p>0&&(!player||x.p>=100));
   const position=playerPositions[entity.id]?.position;
   const peerGroups=[
-    {label:(ref?'Officials':player?'Players':'Teams')+' in filtered season sample',shortLabel:ref?'officials':player?'players':'teams',members:qualified},
-    ...(!ref?[{label:entity.conference+' filtered sample',shortLabel:entity.conference,members:qualified.filter(x=>x.conference===entity.conference)}]:[]),
-    ...(player&&position?[{label:position+' position · filtered season sample',shortLabel:position+' peers',members:qualified.filter(x=>playerPositions[x.id]?.position===position)}]:[])
+    {id:'all',label:(ref?'Officials':player?'Players':'Teams')+' in filtered season sample',shortLabel:ref?'officials':player?'players':'teams',members:qualified},
+    ...(!ref?[{id:'conference',label:entity.conference+' filtered sample',shortLabel:entity.conference,members:qualified.filter(x=>x.conference===entity.conference)}]:[]),
+    ...(player&&position?[{id:'position',label:position+' position · filtered season sample',shortLabel:position+' peers',members:qualified.filter(x=>playerPositions[x.id]?.position===position)}]:[])
   ];
   const headline=player&&position?peerGroups.at(-1):ref?peerGroups[0]:peerGroups[1];
   const metrics=ref?[
@@ -204,30 +207,97 @@ function renderProfile() {
     '<p class="peer-note">Peers use the same filters. Name search does not change the peer group. Historical player coverage is Edey only. '+
     (player?(position?'Position from ESPN 2026–27 roster: '+safe(position)+'. Unknown positions are excluded from position peers.':'Position unavailable; rank uses filtered player peers.'):'')+
     ' Referee rates describe crews.</p>';
-  const eligible=entity.records.filter(r=>player?Boolean(r.ct&&r.dt):r.g.clean);
-  let denom=0,mix=kinds.map(()=>0);
-  eligible.forEach(r=>{denom+=r.p;(ref||state.mixRole==='committed'?r.ct:r.dt).forEach((n,i)=>{mix[i]+=n;});});
-  const max=Math.max(...mix.map(n=>r100(n,denom)),1);
-  $('mixlabel').textContent=(ref?'Crew foul mix':state.mixRole==='drawn'?'Fouls drawn by type':'Fouls committed by type')+' / 100';
-  $('mix-tabs').hidden=ref;
-  $('mix-committed').setAttribute('aria-pressed',String(state.mixRole==='committed'));
-  $('mix-drawn').setAttribute('aria-pressed',String(state.mixRole==='drawn'));
-  $('mix').innerHTML=eligible.length?kinds.map((k,i)=>'<div class="mixrow"><span><i class="dot" style="background:'+colors[i]+'"></i>'+names[i]+'</span><div class="bartrack"><div class="barfill" style="background:'+colors[i]+';width:'+100*r100(mix[i],denom)/max+'%"></div></div><span class="value">'+fmt(r100(mix[i],denom))+'</span></div>').join('')+'<p class="muted">'+eligible.length+' games with type detail.'+(player?'':' Technicals count when included in the box-score totals.')+(state.type?' Mix shows all foul types in eligible games.':'')+'</p>':
-    '<p class="empty">Foul-type detail is currently available for Edey’s historical profile. Player totals are available above.</p>';
-  const recent=entity.records.slice().sort((a,b)=>a.g.date.localeCompare(b.g.date)).slice(-10);
-  const values=recent.map(r=>r100(ref?r.committed:r.committed+r.drawn,r.p));
-  const chartmax=Math.max(...values,1);
-  $('gamecharttitle').textContent=ref?'Recent combined fouls / 100':'Recent drawn + committed / 100';
-  $('gamechart').innerHTML=recent.map((r,i)=>{const label=ref?r.g.hn+' / '+r.g.an:r.opponent;return '<div class="barrow"><span title="'+safe(label)+'">'+safe(r.g.date.slice(5)+' '+label).slice(0,32)+'</span><div class="bartrack"><div class="barfill" style="width:'+100*values[i]/chartmax+'%"></div></div><span class="value">'+fmt(values[i],1)+'</span></div>';}).join('');
-  $('gamelog').innerHTML='<thead><tr><th>Date</th><th>Matchup</th><th>Location</th><th>Possessions</th><th>'+(ref?'Combined':'Committed')+'</th>'+(!ref?'<th>Drawn</th>':'')+'<th>Rate / 100</th></tr></thead><tbody>'+
-    entity.records.slice().sort((a,b)=>b.g.date.localeCompare(a.g.date)).map(r=>'<tr><td>'+r.g.date+'</td><td>'+safe(r.g.an+' at '+r.g.hn)+'</td><td>'+r.site+'</td><td>'+fmt(r.p,1)+'</td><td>'+r.committed+'</td>'+(!ref?'<td>'+r.drawn+'</td>':'')+'<td>'+fmt(r100(r.committed,r.p))+'</td></tr>').join('')+'</tbody>';
+  renderMix(entity, peerGroups, headline, ref, player);
+  renderGameLog(entity, ref);
   $('method').textContent=ref?'Rates divide the combined fouls from both teams by estimated possessions per team. Home edge measures visitor fouls minus home fouls, excluding neutral sites.':
     player?'Rates divide recorded player foul events by on-court team possessions, then multiply by 100. The denominator averages offensive and defensive possessions while that player is on the floor.':
     'Rates divide team fouls by estimated possessions per team, then multiply by 100. Drawn means fouls assessed to the opponent. Positive margin means the opponent was assessed more fouls.';
 }
+function mixSummary(records, player, useDrawn) {
+  const result = {counts: [0, 0, 0, 0], possessions: 0, games: new Set()};
+  for (const record of records) {
+    const counts = useDrawn ? record.dt : record.ct;
+    if (!counts?.length || (!player && !record.g.clean)) continue;
+    bucketCounts(counts).forEach((count, i) => { result.counts[i] += count; });
+    result.possessions += record.p;
+    result.games.add(record.g.id);
+  }
+  return result;
+}
+
+function renderMix(entity, peerGroups, headline, ref, player) {
+  const peer = peerGroups.find(group => group.id === state.mixPeer) || headline;
+  setOptions('mix-peer', peerGroups.map(group => [group.id, group.shortLabel]), peer.id);
+  $('mix-tabs').hidden = ref;
+  const useDrawn = !ref && state.mixRole === 'drawn';
+  $('mix-committed').setAttribute('aria-pressed', String(!useDrawn));
+  $('mix-drawn').setAttribute('aria-pressed', String(useDrawn));
+  const own = mixSummary(entity.records, player, useDrawn);
+  const others = peer.members.filter(member => member.id !== entity.id);
+  let peerRecords = others.flatMap(member => member.records);
+  if (ref) {
+    // Crews repeat across officials' records. Count each comparison game once,
+    // and remove the selected official's assignments from the benchmark.
+    const gamesWorked = new Set(entity.records.map(record => record.g.id));
+    peerRecords = [...new Map(peerRecords.filter(record => !gamesWorked.has(record.g.id))
+      .map(record => [record.g.id, record])).values()];
+  }
+  const benchmark = mixSummary(peerRecords, player, useDrawn);
+  const totals = [sumCounts(own.counts), sumCounts(benchmark.counts)];
+  $('mixlabel').textContent = (ref ? 'Crew calls' : useDrawn ? 'Fouls drawn' : 'Fouls committed') +
+    ' · '+own.games.size+' games with type detail'+(benchmark.games.size ? ' · '+benchmark.games.size+' peer games with type detail' : '')+
+    (state.type ? ' · Mix includes all types within those games.' : '');
+  if (!own.games.size) {
+    $('mix').innerHTML = '<p class="empty">Foul-type detail is unavailable for this profile under the current filters.</p>';
+    return;
+  }
+  const shareCell = (sample, sampleIndex, index) => {
+    const count = sample.counts[index];
+    if (!sample.games.size) return '<td>—</td>';
+    const share = totals[sampleIndex] ? count / totals[sampleIndex] : NaN;
+    return '<td><div class="mix-value"><strong>'+fmt(share*100,1)+(Number.isFinite(share)?'%':'')+'</strong>'+
+      '<small>'+count.toLocaleString()+' fouls · '+fmt(r100(count,sample.possessions),1)+' / 100</small></div>'+
+      '<div class="bartrack" aria-hidden="true"><div class="barfill'+(sampleIndex?' mix-peer-fill':'')+
+      '" style="width:'+(Number.isFinite(share)?share*100:0)+'%"></div></div></td>';
+  };
+  $('mix').innerHTML = '<div class="tablewrap"><table class="mix-table"><thead><tr><th scope="col">Type</th>'+
+    '<th scope="col">'+safe(ref?'Selected crew assignments':entity.name)+'</th><th scope="col">'+safe(peer.shortLabel)+
+    '</th></tr></thead><tbody>'+mixBuckets.map((label,i)=>'<tr><th scope="row">'+label+'</th>'+
+      shareCell(own,0,i)+shareCell(benchmark,1,i)+'</tr>').join('')+'</tbody></table></div>'+
+    '<p class="muted">'+(benchmark.games.size ?
+      (ref?'Peer mix pools unique games outside this official’s assignments.':'Peer mix pools eligible records from other '+peerGroups[0].shortLabel+'.') :
+      'No comparable peer games under the current filters.')+'</p>';
+}
+
+function renderGameLog(entity, ref) {
+  const gameRows = entity.records.slice().sort((a,b)=>b.g.date.localeCompare(a.g.date));
+  const headers = ['Date','Matchup','Location','Possessions',ref?'Combined':'Committed',...(ref?[]:['Drawn']), 'Rate / 100'];
+  const rateMax = Math.max(1, ...gameRows.filter(record=>record.p>0).map(record=>r100(record.committed,record.p)));
+  const teamBreakdown = (game, side) => {
+    const counts = game.clean ? bucketCounts(game[side+'t']) : mixBuckets.map(()=> '—');
+    return '<tr><th scope="row">'+safe(game[side+'n'])+'</th>'+counts.map(count=>'<td>'+count+'</td>').join('')+
+      '<td>'+game[side+'f']+'</td></tr>';
+  };
+  $('gamelog').innerHTML = '<thead><tr>'+headers.map(label=>'<th scope="col">'+label+'</th>').join('')+'</tr></thead><tbody>'+
+    gameRows.map(record=>{
+      const game = record.g;
+      const rate = r100(record.committed, record.p);
+      const matchup = safe(game.an+' at '+game.hn);
+      const split = '<details class="game-split"><summary>'+matchup+'</summary>'+
+        '<table><caption>Fouls assessed by team</caption><thead><tr><th scope="col">Team</th>'+
+        [...mixBuckets,'Total'].map(label=>'<th scope="col">'+label+'</th>').join('')+'</tr></thead><tbody>'+
+        teamBreakdown(game,'a')+teamBreakdown(game,'h')+'</tbody></table>'+
+        (game.clean?'':'<p class="muted">Play-by-play types could not be reconciled. Box-score totals are shown.</p>')+'</details>';
+      return '<tr><td>'+safe(game.date)+'</td><td>'+split+'</td><td>'+safe(record.site)+'</td><td>'+fmt(record.p,1)+
+        '</td><td>'+record.committed+'</td>'+(!ref?'<td>'+record.drawn+'</td>':'')+
+        '<td><div class="game-rate">'+fmt(rate)+'<div class="bartrack" aria-hidden="true"><div class="barfill" style="width:'+
+        (Number.isFinite(rate)?100*rate/rateMax:0)+'%"></div></div></div></td></tr>';
+    }).join('')+'</tbody>';
+}
+
 function updateUrl() {
   const params=new URLSearchParams({view:state.view,season:state.year});
-  for(const id of ['conference','stage','location','type','search','minimum','sort','entity','mixRole']) {
+  for(const id of ['conference','stage','location','type','search','minimum','sort','entity','mixRole','mixPeer']) {
     if(state[id]) params.set(id,state[id]);
   }
   history.replaceState(null,'','?'+params);
@@ -244,7 +314,7 @@ function exportCsv() {
 }
 document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{
   state.view=b.dataset.view;state.page=0;state.search='';$('search').value='';state.entity=state.view==='teams'?'120':state.view==='refs'?'Paul Szelc':'';
-  state.type='';state.location='';loadSeason();
+  state.type='';state.location='';state.mixPeer='';loadSeason();
 });
 for(const id of ['conference','stage','location','type','minimum','sort'])$(id).onchange=()=>{
   state[id]=id==='minimum'?+$(id).value:$(id).value;state.page=0;render();
@@ -254,8 +324,9 @@ $('search').oninput=()=>{state.search=$('search').value;state.page=0;renderTable
 function renderTableFromSearch(){render();}
 $('entity').onchange=()=>{state.entity=$('entity').value;renderTable();renderProfile();updateUrl();resize();};
 $('prev').onclick=()=>{state.page--;renderTable();resize();};$('next').onclick=()=>{state.page++;renderTable();resize();};
-$('mix-committed').onclick=()=>{state.mixRole='committed';renderProfile();resize();};
-$('mix-drawn').onclick=()=>{state.mixRole='drawn';renderProfile();resize();};
+$('mix-committed').onclick=()=>{state.mixRole='committed';renderProfile();updateUrl();resize();};
+$('mix-drawn').onclick=()=>{state.mixRole='drawn';renderProfile();updateUrl();resize();};
+$('mix-peer').onchange=()=>{state.mixPeer=$('mix-peer').value;renderProfile();updateUrl();resize();};
 $('share').onclick=()=>ViewTools.copy($('share'),location.href);
 $('reset').onclick=()=>{Object.assign(state,defaults,{view:state.view,year:state.year,
  entity:state.view==='teams'?'120':state.view==='refs'?'Paul Szelc':''});$('search').value='';loadSeason();};
@@ -264,7 +335,7 @@ new ResizeObserver(()=>resize()).observe(document.querySelector('main'));
 fetchData('meta.json').then(meta=>{
  const params=new URLSearchParams(location.search);if(['teams','players','refs'].includes(params.get('view')))state.view=params.get('view');
  if(meta.seasons.some(s=>String(s.year)===params.get('season')))state.year=+params.get('season');
- for(const id of ['conference','stage','location','type','search','sort','entity','mixRole']) {
+ for(const id of ['conference','stage','location','type','search','sort','entity','mixRole','mixPeer']) {
    if(params.has(id))state[id]=params.get(id);
  }
  if([1,3,5,10,20].includes(+params.get('minimum')))state.minimum=+params.get('minimum');

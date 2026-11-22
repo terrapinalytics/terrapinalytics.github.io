@@ -4,3 +4,14 @@
 .team-label{display:inline-flex;align-items:center;gap:7px;vertical-align:middle;min-width:0;max-width:100%;font-weight:inherit}
 .team-logo{width:23px;height:23px;object-fit:contain;flex:0 0 23px;vertical-align:middle}
 .team-label>span{min-width:0;overflow-wrap:anywhere}
+
+.framework{display:flex;flex-wrap:wrap;gap:.45rem .55rem;border:1px solid var(--line);border-radius:7px;margin:1rem 0 0;padding:.7rem;min-width:0}
+.framework legend{padding:0 .3rem;font-weight:700;font-size:.9rem}
+.framework button{font-size:.86rem;text-align:left}
+.framework button small{color:var(--muted);font-variant-numeric:tabular-nums}
+.framework button[aria-pressed=true]{background:#f9ebee;border-color:#ba1632;color:#8e142b}
+.framework-detail{border:1px solid var(--line);border-radius:7px;padding:.75rem;margin-top:.55rem}
+.framework-detail summary span{font-size:.82rem;font-weight:500;color:var(--muted);margin-left:.4rem}
+.framework-detail .metric-grid{margin:.7rem 0 .15rem}
+.metric-breakdown{font-size:.88rem;margin:.55rem 0}
+.metric-breakdown b{white-space:nowrap}
