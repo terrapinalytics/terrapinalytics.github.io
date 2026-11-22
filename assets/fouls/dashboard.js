@@ -243,7 +243,8 @@ function renderMix(entity, peerGroups, headline, ref, player) {
       .map(record => [record.g.id, record])).values()];
   }
   const benchmark = mixSummary(peerRecords, player, useDrawn);
-  const totals = [sumCounts(own.counts), sumCounts(benchmark.counts)];
+  const ownTotal = sumCounts(own.counts);
+  const peerTotal = sumCounts(benchmark.counts);
   $('mixlabel').textContent = (ref ? 'Crew calls' : useDrawn ? 'Fouls drawn' : 'Fouls committed') +
     ' · '+own.games.size+' games with type detail'+(benchmark.games.size ? ' · '+benchmark.games.size+' peer games with type detail' : '')+
     (state.type ? ' · Mix includes all types within those games.' : '');
@@ -251,20 +252,25 @@ function renderMix(entity, peerGroups, headline, ref, player) {
     $('mix').innerHTML = '<p class="empty">Foul-type detail is unavailable for this profile under the current filters.</p>';
     return;
   }
-  const shareCell = (sample, sampleIndex, index) => {
-    const count = sample.counts[index];
-    if (!sample.games.size) return '<td>—</td>';
-    const share = totals[sampleIndex] ? count / totals[sampleIndex] : NaN;
-    return '<td><div class="mix-value"><strong>'+fmt(share*100,1)+(Number.isFinite(share)?'%':'')+'</strong>'+
-      '<small>'+count.toLocaleString()+' fouls · '+fmt(r100(count,sample.possessions),1)+' / 100</small></div>'+
-      '<div class="bartrack" aria-hidden="true"><div class="barfill'+(sampleIndex?' mix-peer-fill':'')+
-      '" style="width:'+(Number.isFinite(share)?share*100:0)+'%"></div></div></td>';
-  };
-  $('mix').innerHTML = '<div class="tablewrap"><table class="mix-table"><thead><tr><th scope="col">Type</th>'+
-    '<th scope="col">'+safe(ref?'Selected crew assignments':entity.name)+'</th><th scope="col">'+safe(peer.shortLabel)+
-    '</th></tr></thead><tbody>'+mixBuckets.map((label,i)=>'<tr><th scope="row">'+label+'</th>'+
-      shareCell(own,0,i)+shareCell(benchmark,1,i)+'</tr>').join('')+'</tbody></table></div>'+
-    '<p class="muted">'+(benchmark.games.size ?
+  const rows = mixBuckets.map((label,i) => {
+    const count = own.counts[i];
+    const share = ownTotal ? 100*count/ownTotal : NaN;
+    const peerShare = peerTotal ? 100*benchmark.counts[i]/peerTotal : NaN;
+    const peerLabel = 'Peer benchmark '+fmt(peerShare,1)+'%';
+    const tick = Number.isFinite(peerShare)
+      ? '<span class="benchmark-marker" style="left:'+peerShare+'%"></span>' : '';
+    return '<tr><th scope="row">'+label+'</th><td><div class="mix-value"><strong>'+
+      fmt(share,1)+(Number.isFinite(share)?'%':'')+'</strong><small>'+count.toLocaleString()+
+      ' fouls · '+fmt(r100(count,own.possessions),1)+' / 100</small></div>'+
+      '<div class="bartrack" aria-hidden="true"'+(tick?' title="'+peerLabel+'"':'')+'><div class="barfill" style="width:'+
+      (Number.isFinite(share)?share:0)+'%"></div>'+tick+'</div>'+
+      (tick?'<span class="mix-sr-only">'+peerLabel+'</span>':'')+'</td></tr>';
+  }).join('');
+  const legend = peerTotal ? '<p class="muted mix-legend"><span class="benchmark-marker" aria-hidden="true"></span>'+
+    safe(peer.shortLabel)+' benchmark</p>' : '';
+  $('mix').innerHTML = legend+'<div class="tablewrap"><table class="mix-table"><thead><tr><th scope="col">Type</th>'+
+    '<th scope="col">'+safe(ref?'Selected crew assignments':entity.name)+'</th></tr></thead><tbody>'+
+    rows+'</tbody></table></div><p class="muted">'+(benchmark.games.size ?
       (ref?'Peer mix pools unique games outside this official’s assignments.':'Peer mix pools eligible records from other '+peerGroups[0].shortLabel+'.') :
       'No comparable peer games under the current filters.')+'</p>';
 }

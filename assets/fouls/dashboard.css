@@ -16,11 +16,15 @@
 .mix-top h3{margin:0}
 .mix-top select{min-width:145px}
 .mix-table th,.mix-table td{white-space:normal;text-align:left}
-.mix-table td{width:38%}
+.mix-table td{width:75%}
 .mix-value{display:flex;align-items:baseline;flex-wrap:wrap;gap:.25rem .65rem;margin-bottom:.35rem}
 .mix-value small{color:var(--muted)}
 .mix-table .bartrack,.game-rate .bartrack{height:7px}
-.mix-peer-fill{background:#667c93}
+.mix-table .bartrack{position:relative;overflow:visible}
+#mix .benchmark-marker{position:absolute;top:-3px;bottom:-3px;width:3px;transform:translateX(-50%);background:#24566b;box-shadow:0 0 0 1px #fff;border-radius:1px}
+#mix .mix-legend{display:flex;align-items:center;gap:.5rem}
+#mix .mix-legend .benchmark-marker{position:static;height:13px;transform:none}
+.mix-sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .game-rate .bartrack{margin-top:.35rem;min-width:4rem}
 .game-split{margin:0}
 .game-split table{margin-top:.65rem;white-space:normal}
