@@ -18,3 +18,7 @@ ESPN roster API requested for 365 teams with existing 2026–27 player observati
 ## Validation
 
 Run `node tests/peer-context.test.cjs`. Checks cover missing/zero/tied values, rank direction, small samples, real financial source/year selection, real positional player cohorts, search-independent denominators, historical sample suppression, current P4 membership inputs, and recruiting school context. JavaScript syntax and whitespace checks also run before deployment.
+
+### Officiating type counts
+
+The team and referee foul-type comparisons require home and away type counts to reconcile to their box-score totals. In games whose totals reconcile only after technicals are removed from the type arrays, the type comparisons follow that same convention. All-foul team and referee rates use the box-score totals. Player rates use recorded events and tracked on-court possessions.

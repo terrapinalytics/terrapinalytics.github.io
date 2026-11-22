@@ -14,7 +14,7 @@ Independent analysis of college sports, with a Maryland and Big Ten focus. The s
 | Coaching Carousel | [Explore](https://terrapinalytics.github.io/projects/coaching.html) | [Departure estimates (CSV)](assets/coaching/departure_odds.csv) | [Reporting and research notes (ZIP)](assets/coaching/departure_support.zip) |
 | Basketball Officiating | [Explore](https://terrapinalytics.github.io/projects/officiating.html) | [Coverage metadata and dashboard data](assets/fouls) | [Peer groups and measures](assets/peer-context-methodology.md) · [Dashboard source](assets/fouls/dashboard.js) |
 | Big Ten Championships | [Explore](https://terrapinalytics.github.io/projects/championships.html) | [Title inventory and row-level sources (CSV)](assets/championships/credits.csv) | [Counting and peer comparison](assets/peer-context-methodology.md) · [Dashboard source](assets/championships/dashboard.js) |
-| Athletics Financials | [Explore](https://terrapinalytics.github.io/projects/finance.html) | [NCAA/Knight-Newhouse panel (CSV)](assets/finance/ranked_ncaa_finances_FY2010_FY2025.csv) · [EADA panel (CSV)](assets/finance/ranked_eada_finances_FY2001_FY2025.csv) | [Coverage and data audit](assets/coaching/data_quality.md) · [Dashboard source](assets/finance/dashboard.js) |
+| Athletics Financials | [Explore](https://terrapinalytics.github.io/projects/finance.html) | [NCAA/Knight-Newhouse panel (CSV)](assets/finance/ranked_ncaa_finances_FY2005_FY2025.csv) · [EADA panel (CSV)](assets/finance/ranked_eada_finances_FY2001_FY2025.csv) | [Coverage and data audit](assets/coaching/data_quality.md) · [Dashboard source](assets/finance/dashboard.js) |
 | College Athletics Spending Index | [Explore](https://terrapinalytics.github.io/projects/athletics-spending-index.html) | [Explorer series (CSV)](assets/finance/escalation/explorer_series.csv) · [Budget weights (CSV)](assets/finance/escalation/budget_weights_fy2025.csv) | [Rebuild and verify the explorer](docs/spending-index.md) · [Article](https://terrapinalytics.github.io/articles/college-athletics-spending-index.html) |
 
 [Find the data behind individual articles](assets/articles). The football success-rate app is published separately. Its browser code and play-by-play snapshot are linked above. This repository contains the [site page that embeds it](projects/football-success.qmd). The football data preparation code is maintained outside this repository.
@@ -32,6 +32,7 @@ Run the same checks used before deployment from the repository root.
 ```sh
 node --test tests/*.cjs
 python scripts/build-spending-explorer.py --check
+python scripts/build-finance-dashboard.py --check
 quarto render
 python tests/check-site.py _site
 ```

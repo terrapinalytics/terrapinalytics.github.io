@@ -17,14 +17,27 @@ base = 2019
 ncaa = read('ncaa_mfrs_finances')
 eada = read('eada_finances')
 cpi = {int(r['year']): float(r['cpi_u_annual']) for r in read('cpi_annual')}
-conferences = {}
-for r in csv.DictReader((root/'assets/finance/ranked_eada_finances_FY2001_FY2025.csv').open()):
-    conferences[r['school']] = r['conference_current']
+with (root/'assets/finance/ranked_eada_finances_FY2001_FY2025.csv').open() as scope:
+    ranked_eada = list(csv.DictReader(scope))
+conferences = {row['school']: row['conference_current'] for row in ranked_eada}
+eada_scope = {(row['unitid'], row['fiscal_year']): row['school'] for row in ranked_eada}
+if len(eada_scope) != len(ranked_eada):
+    raise ValueError('Ranked EADA institution-year keys must be unique')
 power = {s for s,c in conferences.items() if c in ('ACC','Big Ten','Big 12','SEC')}
 g6 = set(conferences)-power
 def indexed(rows):
     return {(r['school'], int(r['fiscal_year'])): r for r in rows if r['school'] in conferences and r['fiscal_year'].isdigit() and int(r['fiscal_year']) in years}
-n, e = map(indexed, (ncaa,eada))
+n = indexed(ncaa)
+e = {}
+for row in eada:
+    school = eada_scope.get((row['unitid'], row['fiscal_year']))
+    if school is None or not row['fiscal_year'].isdigit():
+        continue
+    key = school, int(row['fiscal_year'])
+    if key in e:
+        raise ValueError(f'Duplicate EADA observation for {key}')
+    if key[1] in years:
+        e[key] = row
 public = {s for (s,y),r in n.items() if y==2019 and positive(r['total_expenditure_usd'])}
 assert len(public)==62 and len(public & power)==53 and len(public & g6)==9
 assert all(positive(n[s,y]['total_expenditure_usd']) for s in public for y in years)

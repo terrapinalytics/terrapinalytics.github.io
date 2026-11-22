@@ -49,4 +49,4 @@ Financial sources retain their own accounting definitions; NCAA and EADA figures
 
 The carousel probabilities are separate editorial forecasts for the stated deadline, informed by attributed reporting, results, contracts and buyout costs, and institutional circumstances. Fan sentiment and unsourced speculation carry less weight than original reporting or official statements. A coach’s intention to return does not establish an institutional guarantee. Announced departures are distinguished from forecasts.
 
-[Browse the source registry](../assets/coaching/source_registry.csv) · [Download supporting source tables and methodology](../assets/coaching/supporting_data.zip) · [Read data-quality findings](../assets/coaching/data_quality.md)
+[Browse the source registry](../assets/coaching/source_registry.csv) · [Review logged source conflicts (CSV)](../assets/coaching/source_conflicts.csv) · [Download supporting source tables and methodology](../assets/coaching/supporting_data.zip) · [Read data-quality findings](../assets/coaching/data_quality.md)

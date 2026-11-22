@@ -1,6 +1,7 @@
 'use strict';
 const $ = id => document.getElementById(id);
 const kinds = ['shooting','other_personal','offensive','looseball','flagrant','technical','unknown'];
+const technicalType = kinds.indexOf('technical');
 const names = ['Shooting','Other non-shooting','Offensive','Loose-ball','Flagrant','Technical','Unresolved'];
 const colors = ['#118c91','#557cc2','#d17a49','#9370bc','#bf5d85','#b39439','#97a4ae'];
 const defaults = {view:'teams', year:2027, conference:'', stage:'', location:'', type:'', search:'', minimum:3, sort:'margin', page:0, entity:'120', mixRole:'committed'};
@@ -15,6 +16,22 @@ async function fetchData(path) {
   if (!cache.has(path)) cache.set(path,fetch(path).then(r=>{if(!r.ok)throw Error('Could not load '+path);return path.endsWith('.gz')?new Response(r.body.pipeThrough(new DecompressionStream('gzip'))).json():r.json()}));
   return cache.get(path);
 }
+function reconcileGameTypes(game) {
+  if (!game.clean) return game;
+  const total = counts => counts.reduce((sum, count) => sum + count, 0);
+  const home = total(game.ht);
+  const away = total(game.at);
+  if (home === game.hf && away === game.af) return game;
+
+  // The source audit accepts games whose box score excludes technical fouls.
+  // Use the same convention for counts, eligibility and team/crew comparisons.
+  if (home - game.ht[technicalType] !== game.hf ||
+      away - game.at[technicalType] !== game.af) return {...game, clean:false};
+
+  const withoutTechnicals = counts => counts.map((count, index) => index === technicalType ? 0 : count);
+  return {...game, ht:withoutTechnicals(game.ht), at:withoutTechnicals(game.at)};
+}
+
 function teamRecord(g,side) {
   const home = side==='h';
   return {id:g[side], name:g[side+'n'], conference:g[side+'c'], site:g.n?'neutral':home?'home':'away',
@@ -95,7 +112,7 @@ async function loadSeason() {
     const [g,p]=await Promise.all([fetchData('games-'+state.year+'.json.gz'),
       state.view==='players'?fetchData(state.year===2027?'players-2027.json.gz':'players-edey.json'):Promise.resolve([])]);
     if(current!==request)return;
-    games=g;players=p;
+    games=g.map(reconcileGameTypes);players=p;
     if(state.view==='players'&&state.year===2027) {
       try {playerPositions=(await fetchData('player-positions-2027.json')).positions;}catch(e){playerPositions={};}
       if(current!==request)return;
@@ -120,7 +137,7 @@ function render() {
   $('ranknote').textContent=ref?'Crew-level game rates. Select a referee to inspect assignments.':'Select a row to inspect the profile and game log.';
   let note=player?(state.year===2027?'Current-season player rates use tracked on-court possessions. Ambiguous foul-drawn types remain unresolved.':'Historical player coverage currently contains Zach Edey only, with all 138 Purdue appearances across four seasons.'):
     ref?'Each official receives the statistics for games worked by the three-person crew.':'Foul margin is opponent fouls minus own fouls.';
-  if(state.type&& !player)note+=' Specific-type rates use '+countGames.toLocaleString()+' games with reconciled foul totals.';
+  if(state.type&& !player)note+=' Specific-type rates use '+countGames.toLocaleString()+' games with type counts reconciled to both box-score team totals.';
   $('notice').textContent=note;
   let p=0,c=0,d=0;
   // Ref assignments repeat each game three times; rates remain identical.
@@ -195,7 +212,7 @@ function renderProfile() {
   $('mix-tabs').hidden=ref;
   $('mix-committed').setAttribute('aria-pressed',String(state.mixRole==='committed'));
   $('mix-drawn').setAttribute('aria-pressed',String(state.mixRole==='drawn'));
-  $('mix').innerHTML=eligible.length?kinds.map((k,i)=>'<div class="mixrow"><span><i class="dot" style="background:'+colors[i]+'"></i>'+names[i]+'</span><div class="bartrack"><div class="barfill" style="background:'+colors[i]+';width:'+100*r100(mix[i],denom)/max+'%"></div></div><span class="value">'+fmt(r100(mix[i],denom))+'</span></div>').join('')+'<p class="muted">'+eligible.length+' games with type detail.'+(state.type?' Mix shows all foul types in eligible games.':'')+'</p>':
+  $('mix').innerHTML=eligible.length?kinds.map((k,i)=>'<div class="mixrow"><span><i class="dot" style="background:'+colors[i]+'"></i>'+names[i]+'</span><div class="bartrack"><div class="barfill" style="background:'+colors[i]+';width:'+100*r100(mix[i],denom)/max+'%"></div></div><span class="value">'+fmt(r100(mix[i],denom))+'</span></div>').join('')+'<p class="muted">'+eligible.length+' games with type detail.'+(player?'':' Technicals count when included in the box-score totals.')+(state.type?' Mix shows all foul types in eligible games.':'')+'</p>':
     '<p class="empty">Foul-type detail is currently available for Edey’s historical profile. Player totals are available above.</p>';
   const recent=entity.records.slice().sort((a,b)=>a.g.date.localeCompare(b.g.date)).slice(-10);
   const values=recent.map(r=>r100(ref?r.committed:r.committed+r.drawn,r.p));

@@ -15,10 +15,6 @@ const CPI = [
 ];
 const POWER_CONFERENCES = new Set(['ACC', 'Big Ten', 'Big 12', 'SEC']);
 const COMPARISON_COLORS = ['#7c3da4', '#147e70', '#a86211', '#566b9c'];
-const FLAGGED_2012_FOOTBALL = new Set([
-  'Auburn', 'Clemson', 'Iowa State', 'Michigan', 'Missouri', 'North Carolina',
-  'Tennessee', 'Texas A&M', 'Virginia Tech'
-]);
 const amountFormat = new Intl.NumberFormat(undefined, {
   minimumFractionDigits: 1, maximumFractionDigits: 1
 });
@@ -64,7 +60,7 @@ function sourceChanged(shouldRender = true) {
 }
 
 function isFlaggedFootballExpense(row, metric) {
-  return metric === 'fbexp' && row?.a === 'NCAA' && row.y === 2012 && FLAGGED_2012_FOOTBALL.has(row.s);
+  return metric === 'fbexp' && row?.fbexpFlagged === true;
 }
 
 function metricValue(row, metric, real) {

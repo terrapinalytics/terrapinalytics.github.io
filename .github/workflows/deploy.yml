@@ -27,6 +27,8 @@ jobs:
         run: node --test tests/*.cjs
       - name: Check spending explorer data
         run: python scripts/build-spending-explorer.py --check
+      - name: Check finance dashboard data
+        run: python scripts/build-finance-dashboard.py --check
       - name: Render website
         run: quarto render
       - name: Check rendered links and dashboard views

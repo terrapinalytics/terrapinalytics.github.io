@@ -9,21 +9,37 @@ Athletics departments are usually discussed in terms of media rights, ticket sal
 
 I assembled published fee schedules for the 68 schools in the current Power Four. The comparison is harder than it sounds: some institutions have a distinct athletics line item, others bundle athletics into broader campus fees, and some have no separately verifiable charge.
 
-## Selected published annual charges
+## Published annual charges
 
-| School | Annual fee |
-|---|---:|
-| Virginia Tech | $832 |
-| Virginia | $823 |
-| West Virginia | $500 |
-| Louisville | $450 |
-| UCF | $429.60 |
-| **Maryland** | **$399** |
-| Miami | $360 |
-| Georgia Tech | $346 |
-| Clemson | $300 |
-| North Carolina | $279 |
-| NC State | $232 |
+| School | Annual fee | Rate year | Status |
+|---|---:|---|---|
+| Virginia Tech | $832 | 2026–27 | Published rate |
+| Virginia | $823 | 2026–27 | Published rate |
+| West Virginia | $500 | 2026–27 | Published rate |
+| Louisville | $450 | 2026–27 | Published rate |
+| UCF | $429.60 | 2026–27 | Published rate |
+| Maryland | $399 | 2026–27 | Published rate |
+| Miami | $360 | 2026–27 | Published rate |
+| Georgia Tech | $346 | 2026–27 | Published rate |
+| Clemson | $300 | 2026–27 | Published rate |
+| South Carolina | $300 | 2026–27 | Published rate |
+| North Carolina | $279 | 2026–27 | Published rate |
+| Florida State | $237 | 2026–27 | Published rate |
+| Auburn | $232 | 2026–27 | Published rate |
+| NC State | $232 | 2026–27 | Published rate |
+| Oklahoma State | $225 | 2026–27 | Published rate |
+| Minnesota | $212 | 2026–27 | Published rate |
+| Arizona State | $200 | Current schedule, year unspecified | Current published rate |
+| Colorado | $180 | 2026–27 | Published rate |
+| Utah | $165.38 | 2025–26 | Prior-year fee, same amount proposed for 2026–27 |
+| Georgia | $146 | 2026–27 | Published rate |
+| Texas Tech | $128.56 | 2026–27 | Published rate |
+| Florida | $103.80 | 2026–27 | Published rate |
+| Northwestern | $72 | 2026–27 | Published rate |
+| Kansas State | $0 | 2025–26 | Explicit zero |
+| Michigan | $0 | Current schedule, year unspecified | Explicit zero |
+| Nebraska | $0 | 2025–26 | Explicit zero |
+| Ohio State | $0 | Current schedule, year unspecified | Explicit zero |
 
 ```{=html}
 <div class="mini-bars" role="img" aria-label="Selected annual athletics fees: Virginia Tech 832 dollars, Virginia 823 dollars, Maryland 399 dollars, NC State 232 dollars">
@@ -34,19 +50,17 @@ I assembled published fee schedules for the 68 schools in the current Power Four
 </div>
 ```
 
-The figures are annualized from published schedules, generally targeting 2026–27. Individual records identify the actual rate year and assumptions used; not every school has a confirmed 2026–27 athletics-only rate.
+## Coverage
 
-## Coverage matters
+| Conference | Schools | Positive rate | Explicit zero | Unquantified |
+|---|---:|---:|---:|---:|
+| ACC | 18 | 9 | 0 | 9 |
+| Big 12 | 16 | 7 | 1 | 8 |
+| Big Ten | 18 | 3 | 3 | 12 |
+| SEC | 16 | 4 | 0 | 12 |
+| **Total** | **68** | **23** | **4** | **41** |
 
-| Conference | Schools | Quantified fee entries |
-|---|---:|---:|
-| ACC | 18 | 9 |
-| Big 12 | 16 | 8 |
-| Big Ten | 18 | 6 |
-| SEC | 16 | 4 |
-| **Total** | **68** | **27** |
-
-Only **27 of 68** schools have a numeric entry in this file, including explicitly confirmed zeroes. An empty cell does **not** mean the school charges nothing. The remaining records include unverified athletics-specific rates and fees bundled into other charges.
+Of the 27 numerical entries, 21 are explicitly dated 2026–27. The 41 unquantified schools include 11 with a bundled or shared charge whose athletics allocation could not be quantified and 30 without a verified athletics-specific rate.
 
 This is a comparison of **what students are charged**, not a complete measure of institutional subsidy. To estimate the latter, we'd also need enrollment, exemptions, allocation rules, and the NCAA's accounting categories for direct institutional support and student fees.
 

@@ -25,3 +25,33 @@ const rankings=JSON.parse(fs.readFileSync('assets/coaching/rankings.json'));cons
 // Recruiting school peers use the full class pool, not the spatial viewport/crop.
 f=fs.readFileSync('assets/recruiting/dashboard.js','utf8');const body=f.slice(f.indexOf('function showSchool(s)'),f.indexOf('function showPlayers(ps)'));c=ctx();vm.createContext(c);vm.runInContext(fs.readFileSync('assets/recruiting/data.js','utf8'),c);vm.runInContext('const data=window.RECRUIT_DATA;const players=data.players.map(v=>({year:v[0],name:v[1],rank:v[2],rating:v[3],stars:v[4],position:v[5],hs:v[6],city:v[7],state:v[8],lat:v[9],lon:v[10],commit:v[11],url:v[12],xy:v[9]!=null}));const schools=data.schools;const sf={first:2025,last:2026,type:"blue",radius:100};const years=2;const $=id=>document.getElementById(id);const esc=v=>String(v);const fmt=v=>Number(v).toFixed(1);const yearsLabel=()=>"2025–2026";'+f.slice(f.indexOf('function distance('),f.indexOf('function circle('))+'const R=3958.7613,rad=Math.PI/180;const schoolStats=()=>({per:1,captured:1,capture:.5});'+body+';showSchool(schools.find(s=>s.name==="Maryland"));',c);assert(els.details.innerHTML.includes('Local share committed to school'));assert(els.details.innerHTML.includes('map viewport'));
 console.log('Passed statistics, missing/zero/ties, real finance source/year, positional foul cohorts, sample limits, search stability, P4 inputs and recruiting context.');
+
+// All seven published seasons reconcile before foul-type filters are applied.
+const normalizedFouls = fs.readdirSync('assets/fouls').filter(name => /^games-\d{4}\.json\.gz$/.test(name));
+c = ctx();
+vm.createContext(c);
+vm.runInContext(fs.readFileSync('assets/fouls/dashboard.js','utf8').split("document.querySelectorAll('[data-view]').forEach(b=>b.onclick")[0], c);
+const reconcile = vm.runInContext('reconcileGameTypes', c);
+const sum = counts => counts.reduce((total, count) => total + count, 0);
+let normalizedCount = 0;
+for (const filename of normalizedFouls) {
+  const sourceGames = JSON.parse(zlib.gunzipSync(fs.readFileSync('assets/fouls/' + filename)));
+  for (const game of sourceGames) {
+    const normalized = reconcile(game);
+    assert.equal(normalized.clean, game.clean, game.id);
+    assert.equal(normalized.hf, game.hf);
+    assert.equal(normalized.af, game.af);
+    if (normalized.clean) {
+      assert.equal(sum(normalized.ht), game.hf, game.id);
+      assert.equal(sum(normalized.at), game.af, game.id);
+    }
+    if (normalized !== game) normalizedCount++;
+  }
+}
+assert(normalizedCount > 0, 'The snapshot includes a box score that excludes technicals');
+
+const ncaaRows = finance.filter(record => record.a === 'NCAA');
+assert.equal(ncaaRows.filter(record => record.y === 2005 && record.exp != null).length, 49);
+const flagged = ncaaRows.filter(record => record.fbexpFlagged);
+assert.equal(flagged.length, 9);
+assert(flagged.every(record => record.y === 2012 && record.fbexp == null));

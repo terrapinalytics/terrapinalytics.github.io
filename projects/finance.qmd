@@ -6,12 +6,14 @@ toc: false
 
 ```{=html}
 <div class="tool-intro">
-<p>NCAA/Knight-Newhouse FY2010–2025 and EADA FY2001–2025. Coverage varies by school.</p>
+<p>NCAA/Knight-Newhouse FY2005–2025 and EADA FY2001–2025. Coverage varies by school.</p>
 <a href="../assets/finance/dashboard.html" target="_blank" rel="noopener">Open full screen</a>
 </div>
 <iframe class="tool-frame" data-fit-content src="../assets/finance/dashboard.html" title="Power Four and ranked Group of Six athletics financial reporting" loading="eager"></iframe>
 <script src="../assets/tool-frame.js" defer></script>
 ```
 
-[NCAA/Knight-Newhouse source panel](../assets/finance/ranked_ncaa_finances_FY2010_FY2025.csv) · [EADA source panel](../assets/finance/ranked_eada_finances_FY2001_FY2025.csv)
+[NCAA/Knight-Newhouse source panel](../assets/finance/ranked_ncaa_finances_FY2005_FY2025.csv) · [EADA source panel](../assets/finance/ranked_eada_finances_FY2001_FY2025.csv)
+
+The NCAA download includes the original football spending amount, a comparison flag, and a quality note. The FY2012 reported zeros flagged by the audit are excluded from comparisons. EADA uses the institution ID reported for each fiscal year. School labels retain Penn State as one program across its change in reported institution ID. [Historical NCAA coaching compensation discrepancies (CSV)](../assets/finance/historical_coaching_compensation_conflicts.csv)
 [College Athletics Spending Index](athletics-spending-index.qmd) · [How Fast Is College Athletics Spending Growing?](../articles/college-athletics-spending-index.qmd)
