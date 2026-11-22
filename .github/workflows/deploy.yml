@@ -1,29 +1,52 @@
-name: Publish Terrapinalytics
+name: Check and publish Terrapinalytics
+
 on:
+  pull_request:
+    branches: [main]
   push:
     branches: [main]
   workflow_dispatch:
+
 permissions:
   contents: read
-  pages: write
-  id-token: write
+
 concurrency:
-  group: pages
+  group: pages-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
+
 jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: quarto-dev/quarto-actions/setup@v2
+      - name: Check analytics
+        run: node --test tests/*.cjs
+      - name: Check spending explorer data
+        run: python scripts/build-spending-explorer.py --check
+      - name: Render website
+        run: quarto render
+      - name: Check rendered links and dashboard views
+        run: python tests/check-site.py _site
+      - uses: actions/upload-pages-artifact@v3
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        with:
+          path: _site
+
   deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: check
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: quarto-dev/quarto-actions/setup@v2
-      - name: Render website
-        run: quarto render
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
       - name: Allow GitHub Pages artifact indexing
         run: sleep 15
       - id: deployment

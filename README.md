@@ -1,15 +1,43 @@
 # Terrapinalytics
 
-Quarto source for an independent sports analytics website.
+Independent analysis of college sports, with a Maryland and Big Ten focus. The site publishes articles and interactive tools for exploring football, recruiting, basketball officiating, and athletics spending.
 
-## Publish on GitHub Pages
+**[Visit Terrapinalytics](https://terrapinalytics.github.io/) · [Explore the dashboards](https://terrapinalytics.github.io/projects/) · [Read the articles](https://terrapinalytics.github.io/articles/)**
 
-1. Create a **public** GitHub repository named `terrapinalytics` (initialize it empty).
-2. Upload all files in this starter kit, including the `.github/workflows/deploy.yml` file, to the `main` branch. You can use Git or GitHub's web uploader; preserve folder paths.
-3. In repository **Settings → Pages**, choose **GitHub Actions** as the source.
-4. In **Actions**, confirm the `Publish Terrapinalytics` workflow runs successfully (or run it manually).
-5. Visit `https://YOUR-USERNAME.github.io/terrapinalytics/`.
+## Projects and data
 
-To preview locally, install Quarto and run `quarto preview` in the project directory.
+| Project | Dashboard | Data | Methods and source |
+| --- | --- | --- | --- |
+| Big Ten Football Success Rates | [Explore](https://terrapinalytics.github.io/projects/football-success.html) | [Play-by-play CSVs and definitions (ZIP)](https://maryland-football-success-rates.jubilantzebra3.chatgpt.site/big-ten-football-plays.zip) | [Success-rate definition](https://maryland-football-success-rates.jubilantzebra3.chatgpt.site/#method) · [Hosted app JavaScript](https://maryland-football-success-rates.jubilantzebra3.chatgpt.site/app.js) |
+| Recruiting Geography | [Explore](https://terrapinalytics.github.io/projects/recruiting.html) | [Download the selected records from the map](https://terrapinalytics.github.io/assets/recruiting/dashboard.html) | [Coverage and geocoding](assets/recruiting/method.md) · [Map source](assets/recruiting/dashboard.js) |
+| FBS Program Rankings | [Explore](https://terrapinalytics.github.io/projects/program-rankings.html) | [Rankings (CSV)](assets/coaching/program_rankings.csv) · [Supporting tables (ZIP)](assets/coaching/supporting_data.zip) | [Weights and interpretation](https://terrapinalytics.github.io/projects/program-rankings.html#how-to-read-these-rankings) · [Source registry](assets/coaching/source_registry.csv) |
+| Coaching Carousel | [Explore](https://terrapinalytics.github.io/projects/coaching.html) | [Departure estimates (CSV)](assets/coaching/departure_odds.csv) | [Reporting and research notes (ZIP)](assets/coaching/departure_support.zip) |
+| Basketball Officiating | [Explore](https://terrapinalytics.github.io/projects/officiating.html) | [Coverage metadata and dashboard data](assets/fouls) | [Peer groups and measures](assets/peer-context-methodology.md) · [Dashboard source](assets/fouls/dashboard.js) |
+| Big Ten Championships | [Explore](https://terrapinalytics.github.io/projects/championships.html) | [Title inventory and row-level sources (CSV)](assets/championships/credits.csv) | [Counting and peer comparison](assets/peer-context-methodology.md) · [Dashboard source](assets/championships/dashboard.js) |
+| Athletics Financials | [Explore](https://terrapinalytics.github.io/projects/finance.html) | [NCAA/Knight-Newhouse panel (CSV)](assets/finance/ranked_ncaa_finances_FY2010_FY2025.csv) · [EADA panel (CSV)](assets/finance/ranked_eada_finances_FY2001_FY2025.csv) | [Coverage and data audit](assets/coaching/data_quality.md) · [Dashboard source](assets/finance/dashboard.js) |
+| College Athletics Spending Index | [Explore](https://terrapinalytics.github.io/projects/athletics-spending-index.html) | [Explorer series (CSV)](assets/finance/escalation/explorer_series.csv) · [Budget weights (CSV)](assets/finance/escalation/budget_weights_fy2025.csv) | [Rebuild and verify the explorer](docs/spending-index.md) · [Article](https://terrapinalytics.github.io/articles/college-athletics-spending-index.html) |
 
-Replace placeholder project pages with verified results and interactive graphics before publicizing them.
+[Find the data behind individual articles](assets/articles). The football success-rate app is published separately. Its browser code and play-by-play snapshot are linked above. This repository contains the [site page that embeds it](projects/football-success.qmd). The football data preparation code is maintained outside this repository.
+
+## Preview and check changes
+
+Install [Quarto](https://quarto.org/docs/get-started/), [Node.js](https://nodejs.org/), and [Python 3](https://www.python.org/).
+
+```sh
+quarto preview
+```
+
+Run the same checks used before deployment from the repository root.
+
+```sh
+node --test tests/*.cjs
+python scripts/build-spending-explorer.py --check
+quarto render
+python tests/check-site.py _site
+```
+
+The site source lives in `articles/` and `projects/`. Dashboard code and published snapshots live in `assets/`. GitHub Actions checks pull requests and deploys changes to `main` after the checks pass.
+
+## Reuse and attribution
+
+This repository contains Terrapinalytics code and analysis alongside data and assets from outside sources. Cite the project, the snapshot or commit you used, and the original data provider. No blanket license applies to the contents of this repository. Check each provider’s terms before redistributing its data, logos, or other assets.

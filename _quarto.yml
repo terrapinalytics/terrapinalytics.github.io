@@ -1,5 +1,8 @@
 project:
   type: website
+  render:
+    - "**/*.qmd"
+    - "assets/**/*.md"
   resources:
     - assets/peer-context.js
     - assets/view-tools.js
