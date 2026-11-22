@@ -3,3 +3,7 @@
 .team-label{display:inline-flex;align-items:center;gap:7px;vertical-align:middle;min-width:0;max-width:100%;font-weight:inherit}
 .team-logo{width:23px;height:23px;object-fit:contain;flex:0 0 23px;vertical-align:middle}
 .team-label>span{min-width:0;overflow-wrap:anywhere}
+
+.share-control{display:flex;align-items:flex-start;gap:7px;color:#4c5662;font-size:.875rem;font-weight:700}
+.share-control input{margin:.2em 0 0;accent-color:#c8102e}
+.share-control small{display:block;font-size:.75rem;font-weight:400}
