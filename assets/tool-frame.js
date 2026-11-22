@@ -21,3 +21,12 @@ for (const frame of document.querySelectorAll('iframe[data-fit-content]')) {
   frame.addEventListener('load', fit);
   if (frame.contentDocument?.readyState === 'complete') fit();
 }
+
+// The embedded spending chart reads the preset from the page URL. Its standalone view reads the same state from the fragment.
+const chartLink = document.querySelector('[data-chart-fullscreen]');
+const chartPreset = new URLSearchParams(location.search).get('chart');
+if (chartLink && chartPreset) {
+  const standalone = new URL(chartLink.href);
+  standalone.hash = chartPreset;
+  chartLink.href = standalone.href;
+}

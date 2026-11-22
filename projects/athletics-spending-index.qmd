@@ -13,9 +13,10 @@ Compare spending in dollars, as an index, or by growth rate. Use the date contro
 
 ```{=html}
 <div class="tool-intro">
-<a href="../assets/finance/escalation/explorer.html" target="_blank" rel="noopener">Open full screen</a>
+<a href="../assets/finance/escalation/explorer.html" data-chart-fullscreen target="_blank" rel="noopener">Open full screen</a>
 </div>
 <iframe class="tool-frame" id="spending-explorer" src="../assets/finance/escalation/explorer.html" title="Interactive college athletics spending explorer" loading="eager" allow="clipboard-write"></iframe>
+<script src="../assets/tool-frame.js" defer></script>
 ```
 
 ## Budget weights

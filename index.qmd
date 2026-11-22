@@ -14,7 +14,7 @@ title-block-banner: false
 
 ## How does Maryland’s offense compare with the Big Ten on third down?
 
-Compare third-down success by season, then drill from quarters to drives and individual plays.
+Compare third-down success by season, then drill into drives and individual plays.
 
 [Explore Maryland on third down](https://maryland-football-success-rates.jubilantzebra3.chatgpt.site/?team=120&unit=offense&down=3&league=1&group=Season){.btn-main target="_self"}
 :::
