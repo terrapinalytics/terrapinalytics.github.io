@@ -15,6 +15,7 @@ project:
     - assets/finance/**
     - assets/articles/**
     - assets/fouls/**
+    - assets/home/**
     - assets/team-logos.js
 
 website:

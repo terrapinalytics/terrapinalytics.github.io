@@ -12,6 +12,7 @@ class Page(HTMLParser):
         self.links = []
         self.frames = []
         self.scripts = []
+        self.images = []
         self.ids = set()
         self.feed(path.read_text(encoding="utf-8"))
 
@@ -21,6 +22,8 @@ class Page(HTMLParser):
             self.ids.add(attrs["id"])
         if tag == "a" and "href" in attrs:
             self.links.append(attrs["href"])
+        if tag == "img" and "src" in attrs:
+            self.images.append(attrs["src"])
         if tag in {"iframe", "script"} and "src" in attrs:
             (self.frames if tag == "iframe" else self.scripts).append(attrs["src"])
 
@@ -64,8 +67,11 @@ def main(site):
 
     home = Page(site / "index.html")
     home_dashboard_links = {local_file(site, site / "index.html", url) for url in home.links}
+    home_images = {local_file(site, site / "index.html", url) for url in home.images}
     for name in dashboards:
         assert site / "projects" / name in home_dashboard_links, f"Homepage missing direct link to {name}"
+        preview = site / "assets" / "home" / Path(name).with_suffix(".webp")
+        assert preview in home_images and preview.is_file(), f"Missing homepage screenshot for {name}"
     assert not any((urlsplit(link).hostname or "").endswith(".chatgpt.site") for link in home.links), (
         "Homepage dashboard links should go to the GitHub Pages project pages"
     )

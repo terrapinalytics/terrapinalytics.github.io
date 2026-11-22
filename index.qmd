@@ -2,7 +2,36 @@
 title: "Home"
 page-layout: full
 title-block-banner: false
+toc: false
 ---
+
+::: {.content-band .home-preview}
+::: {.content-container}
+```{=html}
+<section class="dashboard-carousel" aria-labelledby="carousel-title" aria-roledescription="carousel">
+  <div class="section-heading section-heading-tight">
+    <h2 id="carousel-title">Dashboard previews</h2>
+    <div class="carousel-controls" hidden>
+      <button type="button" data-step="-1" aria-label="Previous dashboard"><span aria-hidden="true">‹</span></button>
+      <span class="carousel-position" role="status">1 of 8</span>
+      <button type="button" data-step="1" aria-label="Next dashboard"><span aria-hidden="true">›</span></button>
+    </div>
+  </div>
+  <ul class="carousel-track" aria-label="Dashboard previews">
+    <li><a href="projects/athletics-spending-index.html"><img src="assets/home/athletics-spending-index.webp" width="1200" height="500" alt=""><strong>College Athletics Spending Index</strong><span>Athletics spending growth over time</span></a></li>
+    <li><a href="projects/football-success.html"><img src="assets/home/football-success.webp" width="1200" height="500" alt="" loading="lazy"><strong>Big Ten Football Success Rates</strong><span>Maryland on third down vs. the Big Ten</span></a></li>
+    <li><a href="projects/recruiting.html"><img src="assets/home/recruiting.webp" width="1200" height="500" alt="" loading="lazy"><strong>Recruiting Geography</strong><span>Where blue-chip recruits come from</span></a></li>
+    <li><a href="projects/program-rankings.html"><img src="assets/home/program-rankings.webp" width="1200" height="500" alt="" loading="lazy"><strong>FBS Program Rankings</strong><span>The top-ranked head-coaching jobs</span></a></li>
+    <li><a href="projects/coaching.html"><img src="assets/home/coaching.webp" width="1200" height="500" alt="" loading="lazy"><strong>Coaching Carousel</strong><span>Departure odds and reported buyouts</span></a></li>
+    <li><a href="projects/officiating.html"><img src="assets/home/officiating.webp" width="1200" height="500" alt="" loading="lazy"><strong>Basketball Officiating</strong><span>Maryland’s foul mix vs. conference peers</span></a></li>
+    <li><a href="projects/championships.html"><img src="assets/home/championships.webp" width="1200" height="500" alt="" loading="lazy"><strong>Big Ten Championships</strong><span>Big Ten titles by school</span></a></li>
+    <li><a href="projects/finance.html"><img src="assets/home/finance.webp" width="1200" height="500" alt="" loading="lazy"><strong>Athletics Financials</strong><span>School spending and peer benchmarks</span></a></li>
+  </ul>
+</section>
+<script src="assets/home/carousel.js" defer></script>
+```
+:::
+:::
 
 ::: {.landing-hero}
 ::: {.hero-inner}
@@ -12,7 +41,7 @@ title-block-banner: false
 :::
 
 ::: {.hero-art}
-<img class="hero-shell" src="assets/shell-network-white.png" alt="" />
+<img class="hero-shell" src="assets/shell-network-white.png" alt="Terrapinalytics shell logo" />
 :::
 :::
 :::
@@ -20,22 +49,37 @@ title-block-banner: false
 ::: {.content-band .first-band}
 ::: {.content-container}
 <div class="section-heading section-heading-tight">
-<h2 id="dashboards">Dashboards</h2>
-<a class="section-link" href="projects/index.html">Explore directory</a>
+<h2 id="explore">Explore</h2>
+<a class="section-link" href="projects/index.html">All dashboards</a>
 </div>
 
-<nav aria-labelledby="dashboards">
-<ul class="project-grid home-dashboard-grid">
-<li><a href="projects/football-success.html"><strong>Big Ten Football Success Rates</strong><span>Compare teams by down, play type, or quarter.</span></a></li>
-<li><a href="projects/recruiting.html"><strong>Recruiting Geography</strong><span>Map where blue-chip recruits come from.</span></a></li>
-<li><a href="projects/program-rankings.html"><strong>FBS Program Rankings</strong><span>Compare 79 head-coaching jobs.</span></a></li>
-<li><a href="projects/coaching.html"><strong>Coaching Carousel</strong><span>Track openings, departure estimates, and buyouts.</span></a></li>
-<li><a href="projects/officiating.html"><strong>Basketball Officiating</strong><span>Compare foul rates by team, player, or referee.</span></a></li>
-<li><a href="projects/championships.html"><strong>Big Ten Championships</strong><span>Compare titles by school, sport, and era.</span></a></li>
-<li><a href="projects/finance.html"><strong>Athletics Financials</strong><span>Compare school budgets with peer benchmarks.</span></a></li>
-<li><a href="projects/athletics-spending-index.html"><strong>College Athletics Spending Index</strong><span>Track spending growth by sport and category.</span></a></li>
-</ul>
-</nav>
+```{=html}
+<div class="home-explore">
+  <section class="explore-category">
+    <h3>Football</h3>
+    <ul>
+      <li><a href="projects/football-success.html">Big Ten Football Success Rates</a><p>Compare your team with the Big Ten by down, play type, or quarter. Drill into drives and individual plays.</p></li>
+      <li><a href="projects/recruiting.html">Recruiting Geography</a><p>See where blue-chip recruits come from and how much talent is within reach of each campus.</p></li>
+      <li><a href="projects/program-rankings.html">FBS Program Rankings</a><p>Compare 79 head-coaching jobs and see how resources, recruiting, and performance factor into the rankings.</p></li>
+      <li><a href="projects/coaching.html">Coaching Carousel</a><p>Track announced openings, changes in departure estimates, and reported buyouts.</p></li>
+    </ul>
+  </section>
+  <section class="explore-category">
+    <h3>Basketball</h3>
+    <ul>
+      <li><a href="projects/officiating.html">Basketball Officiating</a><p>Compare foul rates per possession and drill into team, player, and referee profiles.</p></li>
+    </ul>
+  </section>
+  <section class="explore-category">
+    <h3>College Athletics</h3>
+    <ul>
+      <li><a href="projects/championships.html">Big Ten Championships</a><p>Compare titles by school, sport, and era, with the option to split shared titles.</p></li>
+      <li><a href="projects/finance.html">Athletics Financials</a><p>Compare school budgets with conference and Power Four benchmarks across fiscal years.</p></li>
+      <li><a href="projects/athletics-spending-index.html">College Athletics Spending Index</a><p>See how spending on sports, salaries, and facilities has changed over time.</p></li>
+    </ul>
+  </section>
+</div>
+```
 :::
 :::
 
