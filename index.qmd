@@ -19,8 +19,8 @@ toc: false
   </div>
   <ul class="carousel-track" aria-label="Dashboard previews">
     <li><a href="projects/athletics-spending-index.html"><img src="assets/home/athletics-spending-index.webp" width="1200" height="500" alt=""><strong>College Athletics Spending Index</strong><span>Athletics spending growth over time</span></a></li>
-    <li><a href="projects/football-success.html"><img src="assets/home/football-success.webp" width="1200" height="500" alt="" loading="lazy"><strong>Big Ten Football Success Rates</strong><span>Maryland on third down vs. the Big Ten</span></a></li>
-    <li><a href="projects/recruiting.html"><img src="assets/home/recruiting.webp" width="1200" height="500" alt="" loading="lazy"><strong>Recruiting Geography</strong><span>Where blue-chip recruits come from</span></a></li>
+    <li><a href="projects/football-success.html"><img src="assets/home/football-success.webp" width="1200" height="500" alt="" loading="lazy"><strong>Big Ten Football Success Rates</strong><span>Maryland’s 2026 offensive success by down</span></a></li>
+    <li><a href="projects/recruiting.html"><img src="assets/home/recruiting.webp" width="1200" height="500" alt="" loading="lazy"><strong>Recruiting Geography</strong><span>DMV recruiting heat map and 100-mile campus circles</span></a></li>
     <li><a href="projects/program-rankings.html"><img src="assets/home/program-rankings.webp" width="1200" height="500" alt="" loading="lazy"><strong>FBS Program Rankings</strong><span>The top-ranked head-coaching jobs</span></a></li>
     <li><a href="projects/coaching.html"><img src="assets/home/coaching.webp" width="1200" height="500" alt="" loading="lazy"><strong>Coaching Carousel</strong><span>Departure odds and reported buyouts</span></a></li>
     <li><a href="projects/officiating.html"><img src="assets/home/officiating.webp" width="1200" height="500" alt="" loading="lazy"><strong>Basketball Officiating</strong><span>Maryland’s foul mix vs. conference peers</span></a></li>

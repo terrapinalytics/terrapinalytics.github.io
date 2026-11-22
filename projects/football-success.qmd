@@ -1,6 +1,6 @@
 ---
 title: "Big Ten Football Success Rates"
-description: "Compare offensive success and defensive stops across all 18 Big Ten teams, then drill from quarter to drive to snap."
+description: "Compare offensive success and defensive stops across all 18 Big Ten teams, then drill from quarter to game, drive, and snap."
 page-layout: full
 toc: false
 ---
