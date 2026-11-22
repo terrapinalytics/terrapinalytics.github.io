@@ -5,7 +5,12 @@ toc: false
 ---
 
 ```{=html}
-<iframe src="../assets/coaching/odds.html" title="2026 coaching departure odds" class="coaching-frame" loading="eager"></iframe>
+<div class="tool-intro">
+<p>2026 coaching cycle. Each snapshot shows its reporting date.</p>
+<a href="../assets/coaching/odds.html" target="_blank" rel="noopener">Open full screen</a>
+</div>
+<iframe class="tool-frame" data-fit-content src="../assets/coaching/odds.html" title="2026 coaching departure odds" loading="eager"></iframe>
+<script src="../assets/tool-frame.js" defer></script>
 ```
 
-[Open dashboard](../assets/coaching/odds.html) · [Odds CSV](../assets/coaching/departure_odds.csv) · [Research notes and data](../assets/coaching/departure_support.zip)
+[Odds CSV](../assets/coaching/departure_odds.csv) · [Research notes and data](../assets/coaching/departure_support.zip)

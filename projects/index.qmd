@@ -1,14 +1,27 @@
 ---
 title: "Explore"
+toc: false
 ---
 
-Interactive dashboards, data, and methods for exploring college sports.
+## Football
 
-- [Big Ten Football Success Rates](football-success.qmd) — play-by-play efficiency, drive drill-downs, and conference benchmarks.
-- [Recruiting Geography](recruiting.qmd) — distance, nearby competition, and blue-chip recruiting.
-- [FBS Program Rankings](program-rankings.qmd) — 79 coaching jobs and supporting data.
-- [Coaching Carousel](coaching.qmd) — departure odds, tiers, buyout estimates, and reporting.
-- [Officiating Lab](officiating.qmd) — foul rates, referee tendencies, and whistle patterns.
-- [Big Ten Championship Tracker](championships.qmd) — conference titles by school, sport, and era.
-- [Athletics Financials](finance.qmd) — NCAA/Knight-Newhouse and EADA reporting, fiscal trends, and school comparisons.
-- [College Athletics Spending Index](athletics-spending-index.qmd) — spending growth, sport benchmarks, and athletics budget shares.
+::: {.explore-directory}
+- [Big Ten Football Success Rates](football-success.qmd) [Compare your team with the Big Ten by down, play type, or quarter. Drill into drives and individual plays.]{.tool-description}
+- [Recruiting Geography](recruiting.qmd) [See where blue-chip recruits come from and how much talent is within reach of each campus.]{.tool-description}
+- [FBS Program Rankings](program-rankings.qmd) [Compare 79 head-coaching jobs and see how resources, recruiting, and performance factor into the rankings.]{.tool-description}
+- [Coaching Carousel](coaching.qmd) [Track announced openings, changes in departure estimates, and reported buyouts.]{.tool-description}
+:::
+
+## Basketball
+
+::: {.explore-directory}
+- [Basketball Officiating](officiating.qmd) [Compare foul rates per possession and drill into team, player, and referee profiles.]{.tool-description}
+:::
+
+## College Athletics
+
+::: {.explore-directory}
+- [Big Ten Championships](championships.qmd) [Compare titles by school, sport, and era, with the option to split shared titles.]{.tool-description}
+- [Athletics Financials](finance.qmd) [Compare school budgets with conference and Power Four benchmarks across fiscal years.]{.tool-description}
+- [College Athletics Spending Index](athletics-spending-index.qmd) [See how spending on sports, salaries, and facilities has changed over time.]{.tool-description}
+:::

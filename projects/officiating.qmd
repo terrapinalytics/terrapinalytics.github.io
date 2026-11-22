@@ -5,6 +5,10 @@ toc: false
 ---
 
 ```{=html}
-<p><a href="../assets/fouls/dashboard.html" target="_blank" rel="noopener">Open full-screen dashboard</a></p>
-<iframe src="../assets/fouls/dashboard.html" title="College basketball officiating dashboard" class="coaching-frame" style="width:100%;height:1100px;border:0;border-radius:8px" loading="eager"></iframe>
+<div class="tool-intro">
+<p>Men’s college basketball from 2020–21 through the in-progress 2026–27 season.</p>
+<a href="../assets/fouls/dashboard.html" target="_blank" rel="noopener">Open full screen</a>
+</div>
+<iframe class="tool-frame" data-fit-content src="../assets/fouls/dashboard.html" title="College basketball officiating dashboard" loading="eager"></iframe>
+<script src="../assets/tool-frame.js" defer></script>
 ```

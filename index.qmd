@@ -4,69 +4,39 @@ page-layout: full
 title-block-banner: false
 ---
 
-::: {.landing-hero .landing-hero-compact}
+::: {.landing-hero}
 ::: {.hero-inner}
 ::: {.hero-copy}
 # At the intersection of sports, data, and money.
 
-<div class="topic-accordions" aria-label="Interactive dashboards by topic">
-<details class="topic-group" open>
-<summary>College Football</summary>
-<ul>
-<li><a href="projects/football-success.html">Big Ten Football Success Rates</a></li>
-<li><a href="projects/recruiting.html">Recruiting Geography</a></li>
-<li><a href="projects/program-rankings.html">FBS Program Rankings</a></li>
-<li><a href="projects/coaching.html">Coaching Carousel</a></li>
-</ul>
-</details>
-<details class="topic-group">
-<summary>College Basketball</summary>
-<ul>
-<li><a href="projects/officiating.html">Officiating Lab</a></li>
-</ul>
-</details>
-<details class="topic-group">
-<summary>College Athletics</summary>
-<ul>
-<li><a href="projects/championships.html">Big Ten Championship Tracker</a></li>
-<li><a href="projects/finance.html">Athletics Financials</a></li>
-<li><a href="projects/athletics-spending-index.html">College Athletics Spending Index</a></li>
-</ul>
-</details>
-</div>
+::: {.home-feature}
+<p class="section-kicker">Featured analysis</p>
 
-<div class="hero-actions"><a class="btn-main" href="projects/index.html">Explore dashboards</a><a class="btn-quiet" href="articles/index.html">Articles</a></div>
+## How does Maryland’s offense compare with the Big Ten on third down?
+
+Compare third-down success by season, then drill from quarters to drives and individual plays.
+
+[Explore Maryland on third down](https://maryland-football-success-rates.jubilantzebra3.chatgpt.site/?team=120&unit=offense&down=3&league=1&group=Season){.btn-main target="_self"}
+:::
 :::
 
 ::: {.hero-art}
-<img class="hero-shell" src="assets/shell-network-white.png" alt="Terrapin shell drawn as a connected network of data nodes" />
+<img class="hero-shell" src="assets/shell-network-white.png" alt="" />
 :::
 :::
 :::
 
-::: {.content-band .first-band}
+::: {.content-band}
 ::: {.content-container}
-<div class="section-heading section-heading-tight"><div><h2>Explore</h2></div></div>
+<div class="section-heading section-heading-tight">
+<h2>From the articles</h2>
+<a class="section-link" href="articles/index.html">All articles</a>
+</div>
 
-::: {.project-grid}
-<a class="project-card" href="projects/football-success.html"><div class="card-top"><span class="eyebrow">Football</span></div><h3>Big Ten Football Success Rates</h3><p>Compare team and conference rates, then drill down to drives and snaps.</p></a>
-<a class="project-card" href="projects/recruiting.html"><div class="card-top"><span class="eyebrow">Football</span></div><h3>Recruiting Geography</h3><p>Distance, local competition, and blue-chip recruiting patterns.</p></a>
-<a class="project-card" href="projects/program-rankings.html"><div class="card-top"><span class="eyebrow">Football</span></div><h3>FBS Program Rankings</h3><p>79 coaching jobs, program resources, performance, and supporting data.</p></a>
-<a class="project-card" href="projects/coaching.html"><div class="card-top"><span class="eyebrow">Football</span></div><h3>Coaching Carousel</h3><p>Departure odds, job tiers, buyout estimates, and reporting.</p></a>
-<a class="project-card" href="projects/officiating.html"><div class="card-top"><span class="eyebrow">Basketball</span></div><h3>Officiating Lab</h3><p>Foul rates, referee tendencies, and whistle profiles.</p></a>
-<a class="project-card" href="projects/championships.html"><div class="card-top"><span class="eyebrow">Big Ten</span></div><h3>Championship Tracker</h3><p>Conference titles by school, sport, and era.</p></a>
-<a class="project-card" href="projects/finance.html"><div class="card-top"><span class="eyebrow">Financials</span></div><h3>Athletics Financials</h3><p>NCAA and EADA revenue, expenses, and football spending.</p></a>
-:::
-:::
-:::
-
-::: {.content-band .last-band}
-::: {.content-container}
-<div class="section-heading section-heading-tight"><div><div class="section-kicker">Writing</div><h2>Articles</h2></div><a class="section-link" href="articles/index.html">All articles</a></div>
 <a class="article-teaser" href="articles/college-athletics-spending-index.html"><div><h3>How Fast Is College Athletics Spending Growing?</h3><p>Spending growth by sport and the breakdown of an athletics budget.</p></div></a>
-<a class="article-teaser" href="articles/down-14-two-point-conversions.html"><div><h3>Down 14: Why Don't More Teams Go for Two?</h3><p>Fourth-quarter decisions in the NFL and FBS.</p></div><span class="teaser-arrow">↗</span></a>
-<a class="article-teaser" href="articles/mandatory-athletics-fees.html"><div><h3>Mandatory Student Athletics Fees</h3><p>Published Power Four charges and reporting gaps.</p></div><span class="teaser-arrow">↗</span></a>
-<a class="article-teaser" href="articles/recruiting-distance.html"><div><h3>How Far Do Blue-Chip Recruits Travel?</h3><p>Distance distributions and the Maryland recruiting market.</p></div><span class="teaser-arrow">↗</span></a>
-<a class="article-teaser" href="articles/welcome.html"><div><h3>Why Terrapinalytics?</h3><p>Sports, data, economics, and learning to work with AI.</p></div><span class="teaser-arrow">↗</span></a>
+<a class="article-teaser" href="articles/recruiting-distance.html"><div><h3>How Far Do Blue-Chip Recruits Travel?</h3><p>Distance distributions and the Maryland recruiting market.</p></div></a>
+<a class="article-teaser" href="articles/down-14-two-point-conversions.html"><div><h3>Down 14: Why Don't More Teams Go for Two?</h3><p>Fourth-quarter decisions in the NFL and FBS.</p></div></a>
+
+[Browse all dashboards](projects/index.qmd){.home-directory-link}
 :::
 :::

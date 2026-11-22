@@ -34,6 +34,8 @@ Maryland's blue-chip signees are overwhelmingly local. Penn State recruits many 
 
 But **these are commitment-distance distributions, not the probability that a recruit picks a school at a given distance**. That distinction matters. A program can have a high local share because it recruits locally, because it struggles nationally, or both.
 
+[Open the Maryland recruiting map with the 250-mile view](../assets/recruiting/dashboard.html#t=blue&a=2010&b=2025&z=5.65&lon=-76.94&lat=38.99&r=250&s=Maryland&c=on). The map shows local talent and commitment destinations for the same class years and star threshold.
+
 ## The next question: competing options
 
 A recruit near College Park isn't choosing between Maryland and *no school*. Penn State, Virginia Tech, Rutgers, and other programs compete for overlapping parts of the region. The same problem is even more obvious for NC State, with multiple major programs in North Carolina.

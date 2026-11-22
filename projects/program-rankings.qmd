@@ -5,10 +5,15 @@ toc: false
 ---
 
 ```{=html}
-<iframe src="../assets/coaching/rankings.html" title="FBS program rankings and supporting data" class="coaching-frame" loading="eager"></iframe>
+<div class="tool-intro">
+<p>79 FBS programs in the October 2026 edition.</p>
+<a href="../assets/coaching/rankings.html" target="_blank" rel="noopener">Open full screen</a>
+</div>
+<iframe class="tool-frame" data-fit-content src="../assets/coaching/rankings.html" title="FBS program rankings and supporting data" loading="eager"></iframe>
+<script src="../assets/tool-frame.js" defer></script>
 ```
 
-[Open dashboard](../assets/coaching/rankings.html) · [Rankings CSV](../assets/coaching/program_rankings.csv) · [Supporting data](../assets/coaching/supporting_data.zip)
+[Rankings CSV](../assets/coaching/program_rankings.csv) · [Supporting data](../assets/coaching/supporting_data.zip)
 
 
 ## How to read these rankings

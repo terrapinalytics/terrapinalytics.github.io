@@ -3,3 +3,7 @@
 [hidden]{display:none!important}#school-distance{margin-top:8px}.section summary{cursor:pointer;font-weight:650}
 
 .recruit-headlines{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.65rem}.recruit-headlines .peer-headline{margin:0}.recruit-records{max-height:22rem;overflow:auto}
+
+.related-article{margin:0 0 .7rem;font-size:.9rem}.related-article a{color:#8b1430}
+.dashboard-embedded #mapbox{height:clamp(400px,55vw,700px)}
+@media(min-width:641px){.dashboard-embedded aside{max-height:none}}

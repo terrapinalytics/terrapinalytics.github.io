@@ -9,10 +9,13 @@ From FY2019 to FY2025, the NCAA spending index rose **46.9%** across 53 reportin
 
 ## Explore the data {#explorer}
 
-Compare spending in dollars, as an index, or by growth rate. Use the date controls to go back to FY2005 for NCAA total spending and FY2001 for many EADA sports. [Open the explorer full screen](../assets/finance/escalation/explorer.html)
+Compare spending in dollars, as an index, or by growth rate. Use the date controls to go back to FY2005 for NCAA total spending and FY2001 for many EADA sports.
 
 ```{=html}
-<iframe id="spending-explorer" src="../assets/finance/escalation/explorer.html" title="Interactive college athletics spending explorer" style="display:block;width:100%;height:1150px;border:0" loading="eager" allow="clipboard-write"></iframe>
+<div class="tool-intro">
+<a href="../assets/finance/escalation/explorer.html" target="_blank" rel="noopener">Open full screen</a>
+</div>
+<iframe class="tool-frame" id="spending-explorer" src="../assets/finance/escalation/explorer.html" title="Interactive college athletics spending explorer" loading="eager" allow="clipboard-write"></iframe>
 ```
 
 ## Budget weights
