@@ -12,13 +12,14 @@ toc: false
   <div class="section-heading section-heading-tight">
     <h2 id="carousel-title">Dashboard previews</h2>
     <div class="carousel-controls" hidden>
+      <button type="button" class="carousel-rotation" aria-label="Pause automatic scrolling" title="Pause automatic scrolling"><span aria-hidden="true">Ⅱ</span></button>
       <button type="button" data-step="-1" aria-label="Previous dashboard"><span aria-hidden="true">‹</span></button>
       <span class="carousel-position" role="status">1 of 8</span>
       <button type="button" data-step="1" aria-label="Next dashboard"><span aria-hidden="true">›</span></button>
     </div>
   </div>
   <ul class="carousel-track" aria-label="Dashboard previews">
-    <li><a href="projects/athletics-spending-index.html"><img src="assets/home/athletics-spending-index.webp" width="1200" height="500" alt=""><strong>College Athletics Spending Index</strong><span>Athletics spending growth over time</span></a></li>
+    <li><a href="projects/athletics-spending-index.html"><img src="assets/home/athletics-spending-index.webp" width="1200" height="500" alt=""><strong>College Athletics Spending Index</strong><span>Athletics spending growth, FY2016–FY2025</span></a></li>
     <li><a href="projects/football-success.html"><img src="assets/home/football-success.webp" width="1200" height="500" alt="" loading="lazy"><strong>Big Ten Football Success Rates</strong><span>Maryland’s 2026 offensive success by down</span></a></li>
     <li><a href="projects/recruiting.html"><img src="assets/home/recruiting.webp" width="1200" height="500" alt="" loading="lazy"><strong>Recruiting Geography</strong><span>DMV recruiting heat map and 100-mile campus circles</span></a></li>
     <li><a href="projects/program-rankings.html"><img src="assets/home/program-rankings.webp" width="1200" height="500" alt="" loading="lazy"><strong>FBS Program Rankings</strong><span>The top-ranked head-coaching jobs</span></a></li>

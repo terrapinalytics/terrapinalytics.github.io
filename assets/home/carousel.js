@@ -4,12 +4,18 @@
   const slides = Array.from(track.children);
   const controls = carousel.querySelector('.carousel-controls');
   const position = carousel.querySelector('.carousel-position');
+  const rotation = carousel.querySelector('.carousel-rotation');
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  let playing = !reducedMotion.matches;
+  let hovered = false;
+  let inView = false;
+  let timer;
   let current = 0;
   let scrollFrame;
 
-  function goTo(index) {
+  function goTo(index, smooth = false) {
     const target = (index + slides.length) % slides.length;
-    track.scrollTo({left: slides[target].offsetLeft, behavior: 'instant'});
+    track.scrollTo({left: slides[target].offsetLeft, behavior: smooth ? 'smooth' : 'instant'});
     updatePosition();
     return target;
   }
@@ -21,6 +27,51 @@
     current = next;
     position.textContent = (current + 1) + ' of ' + slides.length;
   }
+
+  function scheduleRotation() {
+    clearTimeout(timer);
+    const running = playing && inView && !hovered && !document.hidden;
+    position.setAttribute('aria-live', running ? 'off' : 'polite');
+    if (!running) return;
+    timer = setTimeout(() => {
+      goTo(current + 1, !reducedMotion.matches && current < slides.length - 1);
+      scheduleRotation();
+    }, 6000);
+  }
+
+  function setPlaying(value) {
+    playing = value;
+    const label = (playing ? 'Pause' : 'Start') + ' automatic scrolling';
+    rotation.setAttribute('aria-label', label);
+    rotation.title = label;
+    rotation.firstElementChild.textContent = playing ? 'Ⅱ' : '▶';
+    scheduleRotation();
+  }
+
+  rotation.addEventListener('click', () => setPlaying(!playing));
+  carousel.addEventListener('pointerenter', event => {
+    if (event.pointerType !== 'mouse') return;
+    hovered = true;
+    scheduleRotation();
+  });
+  carousel.addEventListener('pointerleave', event => {
+    if (event.pointerType !== 'mouse') return;
+    hovered = false;
+    scheduleRotation();
+  });
+  carousel.addEventListener('focusin', event => {
+    if (event.target !== rotation) setPlaying(false);
+  });
+  track.addEventListener('pointerdown', () => setPlaying(false));
+  document.addEventListener('visibilitychange', scheduleRotation);
+  reducedMotion.addEventListener('change', () => {
+    if (reducedMotion.matches) setPlaying(false);
+  });
+  new IntersectionObserver(([entry]) => {
+    inView = entry.isIntersecting;
+    scheduleRotation();
+  }, {threshold: 0.25}).observe(carousel);
+  setPlaying(playing);
 
   controls.addEventListener('click', event => {
     const button = event.target.closest('[data-step]');
