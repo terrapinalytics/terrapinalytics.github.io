@@ -1,9 +1,10 @@
 ---
-title: "Research"
+title: "Explore"
 ---
 
-## Projects
+Interactive dashboards, data, and methods for exploring college sports.
 
+- [Big Ten Football Success Rates](football-success.qmd) — play-by-play efficiency, drive drill-downs, and conference benchmarks.
 - [Recruiting Geography](recruiting.qmd) — distance, nearby competition, and blue-chip recruiting.
 - [FBS Program Rankings](program-rankings.qmd) — 79 coaching jobs and supporting data.
 - [Coaching Carousel](coaching.qmd) — departure odds, tiers, buyout estimates, and reporting.

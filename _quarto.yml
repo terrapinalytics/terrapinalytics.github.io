@@ -28,7 +28,7 @@ website:
       - href: index.qmd
         text: Home
       - href: projects/index.qmd
-        text: Research
+        text: Explore
       - href: articles/index.qmd
         text: Articles
       - href: about.qmd
