@@ -11,7 +11,7 @@ function ctx(){return {console,PeerContext:pc,TeamLogos:{label:name=>name},docum
 let f=fs.readFileSync('assets/finance/dashboard.js','utf8').split('loadData().then')[0],c=ctx();vm.createContext(c);vm.runInContext(f,c);
 const finance=JSON.parse(zlib.gunzipSync(Buffer.from(fs.readFileSync('assets/finance/data.packed.txt','utf8'),'base64'))).records;
 vm.runInContext('DATA='+JSON.stringify(finance),c);
-els.source.value='EADA';els.metric.value='fbrev';els.year.value='2024';els.window.value='1';els.dollars.value='nominal';els.conference.value='';els.school.value='Maryland';vm.runInContext('render()',c);assert(els['peer-context'].innerHTML.includes('FY2024 · EADA'));assert(els['peer-context'].innerHTML.includes('Power Four reporting sample'));
+els.source.value='EADA';els.metric.value='fbrev';els.year.value='2024';els.window.value='1';els.dollars.value='nominal';els.conference.value='';els.school.value='Maryland';vm.runInContext('view="trend";render()',c);assert(els['peer-context'].innerHTML.includes('FY2024 · EADA'));assert(els['peer-context'].innerHTML.includes('Power Four reporting sample'));
 // Real current player data and positional joins, search-independent cohort.
 f=fs.readFileSync('assets/fouls/dashboard.js','utf8').split("document.querySelectorAll('[data-view]').forEach(b=>b.onclick")[0];c=ctx();vm.createContext(c);vm.runInContext(f,c);
 const games=JSON.parse(zlib.gunzipSync(fs.readFileSync('assets/fouls/games-2027.json.gz'))),players=JSON.parse(zlib.gunzipSync(fs.readFileSync('assets/fouls/players-2027.json.gz'))),positions=JSON.parse(fs.readFileSync('assets/fouls/player-positions-2027.json')).positions;

@@ -15,3 +15,7 @@
 .trend-data{margin:12px 0;font-size:13px}
 .trend-data summary{cursor:pointer;color:#4c5662}
 .trend-data th,.trend-data td{white-space:nowrap}
+
+[hidden]{display:none!important}.view-picker{display:flex;gap:8px;margin-bottom:14px}.view-picker [aria-pressed=true]{background:#a51b34;color:white;border-color:#a51b34}.panel summary{cursor:pointer;font-weight:650}
+
+.school-link{background:none;border:0;cursor:pointer;text-align:left;color:#8f1730;font:inherit;padding:0}.school-link:hover{text-decoration:underline}

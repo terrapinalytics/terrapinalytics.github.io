@@ -30,8 +30,26 @@ async function start() {
        <label>Openings<select id="status"><option value="">All tracked situations</option><option value="Announced departure">Announced departures</option><option value="Forecast">Forecasts</option></select></label>
        <label>Minimum odds<select id="minimum-odds"><option value="5">5% or higher</option><option value="0">All odds</option></select></label>`
     : `<label>Find a program<input id="search" type="search" placeholder="School or coach" autocomplete="off"></label><label>Conference<select id="conference"><option value="">All conferences</option>${options([...new Set(rows.map(row=>row.conference))].sort())}</select></label><label>Job tier<select id="tier"><option value="">All tiers</option>${[1,2,3,4,5,6].map(n=>`<option value="${n}">Tier ${n}</option>`).join('')}</select></label><label>Metrics<select id="group">${options(groups)}</select></label>`;
-  app.innerHTML = `<div class="tools">${controls}</div><p id="count" class="count" aria-live="polite"></p><div class="table-wrap"><table><thead id="head"></thead><tbody id="body"></tbody></table></div><section id="detail" class="detail" hidden aria-live="polite"></section><div class="download">${isOdds ? '<a href="departure_odds.csv" download>Odds CSV</a><a href="departure_support.zip" download>Research notes and data</a>' : '<a href="program_rankings.csv" download>Rankings CSV</a><a href="program_inputs.csv" download>All 79-program inputs</a><a href="supporting_data.zip" download>Supporting source tables</a><a href="source_registry.csv" download>Source registry</a>'}</div><div class="notes">${isOdds ? '<p>Announced departures are shown at 100%. The February checkpoint includes later potential departures. Change is measured against a November 6 reference using the latest saved forecast available then (November 1). No November 6 revision is available; values are carried forward without interpolation. A dash means no comparable baseline. Tracked situations are drawn from the 79-program ranking universe.</p><p>Buyout estimates represent the school’s gross head-coach dismissal obligation. Click a school for the assessment and contract notes. Reporting dates and confidence vary.</p>' : '<p>Rankings and tiers are subjective judgments informed by source observations and calculated comparisons. Reported estimates retain their uncertainty. Category weights describe editorial emphasis, not a published school-level score calculation. See the ranking research above for the framework and limitations.</p><p>EADA and NCAA MFRS retain their own definitions. Private-school nondisclosure appears as missing. Attendance mixes official totals and reconstructed observations, and roster-spending amounts are source-specific estimates.</p><details><summary>Ranking framework and data quality</summary><div id="weights"></div><p><a href="data_quality.md" target="_blank">Phase 4 validation and limitations</a></p><p>The supporting download contains normalized source tables, the data dictionary, field coverage, provenance, and conflicts. Each source retains its reporting year, unit, and definition.</p></details>'}</div>`;
+  app.innerHTML = `<div class="tools">${controls}</div><div class="tools"><button id="reset-view" type="button">Reset</button><button id="share-view" type="button">Copy view link</button><button id="export-view" type="button">Download filtered data</button></div><p id="snapshot" class="count" hidden></p><p id="count" class="count" aria-live="polite"></p><div class="table-wrap"><table><thead id="head"></thead><tbody id="body"></tbody></table></div><section id="detail" class="detail" hidden aria-live="polite"></section><div class="download">${isOdds ? '<a href="departure_odds.csv" download>Odds CSV</a><a href="departure_support.zip" download>Research notes and data</a>' : '<a href="program_rankings.csv" download>Rankings CSV</a><a href="program_inputs.csv" download>All 79-program inputs</a><a href="supporting_data.zip" download>Supporting source tables</a><a href="source_registry.csv" download>Source registry</a>'}</div><div class="notes">${isOdds ? '<p>Announced departures are shown at 100%. The February checkpoint includes later potential departures. Change is measured against a November 6 reference using the latest saved forecast available then (November 1). No November 6 revision is available; values are carried forward without interpolation. A dash means no comparable baseline. Tracked situations are drawn from the 79-program ranking universe.</p><p>Buyout estimates represent the school’s gross head-coach dismissal obligation. Click a school for the assessment and contract notes. Reporting dates and confidence vary.</p>' : '<p>Rankings and tiers are subjective judgments informed by source observations and calculated comparisons. Reported estimates retain their uncertainty. Category weights describe editorial emphasis, not a published school-level score calculation. See the ranking research above for the framework and limitations.</p><p>EADA and NCAA MFRS retain their own definitions. Private-school nondisclosure appears as missing. Attendance mixes official totals and reconstructed observations, and roster-spending amounts are source-specific estimates.</p><details><summary>Ranking framework and data quality</summary><div id="weights"></div><p><a href="data_quality.md" target="_blank">Phase 4 validation and limitations</a></p><p>The supporting download contains normalized source tables, the data dictionary, field coverage, provenance, and conflicts. Each source retains its reporting year, unit, and definition.</p></details>'}</div>`;
   if (!isOdds) document.getElementById('weights').innerHTML = data.weights.map(([label, weight, definition]) => `<div class="weight"><b>${weight}%</b><span><strong>${escapeHtml(label)}</strong><br>${escapeHtml(definition)}</span></div>`).join('');
+  const filterIds = isOdds ? ['checkpoint','status','minimum-odds'] : ['search','conference','tier','group'];
+  const params = new URLSearchParams(location.search);
+  const defaults = Object.fromEntries(filterIds.map(id=>[id,document.getElementById(id).value]));
+  for(const id of filterIds)ViewTools.restore(document.getElementById(id),params.get(id));
+  if(isOdds)sortKey=document.getElementById('checkpoint').value;
+  else group=document.getElementById('group').value;
+  let exportRows = [];
+  document.getElementById('reset-view').onclick=()=>{
+    for(const id of filterIds)document.getElementById(id).value=defaults[id];
+    group='Overview';sortKey=isOdds?defaults.checkpoint:'rank';ascending=!isOdds;
+    document.getElementById('detail').hidden=true;render();
+  };
+  document.getElementById('share-view').onclick=()=>{
+    const url=new URL(location.href);
+    url.search=new URLSearchParams(filterIds.map(id=>[id,document.getElementById(id).value]));
+    ViewTools.copy(document.getElementById('share-view'),url);
+  };
+  document.getElementById('export-view').onclick=()=>ViewTools.csv(isOdds?'departure-odds-filtered.csv':'program-rankings-filtered.csv',exportRows);
   function selectedMetrics() {
     const keys = ['eada_football_expenses_mean_FY2022_2024_2025usd','sp_rank_mean_2016_2025','recruiting_rank_mean_2021_2025','attendance_average_mean_2022_2024_phase4'];
     return data.metrics.filter(metric => group === 'Overview' ? keys.includes(metric.key) : metric.group === group);
@@ -51,11 +69,11 @@ async function start() {
     if (isOdds) {
       content += `<p><strong>${escapeHtml(row.coach)}</strong> · ${escapeHtml(row.status)}</p><div class="metric-grid"><div class="metric">December 7<strong>${row.dec7_probability_pct}%</strong></div><div class="metric">February 1<strong>${row.feb1_probability_pct}%</strong></div><div class="metric">Dismissal buyout estimate<strong>${format(row.dismissal_buyout.amount_usd,'money')}</strong></div></div><p>${escapeHtml(row.research_note)}</p><p>${sourceLinks(row.research_source)}</p>${PeerContext.comparison({value:row.dismissal_buyout.amount_usd,label:'Dismissal buyout estimate · mixed reporting dates; estimates, not synchronized contract valuations',format:v=>format(v,'money'),cohorts:[{label:'Tracked situations ('+rows.length+')',values:rows.map(x=>x.dismissal_buyout.amount_usd)},{label:row.conference+' tracked situations',values:rows.filter(x=>x.conference===row.conference).map(x=>x.dismissal_buyout.amount_usd)}]})}<details><summary>Buyout notes</summary><p>${escapeHtml(row.dismissal_buyout.notes)}</p><p>${escapeHtml(row.dismissal_buyout.applicable_date_or_period)}</p><p>${sourceLinks(row.dismissal_buyout.source_url)}</p></details>`;
     } else {
-      const metrics = group === 'Overview' ? data.metrics : selectedMetrics();
+      const metrics = selectedMetrics();
       content += '<div class="metric-grid">' + metrics.map(metric => {
         const sources = data.provenance.filter(p=>p.school === row.school && p.metric === metric.key);
         const provenance = sources.map(p=>`<div class="source">${escapeHtml(p.observation_year || p.period || '')} · ${escapeHtml(p.confidence || 'Confidence unclassified')}<br>${escapeHtml(p.definition || metric.definition)}${p.completeness ? '<br>Completeness '+escapeHtml(p.completeness) : ''}<br>${sourceLinks(p.source_urls || p.sources)}</div>`).join('');
-        return `<div class="metric">${escapeHtml(metric.label)}<strong>${format(row[metric.key],metric.format)}</strong><small>${escapeHtml(metric.definition)}</small>${provenance || '<div class="source">See the supporting tables for source-level coverage.</div>'}${metricPeers(row,metric)}</div>`;
+        return `<div class="metric">${escapeHtml(metric.label)}<strong>${format(row[metric.key],metric.format)}</strong>${metricPeers(row,metric)}<details><summary>Definition and sources</summary><p>${escapeHtml(metric.definition)}</p>${provenance || '<p>See the supporting tables for source coverage.</p>'}</details></div>`;
       }).join('') + '</div>';
       const coverage = data.coverage.filter(c=>c.school===row.school);
       content += '<details><summary>Field-level source coverage</summary><div class="table-wrap"><table><thead><tr><th>Source family</th><th>Usable metric slots</th><th>Completeness</th></tr></thead><tbody>' + coverage.map(c=>`<tr><td>${escapeHtml(c.source_family)}</td><td>${c.observed_usable_metric_slots} / ${c.eligible_metric_slots}</td><td>${c.field_completeness_percent}%</td></tr>`).join('') + '</tbody></table></div></details>';
@@ -79,6 +97,9 @@ async function start() {
         && (!conference || row.conference === conference)
         && (!chosenTier || row.tier === Number(chosenTier)));
     }
+    const snapshot=document.getElementById('snapshot');
+    snapshot.hidden=!isOdds;
+    if(isOdds)snapshot.textContent='Odds snapshot '+data.as_of+(checkpoint==='dec7_probability_pct'?' · Change compares with '+data.comparison_reference_date+' using the '+data.comparison_source_date+' saved forecast.':'');
     filtered.sort((a,b)=>{
       const left = a[sortKey], right = b[sortKey];
       if (left === '' || left == null) return right === '' || right == null ? 0 : 1;
@@ -86,6 +107,13 @@ async function start() {
       const difference = Number.isFinite(Number(left)) && Number.isFinite(Number(right)) ? Number(left)-Number(right) : String(left).localeCompare(String(right));
       return (ascending ? difference : -difference) || a.rank-b.rank;
     });
+    exportRows = isOdds
+      ? [['Program','Coach','Status','Checkpoint','Departure odds (%)','Buyout estimate','Snapshot','Change (pp)','Comparison source date'],
+        ...filtered.map(row=>[row.school,row.coach,row.status,document.getElementById('checkpoint').selectedOptions[0].text,
+          row[checkpoint],row.buyout_sort,data.as_of,checkpoint==='dec7_probability_pct'?row.two_week_change_pp:null,
+          checkpoint==='dec7_probability_pct'?data.comparison_source_date:null])]
+      : [['Rank','Program','Conference','Tier',...selectedMetrics().map(metric=>metric.label)],
+        ...filtered.map(row=>[row.rank,row.school,row.conference,row.tier,...selectedMetrics().map(metric=>row[metric.key])])];
     const header = (key,label,definition='')=>`<th scope="col"${sortKey===key?' aria-sort="'+(ascending?'ascending':'descending')+'"':''}><button data-sort="${key}">${escapeHtml(label)}</button>${definition?'<small>'+escapeHtml(definition)+'</small>':''}</th>`;
     let columns = header('rank','Rank')+header('school','Program')+header('tier','Job tier');
     if (isOdds) columns = header('school','Program')+header('coach','Coach')+header(checkpoint,'Departure odds')+header('tier','Job tier')+header('buyout_sort','Buyout estimate')+(checkpoint==='dec7_probability_pct'?header('change_sort','Change vs. Nov. 6', 'Reference: last saved Nov. 1 forecast'):'');

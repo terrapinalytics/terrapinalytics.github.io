@@ -2,6 +2,7 @@ project:
   type: website
   resources:
     - assets/peer-context.js
+    - assets/view-tools.js
     - assets/peer-context.css
     - assets/peer-context-methodology.md
     - assets/recruiting/**

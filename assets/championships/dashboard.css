@@ -7,3 +7,5 @@
 .share-control{display:flex;align-items:flex-start;gap:7px;color:#4c5662;font-size:.875rem;font-weight:700}
 .share-control input{margin:.2em 0 0;accent-color:#c8102e}
 .share-control small{display:block;font-size:.75rem;font-weight:400}
+
+.counting-options summary{cursor:pointer;font-weight:650}.counting-fields{display:flex;gap:10px;flex-wrap:wrap;margin-top:7px}#counting-rule{margin:0 0 12px}

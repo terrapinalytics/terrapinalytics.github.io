@@ -4,7 +4,7 @@ const esc = value => String(value).replace(/[&<>"']/g, char => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
 })[char]);
 const filters = {sport: 'p', tier: 'k', season: 'y', type: 't'};
-let data = [];
+let data = [], exportRows = [];
 let seasons = [];
 
 async function loadData() {
@@ -77,6 +77,9 @@ function render() {
   const weighted = $('metric').value === 'weighted';
   const split = !weighted && $('split-shared').checked;
   const measure = weighted ? 'Tier-weighted points' : 'Title credits';
+  $('counting-rule').textContent = weighted ? 'Tier-weighted points · joint champions split points.'
+    : split ? 'Title credits · joint champions split one title.'
+    : 'Title credits · each joint champion gets one credit.';
   $('split-shared').disabled = weighted;
   $('share-help').textContent = weighted
     ? 'Tier-weighted points already split shared titles.'
@@ -90,6 +93,8 @@ function render() {
   const peerRows = data.filter(record => selected.every(([id, field]) => String(record[field]) === $(id).value))
     .map(record => ({...record, score: weighted ? record.w : split ? 1 / record.champions : 1}));
   const rows = school ? peerRows.filter(record => record.s === school) : peerRows;
+  exportRows = [['Season','School','Sport','Type','Tier','Measure','Credit','Source'], ...rows.map(row =>
+    [row.y,row.s,row.p,row.t,row.k,measure,row.score,row.u])];
   const total = rows.reduce((sum, record) => sum + record.score, 0);
   const count = field => new Set(rows.map(record => record[field])).size;
   const stats = [[measure, total], ['Schools', count('s')], ['Sports', count('p')], ['Seasons', count('y')]];
@@ -126,6 +131,15 @@ loadData().then(inventory => {
   options('season', seasons, 'All seasons');
   options('type', values('t'), 'All types');
   const selects = document.querySelectorAll('.controls select');
+  const params = new URLSearchParams(location.search);
+  selects.forEach(select => ViewTools.restore(select,params.get(select.id)));
+  ViewTools.restore($('split-shared'),params.get('split'));
+  $('share').onclick = () => {
+    const url = new URL(location.href);
+    url.search = new URLSearchParams([...Array.from(selects).map(select=>[select.id,select.value]),['split',$('split-shared').checked?'1':'0']]);
+    ViewTools.copy($('share'),url);
+  };
+  $('export').onclick = () => ViewTools.csv('big-ten-championships.csv',exportRows);
   selects.forEach(select => select.addEventListener('change', render));
   $('split-shared').addEventListener('change', render);
   $('reset').addEventListener('click', () => {

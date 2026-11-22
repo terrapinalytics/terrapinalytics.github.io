@@ -3,7 +3,8 @@ const $ = id => document.getElementById(id);
 const kinds = ['shooting','other_personal','offensive','looseball','flagrant','technical','unknown'];
 const names = ['Shooting','Other non-shooting','Offensive','Loose-ball','Flagrant','Technical','Unresolved'];
 const colors = ['#118c91','#557cc2','#d17a49','#9370bc','#bf5d85','#b39439','#97a4ae'];
-const state = {view:'teams', year:2027, conference:'', stage:'', location:'', type:'', search:'', minimum:3, sort:'margin', page:0, entity:'120', mixRole:'committed'};
+const defaults = {view:'teams', year:2027, conference:'', stage:'', location:'', type:'', search:'', minimum:3, sort:'margin', page:0, entity:'120', mixRole:'committed'};
+const state = {...defaults};
 let playerPositions = {};
 let games = [], players = [], rows = [], visible = [], request = 0;
 const cache = new Map();
@@ -77,6 +78,7 @@ function syncFilters() {
   $('type').disabled=false;
   if($('type').disabled)state.type='';
   $('type').value=state.type;
+  $('minimum').value=String(state.minimum);
   $('type').options[0].textContent=state.view==='players'?'All recorded fouls':'All box-score fouls';
   const options=ref?[['committed','Combined fouls / 100'],['home','Home foul advantage'],['n','Games worked']]:
     [['margin','Best foul margin'],['drawn','Most drawn / 100'],['committed','Most committed / 100'],['least','Fewest committed / 100'],['n','Games']];
@@ -133,13 +135,13 @@ function render() {
 }
 function renderTable() {
   const ref=state.view==='refs';
-  const headers=ref?['Rank','Referee','Games','Combined / 100','Home edge / 100']:['Rank',state.view==='players'?'Player':'Team','Games','Committed / 100','Drawn / 100','Margin / 100'];
+  const headers=ref?['Rank','Referee','Games','Poss.','Combined / 100','Home edge / 100']:['Rank',state.view==='players'?'Player':'Team','Games','Poss.','Committed / 100','Drawn / 100','Margin / 100'];
   const list=visible.slice(state.page*15,(state.page+1)*15);
   $('ranktable').innerHTML='<thead><tr>'+headers.map(h=>'<th>'+h+'</th>').join('')+'</tr></thead><tbody>'+
-    list.map((x,i)=>'<tr data-id="'+safe(x.id)+'" class="'+(x.id===state.entity?'selected':'')+'"><td>'+(state.page*15+i+1)+'</td><td><button class="namebutton">'+safe(x.name)+'</button></td><td>'+x.n+'</td>'+
+    list.map((x,i)=>'<tr data-id="'+safe(x.id)+'" class="'+(x.id===state.entity?'selected':'')+'"><td>'+(state.page*15+i+1)+'</td><td><button class="namebutton">'+safe(x.name)+'</button></td><td>'+x.n+'</td><td>'+fmt(x.p,1)+'</td>'+
       (ref?'<td>'+fmt(x.committed)+'</td><td>'+fmt(x.home)+'</td>':'<td>'+fmt(x.committed)+'</td><td>'+fmt(x.drawn)+'</td><td class="'+(x.margin>=0?'pos':'neg')+'">'+(x.margin>0?'+':'')+fmt(x.margin)+'</td>')+'</tr>').join('')+
     (!list.length?'<tr><td colspan="'+headers.length+'"><div class="empty">No matching records. Try a lower minimum or broader filters.</div></td></tr>':'')+'</tbody>';
-  document.querySelectorAll('#ranktable tr[data-id]').forEach(tr=>tr.onclick=()=>{state.entity=tr.dataset.id;renderTable();renderProfile();resize();});
+  document.querySelectorAll('#ranktable tr[data-id]').forEach(tr=>tr.onclick=()=>{state.entity=tr.dataset.id;renderTable();renderProfile();updateUrl();resize();$('entitytitle').setAttribute('tabindex','-1');$('entitytitle').focus();});
   $('page').textContent=visible.length?((state.page*15+1)+'–'+Math.min((state.page+1)*15,visible.length)+' of '+visible.length):'0 results';
   $('prev').disabled=state.page===0;$('next').disabled=(state.page+1)*15>=visible.length;
 }
@@ -151,7 +153,8 @@ function renderProfile() {
   $('entity').disabled=!entity;
   if(!entity){$('peer-context').innerHTML='';$('profilemetrics').innerHTML='';$('mix').innerHTML='';$('gamechart').innerHTML='';$('gamelog').innerHTML='';$('profilenote').textContent='Try broader filters to view a profile.';return;}
   $('profilenote').textContent=ref?'All fouls in this official’s assignments; individual whistles are unattributed.':
-    player?(entity.team+' · reconstructed on-court possession exposure'):(entity.conference+' · '+entity.n+' games');
+    player?(entity.team+' · reconstructed on-court possession exposure'):entity.conference;
+  $('profilenote').textContent += ' · '+entity.n+' games · '+fmt(entity.p,1)+' possessions';
   const metrics=ref?[['Games worked',entity.n],['Combined / 100',fmt(entity.committed)],['Home edge / 100',fmt(entity.home)]]:
     [['Committed / 100',fmt(entity.committed)],['Drawn / 100',fmt(entity.drawn)],['Margin / 100',(entity.margin>0?'+':'')+fmt(entity.margin)]];
   $('profilemetrics').innerHTML=metrics.map(([k,v])=>'<div>'+k+'<strong>'+v+'</strong></div>').join('');
@@ -185,15 +188,18 @@ function renderProfile() {
 }
 function updateUrl() {
   const params=new URLSearchParams({view:state.view,season:state.year});
+  for(const id of ['conference','stage','location','type','search','minimum','sort','entity','mixRole']) {
+    if(state[id]) params.set(id,state[id]);
+  }
   history.replaceState(null,'','?'+params);
   if(window.parent!==window)window.parent.postMessage({foulView:state.view,season:state.year},location.origin);
 }
 function resize(){setTimeout(()=>{if(window.parent!==window)window.parent.postMessage({foulHeight:document.documentElement.scrollHeight},location.origin)},50)}
 function exportCsv() {
   const ref=state.view==='refs';
-  const head=ref?['Referee','Games','Combined per100','Home edge per100']:['Name','Games','Committed per100','Drawn per100','Margin per100'];
+  const head=ref?['Referee','Games','Possessions','Combined per100','Home edge per100']:['Name','Games','Possessions','Committed per100','Drawn per100','Margin per100'];
   const lines=[head.join(',')];
-  visible.forEach(x=>lines.push([x.name,x.n,x.committed,ref?x.home:x.drawn,...(ref?[]:[x.margin])].map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')));
+  visible.forEach(x=>lines.push([x.name,x.n,x.p,x.committed,ref?x.home:x.drawn,...(ref?[]:[x.margin])].map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')));
   const url=URL.createObjectURL(new Blob([lines.join('\n')],{type:'text/csv'}));
   const a=document.createElement('a');a.href=url;a.download='foul-analysis-'+state.view+'-'+state.year+'.csv';a.click();URL.revokeObjectURL(url);
 }
@@ -207,14 +213,22 @@ for(const id of ['conference','stage','location','type','minimum','sort'])$(id).
 $('season').onchange=()=>{state.year=+$('season').value;state.page=0;loadSeason();};
 $('search').oninput=()=>{state.search=$('search').value;state.page=0;renderTableFromSearch();};
 function renderTableFromSearch(){render();}
-$('entity').onchange=()=>{state.entity=$('entity').value;renderTable();renderProfile();resize();};
+$('entity').onchange=()=>{state.entity=$('entity').value;renderTable();renderProfile();updateUrl();resize();};
 $('prev').onclick=()=>{state.page--;renderTable();resize();};$('next').onclick=()=>{state.page++;renderTable();resize();};
 $('mix-committed').onclick=()=>{state.mixRole='committed';renderProfile();resize();};
 $('mix-drawn').onclick=()=>{state.mixRole='drawn';renderProfile();resize();};
+$('share').onclick=()=>ViewTools.copy($('share'),location.href);
+$('reset').onclick=()=>{Object.assign(state,defaults,{view:state.view,year:state.year,
+ entity:state.view==='teams'?'120':state.view==='refs'?'Paul Szelc':''});$('search').value='';loadSeason();};
 $('export').onclick=exportCsv;$('filters').onsubmit=e=>e.preventDefault();
 new ResizeObserver(()=>resize()).observe(document.querySelector('main'));
 fetchData('meta.json').then(meta=>{
  const params=new URLSearchParams(location.search);if(['teams','players','refs'].includes(params.get('view')))state.view=params.get('view');
  if(meta.seasons.some(s=>String(s.year)===params.get('season')))state.year=+params.get('season');
+ for(const id of ['conference','stage','location','type','search','sort','entity','mixRole']) {
+   if(params.has(id))state[id]=params.get(id);
+ }
+ if([1,3,5,10,20].includes(+params.get('minimum')))state.minimum=+params.get('minimum');
+ $('search').value=state.search;$('minimum').value=String(state.minimum);
  setOptions('season',meta.seasons.slice().reverse().map(s=>[s.year,s.label]),state.year);return loadSeason();
 }).catch(e=>{$('error').hidden=false;$('error').textContent=e.message;});

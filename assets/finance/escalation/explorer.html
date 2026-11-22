@@ -16,6 +16,7 @@ html.embedded { overflow: hidden; }
 .embedded main { padding: 0; }
 .embedded .plot svg { height: clamp(330px, 38vw, 460px); }
 .embedded .details { margin-bottom: 0; }
+[hidden]{display:none!important}.chart-options{margin:8px 0}.chart-options summary{cursor:pointer;font-weight:650}.chart-options .controls{margin-top:6px}
 </style>
 </head>
 <body>
@@ -40,17 +41,17 @@ html.embedded { overflow: hidden; }
 <div class="chart-head">
 <h2 id="chartTitle">Spending over time</h2>
 <a class="compare-jump" href="#picker">Compare series</a>
-<div class="actions"><button id="share" type="button">Copy chart link</button><button id="export" type="button">Download CSV</button><button id="save" type="button">Save chart</button></div>
+<div class="actions"><button id="share" type="button">Copy view link</button><button id="export" type="button">Download filtered data</button><button id="save" type="button">Save chart</button></div>
 </div>
 <div id="share-feedback" class="quiet share-feedback" role="status"></div>
 <div id="share-fallback" class="share-feedback" hidden><label class="label" for="share-url">Chart link</label><input id="share-url" type="url" readonly></div>
 <div class="controls">
 <label>View<select id="mode"><option value="index">Index · base year = 100</option><option value="dollars">Dollar amounts</option><option value="yoy">Annual % change</option><option value="change">Cumulative % change</option><option value="cagr">3-year annualized % change</option></select></label>
-<label>Base fiscal year<select id="base"></select></label>
+<label id="base-field">Base fiscal year<select id="base"></select></label>
 <button id="shared-base" class="shared-base" type="button">Use a shared year</button>
 <label>Price basis<select id="prices"><option value="nominal">Nominal</option><option value="real">Inflation-adjusted</option></select></label>
-<label class="check"><input id="log" type="checkbox"> Log scale</label>
-</div>
+</div><details class="chart-options"><summary>Chart options</summary><div class="controls"><label class="check"><input id="log" type="checkbox"> Log scale</label>
+</div></details>
 <div class="range">
 <span class="label">Fiscal years</span><select id="start" aria-label="First fiscal year"></select><span aria-hidden="true">–</span><select id="end" aria-label="Last fiscal year"></select>
 <div class="range-presets"><button data-period="athletics">Since FY2001</button><button data-period="all">All selected years</button><button data-period="10">10 years</button><button data-period="5">5 years</button><button data-period="2019">Since FY2019</button></div>
@@ -87,7 +88,6 @@ const earliestYear=Math.min(...Object.keys(data.cpi).map(Number));
 const YEARS=Array.from({length:2026-earliestYear},(_,i)=>earliestYear+i);
 const defaults=[
   'Total athletics spending benchmark',
-  'Total athletics expense|Same 53 reporting Power Four|EADA',
   'CPI-U comparator'
 ];
 const embeddedFrame=window.frameElement?.id==='spending-explorer' ? window.frameElement : null;
@@ -258,6 +258,8 @@ function render() {
   const hint=values.length?'Hover or use arrow keys for values. Drag to zoom.':'Choose another view, series, or date range.';
   $('status').textContent=hint+detail+(skipped.length&&rebasing()&&base!=='first'?' Choose a base year covered by the series, or select First year of each run.':'');
   $('base').disabled=!rebasing();
+  $('base-field').hidden=!rebasing();
+  $('shared-base').hidden=!rebasing();
   $('chart-context').textContent=explanations[mode]+(rebasing()&&base==='first'?' Different runs can start in different years. Use a shared year for a direct comparison.':'');
   refreshSharedBase();
   refreshSeriesContext();
@@ -380,7 +382,7 @@ async function copyChartLink() {
   $('share-fallback').hidden=false;
   try {
     await navigator.clipboard.writeText(link);
-    $('share-feedback').textContent='Chart link copied.';
+    $('share-feedback').textContent='View link copied.';
   } catch {
     input.focus();
     input.select();
