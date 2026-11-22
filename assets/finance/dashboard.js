@@ -250,13 +250,20 @@ function render() {
     schools.filter(school => school.school !== primary.school && !comparisonSchools.includes(school.school))
       .map(school => option(school.school)).join('');
   $('legend').innerHTML = series.map(line => `<span><i style="border-color:${line.color};border-top-style:${line.dash ? 'dashed' : 'solid'}"></i>${esc(line.label)}${line.removable ? ` <button type="button" class="remove-school" data-school="${esc(line.label)}" aria-label="Remove ${esc(line.label)}">×</button>` : ''}</span>`).join('');
-  $('peer-context').innerHTML = PeerContext.comparison({
+  const snapshot = {
     value:primary.periods[index].value, format:money, label:`${primary.school} · ${period} · ${source} · ${dollars}`,
     cohorts:groups.map(group => ({
-      label:group.label, values:group.schools.map(school => school.periods[index].value),
+      label:group.label, shortLabel:group.label.replace(' reporting sample',''),
+      values:group.schools.map(school => school.periods[index].value),
       includesSelected:group.schools.includes(primary)
     }))
-  });
+  };
+  const ranks = PeerContext.badges(snapshot);
+  $('trend-headline').innerHTML = `<small>${esc(primary.school)} · ${period}</small><strong>${money(snapshot.value)}</strong>`+
+    (ranks || '<small>Peer rank unavailable for this source and period.</small>')+
+    '<button class="btn" type="button" id="reporting-link">Open reporting years and sources</button>';
+  $('peer-context').innerHTML = PeerContext.comparison(snapshot);
+
 }
 
 loadData().then(data => {
@@ -284,6 +291,13 @@ loadData().then(data => {
     render();
     $('trend-view').focus();
   };
+  $('trend-headline').addEventListener('click', event => {
+    if (event.target.id !== 'reporting-link') return;
+    const detail = $('reporting-detail');
+    detail.open = true;
+    detail.querySelector('summary').focus();
+    detail.scrollIntoView({block:'nearest'});
+  });
   $('share').onclick = () => {
     const url = new URL(location.href);
     url.search = new URLSearchParams({view, ...Object.fromEntries(['source','metric','conference','window','year','school','dollars'].map(id => [id,$(id).value]))});

@@ -42,11 +42,46 @@ function resize(){const box=canvas.getBoundingClientRect();W=Math.round(box.widt
 function zoom(amount,x=W/2,y=H/2){const scale=256*2**z;const wx=cx+(x-W/2)/scale,wy=cy+(y-H/2)/scale;z=Math.max(2,Math.min(11,z+amount));const ns=256*2**z;cx=wx-(x-W/2)/ns;cy=wy-(y-H/2)/ns;renderSoon();}
 function goPreset(key){const p=presets[key]||presets.us;[cx,cy]=world(p[0],p[1]);z=p[2]+Math.log2(Math.max(.45,W/1100));renderSoon();}
 function focusSchool(name){$('school').value=name;readFilters();if(selected){[cx,cy]=selected.xy;z=6.3+Math.log2(Math.max(.45,W/1100));$('region').value='';showSchool(selected);renderSoon();}}
-function showSchool(s){const v=schoolStats(s);
-const pool=players.filter(p=>p.xy&&p.year>=sf.first&&p.year<=sf.last&&(sf.type==='blue'?p.stars>=4:sf.type==='five'?p.stars===5:p.rank<=+sf.type));
-const access=schools.map(sc=>{const local=pool.filter(p=>distance(p,sc)<=sf.radius);return {school:sc,per:local.length/years,capture:local.length?100*local.filter(p=>p.commit===sc.name).length/local.length:null};});
-const target=access.find(x=>x.school.name===s.name);
-const context=['per','capture'].map(key=>PeerContext.comparison({value:target[key],label:(key==='per'?'Local recruits per year':'Local capture %')+' · '+yearsLabel()+' · '+sf.radius+' miles',format:n=>fmt(n)+(key==='capture'?'%':''),cohorts:[{label:'Mapped power-conference school sample',values:access.map(x=>x[key])},{label:s.conference+' mapped schools (current)',values:access.filter(x=>x.school.conference===s.conference).map(x=>x[key])}]})).join('');$('details').innerHTML=`<h2>${esc(s.name)}</h2><p>${esc(s.conference)} · ${esc(s.state)} · ${sf.radius}-mile circle</p><p><b>${fmt(v.per)}</b> recruits per year inside this circle; <b>${fmt(v.captured/years)}</b> committed to ${esc(s.name)}. Capture: <b>${v.capture===null?'—':(v.capture*100).toFixed(1)+'%'}</b>.</p><p>Selected classes: ${yearsLabel()}. Pool: ${esc($('threshold').selectedOptions[0].textContent)}. Distances use approximate school cities.</p>${context}<p class="peer-note">Peers use the same class years, threshold and radius, independently of map viewport and selected-school spatial cropping. Overlapping circles share recruits. Current conference labels; not historical memberships.</p>`;}
+function showSchool(s){
+  const pool=players.filter(p=>p.xy&&p.year>=sf.first&&p.year<=sf.last&&
+    (sf.type==='blue'?p.stars>=4:sf.type==='five'?p.stars===5:p.rank<=+sf.type));
+  const access=schools.map(sc=>{
+    const local=pool.filter(p=>distance(p,sc)<=sf.radius);
+    const committed=local.filter(p=>p.commit===sc.name).length;
+    return {school:sc,local:sc===s?local:null,committed,per:local.length/years,
+      capture:local.length?100*committed/local.length:null};
+  });
+  const target=access.find(x=>x.school.name===s.name);
+  const measures=[['per','Local recruits per year'],['capture','Local share committed to school']];
+  const snapshot=(key,title)=>({
+    value:target[key],label:title+' · '+yearsLabel()+' · '+sf.radius+' miles',
+    format:n=>fmt(n)+(key==='capture'?'%':''),
+    cohorts:[{label:'Mapped power-conference school sample',shortLabel:'mapped schools',values:access.map(x=>x[key])},
+      {label:s.conference+' mapped schools (current)',shortLabel:s.conference,
+       values:access.filter(x=>x.school.conference===s.conference).map(x=>x[key])}]
+  });
+  const summary=measures.map(([key,title])=>{
+    const info=snapshot(key,title);
+    return `<div class="peer-headline"><small>${title}</small><strong>${info.value===null?'—':info.format(info.value)}</strong>${PeerContext.badges(info)}</div>`;
+  }).join('');
+  const context=measures.map(([key,title])=>PeerContext.comparison(snapshot(key,title))).join('');
+  $('details').innerHTML=`<h2>${esc(s.name)}</h2><p>${esc(s.conference)} · ${sf.radius} miles · ${yearsLabel()} · ${esc($('threshold').selectedOptions[0].textContent)}</p>
+    <div class="recruit-headlines">${summary}</div>
+    <details class="peer-disclosure" id="local-recruit-detail"><summary>Open counts and recruits</summary>
+    <p>${fmt(target.committed)} of ${fmt(target.local.length)} local recruits list ${esc(s.name)} as their commitment across ${years} ${years===1?'class':'classes'}.</p>
+    <div id="local-recruit-list"></div></details>
+    <details class="peer-disclosure"><summary>Peer details</summary>${context}<p class="peer-note">Peers use the same class years, threshold and radius, independently of the map viewport and spatial filter. Circles can overlap. Conference labels use current membership.</p></details>`;
+  $('local-recruit-detail').ontoggle=event=>{
+    const list=$('local-recruit-list');
+    if(!event.target.open||list.childElementCount)return;
+    const records=[...target.local].sort((a,b)=>b.year-a.year||a.rank-b.rank);
+    list.innerHTML=records.length?`<div class="tablewrap recruit-records"><table><thead><tr><th>Class</th><th>Recruit</th><th>Rank</th><th>Destination</th></tr></thead>
+      <tbody>${records.map(p=>{
+        const name=esc(p.name),link=p.url?.startsWith('https://')?`<a href="${esc(p.url)}" target="_blank" rel="noopener">${name}</a>`:name;
+        return `<tr><td>${p.year}</td><td>${link}</td><td>${esc(p.rank??'—')}</td><td>${esc(p.commit||'Not displayed')}</td></tr>`;
+      }).join('')}</tbody></table></div>`:'<p>No local recruits match these filters.</p>';
+  };
+}
 function showPlayers(ps){$('details').innerHTML=`<h2>${esc(ps[0].city)}, ${esc(ps[0].state)}</h2><p>${ps.length} matching recruits at this coordinate</p><ul>${[...ps].sort((a,b)=>b.year-a.year||a.rank-b.rank).map(p=>`<li><a target="_blank" rel="noopener" href="${esc(p.url)}">${esc(p.name)}</a> · ${p.year}<br>${p.stars}★ · #${p.rank} nationally · ${esc(p.position)} · ${p.rating??'—'}<br>${esc(p.hs)}<br>Destination: ${esc(p.commit||'Not displayed')}${PeerContext.comparison({value:p.rating,label:'Recruit rating · '+p.year+' · loaded dataset (not all national recruits)',format:fmt,cohorts:[{label:'Same class in loaded dataset',values:players.filter(x=>x.year===p.year).map(x=>x.rating)},{label:p.position+' · same class in loaded dataset',values:players.filter(x=>x.year===p.year&&x.position===p.position).map(x=>x.rating)}]})}</li>`).join('')}</ul>`;}
 function hit(x,y){return [...hits].reverse().find(v=>Math.hypot(v.x-x,v.y-y)<12);}
 canvas.addEventListener('wheel',e=>{e.preventDefault();const r=canvas.getBoundingClientRect();zoom(e.deltaY<0?.35:-.35,e.clientX-r.left,e.clientY-r.top);},{passive:false});

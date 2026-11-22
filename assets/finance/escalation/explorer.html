@@ -63,7 +63,7 @@ html.embedded { overflow: hidden; }
 <div class="tooltip" id="tooltip" hidden></div>
 </div>
 <p class="quiet status" id="status" aria-live="polite"></p>
-<div class="series-context" id="series-context" aria-label="Series coverage and sources"></div>
+<p id="cpi-gap" class="quiet" hidden></p><details class="chart-options"><summary>Series coverage and sources</summary><div id="series-context" class="series-context"></div></details>
 </section>
 </div>
 <div class="details">
@@ -200,6 +200,17 @@ function baseYearText(row) {
   const refs=baseYears(row);
   return refs.length?'Base '+refs.map(y=>'FY'+y).join(', '):'';
 }
+function refreshCpiGap() {
+  const pair=['Total athletics spending benchmark','CPI-U comparator'].map(id=>rendered.find(row=>row.s.id===id));
+  const year=pair.every(Boolean)&&rebasing()&&!real&&typeof base==='number'
+    ? [...pair[0].points.keys()].reverse().find(y=>y>base&&pair.every(row=>number(row.points.get(y)))):null;
+  $('cpi-gap').hidden=!year;
+  if(!year)return;
+  const [spending,prices]=pair.map(row=>row.points.get(year)-(mode==='index'?100:0));
+  const gap=spending-prices;
+  $('cpi-gap').textContent=`FY${base}–FY${year} · Spending ${signed(spending)}${spending.toFixed(1)}% · CPI-U ${signed(prices)}${prices.toFixed(1)}% · Gap ${signed(gap)}${gap.toFixed(1)} pp`;
+}
+
 function refreshSeriesContext() {
   $('series-context').innerHTML=rendered.map(row=>{
     const {s,color,points}=row;
@@ -262,6 +273,7 @@ function render() {
   $('shared-base').hidden=!rebasing();
   $('chart-context').textContent=explanations[mode]+(rebasing()&&base==='first'?' Different runs can start in different years. Use a shared year for a direct comparison.':'');
   refreshSharedBase();
+  refreshCpiGap();
   refreshSeriesContext();
   svg.setAttribute('viewBox','0 0 '+w+' '+h);
   $('export').disabled=!values.length;

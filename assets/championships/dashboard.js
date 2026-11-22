@@ -38,7 +38,9 @@ function options(id, values, all) {
 function plotBars(id, items) {
   const max = Math.max(1, ...items.map(([, value]) => value));
   $(id).innerHTML = items.length ? items.map(([name, value]) => {
-    const label = id === 'bars' ? TeamLogos.label(name) : esc(name);
+    const label = id === 'bars'
+      ? `<button class="title-drill-button" type="button" data-title-school="${esc(name)}">${TeamLogos.label(name)}</button>`
+      : `<button class="title-drill-button" type="button" data-title-sport="${esc(name)}">${esc(name)}</button>`;
     return `<div class="barrow"><span class="name" title="${esc(name)}">${label}</span><div class="track"><div class="fill" style="width:${Math.max(0, value / max * 100)}%"></div></div><b>${fmt(value)}</b></div>`;
   }).join('') : '<p class="disabled">No observations for these filters</p>';
 }
@@ -72,6 +74,30 @@ function renderTrend(rows, label) {
     ${coords.map(([x, y], i) => `<circle cx="${x}" cy="${y}" r="4" fill="#c8102e"><title>${seasons[i]}: ${fmt(values[i])}</title></circle><text x="${x}" y="${height - 12}" text-anchor="middle" font-size="12" fill="#5c6772">${seasons[i].slice(2)}</text>`).join('')}</svg>`;
 }
 
+function drillRecords(records, levels, measure, split) {
+  if (!records.length) return '<p class="disabled">No title records match these filters.</p>';
+  const [level, ...remaining] = levels;
+  if (!level) {
+    return `<ul class="title-records">${records.map(record => {
+      const credit = split && record.champions > 1 ? `1/${record.champions}` : fmt(record.score);
+      const source = record.u.startsWith('https://') ? ` · <a href="${esc(record.u)}" target="_blank" rel="noopener">Source</a>` : '';
+      return `<li>${esc(record.t)}${record.champions > 1 ? ' · shared' : ''} · ${credit} ${measure === 'Title credits' ? 'credit' : 'points'}${source}</li>`;
+    }).join('')}</ul>`;
+  }
+  const buckets=new Map();
+  for (const record of records) {
+    const name=record[level];
+    if (!buckets.has(name)) buckets.set(name,[]);
+    buckets.get(name).push(record);
+  }
+  const keys = level === 'y' ? [...buckets.keys()].sort().reverse() : group(records,level).map(([name])=>name);
+  return keys.map(name=>{
+    const matching=buckets.get(name);
+    const total=matching.reduce((sum, record)=>sum+record.score,0);
+    return `<details class="title-branch" data-branch="${esc(name)}"><summary>${esc(name)} <small>${fmt(total)}</small></summary>${drillRecords(matching,remaining,measure,split)}</details>`;
+  }).join('');
+}
+
 function render() {
   const school = $('school').value;
   const weighted = $('metric').value === 'weighted';
@@ -87,7 +113,7 @@ function render() {
   $('sport-panel').hidden = !school;
   $('school-panel').classList.toggle('wide', !school);
   $('trend-heading').textContent = 'Season-by-season ' + measure.toLowerCase();
-  $('record-measure').textContent = weighted ? 'Points' : 'Credit';
+
 
   const selected = Object.entries(filters).filter(([id]) => $(id).value);
   const peerRows = data.filter(record => selected.every(([id, field]) => String(record[field]) === $(id).value))
@@ -115,11 +141,8 @@ function render() {
   if (school) plotBars('sportbars', group(rows, 'p'));
   renderTrend(rows, measure);
 
-  $('rows').innerHTML = rows.slice().sort((a, b) => b.y.localeCompare(a.y) || a.s.localeCompare(b.s)).map(record => {
-    const credit = split && record.champions > 1 ? `1/${record.champions}` : fmt(record.score);
-    const source = record.u.startsWith('https://') ? `<a href="${esc(record.u)}" target="_blank" rel="noopener">Source</a>` : '—';
-    return `<tr><td>${esc(record.y)}</td><td>${TeamLogos.label(record.s)}</td><td>${esc(record.p)}</td><td>${esc(record.t)}${record.champions > 1 ? ' · shared' : ''}</td><td>${record.k || '—'}</td><td class="num">${credit}</td><td>${source}</td></tr>`;
-  }).join('');
+  $('rows').innerHTML = drillRecords(rows, school ? ['p','y'] : ['s','p','y'], measure, split);
+
 }
 
 loadData().then(inventory => {
@@ -139,6 +162,20 @@ loadData().then(inventory => {
     url.search = new URLSearchParams([...Array.from(selects).map(select=>[select.id,select.value]),['split',$('split-shared').checked?'1':'0']]);
     ViewTools.copy($('share'),url);
   };
+  for (const [panel, datasetKey] of [['bars','titleSchool'],['sportbars','titleSport']]) {
+    $(panel).onclick = event => {
+      const button=event.target.closest('button');
+      const name=button?.dataset[datasetKey];
+      if(!name)return;
+      const branches=[...$('rows').children];
+      const branch=branches.find(item=>item.dataset.branch===name);
+      const target=branch || branches[0];
+      if(target?.tagName!=='DETAILS')return;
+      target.open=true;
+      target.querySelector('summary')?.focus();
+      target.scrollIntoView({block:'nearest'});
+    };
+  }
   $('export').onclick = () => ViewTools.csv('big-ten-championships.csv',exportRows);
   selects.forEach(select => select.addEventListener('change', render));
   $('split-shared').addEventListener('change', render);

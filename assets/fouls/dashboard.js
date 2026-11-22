@@ -151,20 +151,42 @@ function renderProfile() {
   setOptions('entity',rows.slice().sort((a,b)=>a.name.localeCompare(b.name)).map(x=>[x.id,x.name]),state.entity);
   $('entitytitle').innerHTML=entity?(ref?safe(entity.name):TeamLogos.label(player?entity.team:entity.name,player?null:entity.id)+(player?' '+safe(entity.name):'')):'No profile available';
   $('entity').disabled=!entity;
+  $('profile-counts').hidden=$('profile-peers').hidden=$('profile-games').hidden=!entity;
   if(!entity){$('peer-context').innerHTML='';$('profilemetrics').innerHTML='';$('mix').innerHTML='';$('gamechart').innerHTML='';$('gamelog').innerHTML='';$('profilenote').textContent='Try broader filters to view a profile.';return;}
   $('profilenote').textContent=ref?'All fouls in this official’s assignments; individual whistles are unattributed.':
     player?(entity.team+' · reconstructed on-court possession exposure'):entity.conference;
-  $('profilenote').textContent += ' · '+entity.n+' games · '+fmt(entity.p,1)+' possessions';
-  const metrics=ref?[['Games worked',entity.n],['Combined / 100',fmt(entity.committed)],['Home edge / 100',fmt(entity.home)]]:
-    [['Committed / 100',fmt(entity.committed)],['Drawn / 100',fmt(entity.drawn)],['Margin / 100',(entity.margin>0?'+':'')+fmt(entity.margin)]];
-  $('profilemetrics').innerHTML=metrics.map(([k,v])=>'<div>'+k+'<strong>'+v+'</strong></div>').join('');
-  const qualified=rows.filter(x=>x.n>=state.minimum&&x.p>0&&(!player||x.p>=100)),position=playerPositions[entity.id]?.position;
-  const peerGroups=[{label:(ref?'Officials':player?'Players':'Teams')+' in filtered season sample',members:qualified},
-    ...(!ref?[{label:entity.conference+' filtered sample',members:qualified.filter(x=>x.conference===entity.conference)}]:[]),
-    ...(player&&position?[{label:position+' position · filtered season sample',members:qualified.filter(x=>playerPositions[x.id]?.position===position)}]:[])];
-  const keys=ref?['committed','home']:['committed','drawn','margin'];
-  $('peer-context').innerHTML=keys.map(key=>PeerContext.comparison({value:entity[key],label:(key==='committed'?(ref?'Combined':'Committed'):key==='home'?'Home edge':key==='drawn'?'Drawn':'Margin')+' per 100 · season ending '+state.year+' · minimum '+state.minimum+' games'+(player?' and 100 on-court possessions':''),format:v=>fmt(v),cohorts:peerGroups.map(g=>({label:g.label,values:g.members.map(x=>x[key]),includesSelected:g.members.some(x=>x.id===entity.id)}))})).join('')+
-    '<p class="peer-note">Same season and active conference, game-type, location and foul-type filters; name search does not change peers. Historical player coverage is Edey only, so no historical player ranks are shown. '+(player?(position?'Position from ESPN 2026–27 roster: '+safe(position)+'. Joined by unique normalized name and team because source IDs differ. Unknown positions excluded from position peers.':'Position unavailable; no position-specific comparison.'):'')+' Referee comparisons describe crews, not individual whistles.</p>';
+  const qualified=rows.filter(x=>x.n>=state.minimum&&x.p>0&&(!player||x.p>=100));
+  const position=playerPositions[entity.id]?.position;
+  const peerGroups=[
+    {label:(ref?'Officials':player?'Players':'Teams')+' in filtered season sample',shortLabel:ref?'officials':player?'players':'teams',members:qualified},
+    ...(!ref?[{label:entity.conference+' filtered sample',shortLabel:entity.conference,members:qualified.filter(x=>x.conference===entity.conference)}]:[]),
+    ...(player&&position?[{label:position+' position · filtered season sample',shortLabel:position+' peers',members:qualified.filter(x=>playerPositions[x.id]?.position===position)}]:[])
+  ];
+  const headline=player&&position?peerGroups.at(-1):ref?peerGroups[0]:peerGroups[1];
+  const metrics=ref?[
+    ['committed','Combined / 100',false,'Most fouls'],
+    ['home','Home edge / 100',false,'Largest home edge']
+  ]:[
+    ['committed','Committed / 100',true,'Fewest committed'],
+    ['drawn','Drawn / 100',false,'Most drawn'],
+    ['margin','Margin / 100',false,'Largest margin']
+  ];
+  const comparison=(key,label,lower,groups)=>({value:entity[key],label,lower,format:v=>fmt(v),
+    cohorts:groups.map(g=>({label:g.label,shortLabel:g.shortLabel,values:g.members.map(x=>x[key]),
+      includesSelected:g.members.some(x=>x.id===entity.id)}))});
+  $('profilemetrics').innerHTML=metrics.map(([key,label,lower,direction])=>{
+    const chip=PeerContext.badges(comparison(key,label,lower,[headline]));
+    return '<div>'+label+'<strong>'+fmt(entity[key])+'</strong><small>'+direction+'</small>'+
+      (chip||'<small>Peer rank unavailable</small>')+'</div>';
+  }).join('');
+  $('foul-counts').textContent=entity.n+' games · '+fmt(entity.p,1)+' possessions · '+
+    (ref?entity.c+' combined fouls · '+fmt(entity.edgeP,1)+' non-neutral possessions for home edge':
+      entity.c+' fouls committed · '+entity.d+' fouls drawn');
+  $('peer-context').innerHTML=metrics.map(([key,label,lower])=>PeerContext.comparison(
+    comparison(key,label+' · season ending '+state.year+' · minimum '+state.minimum+' games'+(player?' and 100 on-court possessions':''),lower,peerGroups))).join('')+
+    '<p class="peer-note">Peers use the same filters. Name search does not change the peer group. Historical player coverage is Edey only. '+
+    (player?(position?'Position from ESPN 2026–27 roster: '+safe(position)+'. Unknown positions are excluded from position peers.':'Position unavailable; rank uses filtered player peers.'):'')+
+    ' Referee rates describe crews.</p>';
   const eligible=entity.records.filter(r=>player?Boolean(r.ct&&r.dt):r.g.clean);
   let denom=0,mix=kinds.map(()=>0);
   eligible.forEach(r=>{denom+=r.p;(ref||state.mixRole==='committed'?r.ct:r.dt).forEach((n,i)=>{mix[i]+=n;});});

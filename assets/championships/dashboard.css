@@ -9,3 +9,5 @@
 .share-control small{display:block;font-size:.75rem;font-weight:400}
 
 .counting-options summary{cursor:pointer;font-weight:650}.counting-fields{display:flex;gap:10px;flex-wrap:wrap;margin-top:7px}#counting-rule{margin:0 0 12px}
+
+.title-drill-button{font:inherit;color:#8d1730;background:none;border:0;cursor:pointer;text-align:left;padding:0}.title-branch{padding:.4rem 0 .4rem .85rem;border-left:1px solid #ddd2ca;margin:.28rem 0}.title-branch summary{cursor:pointer;font-weight:650}.title-branch small{margin-left:.35rem;color:#59534e}.title-records{font-size:.88rem;padding-left:1.4rem}
