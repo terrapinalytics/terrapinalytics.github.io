@@ -16,7 +16,7 @@ const escape = value => String(value).replace(/[&<>"']/g, char => ({
 const roundMoneyInText = value => value.replace(/\$(\d[\d,]*\.\d+)\b/g, (_, amount) => currency.format(Number(amount.replaceAll(',', ''))));
 const pairs = entries => entries.map(([name, value]) =>
   `<dt>${escape(name)}</dt><dd>${escape(value)}</dd>`).join('');
-const numeric = value => value === '' ? -Infinity : Number(value);
+let direction = -1;
 
 function fillOptions(select, key) {
   for (const label of [...new Set(schools.map(row => row[key]))].sort()) {
@@ -91,14 +91,20 @@ function schoolRow(row) {
   const partial = row.total_status.startsWith('Incomplete');
   const estimated = row.price_is_approximate === 'True';
   const status = partial && estimated ? 'Est. subtotal' : partial ? 'Subtotal' : estimated ? 'Estimated' : '';
-  return `<details class="school" data-school="${escape(row.school)}">
-    <summary class="grid">
-      <span class="school-name">${TeamLogos.label(row.school)}</span>
-      <span class="conference">${escape(row.conference)}</span>
-      <span class="amount">${escape(cost)}${status ? `<span class="status">${status}</span>` : ''}</span>
-    </summary>
-    <div class="breakout">${feeDetails(row)}${ticketDetails(row)}</div>
-  </details>`;
+  const fee = dollars(row.annual_athletics_fee_used_usd);
+  const ticket = dollars(row.annual_ticket_cost_or_priced_subset_usd);
+  const ticketRange = row.ticket_range_upper_usd ? `${ticket}–${dollars(row.ticket_range_upper_usd)}` : ticket;
+  const short = amount => amount === 'Unverified' ? '<span title="Unverified">—</span>' : escape(amount);
+  const id = 'school-' + schools.indexOf(row);
+  return `<tr class="school">
+      <th scope="row"><button class="school-name" type="button" data-toggle-school="${escape(row.school)}" aria-controls="${id}" aria-expanded="false">${TeamLogos.label(row.school)}</button></th>
+      <td class="conference">${escape(row.conference)}</td>
+      <td class="amount">${short(fee)}</td>
+      <td class="amount">${short(ticketRange)}</td>
+      <td class="amount">${short(cost)}${status ? `<span class="status">${status}</span>` : ''}</td>
+    </tr><tr class="detail-row" id="${id}" data-school="${escape(row.school)}" hidden><td colspan="5">
+      <div class="breakout">${feeDetails(row)}${ticketDetails(row)}</div>
+    </td></tr>`;
 }
 
 const sortFields = {
@@ -108,23 +114,47 @@ const sortFields = {
 };
 
 function render() {
-  const expanded = new Set([...results.querySelectorAll('.school[open]')].map(el => el.dataset.school));
+  const expanded = new Set([...results.querySelectorAll('.detail-row:not([hidden])')].map(el => el.dataset.school));
   const query = search.value.trim().toLowerCase();
   const visible = schools.filter(row =>
     row.school.toLowerCase().includes(query) &&
     (!conference.value || row.conference === conference.value) &&
     (!category.value || row.category === category.value));
   const field = sortFields[sort.value];
-  visible.sort((a, b) => (field && (numeric(b[field]) - numeric(a[field]))) || a.school.localeCompare(b.school));
+  visible.sort((a, b) => {
+    if (!field) return direction * a[sort.value].localeCompare(b[sort.value]) || a.school.localeCompare(b.school);
+    return Number(a[field] === '') - Number(b[field] === '') ||
+      direction * (Number(a[field]) - Number(b[field])) || a.school.localeCompare(b.school);
+  });
+  for (const button of document.querySelectorAll('[data-sort-column]')) {
+    if (button.dataset.sortColumn === sort.value) button.parentElement.setAttribute('aria-sort', direction === 1 ? 'ascending' : 'descending');
+    else button.parentElement.removeAttribute('aria-sort');
+  }
   count.textContent = `${visible.length} of ${schools.length} schools`;
-  results.innerHTML = visible.length ? visible.map(schoolRow).join('') : '<p class="empty">No schools match these filters.</p>';
-  for (const element of results.querySelectorAll('.school')) {
-    element.open = expanded.has(element.dataset.school);
+  results.innerHTML = visible.length ? visible.map(schoolRow).join('') : '<tr><td colspan="5" class="empty">No schools match these filters.</td></tr>';
+  for (const element of results.querySelectorAll('[data-toggle-school]')) {
+    const open = expanded.has(element.dataset.toggleSchool);
+    element.setAttribute('aria-expanded', String(open));
+    document.getElementById(element.getAttribute('aria-controls')).hidden = !open;
   }
 }
 
 fillOptions(conference, 'conference');
 fillOptions(category, 'category');
 search.addEventListener('input', render);
-for (const select of [conference, category, sort]) select.addEventListener('change', render);
+for (const select of [conference, category]) select.addEventListener('change', render);
+sort.addEventListener('change', () => { direction = sortFields[sort.value] ? -1 : 1; render(); });
+for (const button of document.querySelectorAll('[data-sort-column]')) button.addEventListener('click', () => {
+  const key = button.dataset.sortColumn;
+  direction = key === sort.value ? -direction : sortFields[key] ? -1 : 1;
+  sort.value = key;
+  render();
+});
+results.addEventListener('click', event => {
+  const button = event.target.closest('[data-toggle-school]');
+  if (!button) return;
+  const detail = document.getElementById(button.getAttribute('aria-controls'));
+  detail.hidden = !detail.hidden;
+  button.setAttribute('aria-expanded', String(!detail.hidden));
+});
 render();

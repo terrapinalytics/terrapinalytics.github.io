@@ -122,6 +122,7 @@ async function loadSeason() {
   } catch(e) {$('error').hidden=false;$('error').textContent=e.message;}
   finally {if(current===request)document.body.classList.remove('loading');resize();}
 }
+let columnSort = null;
 function render() {
   const records=getRecords();rows=aggregate(records);
   const ref=state.view==='refs',player=state.view==='players';
@@ -130,6 +131,15 @@ function render() {
   const min=state.minimum;
   visible=rows.filter(x=>x.n>=min&&x.name.toLowerCase().includes(state.search.toLowerCase()));
   visible.sort((a,b)=>(state.sort==='least'?a.committed-b.committed:(b[state.sort]??-Infinity)-(a[state.sort]??-Infinity))||a.name.localeCompare(b.name));
+  visible.forEach((entry,i)=>{entry.rank=i+1;});
+  if(columnSort){
+    const {key,direction}=columnSort;
+    visible.sort((a,b)=>{
+      const left=a[key],right=b[key];
+      if(left==null||right==null)return Number(left==null)-Number(right==null);
+      return direction*(typeof left==='string'?left.localeCompare(right):left-right)||a.rank-b.rank;
+    });
+  }
   if(!rows.some(x=>x.id===state.entity))state.entity=visible[0]?.id||rows[0]?.id||'';
   state.page=Math.min(state.page,Math.max(0,Math.ceil(visible.length/15)-1));
   $('ranktitle').textContent=ref?'Referee leaderboard':player?'Player leaderboard':'Team leaderboard';
@@ -157,10 +167,23 @@ function renderTable() {
     : TeamLogos.label(x.name,x.id);
   const headers=ref?['Rank','Referee','Games','Poss.','Combined / 100','Home edge / 100']:['Rank',state.view==='players'?'Player':'Team','Games','Poss.','Committed / 100','Drawn / 100','Margin / 100'];
   const list=visible.slice(state.page*15,(state.page+1)*15);
-  $('ranktable').innerHTML='<thead><tr>'+headers.map(h=>'<th>'+h+'</th>').join('')+'</tr></thead><tbody>'+
-    list.map((x,i)=>'<tr data-id="'+safe(x.id)+'" class="'+(x.id===state.entity?'selected':'')+'"><td>'+(state.page*15+i+1)+'</td><td><button class="namebutton">'+displayName(x)+'</button></td><td>'+x.n+'</td><td>'+fmt(x.p,1)+'</td>'+
+  const keys=ref?['rank','name','n','p','committed','home']:['rank','name','n','p','committed','drawn','margin'];
+  $('ranktable').innerHTML='<thead><tr>'+headers.map((h,i)=>{
+    const key=keys[i];
+    const aria=columnSort?.key===key?' aria-sort="'+(columnSort.direction===1?'ascending':'descending')+'"':'';
+    return '<th scope="col"'+aria+'><button type="button" data-sort-column="'+key+'">'+h+'</button></th>';
+  }).join('')+'</tr></thead><tbody>'+
+    list.map((x,i)=>'<tr data-id="'+safe(x.id)+'" class="'+(x.id===state.entity?'selected':'')+'"><td>'+x.rank+'</td><td><button class="namebutton">'+displayName(x)+'</button></td><td>'+x.n+'</td><td>'+fmt(x.p,1)+'</td>'+
       (ref?'<td>'+fmt(x.committed)+'</td><td>'+fmt(x.home)+'</td>':'<td>'+fmt(x.committed)+'</td><td>'+fmt(x.drawn)+'</td><td class="'+(x.margin>=0?'pos':'neg')+'">'+(x.margin>0?'+':'')+fmt(x.margin)+'</td>')+'</tr>').join('')+
     (!list.length?'<tr><td colspan="'+headers.length+'"><div class="empty">No matching records. Try a lower minimum or broader filters.</div></td></tr>':'')+'</tbody>';
+  $('ranktable').querySelectorAll('[data-sort-column]').forEach(button=>button.onclick=()=>{
+    const key=button.dataset.sortColumn;
+    const direction=columnSort?.key===key?-columnSort.direction:(key==='rank'||key==='name'?1:-1);
+    columnSort={key,direction};
+    state.page=0;
+    render();
+    $('ranktable').querySelector('[data-sort-column="'+key+'"]')?.focus();
+  });
   document.querySelectorAll('#ranktable tr[data-id]').forEach(tr=>tr.onclick=()=>{state.entity=tr.dataset.id;renderTable();renderProfile();updateUrl();resize();$('entitytitle').setAttribute('tabindex','-1');$('entitytitle').focus();});
   $('page').textContent=visible.length?((state.page*15+1)+'–'+Math.min((state.page+1)*15,visible.length)+' of '+visible.length):'0 results';
   $('prev').disabled=state.page===0;$('next').disabled=(state.page+1)*15>=visible.length;
@@ -323,10 +346,11 @@ function exportCsv() {
   const a=document.createElement('a');a.href=url;a.download='foul-analysis-'+state.view+'-'+state.year+'.csv';a.click();URL.revokeObjectURL(url);
 }
 document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{
-  state.view=b.dataset.view;state.page=0;state.search='';$('search').value='';state.entity=state.view==='teams'?'120':state.view==='refs'?'Paul Szelc':'';
+  columnSort=null;state.view=b.dataset.view;state.page=0;state.search='';$('search').value='';state.entity=state.view==='teams'?'120':state.view==='refs'?'Paul Szelc':'';
   state.type='';state.location='';state.mixPeer='';loadSeason();
 });
 for(const id of ['conference','stage','location','type','minimum','sort'])$(id).onchange=()=>{
+  if(id==='sort')columnSort=null;
   state[id]=id==='minimum'?+$(id).value:$(id).value;state.page=0;render();
 };
 $('season').onchange=()=>{state.year=+$('season').value;state.page=0;loadSeason();};
@@ -338,7 +362,7 @@ $('mix-committed').onclick=()=>{state.mixRole='committed';renderProfile();update
 $('mix-drawn').onclick=()=>{state.mixRole='drawn';renderProfile();updateUrl();resize();};
 $('mix-peer').onchange=()=>{state.mixPeer=$('mix-peer').value;renderProfile();updateUrl();resize();};
 $('share').onclick=()=>ViewTools.copy($('share'),location.href);
-$('reset').onclick=()=>{Object.assign(state,defaults,{view:state.view,year:state.year,
+$('reset').onclick=()=>{columnSort=null;Object.assign(state,defaults,{view:state.view,year:state.year,
  entity:state.view==='teams'?'120':state.view==='refs'?'Paul Szelc':''});$('search').value='';loadSeason();};
 $('export').onclick=exportCsv;$('filters').onsubmit=e=>e.preventDefault();
 new ResizeObserver(()=>resize()).observe(document.querySelector('main'));

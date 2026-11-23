@@ -164,7 +164,7 @@ async function start() {
           checkpoint==='dec7_probability_pct'?data.comparison_source_date:null])]
       : [['Rank','Program','Conference','Tier',...exportMetrics.map(metric=>metric.label)],
         ...filtered.map(row=>[row.rank,row.school,row.conference,row.tier,...exportMetrics.map(metric=>row[metric.key])])];
-    const header = (key,label,definition='')=>`<th scope="col"${sortKey===key?' aria-sort="'+(ascending?'ascending':'descending')+'"':''}><button data-sort="${key}">${escapeHtml(label)}</button>${definition?'<small>'+escapeHtml(definition)+'</small>':''}</th>`;
+    const header = (key,label,definition='')=>`<th scope="col"${sortKey===key?' aria-sort="'+(ascending?'ascending':'descending')+'"':''}><button type="button" data-sort="${key}" data-sort-column>${escapeHtml(label)}</button>${definition?'<small>'+escapeHtml(definition)+'</small>':''}</th>`;
     let columns = header('rank','Rank')+header('school','Program')+header('tier','Job tier');
     if (isOdds) columns = header('school','Program')+header('coach','Coach')+header(checkpoint,'Departure odds')+header('tier','Job tier')+header('buyout_sort','Buyout estimate')+(checkpoint==='dec7_probability_pct'?header('change_sort','Change vs. Nov. 6', 'Reference: last saved Nov. 1 forecast'):'');
     else columns += metrics.map(m=>header(m.key,m.label,m.definition)).join('');

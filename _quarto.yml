@@ -16,6 +16,8 @@ project:
     - assets/articles/**
     - assets/fouls/**
     - assets/home/**
+    - assets/table-sort.js
+    - assets/table-sort.css
     - assets/team-logos.js
     - assets/team-logos/**
 

@@ -18,7 +18,7 @@ html.embedded { overflow: hidden; }
 .embedded .details { margin-bottom: 0; }
 [hidden]{display:none!important}.chart-options{margin:8px 0}.chart-options summary{cursor:pointer;font-weight:650}.chart-options .controls{margin-top:6px}
 </style>
-</head>
+<link rel="stylesheet" href="../../table-sort.css"></head>
 <body>
 <header>
 <h1>Athletics Spending Explorer</h1>
@@ -259,7 +259,7 @@ function refreshSharedBase() {
 }
 function refreshTable() {
   const ys=years();
-  $('table').innerHTML='<table><thead><tr><th scope="col">Fiscal year</th>'+rendered.map(({s})=>'<th scope="col">'+esc(legendName(s))+'</th>').join('')+'</tr></thead><tbody>'+ys.map(y=>'<tr><th scope="row">FY'+y+'</th>'+rendered.map(row=>'<td>'+format(row.points.get(y))+'</td>').join('')+'</tr>').join('')+'</tbody></table>';
+  $('table').innerHTML='<table><thead><tr><th scope="col">Fiscal year</th>'+rendered.map(({s})=>'<th scope="col">'+esc(legendName(s))+'</th>').join('')+'</tr></thead><tbody>'+ys.map(y=>'<tr><th scope="row">FY'+y+'</th>'+rendered.map(row=>'<td data-sort-value="'+(row.points.get(y)??'')+'">'+format(row.points.get(y))+'</td>').join('')+'</tr>').join('')+'</tbody></table>';
 }
 function niceStep(rawStep, minimumStep) {
   const step=Math.max(rawStep,minimumStep);
@@ -538,5 +538,5 @@ if(embeddedFrame){
   }).observe(document.body);
 }
 </script>
-</body>
+<script src="../../table-sort.js"></script></body>
 </html>

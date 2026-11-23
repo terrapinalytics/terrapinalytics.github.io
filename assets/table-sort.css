@@ -1,0 +1,4 @@
+th button[data-table-sort],th button[data-sort-column],.heading button[data-sort-column]{padding:0;border:0;background:none;color:inherit;font:inherit;text-align:inherit;cursor:pointer}
+button[data-table-sort]::after,button[data-sort-column]::after{content:" ↕";opacity:.55;white-space:nowrap}
+[aria-sort="ascending"]>button[data-table-sort]::after,[aria-sort="ascending"]>button[data-sort-column]::after{content:" ↑";opacity:1}
+[aria-sort="descending"]>button[data-table-sort]::after,[aria-sort="descending"]>button[data-sort-column]::after{content:" ↓";opacity:1}

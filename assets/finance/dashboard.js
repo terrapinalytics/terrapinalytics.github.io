@@ -145,7 +145,7 @@ function renderChart(series, years, window) {
   $('trend').innerHTML = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="trend-chart-title">
     <title id="trend-chart-title">School and peer financial trends by ending fiscal year</title>${grid}${baseline}${ticks}${lines}</svg>`;
   $('trend-values').innerHTML = `<thead><tr><th scope="col">Fiscal period</th>${series.map(line => `<th scope="col">${esc(line.label)}</th>`).join('')}</tr></thead>
-    <tbody>${years.map((year,i) => `<tr><th scope="row">${fiscalPeriod(year,window)}</th>${series.map(line => `<td>${pointLabel(line,i)}</td>`).join('')}</tr>`).join('')}</tbody>`;
+    <tbody>${years.map((year,i) => `<tr><th scope="row">${fiscalPeriod(year,window)}</th>${series.map(line => `<td data-sort-value="${line.values[i] ?? ''}">${pointLabel(line,i)}</td>`).join('')}</tr>`).join('')}</tbody>`;
 }
 
 function renderSchoolComparison(schools, index, period, dollars) {
@@ -181,7 +181,7 @@ function renderDetail(schools, index, metric, period, window) {
       return url?.startsWith('https://') ? `<a href="${esc(url)}" target="_blank" rel="noopener">${window === 1 ? 'Source' : 'FY'+item.y}</a>` : '';
     }).filter(Boolean).join(' · ');
     return `<tr><td>${TeamLogos.label(school.school)}</td><td>${period}</td><td>${row?.a || '—'}</td>
-      <td>${esc(coverage)}</td><td class="num">${money(value)}</td><td>${links || '—'}</td></tr>`;
+      <td>${esc(coverage)}</td><td class="num" data-sort-value="${value ?? ''}">${money(value)}</td><td>${links || '—'}</td></tr>`;
   }).join('');
 }
 

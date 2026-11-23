@@ -19,7 +19,7 @@ Compare mandatory athletics charges and student ticket prices across 68 Power Fo
 
 ## Historical fees
 
-Explore published annual charges from 2009–10 through 2026–27 for the 23 schools in the historical panel. Filter by school or availability and download the full series from the table. Reported NCAA student-fee revenue appears alongside published charges where available.
+Explore published annual charges from 2009–10 through 2026–27 for the 23 schools in the historical panel. Toggle schools on the line chart, or open the annual observations to filter the table and download the full series. Reported NCAA student-fee revenue appears alongside published charges where available.
 
 [Open the historical fees dashboard in its own page](../assets/articles/student-fee-dashboard/history.html) · [Read the analysis of when fees rose](../articles/mandatory-athletics-fees.qmd)
 
