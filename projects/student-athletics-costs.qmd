@@ -1,0 +1,30 @@
+---
+title: "Student Athletics Costs"
+description: "Compare current student fees and ticket prices, then trace published athletics charges over time."
+toc: false
+page-layout: full
+---
+
+::: {.panel-tabset}
+
+## Current costs
+
+Compare mandatory athletics charges and student ticket prices across 68 Power Four schools. Expand a school to see its fee basis, enrollment assumptions, and ticket options.
+
+[Open the current costs dashboard in its own page](../assets/articles/student-fee-dashboard/index.html) · [Download current costs (CSV)](../assets/articles/student-fee-dashboard/P4_Student_Annual_Athletics_Cost.csv)
+
+```{=html}
+<iframe src="../assets/articles/student-fee-dashboard/index.html" title="Current Power Four student athletics costs" style="width:100%;height:75vh;min-height:560px;border:1px solid #dce3e5;border-radius:8px"></iframe>
+```
+
+## Historical fees
+
+Explore published annual charges from 2009–10 through 2026–27 for the 23 schools in the historical panel. Filter by school or availability and download the full series from the table. Reported NCAA student-fee revenue appears alongside published charges where available.
+
+[Open the historical fees dashboard in its own page](../assets/articles/student-fee-dashboard/history.html) · [Read the analysis of when fees rose](../articles/mandatory-athletics-fees.qmd)
+
+```{=html}
+<iframe src="../assets/articles/student-fee-dashboard/history.html" title="Historical Power Four student athletics fees" loading="lazy" style="width:100%;height:75vh;min-height:560px;border:1px solid #dce3e5;border-radius:8px"></iframe>
+```
+
+:::

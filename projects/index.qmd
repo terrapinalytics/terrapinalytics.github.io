@@ -22,6 +22,7 @@ toc: false
 
 ::: {.explore-directory}
 - [Big Ten Championships](championships.qmd) [Compare titles by school, sport, and era, with the option to split shared titles.]{.tool-description}
+- [Student Athletics Costs](student-athletics-costs.qmd) [Compare current fees and tickets, and trace published athletics charges over time.]{.tool-description}
 - [Athletics Financials](finance.qmd) [Compare school budgets with conference and Power Four benchmarks across fiscal years.]{.tool-description}
 - [College Athletics Spending Index](athletics-spending-index.qmd) [See how spending on sports, salaries, and facilities has changed over time.]{.tool-description}
 :::

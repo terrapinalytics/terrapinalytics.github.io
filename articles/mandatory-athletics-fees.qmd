@@ -66,7 +66,7 @@ The timing lines up with new pressure on athletics budgets. [Minnesota’s FY202
 
 ## Compare fees and tickets
 
-[Open the student athletics costs dashboard](../assets/articles/student-fee-dashboard/index.html) to compare all 68 schools. Expand a school to see its mandatory fee, enrollment assumptions for estimates, and ticket options. A paid season package can coexist with a free single-game lottery, as it does at Virginia Tech.
+[Open the student athletics costs dashboard](../projects/student-athletics-costs.qmd) to compare all 68 schools. Expand a school to see its mandatory fee, enrollment assumptions for estimates, and ticket options. A paid season package can coexist with a free single-game lottery, as it does at Virginia Tech.
 
 ## Coverage
 
