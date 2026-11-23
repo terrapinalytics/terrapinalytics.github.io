@@ -59,7 +59,21 @@ def main(site):
         for url in page.links + page.frames + page.scripts:
             target = local_file(site, path, url)
             assert target is None or target.is_file(), f"{path}: missing {url}"
-        if path.parent.name == "projects" and path.name != "index.html":
+        if path == site / "projects" / "student-athletics-costs.html":
+            targets = [local_file(site, path, url).resolve() for url in page.frames]
+            dashboard_dir = site / "assets" / "articles" / "student-fee-dashboard"
+            assert targets == [(dashboard_dir / name).resolve() for name in ("index.html", "history.html")], (
+                f"{path}: expected current and historical dashboard embeds"
+            )
+            standalone_links = {local_file(site, path, url).resolve() for url in page.links
+                                if local_file(site, path, url) is not None}
+            assert set(targets) <= standalone_links, f"{path}: missing standalone dashboard link"
+            explore = site / "projects" / "index.html"
+            assert any(target is not None and target.resolve() == path.resolve()
+                       for url in Page(explore).links if (target := local_file(site, explore, url))), (
+                f"{path}: missing Explore link"
+            )
+        elif path.parent.name == "projects" and path.name != "index.html":
             assert len(page.frames) == 1, f"{path}: expected one dashboard embed"
             assert page.frames[0] in page.links, f"{path}: missing full-screen link"
             dashboards.append(path.name)
