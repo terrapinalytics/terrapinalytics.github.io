@@ -1,1 +1,73 @@
-{"through": "2026-11-17", "seasons": [{"year": 2021, "label": "2020\u201321", "games": 3946, "clean": 3647}, {"year": 2022, "label": "2021\u201322", "games": 5475, "clean": 5038}, {"year": 2023, "label": "2022\u201323", "games": 5664, "clean": 5268}, {"year": 2024, "label": "2023\u201324", "games": 5694, "clean": 5492}, {"year": 2025, "label": "2024\u201325", "games": 5759, "clean": 5604}, {"year": 2026, "label": "2025\u201326", "games": 5752, "clean": 5514}, {"year": 2027, "label": "2026\u201327", "games": 715, "clean": 667}], "types": ["shooting", "other_personal", "offensive", "looseball", "flagrant", "technical", "unknown"]}
+{
+  "through": "2026-11-22",
+  "seasons": [
+    {
+      "year": 2019,
+      "label": "2018–19",
+      "games": 5603,
+      "clean": 4838,
+      "crew": 5431
+    },
+    {
+      "year": 2020,
+      "label": "2019–20",
+      "games": 5326,
+      "clean": 4765,
+      "crew": 5177
+    },
+    {
+      "year": 2021,
+      "label": "2020–21",
+      "games": 3946,
+      "clean": 3647
+    },
+    {
+      "year": 2022,
+      "label": "2021–22",
+      "games": 5475,
+      "clean": 5038
+    },
+    {
+      "year": 2023,
+      "label": "2022–23",
+      "games": 5664,
+      "clean": 5268
+    },
+    {
+      "year": 2024,
+      "label": "2023–24",
+      "games": 5694,
+      "clean": 5492
+    },
+    {
+      "year": 2025,
+      "label": "2024–25",
+      "games": 5759,
+      "clean": 5604
+    },
+    {
+      "year": 2026,
+      "label": "2025–26",
+      "games": 5752,
+      "clean": 5514
+    },
+    {
+      "year": 2027,
+      "label": "2026–27",
+      "games": 944,
+      "clean": 668,
+      "crew": 922
+    }
+  ],
+  "types": [
+    "shooting",
+    "other_personal",
+    "offensive",
+    "looseball",
+    "flagrant",
+    "technical",
+    "unknown"
+  ],
+  "typesThrough": "2026-11-17",
+  "crewThrough": "2026-11-22"
+}

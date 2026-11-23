@@ -6,7 +6,7 @@ toc: false
 
 ```{=html}
 <div class="tool-intro">
-<p>Men’s college basketball from 2020–21 through the in-progress 2026–27 season.</p>
+<p>Men’s college basketball from 2018–19 through the in-progress 2026–27 season.</p>
 <a href="../assets/fouls/dashboard.html" target="_blank" rel="noopener">Open full screen</a>
 </div>
 <iframe class="tool-frame" data-fit-content src="../assets/fouls/dashboard.html" title="College basketball officiating dashboard" loading="eager"></iframe>
@@ -17,4 +17,4 @@ toc: false
 
 Team and referee all-foul rates use box-score totals per 100 estimated possessions. Type-specific rates and foul mixes use games where the type counts reconcile to both team totals. Technicals count when the box-score totals include them. Referee rates describe three-person crews.
 
-Player rates use recorded events per 100 tracked on-court possessions. The current-season player sample includes players with tracked exposure. Historical player coverage follows Zach Edey’s Purdue games.
+Player rates use recorded events per 100 tracked on-court possessions. Player coverage extends to 2018–19 where the source has tracked lineups. For 2026–27, box-score and crew totals extend through November 22. Reconciled foul types and player possessions currently extend through November 17.

@@ -15,7 +15,7 @@ const safe = value => String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt
 const fmt = (value,places=1) => Number.isFinite(value) ? value.toFixed(places) : '—';
 const r100 = (count,poss) => poss>0 ? 100*count/poss : NaN;
 async function fetchData(path) {
-  if (!cache.has(path)) cache.set(path,fetch(path).then(r=>{if(!r.ok)throw Error('Could not load '+path);return path.endsWith('.gz')?new Response(r.body.pipeThrough(new DecompressionStream('gzip'))).json():r.json()}));
+  if (!cache.has(path)) cache.set(path,fetch(path+'?v=20261123').then(r=>{if(!r.ok)throw Error('Could not load '+path);return path.endsWith('.gz')?new Response(r.body.pipeThrough(new DecompressionStream('gzip'))).json():r.json()}));
   return cache.get(path);
 }
 function reconcileGameTypes(game) {
@@ -104,14 +104,25 @@ function syncFilters() {
   document.querySelector('.search').firstChild.textContent=ref?'Find a referee':state.view==='players'?'Find a player':'Find a team';
   document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===state.view)));
 }
+function unpackPlayers(data, games) {
+  if (Array.isArray(data)) return data;
+  const records = [];
+  for (const game of games) {
+    for (const [id, away, exposure, ct, dt] of data.games[game.id] ?? []) {
+      records.push({id, g:game.id, t:away ? game.a : game.h, p:exposure/2,
+        c:sumCounts(ct), d:sumCounts(dt), name:data.players[id], ct, dt});
+    }
+  }
+  return records;
+}
 async function loadSeason() {
   const current=++request;
   document.body.classList.add('loading');$('error').hidden=true;
   try {
     const [g,p]=await Promise.all([fetchData('games-'+state.year+'.json.gz'),
-      state.view==='players'?fetchData(state.year===2027?'players-2027.json.gz':'players-edey.json'):Promise.resolve([])]);
+      state.view==='players'?fetchData('players-'+state.year+'.json.gz'):Promise.resolve([])]);
     if(current!==request)return;
-    games=g.map(reconcileGameTypes);players=p;
+    games=g.map(reconcileGameTypes);players=unpackPlayers(p,games);
     if(state.view==='players'&&state.year===2027) {
       try {playerPositions=(await fetchData('player-positions-2027.json')).positions;}catch(e){playerPositions={};}
       if(current!==request)return;
@@ -144,7 +155,7 @@ function render() {
   state.page=Math.min(state.page,Math.max(0,Math.ceil(visible.length/15)-1));
   $('ranktitle').textContent=ref?'Referee leaderboard':player?'Player leaderboard':'Team leaderboard';
   $('ranknote').textContent=ref?'Crew-level game rates. Select a referee to inspect assignments.':'Select a row to inspect the profile and game log.';
-  let note=player?(state.year===2027?'Current-season player rates use tracked on-court possessions. Ambiguous foul-drawn types remain unresolved.':'Historical player coverage currently contains Zach Edey only, with all 138 Purdue appearances across four seasons.'):
+  let note=player?'Player rates use tracked on-court possessions. Ambiguous foul-drawn types remain unresolved.':
     ref?'Each official receives the statistics for games worked by the three-person crew.':'Foul margin is opponent fouls minus own fouls.';
   if(state.type&& !player)note+=' Specific-type rates use '+countGames.toLocaleString()+' games with type counts reconciled to both box-score team totals.';
   $('notice').textContent=note;
@@ -231,7 +242,7 @@ function renderProfile() {
       entity.c+' fouls committed · '+entity.d+' fouls drawn');
   $('peer-context').innerHTML=metrics.map(([key,label,lower])=>PeerContext.comparison(
     comparison(key,label+' · season ending '+state.year+' · minimum '+state.minimum+' games'+(player?' and 100 on-court possessions':''),lower,peerGroups))).join('')+
-    '<p class="peer-note">Peers use the same filters. Name search does not change the peer group. Historical player coverage is Edey only. '+
+    '<p class="peer-note">Peers use the same filters. Name search does not change the peer group. '+
     (player?(position?'Position from ESPN 2026–27 roster: '+safe(position)+'. Unknown positions are excluded from position peers.':'Position unavailable; rank uses filtered player peers.'):'')+
     ' Referee rates describe crews.</p>';
   renderMix(entity, peerGroups, headline, ref, player);
