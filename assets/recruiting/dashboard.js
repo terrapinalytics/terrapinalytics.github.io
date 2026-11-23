@@ -9,7 +9,8 @@ function distance(a,b){const v=Math.sin((a.lat-b.lat)*rad/2)**2+Math.cos(a.lat*r
 function circle(s,miles){return Array.from({length:121},(_,i)=>{let b=i/120*2*Math.PI,p=s.lat*rad,l=s.lon*rad,d=miles/R;let lat=Math.asin(Math.sin(p)*Math.cos(d)+Math.cos(p)*Math.sin(d)*Math.cos(b));let lon=l+Math.atan2(Math.sin(b)*Math.sin(d)*Math.cos(p),Math.cos(d)-Math.sin(p)*Math.sin(lat));return [lon/rad,lat/rad];});}
 players.forEach(p=>{if(Number.isFinite(p.lat)&&Number.isFinite(p.lon))p.xy=world(p.lon,p.lat);});schools.forEach(s=>{s.xy=world(s.lon,s.lat);s.color=colors[s.name]||'#344E64';});
 const defaultRegion='dmv',defaultBandwidth=15;
-const regionalZoom=5.5,circleZoom=7;
+const schoolFocusMinZoom=5.5;
+const schoolScaleMiles=500, detailScaleMiles=200;
 let commitmentMode=false;
 let W=1000,H=600,z=3.5,cx=world(-97,38)[0],cy=world(-97,38)[1],filtered=[],mapped=[],years=17,lockedPeak=null,currentPeak=1,hits=[],statCache=null,selected=null,lastTouches=new Map(),drag=null,renderQueued=false;
 let sf={type:'blue',first:2010,last:2026,bandwidth:defaultBandwidth,radius:100,school:'',inside:false};
@@ -133,12 +134,12 @@ function drawCircle(s,miles,dashed=false){
   if(dashed)ctx.setLineDash([]);
   ctx.globalAlpha=1;
 }
-function drawSchools(){
+function drawSchools(scaleMiles){
   const mode=$('schoolMode').value;
-  const show=mode==='on'||mode==='auto'&&(commitmentMode||z>=regionalZoom);
+  const show=mode==='on'||mode==='auto'&&scaleMiles<schoolScaleMiles;
   const visible=commitmentMode?[selected]:schools.filter(s=>campusVisible(s)||s===selected);
   const ss=show?visible:[];
-  const circles=show&&$('circles').checked&&z>=circleZoom&&(commitmentMode||sf.radius>0);
+  const circles=show&&$('circles').checked&&scaleMiles<=detailScaleMiles&&(commitmentMode||sf.radius>0);
   if(circles)ss.forEach(s=>{
     drawCircle(s,commitmentMode?100:sf.radius);
     if(commitmentMode)drawCircle(s,250,true);
@@ -153,12 +154,12 @@ function drawSchools(){
   }
   $('zoomNote').textContent=(circles
     ? commitmentMode?'Campus circles: 100 mi solid · 250 mi dashed':`Campus circles: ${sf.radius} miles`
-    : show&&$('circles').checked&&(commitmentMode||sf.radius>0)?'Zoom in for distance circles'
-    : show?'Campus markers':mode==='off'?'Campus markers hidden':'Zoom in to see campuses')+' · '+yearsLabel();
+    : show&&$('circles').checked&&(commitmentMode||sf.radius>0)?'Distance circles appear at 200 miles or less'
+    : show?'Campus markers':mode==='off'?'Campus markers hidden':'Campus markers appear below 500 miles')+' · '+yearsLabel();
   return ss;
 }
-function drawRecruits(){
-  const show=commitmentMode||(z>=regionalZoom&&$('points').checked);
+function drawRecruits(scaleMiles){
+  const show=scaleMiles<=detailScaleMiles&&(commitmentMode||$('points').checked);
   const cities=new Map();
   let viewCount=0;
   for(const p of mapped){
@@ -177,7 +178,7 @@ function drawRecruits(){
   }
   return viewCount;
 }
-function table(ss){if(!statCache)statCache=new Map();const tableSchools=ss.length?ss:selected?[selected]:[];const stats=tableSchools.map(s=>{if(!statCache.has(s.name))statCache.set(s.name,schoolStats(s));return statCache.get(s.name);}).sort((a,b)=>b.n-a.n);$('schoolRows').innerHTML=stats.map(v=>`<tr><td><button data-school="${esc(v.school.name)}">${TeamLogos.label(v.school.name)}</button></td><td>${fmt(v.per)}</td><td>${fmt(v.captured/years)}</td><td>${v.capture===null?'—':(v.capture*100).toFixed(1)+'%'}</td></tr>`).join('');$('detailTitle').textContent=`School access · ${sf.radius}-mile radius`;$('detailHint').textContent=stats.length?`All counts use ${yearsLabel()}. A recruit may fall inside multiple schools’ circles.`:'Campuses appear at regional zoom. You can also select a school or choose “Always show.”';}
+function table(ss){if(!statCache)statCache=new Map();const tableSchools=ss.length?ss:selected?[selected]:[];const stats=tableSchools.map(s=>{if(!statCache.has(s.name))statCache.set(s.name,schoolStats(s));return statCache.get(s.name);}).sort((a,b)=>b.n-a.n);$('schoolRows').innerHTML=stats.map(v=>`<tr><td><button data-school="${esc(v.school.name)}">${TeamLogos.label(v.school.name)}</button></td><td>${fmt(v.per)}</td><td>${fmt(v.captured/years)}</td><td>${v.capture===null?'—':(v.capture*100).toFixed(1)+'%'}</td></tr>`).join('');$('detailTitle').textContent=`School access · ${sf.radius}-mile radius`;$('detailHint').textContent=stats.length?`All counts use ${yearsLabel()}. A recruit may fall inside multiple schools’ circles.`:'Campuses appear when the scale bar reads under 500 miles. You can also select a school or choose “Always show.”';}
 function render(){
   if(!W||!H)return;
   ctx.clearRect(0,0,W,H);ctx.fillStyle='#e9eff4';ctx.fillRect(0,0,W,H);
@@ -185,12 +186,18 @@ function render(){
   if(!commitmentMode)density();
   statePaths();ctx.strokeStyle='#8f9ba6';ctx.lineWidth=.7;ctx.stroke();
   hits=[];
-  renderMetrics(drawRecruits());
-  const ss=drawSchools();
+  const scaleMiles=mapScaleMiles();
+  renderMetrics(drawRecruits(scaleMiles));
+  const ss=drawSchools(scaleMiles);
   if(!commitmentMode)table(ss);
-  drawScale();saveHash();
+  drawScale(scaleMiles);saveHash();
 }
-function drawScale(){const a=unproject(W-140,H-55),b=unproject(W-40,H-55);const miles=distance({lon:a[0],lat:a[1]},{lon:b[0],lat:b[1]});ctx.fillStyle='#ffffffdf';ctx.fillRect(W-155,H-75,140,35);ctx.strokeStyle='#303d48';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(W-140,H-65);ctx.lineTo(W-140,H-55);ctx.lineTo(W-40,H-55);ctx.lineTo(W-40,H-65);ctx.stroke();ctx.fillStyle='#303d48';ctx.font='11px system-ui';ctx.fillText(Math.round(miles)+' miles',W-135,H-43);}
+function mapScaleMiles(){
+  const [leftLon,leftLat]=unproject(W-140,H-55);
+  const [rightLon,rightLat]=unproject(W-40,H-55);
+  return Math.round(distance({lon:leftLon,lat:leftLat},{lon:rightLon,lat:rightLat}));
+}
+function drawScale(miles){ctx.fillStyle='#ffffffdf';ctx.fillRect(W-155,H-75,140,35);ctx.strokeStyle='#303d48';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(W-140,H-65);ctx.lineTo(W-140,H-55);ctx.lineTo(W-40,H-55);ctx.lineTo(W-40,H-65);ctx.stroke();ctx.fillStyle='#303d48';ctx.font='11px system-ui';ctx.fillText(miles+' miles',W-135,H-43);}
 function resize(){const box=canvas.getBoundingClientRect();W=Math.round(box.width);H=Math.round(box.height);const dpr=Math.min(2,window.devicePixelRatio||1);canvas.width=W*dpr;canvas.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);renderSoon();}
 function zoom(amount,x=W/2,y=H/2){const scale=256*2**z;const wx=cx+(x-W/2)/scale,wy=cy+(y-H/2)/scale;z=Math.max(2,Math.min(11,z+amount));const ns=256*2**z;cx=wx-(x-W/2)/ns;cy=wy-(y-H/2)/ns;renderSoon();}
 function goPreset(key){
@@ -211,7 +218,7 @@ function focusSchool(name){
   readFilters();
   if(!selected)return;
   [cx,cy]=selected.xy;
-  z=Math.max(regionalZoom,6.3+Math.log2(Math.max(.45,W/1100)));
+  z=Math.max(schoolFocusMinZoom,6.3+Math.log2(Math.max(.45,W/1100)));
   $('region').value='';
   renderSoon();
 }
