@@ -61,7 +61,11 @@ The November score puts South Florida and Boise State just below Kansas, the low
 
 Use the five framework categories to compare key metrics across programs. Select a school to expand the evidence behind each category. The downloads include the source registry, reporting definitions, coverage, and unresolved conflicts. [Download the full scoring inputs](../assets/coaching/program_inputs.csv).
 
-Financial sources retain their own accounting definitions; NCAA and EADA figures should not be treated as interchangeable. Annual observations and multi-year summaries may cover different periods. Attendance includes both official totals and reconstructed observations. NIL estimates can refer to different measures of spending. Missing private-school disclosures are not evidence of zero resources.
+School details show the expanded FY2025 NCAA and EADA reports side by side in nominal dollars. Each source retains its own accounting definitions. Across the two panels, every G6 program has a FY2025 football spending observation. EADA has no usable report for the three service academies, whose spending appears in the NCAA panel. The FY2025 detail fields supplement the published November scoring snapshot.
+
+Peer comparisons use the observed sample for each metric across the full rankings, the Power Four, the Group of Six and the school's current conference. Missing figures are excluded from those sample sizes. NCAA athletics-wide coaches compensation, football-only payroll and assistant salary pools cover different scopes. Attendance includes official totals and reconstructed observations. NIL estimates can refer to different measures of spending.
+
+All 137 programs have regional recruiting, high-school class, 2026 roster talent, incoming transfer counts, November Sagarin and 2025 home attendance observations. Incoming transfer quality is available for 134. North Dakota State and Sacramento State have November Sagarin ratings and joined the FBS in 2026, after the 2016–25 SP+ and FPI window. Other recently promoted schools can have shorter FBS histories.
 
 The carousel probabilities are separate editorial forecasts for the stated deadline, informed by attributed reporting, results, contracts and buyout costs, and institutional circumstances. Fan sentiment and unsourced speculation carry less weight than original reporting or official statements. A coach’s intention to return does not establish an institutional guarantee. Announced departures are distinguished from forecasts.
 
