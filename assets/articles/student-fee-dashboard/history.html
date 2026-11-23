@@ -1,7 +1,13 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Power Four Student Athletics Fee History</title>
 <style>
 :root{font:16px/1.56 system-ui,sans-serif;color:#182228;background:#f7f6f1}body{margin:0}header{background:#202b34;color:#fff;border-top:5px solid #a51b37}header div,main{max-width:1290px;margin:auto;padding:1.8rem clamp(1rem,4vw,3rem)}h1{font-size:clamp(2rem,5vw,3.25rem);line-height:1.14;margin:.3em 0}h2{margin-top:1.8em}p,li{max-width:88ch}header p{color:#e1e6e9}a{color:#861b36}button,input,select{font:inherit;padding:.35em;max-width:100%}button{cursor:pointer}label{font-weight:700}table{background:white;width:100%;border-collapse:collapse;font-size:.89rem}th,td{text-align:left;vertical-align:top;padding:.5rem;border-bottom:1px solid #d9dad6}th{background:#25373e;color:white;position:sticky;top:0}td:first-child{font-weight:650;min-width:6.5rem}.scroll{max-height:45rem;overflow:auto;border:1px solid #c2cbd0}.toolbar{display:flex;gap:1rem;flex-wrap:wrap;margin:1rem 0}small{color:#47525a;display:block}#history td:nth-child(3),#history td:nth-child(5){min-width:9rem}td a{white-space:nowrap}@media print{.scroll{max-height:none}.toolbar{display:none}}
-#school-series{display:flex;flex-wrap:wrap;gap:.35rem .9rem;border:1px solid #c2cbd0;border-radius:8px;margin:0 0 1rem;padding:.65rem}
+.chart-controls{display:flex;flex-wrap:wrap;gap:.6rem 1rem;align-items:end;margin-bottom:1rem}
+.chart-controls>label{display:grid;gap:.2rem;font-size:.875rem}
+.chart-controls select,.chart-controls button,.school-menu summary{min-height:40px;border:1px solid #abb7bb;border-radius:6px;background:white;color:#182228;padding:.35rem .6rem}
+.school-menu{position:relative}
+#school-series{position:absolute;top:100%;left:0;z-index:5;width:max-content;max-width:calc(100vw - 3rem);max-height:16rem;overflow-y:auto;border:1px solid #abb7bb;border-radius:6px;background:white;padding:.45rem .65rem;box-shadow:0 6px 14px #18222825}
+#school-series label+label{margin-top:.2rem}
+.school-menu summary{box-sizing:border-box}
 #school-series label{display:flex;align-items:center;gap:.3rem;font-size:.875rem;font-weight:500}
 #school-series input{accent-color:#8a233b}.series-color{width:.7rem;height:.7rem;border-radius:50%;flex:none}
 .chart-scroll{background:white;border:1px solid #d9dad6;border-radius:8px;overflow:auto}
@@ -12,7 +18,18 @@ main>details{margin-block:1rem}summary{cursor:pointer;font-weight:650}
 <section aria-labelledby="chart-heading">
 <h2 id="chart-heading">Published annual athletics fees</h2>
 <p>Select schools to compare their fees. Gaps indicate unverified rates.</p>
-<fieldset id="school-series"><legend>Schools</legend></fieldset>
+<div class="chart-controls">
+  <details class="school-menu"><summary id="school-menu-label">Schools</summary><div id="school-series" role="group" aria-label="Choose schools"></div></details>
+  <label>From<select id="chart-from"></select></label>
+  <label>Through<select id="chart-through"></select></label>
+  <label>Values<select id="chart-values">
+    <option value="annual">Annual fee ($)</option>
+    <option value="change">Change from first year ($)</option>
+    <option value="index">Index, first year = 100</option>
+    <option value="standalone">Change ($), isolating newly introduced charges</option>
+  </select></label>
+  <button id="fee-trends-preset" type="button">Recreate article chart</button>
+</div>
 <div class="chart-scroll" tabindex="0" role="region" aria-label="Historical fee line chart">
 <svg id="fee-chart" viewBox="0 0 920 340" role="img" aria-labelledby="chart-title chart-summary"></svg>
 </div>

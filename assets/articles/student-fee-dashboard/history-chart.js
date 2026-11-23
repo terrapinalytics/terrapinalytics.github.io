@@ -1,38 +1,82 @@
 'use strict';
 (() => {
-  const chart = document.getElementById('fee-chart');
-  const controls = document.getElementById('school-series');
-  const summary = document.getElementById('chart-selection');
+  const get = id => document.getElementById(id);
+  const chart = get('fee-chart');
+  const controls = get('school-series');
+  const summary = get('chart-selection');
+  const menuLabel = get('school-menu-label');
+  const from = get('chart-from');
+  const through = get('chart-through');
+  const metric = get('chart-values');
   const data = new Map();
+  const years = new Set();
   for (const row of document.querySelectorAll('#history tbody tr')) {
     const school = row.dataset.school;
     const year = Number(row.cells[1].textContent.trim().slice(0,4));
+    years.add(year);
     if (!data.has(school)) data.set(school,new Map());
     // Annual charges are in whole dollars. Fiscal-year revenue is a separate measure.
     if (row.dataset.rate === 'true') data.get(school).set(year,Number(row.cells[2].textContent.replace(/[^\d.]/g,'')));
     for (const i of [2,4,5]) row.cells[i].dataset.sortValue = row.cells[i].firstChild?.textContent.trim() ?? '';
   }
-  const names = [...data.keys()].sort();
-  const defaultColors = {'Maryland':'#972039','Virginia Tech':'#5E254E','Georgia Tech':'#835B11','UCF':'#236460'};
-  const choices = names.map((name,i) => {
+  const allYears = [...years].sort((a,b)=>a-b);
+  const yearLabel = year => `${year}–${String((year+1)%100).padStart(2,'0')}`;
+  const start = allYears[0], end = allYears.at(-1);
+  for (const year of allYears) {
+    from.add(new Option(yearLabel(year),year));
+    through.add(new Option(yearLabel(year),year));
+  }
+  from.value = start;
+  through.value = end;
+  from.addEventListener('change',()=>{
+    if (+from.value>+through.value) through.value=from.value;
+    render();
+  });
+  through.addEventListener('change',()=>{
+    if (+through.value<+from.value) from.value=through.value;
+    render();
+  });
+  metric.addEventListener('change',render);
+
+  const defaults = new Set(['Maryland','Virginia Tech','Georgia Tech','UCF']);
+  const articleSchools = new Set(['Virginia Tech','Georgia Tech','Georgia','Oklahoma State','Florida','Maryland',
+    'West Virginia','Louisville','Clemson','South Carolina','Minnesota']);
+  const articleColors = {'Virginia Tech':'#a2212a','Georgia Tech':'#277372','Georgia':'#277372',
+    'Oklahoma State':'#865617','Florida':'#865617','Maryland':'#343d47'};
+  const choices = [...data.keys()].sort().map((name,i) => {
     const label = document.createElement('label');
     const input = document.createElement('input');
     input.type = 'checkbox';
-    input.checked = Object.hasOwn(defaultColors,name);
-    const color = defaultColors[name] ?? `hsl(${Math.round((i*137.508)%360)} 68% 36%)`;
+    input.checked = defaults.has(name);
+    const color = articleColors[name] ?? `hsl(${Math.round((i*137.508)%360)} 68% 36%)`;
     const swatch = document.createElement('span');
     swatch.className = 'series-color';
     swatch.style.backgroundColor = color;
     swatch.setAttribute('aria-hidden','true');
-    label.append(input, swatch, name);
+    label.append(input,swatch,name);
     controls.append(label);
     input.addEventListener('change',render);
-    return {name,input,color};
+    return {name,input,color,swatch};
   });
-  const start=2009,end=2026,left=68,right=897,top=25,bottom=289;
-  const format = new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});
-  const yearLabel = year => `${year}–${String((year+1)%100).padStart(2,'0')}`;
-  const x = year => left+(right-left)*(year-start)/(end-start);
+  get('fee-trends-preset').addEventListener('click',()=>{
+    from.value=2019; through.value=end; metric.value='standalone';
+    for (const {name,input} of choices) input.checked=articleSchools.has(name);
+    render();
+  });
+
+  const left=76,right=897,top=28,bottom=289;
+  const dollars = new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});
+  const indices = new Intl.NumberFormat('en-US',{maximumFractionDigits:0});
+  const newCharges = new Set(['West Virginia','Louisville','Clemson','South Carolina','Minnesota']);
+  const firstFeeYear = 2025;
+
+  function amount(name,year,mode) {
+    const fee = data.get(name).get(year);
+    if (mode !== 'standalone' || !newCharges.has(name)) return fee;
+    if (year < firstFeeYear) return 0;
+    // The article tracks the new Minnesota facilities fee apart from the stadium fee.
+    return name === 'Minnesota' ? 200 : fee;
+  }
 
   function svg(tag, attributes, content) {
     const node=document.createElementNS('http://www.w3.org/2000/svg',tag);
@@ -42,32 +86,69 @@
   }
 
   function render() {
+    const first=+from.value,last=+through.value,mode=metric.value;
+    const format = mode==='index' ? indices : dollars;
+    const x = year => first===last ? (left+right)/2 : left+(right-left)*(year-first)/(last-first);
     const selected=choices.filter(choice=>choice.input.checked);
-    summary.textContent=selected.length ? 'Showing '+selected.map(choice=>choice.name).join(', ')+'.' : 'Select at least one school.';
-    chart.replaceChildren(svg('title',{id:'chart-title'},'Published annual student athletics fees'),
-      svg('desc',{id:'chart-summary'},summary.textContent+' Annual observations are also available in the table below.'));
-    const max=Math.max(100,...selected.flatMap(choice=>[...data.get(choice.name).values()]));
-    const step=[25,50,100,200,250,500,1000].find(size=>size>=max/5)??Math.ceil(max/500)*100;
-    const upper=Math.ceil(max/step)*step;
-    const y=value=>bottom-(bottom-top)*value/upper;
-    for(let v=0;v<=upper;v+=step){
-      chart.append(svg('line',{x1:left,x2:right,y1:y(v),y2:y(v),stroke:'#d9dedf'}),
+    menuLabel.textContent=`Schools (${selected.length} selected)`;
+    for (const choice of choices) choice.swatch.style.backgroundColor=
+      mode==='standalone'&&newCharges.has(choice.name) ? '#3a597e' : choice.color;
+
+    const excluded=[];
+    const lines=selected.flatMap(choice=>{
+      const base=amount(choice.name,first,mode);
+      if (mode!=='annual' && (base===undefined || (mode==='index'&&base===0))) {
+        excluded.push(choice.name); return [];
+      }
+      const points=[];
+      for (let year=first;year<=last;year++) {
+        const value=amount(choice.name,year,mode);
+        if (value===undefined) continue;
+        points.push([year,mode==='annual'?value:mode==='index'?100*value/base:value-base]);
+      }
+      if (!points.length) { excluded.push(choice.name); return []; }
+      return [{...choice,points}];
+    });
+    const notes=[lines.length?'Showing '+lines.map(choice=>choice.name).join(', ')+'.':'No series to display.'];
+    if (excluded.length) notes.push('No usable data for this view: '+excluded.join(', ')+'.');
+    if(mode==='standalone') notes.push('New standalone charges start at $0 before launch. Minnesota’s separate stadium fee is excluded from its line.');
+    summary.textContent=notes.join(' ');
+    const title=metric.selectedOptions[0].textContent;
+    chart.replaceChildren(svg('title',{id:'chart-title'},title),
+      svg('desc',{id:'chart-summary'},summary.textContent+' Annual observations are available below.'));
+    const values=lines.flatMap(line=>line.points.map(([,value])=>value));
+    const lo=Math.min(0,...values),hi=Math.max(25,...values);
+    const raw=(hi-lo)/5, power=10**Math.floor(Math.log10(raw));
+    const step=power*[1,2,2.5,5,10].find(factor=>factor>=raw/power);
+    const lower=Math.floor(lo/step)*step,upper=Math.ceil(hi/step)*step;
+    const y=value=>bottom-(bottom-top)*(value-lower)/(upper-lower);
+    if(first<firstFeeYear && last>=firstFeeYear){
+      const shadeX=(x(firstFeeYear-1)+x(firstFeeYear))/2;
+      chart.append(svg('rect',{x:shadeX,y:top,width:right-shadeX,height:bottom-top,fill:'#f6ede4'}),
+        svg('text',{x:shadeX-5,y:top-8,'text-anchor':'end',fill:'#704f37','font-size':12},'Athlete revenue sharing begins'));
+    }
+    for(let v=lower;v<=upper;v+=step){
+      chart.append(svg('line',{x1:left,x2:right,y1:y(v),y2:y(v),stroke:v===0?'#aab5b9':'#d9dedf'}),
         svg('text',{x:left-9,y:y(v)+4,'text-anchor':'end',fill:'#47525a','font-size':13},format.format(v)));
     }
-    for(let year=start;year<=end;year++){
-      if((year-start)%3 && year!==end) continue;
-      chart.append(svg('text',{x:x(year),y:320,'text-anchor':year===end?'end':'middle',fill:'#47525a','font-size':13},yearLabel(year)));
+    const tickInterval=Math.max(1,Math.ceil((last-first)/7));
+    for(let year=first;year<=last;year++){
+      if(year!==last && (year-first)%tickInterval) continue;
+      if(year!==first && year!==last && last-year<tickInterval/2) continue;
+      chart.append(svg('text',{x:x(year),y:320,'text-anchor':year===last&&year!==first?'end':'middle',fill:'#47525a','font-size':13},yearLabel(year)));
     }
-    for(const choice of selected){
-      const rates=data.get(choice.name);
+    for(const choice of lines){
+      const color=choice.swatch.style.backgroundColor;
       let path='',previous=null;
-      for(const [year,value] of rates){
+      for(const [year,value] of choice.points){
         path+=(previous===year-1?' L':' M')+x(year)+' '+y(value);
         previous=year;
       }
-      chart.append(svg('path',{d:path,fill:'none',stroke:choice.color,'stroke-width':2.4,'stroke-linejoin':'round'}));
-      for(const [year,value] of rates){
-        const point=svg('circle',{cx:x(year),cy:y(value),r:3.7,fill:choice.color,stroke:'#fff','stroke-width':.75});
+      const attrs={d:path,fill:'none',stroke:color,'stroke-width':2.4,'stroke-linejoin':'round'};
+      if(mode==='standalone'&&newCharges.has(choice.name)) attrs['stroke-dasharray']='6 4';
+      chart.append(svg('path',attrs));
+      for(const [year,value] of choice.points){
+        const point=svg('circle',{cx:x(year),cy:y(value),r:3.7,fill:color,stroke:'#fff','stroke-width':.75});
         point.append(svg('title',{},choice.name+' · '+yearLabel(year)+' · '+format.format(value)));
         chart.append(point);
       }
