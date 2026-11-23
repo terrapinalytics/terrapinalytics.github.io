@@ -4,6 +4,7 @@ import base64
 import csv
 import gzip
 import json
+from math import isfinite
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1] / "assets/finance"
@@ -71,13 +72,29 @@ def read_panel(source, filename):
             yield record
 
 
+def read_spending_index():
+    """Use the same matched-school benchmark as the Spending Explorer."""
+    with (ROOT / "escalation/explorer_series.csv").open(newline="", encoding="utf-8") as handle:
+        index = {}
+        for row in csv.DictReader(handle):
+            if row["series_id"] != "Total athletics spending benchmark":
+                continue
+            year, value = int(row["fiscal_year"]), float(row["index"])
+            if year in index or not isfinite(value) or value <= 0:
+                raise ValueError(f"Invalid spending benchmark observation for FY{year}")
+            index[year] = value
+    if index.get(2019) != 100 or not set(range(2005, 2026)).issubset(index):
+        raise ValueError("Expected the FY2019-based spending benchmark through FY2025")
+    return {str(year): value for year, value in index.items()}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
     records = [record for source, filename in PANELS.items() for record in read_panel(source, filename)]
     packed = ROOT / "data.packed.txt"
-    payload = {"records": records}
+    payload = {"records": records, "spendingIndex": read_spending_index()}
     if args.check:
         if json.loads(gzip.decompress(base64.b64decode(packed.read_text()))) != payload:
             parser.exit(1, "Finance dashboard payload is out of sync. Run python scripts/build-finance-dashboard.py.\n")

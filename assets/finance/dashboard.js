@@ -6,7 +6,7 @@ const $ = id => document.getElementById(id);
 const esc = value => String(value).replace(/[&<>"']/g, char => (
   {'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'}[char]
 ));
-const CPI_BASE = 2025;
+const DOLLAR_BASE = 2025;
 // BLS CPI-U, U.S. city average, all items, calendar-year annual averages.
 const CPI = [
   177.1, 179.9, 184.0, 188.9, 195.3, 201.6, 207.342, 215.303, 214.537,
@@ -15,6 +15,31 @@ const CPI = [
 ];
 const POWER_CONFERENCES = new Set(['ACC', 'Big Ten', 'Big 12', 'SEC']);
 const COMPARISON_COLORS = ['#7c3da4', '#147e70', '#a86211', '#566b9c'];
+const SCHOOL_COLORS = {
+  Alabama:'#9e1b32', Arizona:'#ab0520', 'Arizona State':'#8c1d40', Arkansas:'#9d2235',
+  Auburn:'#0c2340', BYU:'#002e5d', Baylor:'#154734', 'Boise State':'#0033a0',
+  'Boston College':'#98002e', California:'#003262', Cincinnati:'#e00122', Clemson:'#f56600',
+  Colorado:'#cfb87c', 'Colorado State':'#1e4d2b', Duke:'#003087', Florida:'#0021a5',
+  'Florida State':'#782f40', Georgia:'#ba0c2f', 'Georgia Tech':'#b3a369', Houston:'#c8102e',
+  Illinois:'#e84a27', Indiana:'#990000', Iowa:'#ffcd00', 'Iowa State':'#c8102e',
+  'James Madison':'#450084', Kansas:'#0051ba', 'Kansas State':'#512888', Kentucky:'#0033a0',
+  LSU:'#461d7c', Liberty:'#002d62', Louisville:'#ad0000', Maryland:'#e03a3e',
+  Memphis:'#003087', Miami:'#f47321', Michigan:'#00274c', 'Michigan State':'#18453b',
+  Minnesota:'#7a0019', 'Mississippi State':'#5d1725', Missouri:'#f1b82d', 'NC State':'#cc0000',
+  Nebraska:'#e41c38', 'North Carolina':'#4b9cd3', Northwestern:'#4e2a84', 'Notre Dame':'#0c2340',
+  'Ohio State':'#bb0000', Oklahoma:'#841617', 'Oklahoma State':'#ff7300', 'Ole Miss':'#ce1126',
+  Oregon:'#007030', 'Oregon State':'#dc4405', 'Penn State':'#041e42', Pittsburgh:'#003594',
+  Purdue:'#cfb991', Rutgers:'#cc0033', SMU:'#c8102e', 'San Diego State':'#a6192e',
+  'South Carolina':'#73000a', 'South Florida':'#006747', Stanford:'#8c1515', Syracuse:'#f76900',
+  TCU:'#4d1979', Tennessee:'#ff8200', Texas:'#bf5700', 'Texas A&M':'#500000',
+  'Texas Tech':'#cc0000', Tulane:'#006747', UCF:'#b4975a', UCLA:'#2774ae',
+  UNLV:'#cf0a2c', USC:'#990000', Utah:'#cc0000', Vanderbilt:'#866d4b',
+  Virginia:'#232d4b', 'Virginia Tech':'#630031', 'Wake Forest':'#9e7e38', Washington:'#4b2e83',
+  'Washington State':'#981e32', 'West Virginia':'#002855', Wisconsin:'#c5050c'
+};
+const DOLLAR_LABELS = {
+  nominal:'Nominal USD', real:'2025 USD (CPI-U)', athletics:'2025 USD (college athletics spending index)'
+};
 const amountFormat = new Intl.NumberFormat(undefined, {
   style: 'currency', currency: 'USD', maximumFractionDigits: 0
 });
@@ -22,6 +47,7 @@ const axisAmountFormat = new Intl.NumberFormat(undefined, {
   style: 'currency', currency: 'USD', notation: 'compact', maximumFractionDigits: 1
 });
 let DATA = [];
+let spendingIndex = {};
 let comparisonSchools = [];
 
 function money(value) {
@@ -44,13 +70,22 @@ function setSchoolOptions() {
   $('school').value = schools.includes(selected) ? selected : '';
 }
 
+function availableYears(source, basis, window) {
+  const years = [...new Set(DATA.filter(row => row.a === source).map(row => row.y))].sort((a,b) => a-b);
+  if (basis !== 'athletics') return years.slice(window - 1);
+  return years.filter(year => Array.from({length: window}, (_, index) => year - index)
+    .every(fiscalYear => fiscalYear >= years[0] && spendingIndex[fiscalYear] > 0));
+}
+
 function setYearOptions() {
   const selected = Number($('year').value);
   const window = Number($('window').value);
-  const years = [...new Set(DATA.filter(row => row.a === $('source').value).map(row => row.y))].sort((a,b) => b-a);
-  const endingYears = years.filter(year => year >= years.at(-1) + window - 1);
+  const basis = $('dollars').value;
+  const endingYears = availableYears($('source').value, basis, window).reverse();
+  const earliest = endingYears.at(-1);
+  const fallback = basis === 'athletics' && selected > 0 && selected < earliest ? earliest : endingYears[0];
   $('year').innerHTML = endingYears.map(year => option(year, fiscalPeriod(year, window))).join('');
-  $('year').value = endingYears.includes(selected) ? String(selected) : String(endingYears[0]);
+  $('year').value = String(endingYears.includes(selected) ? selected : fallback);
 }
 
 function sourceChanged(shouldRender = true) {
@@ -66,15 +101,19 @@ function isFlaggedFootballExpense(row, metric) {
   return metric === 'fbexp' && row?.fbexpFlagged === true;
 }
 
-function metricValue(row, metric, real) {
+function metricValue(row, metric, basis) {
   if (!row || row[metric] == null) return null;
   if (isFlaggedFootballExpense(row, metric)) return null;
-  if (!real) return row[metric];
+  if (basis === 'nominal') return row[metric];
+  if (basis === 'athletics') {
+    const index = spendingIndex[row.y];
+    return index ? row[metric] * (spendingIndex[DOLLAR_BASE] / index) : null;
+  }
   const index = CPI[row.y - 2001];
-  return index ? row[metric] * CPI[CPI_BASE - 2001] / index : null;
+  return index ? row[metric] * CPI[DOLLAR_BASE - 2001] / index : null;
 }
 
-function schoolSeries(records, years, metric, window, real) {
+function schoolSeries(records, years, metric, window, basis) {
   const schools = new Map();
   for (const row of records) {
     if (!schools.has(row.s)) schools.set(row.s, {school:row.s, conference:row.c, rows:new Map()});
@@ -83,7 +122,7 @@ function schoolSeries(records, years, metric, window, real) {
   return [...schools.values()].sort((a,b) => a.school.localeCompare(b.school)).map(school => {
     const periods = years.map(year => {
       const rows = Array.from({length: window}, (_, index) => school.rows.get(year - window + 1 + index));
-      const values = rows.map(row => metricValue(row, metric, real)).filter(value => value != null);
+      const values = rows.map(row => metricValue(row, metric, basis)).filter(value => value != null);
       return {
         value: values.length === window ? values.reduce((sum,value) => sum + value, 0) / window : null,
         count: values.length,
@@ -116,7 +155,7 @@ function renderChart(series, years, window) {
     $('trend-values').innerHTML = '';
     return;
   }
-  const compact = window.matchMedia?.("(max-width:700px)").matches;
+  const compact = globalThis.matchMedia?.('(max-width:700px)').matches;
   const width = compact ? Math.max(240, $('trend').clientWidth) : 700;
   const height = compact ? 240 : 300, left = compact ? 62 : 78, right = 24, top = 18, bottom = 38;
   const min = Math.min(0, ...amounts) * 1.05;
@@ -165,7 +204,7 @@ function renderSchoolComparison(schools, index, period, dollars) {
   $('bars').innerHTML = shown.map(school => {
     const value = school.periods[index].value;
     return `<div class="barrow"><button type="button" class="name school-link" data-school="${esc(school.school)}">${TeamLogos.label(school.school)}</button>
-      <div class="track"><div class="fill" style="width:${100 * Math.abs(value) / max}%"></div></div>
+      <div class="track"><div class="fill" style="--school-color:${SCHOOL_COLORS[school.school] ?? '#596474'};width:${100 * Math.abs(value) / max}%"></div></div>
       <b>${money(value)}</b></div>`;
   }).join('') || '<p class="disabled">No reported amounts</p>';
 }
@@ -193,14 +232,13 @@ function render() {
   const window = Number($('window').value);
   const endYear = Number($('year').value);
   const conference = view === 'compare' ? $('conference').value : '';
-  const real = $('dollars').value === 'real';
-  const dollars = real ? '2025 USD (CPI-U)' : 'Nominal USD';
+  const basis = $('dollars').value;
+  const dollars = DOLLAR_LABELS[basis];
   const records = DATA.filter(row => row.a === source);
-  const allYears = [...new Set(records.map(row => row.y))].sort((a,b) => a-b);
-  const years = allYears.slice(window-1);
+  const years = availableYears(source, basis, window);
   const index = years.indexOf(endYear);
   const period = fiscalPeriod(endYear, window);
-  const schools = schoolSeries(records, years, metric, window, real);
+  const schools = schoolSeries(records, years, metric, window, basis);
   const filtered = schools.filter(school => !conference || school.conference === conference);
   const selected = view === 'trend' ? $('school').value : '';
   const primary = schools.find(school => school.school === selected) ||
@@ -269,6 +307,7 @@ function render() {
 
 loadData().then(data => {
   DATA = data.records;
+  spendingIndex = data.spendingIndex;
   const params = new URLSearchParams(location.search);
   view = params.get('view') === 'trend' ? 'trend' : 'compare';
   for (const id of ['source','conference','window','dollars']) ViewTools.restore($(id), params.get(id));
@@ -307,8 +346,8 @@ loadData().then(data => {
   };
   $('export').onclick = () => ViewTools.csv('athletics-financials.csv', exportRows);
   $('source').addEventListener('change', sourceChanged);
-  for (const id of ['metric','year','school','dollars']) $(id).addEventListener('change', render);
-  $('window').addEventListener('change', () => {
+  for (const id of ['metric','year','school']) $(id).addEventListener('change', render);
+  for (const id of ['window','dollars']) $(id).addEventListener('change', () => {
     setYearOptions();
     render();
   });
