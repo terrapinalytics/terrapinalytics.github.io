@@ -2004,7 +2004,7 @@ Akron,2002,MAC,available,9500205.0,9432900.0,2735649.0,996919.0,100.0,100.0,3792
 Akron,2003,MAC,available,11072763.0,10703664.0,3111790.0,1169469.0,2952460.0,227257.0,414485.0,38201.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,200800
 Akron,2004,MAC,available,12245959.0,12082675.0,3521051.0,688274.0,5207570.0,235244.0,515588.0,26839.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,200800
 Akron,2005,MAC,available,13193109.0,13096256.0,3764563.0,868287.0,4274484.0,210033.0,260161.0,11209.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,200800
-Akron,2006,MAC,available,14465119.0,14465119.0,4072698.0,740749.0,4567574.0,1057.0,574659.0,25806.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,200800
+Akron,2006,MAC,available,14465119.0,14465119.0,4072698.0,740749.0,4567574.0,484540.0,574659.0,25806.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,200800
 Akron,2007,MAC,available,17792195.0,17476590.0,4640002.0,1331447.0,4743132.0,562377.0,567701.0,56460.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,200800
 Akron,2008,MAC,available,17942424.0,17942424.0,4707537.0,4707537.0,5180527.0,389425.0,1516397.0,1124508.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,200800
 Akron,2009,MAC,available,19769908.0,19197353.0,4788604.0,1577189.0,5191287.0,311013.0,424875.0,31346.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,200800
@@ -2029,7 +2029,7 @@ App State,2002,Sun Belt,available,1082570.0,4451187.0,1489961.0,703594.0,1608932
 App State,2003,Sun Belt,available,907957.0,4725251.0,1494922.0,518770.0,1769402.0,190566.0,152591.0,19511.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,197869
 App State,2004,Sun Belt,available,7037376.0,7037376.0,1708435.0,516119.0,2777790.0,175467.0,226100.0,32128.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,197869
 App State,2005,Sun Belt,available,7594896.0,7594896.0,1879063.0,2898429.0,2240550.0,161227.0,900487.0,618841.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,197869
-App State,2006,Sun Belt,available,9168623.0,9168623.0,2738109.0,4069038.0,2343981.0,,874747.0,643758.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,197869
+App State,2006,Sun Belt,available,9168623.0,9168623.0,2738109.0,4069038.0,2343981.0,213241.0,874747.0,643758.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,197869
 App State,2007,Sun Belt,available,9616056.0,9616056.0,1968141.0,4554223.0,2412335.0,236282.0,892659.0,597583.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,197869
 App State,2008,Sun Belt,available,12432311.0,12432311.0,3552010.0,3552010.0,2273306.0,383335.0,646299.0,614273.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,197869
 App State,2009,Sun Belt,available,13252263.0,13083239.0,3204702.0,3307184.0,2328209.0,307599.0,740699.0,690551.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,197869
@@ -2054,7 +2054,7 @@ Arkansas State,2002,Sun Belt,available,6055319.0,8353131.0,3305003.0,1249514.0,1
 Arkansas State,2003,Sun Belt,no_eada_report,,,,,,,,,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,106458
 Arkansas State,2004,Sun Belt,available,9098933.0,9098933.0,3045374.0,1565937.0,2506565.0,182598.0,608142.0,62568.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,106458
 Arkansas State,2005,Sun Belt,available,7214040.0,9424316.0,2963601.0,1727986.0,2013659.0,186149.0,593414.0,139888.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,106458
-Arkansas State,2006,Sun Belt,available,10083426.0,10083426.0,3572695.0,1829277.0,2051387.0,,500603.0,101913.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,106458
+Arkansas State,2006,Sun Belt,available,10083426.0,10083426.0,3572695.0,1829277.0,2051387.0,208178.0,500603.0,101913.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,106458
 Arkansas State,2007,Sun Belt,available,10086859.0,10086859.0,3576338.0,3576338.0,2491202.0,211786.0,883549.0,735613.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,106458
 Arkansas State,2008,Sun Belt,available,10456754.0,10456754.0,3710057.0,3710057.0,2825348.0,225165.0,998450.0,777300.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,106458
 Arkansas State,2009,Sun Belt,available,10745253.0,10745253.0,3726141.0,3726141.0,2919733.0,241139.0,1018359.0,756064.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,106458
@@ -2104,7 +2104,7 @@ Ball State,2002,MAC,available,3577286.0,8352880.0,2741667.0,1067878.0,3091188.0,
 Ball State,2003,MAC,available,12707211.0,12666755.0,3032880.0,923583.0,3561184.0,151935.0,891917.0,329460.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,150136
 Ball State,2004,MAC,available,13320504.0,13360958.0,3610638.0,926865.0,5547199.0,177255.0,566315.0,23092.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,150136
 Ball State,2005,MAC,available,13660578.0,13660578.0,3909226.0,799737.0,4265598.0,214864.0,551024.0,40504.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,150136
-Ball State,2006,MAC,available,14538840.0,14530531.0,4105817.0,1679525.0,4460689.0,,520172.0,43302.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,150136
+Ball State,2006,MAC,available,14538840.0,14530531.0,4105817.0,1679525.0,4460689.0,223866.0,520172.0,43302.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,150136
 Ball State,2007,MAC,available,15538250.0,15538250.0,4652969.0,1626206.0,4775449.0,290462.0,392630.0,66445.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,150136
 Ball State,2008,MAC,available,17427728.0,17427728.0,5436482.0,5436482.0,5509596.0,176591.0,1519045.0,1070502.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,150136
 Ball State,2009,MAC,available,19385563.0,19385563.0,5181790.0,5181790.0,5974904.0,205826.0,1514612.0,1136721.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,150136
@@ -2129,7 +2129,7 @@ Bowling Green,2002,MAC,available,9906866.0,10718337.0,2475857.0,1090968.0,342124
 Bowling Green,2003,MAC,available,11075506.0,11075506.0,2765784.0,2765784.0,3593478.0,237466.0,678957.0,610843.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,201441
 Bowling Green,2004,MAC,available,16870992.0,16705684.0,4616267.0,2271728.0,6339247.0,450064.0,427144.0,54106.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,201441
 Bowling Green,2005,MAC,available,15414019.0,15016152.0,3703868.0,2374803.0,4099782.0,314778.0,457205.0,105608.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,201441
-Bowling Green,2006,MAC,available,17615851.0,17200166.0,3763278.0,1957598.0,4476383.0,,382322.0,123591.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,201441
+Bowling Green,2006,MAC,available,17615851.0,17200166.0,3763278.0,1957598.0,4476383.0,348932.0,382322.0,123591.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,201441
 Bowling Green,2007,MAC,available,23524181.0,15624114.0,3949669.0,4261871.0,4626868.0,371906.0,608056.0,517729.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,201441
 Bowling Green,2008,MAC,available,18087524.0,17541569.0,3836845.0,4127434.0,5357106.0,378563.0,1021454.0,838414.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,201441
 Bowling Green,2009,MAC,available,16320676.0,16320676.0,4197503.0,2118327.0,5141755.0,377262.0,462097.0,187074.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,201441
@@ -2154,7 +2154,7 @@ Buffalo,2002,MAC,available,1465384.0,7805411.0,2764246.0,550265.0,3082779.0,1878
 Buffalo,2003,MAC,available,14125043.0,14120028.0,2783103.0,916862.0,3295447.0,320936.0,110842.0,70363.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,196088
 Buffalo,2004,MAC,available,18121504.0,17855604.0,3061377.0,1016032.0,5709875.0,249368.0,156809.0,115853.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,196088
 Buffalo,2005,MAC,available,16238423.0,16233613.0,3473132.0,991824.0,4275665.0,279096.0,309597.0,160300.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,196088
-Buffalo,2006,MAC,available,18315999.0,18254268.0,4082626.0,670647.0,4554382.0,,256151.0,164986.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,196088
+Buffalo,2006,MAC,available,18315999.0,18254268.0,4082626.0,670647.0,4554382.0,348007.0,256151.0,164986.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,196088
 Buffalo,2007,MAC,available,19724701.0,19721763.0,4551896.0,4551896.0,4850528.0,447905.0,1160478.0,1047803.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,196088
 Buffalo,2008,MAC,available,19080151.0,19074882.0,4322914.0,1882475.0,5117890.0,498823.0,321256.0,254652.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,196088
 Buffalo,2009,MAC,available,23446561.0,23444104.0,5241024.0,5241024.0,5509399.0,450292.0,1207151.0,1038934.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,196088
@@ -2179,7 +2179,7 @@ Central Michigan,2002,MAC,available,10740681.0,10740681.0,2559176.0,2559176.0,24
 Central Michigan,2003,MAC,available,12151902.0,12151903.0,2756525.0,2756525.0,2660258.0,232937.0,732774.0,583036.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,169248
 Central Michigan,2004,MAC,available,13347287.0,13347287.0,3282746.0,3282746.0,4439347.0,384220.0,871447.0,622107.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,169248
 Central Michigan,2005,MAC,available,16718893.0,16718893.0,3572222.0,3572222.0,3246816.0,386884.0,1273145.0,872474.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,169248
-Central Michigan,2006,MAC,available,17760582.0,17476647.0,3692553.0,1444040.0,3568522.0,,840480.0,264386.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,169248
+Central Michigan,2006,MAC,available,17760582.0,17476647.0,3692553.0,1444040.0,3568522.0,409769.0,840480.0,264386.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,169248
 Central Michigan,2007,MAC,available,20434178.0,20283634.0,6166514.0,4465376.0,3954887.0,416874.0,1063305.0,527121.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,169248
 Central Michigan,2008,MAC,available,21493640.0,21493640.0,5712638.0,5712638.0,3879002.0,400909.0,1369131.0,1057757.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,169248
 Central Michigan,2009,MAC,available,22476972.0,22476972.0,6050523.0,7991950.0,4241778.0,428203.0,1612787.0,1146755.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,169248
@@ -2204,7 +2204,7 @@ Charlotte,2002,American,available,2010192.0,5043920.0,,,1518224.0,272485.0,17505
 Charlotte,2003,American,available,8105411.0,7656800.0,,,1704497.0,299241.0,2194790.0,65305.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,199139
 Charlotte,2004,American,available,8122359.0,7951594.0,,,2870791.0,396507.0,2149008.0,28742.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,199139
 Charlotte,2005,American,available,9183194.0,8652004.0,,,1989016.0,261588.0,2111359.0,76192.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,199139
-Charlotte,2006,American,available,9102262.0,8479846.0,,,1956222.0,,1050749.0,32593.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,199139
+Charlotte,2006,American,available,9102262.0,8479846.0,,,1956222.0,276654.0,1050749.0,32593.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,199139
 Charlotte,2007,American,available,9743044.0,9443772.0,,,2187748.0,326048.0,1308190.0,47424.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,199139
 Charlotte,2008,American,available,10961859.0,10554071.0,,,2111639.0,268196.0,1952344.0,1227660.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,199139
 Charlotte,2009,American,available,11368929.0,11225938.0,,,2218782.0,285408.0,2255921.0,1390944.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,199139
@@ -2229,7 +2229,7 @@ Coastal Carolina,2002,Sun Belt,available,4931906.0,4636317.0,179287.0,9973.0,159
 Coastal Carolina,2003,Sun Belt,available,6207826.0,4794800.0,910863.0,132427.0,2054626.0,116126.0,245252.0,97880.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,218724
 Coastal Carolina,2004,Sun Belt,available,7883277.0,7875500.0,1447799.0,1447799.0,3888851.0,129820.0,612015.0,500792.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,218724
 Coastal Carolina,2005,Sun Belt,available,11045399.0,10857118.0,2167669.0,2167669.0,3250503.0,137404.0,795186.0,627130.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,218724
-Coastal Carolina,2006,Sun Belt,available,12821575.0,12821575.0,2714222.0,2714222.0,3933599.0,,1131745.0,679996.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,218724
+Coastal Carolina,2006,Sun Belt,available,12821575.0,12821575.0,2714222.0,2714222.0,3933599.0,196064.0,1131745.0,679996.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,218724
 Coastal Carolina,2007,Sun Belt,available,15276286.0,15162840.0,3340465.0,3340465.0,4476293.0,190850.0,1244243.0,778149.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,218724
 Coastal Carolina,2008,Sun Belt,available,17202196.0,16873114.0,3585286.0,3585286.0,4720087.0,275059.0,1178377.0,730663.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,218724
 Coastal Carolina,2009,Sun Belt,available,15080552.0,15080552.0,3773876.0,3773876.0,5017304.0,344739.0,1218132.0,761764.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,218724
@@ -2254,7 +2254,7 @@ Delaware,2002,C-USA,available,10751208.0,11233197.0,2414998.0,3572586.0,3647391.
 Delaware,2003,C-USA,available,11753124.0,11673999.0,2786405.0,4099501.0,3892624.0,310524.0,1177864.0,629544.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,130943
 Delaware,2004,C-USA,available,13250368.0,13164511.0,3251752.0,4690703.0,6853896.0,224104.0,1253332.0,657088.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,130943
 Delaware,2005,C-USA,available,14381505.0,14381505.0,3451771.0,4770228.0,5054040.0,306795.0,1226255.0,726391.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,130943
-Delaware,2006,C-USA,available,16512443.0,16512443.0,3890595.0,5412810.0,5911502.0,,1339747.0,790968.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,130943
+Delaware,2006,C-USA,available,16512443.0,16512443.0,3890595.0,5412810.0,5911502.0,394385.0,1339747.0,790968.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,130943
 Delaware,2007,C-USA,available,24855072.0,24855072.0,4020557.0,5531893.0,6650219.0,397118.0,1423676.0,1045810.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,130943
 Delaware,2008,C-USA,available,27789843.0,27789843.0,5192511.0,6721647.0,7473347.0,414938.0,1641401.0,1071554.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,130943
 Delaware,2009,C-USA,available,30430732.0,30430732.0,5216024.0,6747687.0,7818230.0,479002.0,1707882.0,1000174.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,130943
@@ -2279,7 +2279,7 @@ East Carolina,2002,American,available,15385804.0,15669062.0,5085087.0,5581993.0,
 East Carolina,2003,American,available,15750895.0,16079425.0,4676068.0,4513609.0,3017769.0,452311.0,1139552.0,14518.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,198464
 East Carolina,2004,American,available,18348402.0,18953415.0,5839962.0,5891651.0,4912841.0,511103.0,1121580.0,61005.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,198464
 East Carolina,2005,American,available,19258533.0,19258533.0,5529883.0,5360281.0,4082168.0,434858.0,1106367.0,84472.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,198464
-East Carolina,2006,American,available,21652796.0,21652796.0,5372624.0,4246064.0,4457853.0,,899282.0,103791.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,198464
+East Carolina,2006,American,available,21652796.0,21652796.0,5372624.0,4246064.0,4457853.0,422849.0,899282.0,103791.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,198464
 East Carolina,2007,American,available,25080006.0,24856277.0,6975296.0,6712382.0,4234601.0,389085.0,861111.0,326786.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,198464
 East Carolina,2008,American,available,29268128.0,27625195.0,8172528.0,8578244.0,4804571.0,416388.0,1082022.0,294977.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,198464
 East Carolina,2009,American,available,30569723.0,28417095.0,8564433.0,7833996.0,4965110.0,426455.0,832114.0,52317.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,198464
@@ -2304,7 +2304,7 @@ Eastern Michigan,2002,MAC,available,12414887.0,12381788.0,2923630.0,2604452.0,35
 Eastern Michigan,2003,MAC,available,12679474.0,12591237.0,2875566.0,1751337.0,3767364.0,147840.0,433771.0,741783.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,169798
 Eastern Michigan,2004,MAC,available,12469405.0,12508509.0,3128687.0,2472022.0,5588842.0,126505.0,1020628.0,760521.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,169798
 Eastern Michigan,2005,MAC,available,17469156.0,17257242.0,3637901.0,2355559.0,7373068.0,176424.0,453195.0,1022191.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,169798
-Eastern Michigan,2006,MAC,available,16970338.0,16496688.0,3762665.0,2799969.0,7492242.0,,425086.0,1020184.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,169798
+Eastern Michigan,2006,MAC,available,16970338.0,16496688.0,3762665.0,2799969.0,7492242.0,312831.0,425086.0,1020184.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,169798
 Eastern Michigan,2007,MAC,available,19580253.0,18952333.0,3994892.0,4653129.0,7866761.0,611412.0,1175459.0,987119.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,169798
 Eastern Michigan,2008,MAC,available,19341287.0,19298345.0,4504276.0,4655860.0,7680027.0,596404.0,1128192.0,1027564.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,169798
 Eastern Michigan,2009,MAC,available,21951867.0,21951867.0,5612011.0,5289450.0,9112141.0,640856.0,1290048.0,1202046.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,169798
@@ -2329,7 +2329,7 @@ Florida Atlantic,2002,American,available,8480767.0,10046621.0,3909742.0,2291821.
 Florida Atlantic,2003,American,available,5281116.0,9006930.0,3791024.0,1702314.0,2423972.0,127878.0,652199.0,470505.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,133669
 Florida Atlantic,2004,American,available,9872196.0,9315522.0,1781535.0,589883.0,4244310.0,82767.0,82499.0,7518.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,133669
 Florida Atlantic,2005,American,available,13193871.0,12938652.0,3895829.0,969358.0,3615166.0,284826.0,159744.0,16969.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,133669
-Florida Atlantic,2006,American,available,13463588.0,13266959.0,3587551.0,2511220.0,3533066.0,,454420.0,307225.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,133669
+Florida Atlantic,2006,American,available,13463588.0,13266959.0,3587551.0,2511220.0,3533066.0,292083.0,454420.0,307225.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,133669
 Florida Atlantic,2007,American,available,14116774.0,13868115.0,3615243.0,2402510.0,4056563.0,256903.0,237609.0,89816.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,133669
 Florida Atlantic,2008,American,available,14751549.0,14430619.0,4490948.0,2630350.0,3785333.0,283568.0,359836.0,85107.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,133669
 Florida Atlantic,2009,American,available,14863017.0,14110619.0,4650348.0,2546699.0,3724717.0,246777.0,327979.0,47352.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,133669
@@ -2354,7 +2354,7 @@ Florida International,2002,C-USA,available,8546128.0,7675694.0,1390987.0,2609503
 Florida International,2003,C-USA,available,12056590.0,8788873.0,1736159.0,4824834.0,2486284.0,281557.0,1093296.0,807792.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,133951
 Florida International,2004,C-USA,available,10731257.0,10180632.0,2836405.0,4720141.0,4107782.0,259881.0,1092871.0,815185.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,133951
 Florida International,2005,C-USA,available,14805418.0,13549929.0,3892475.0,4977745.0,3664743.0,260580.0,1079536.0,670711.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,133951
-Florida International,2006,C-USA,available,15996359.0,15151290.0,4717864.0,5636102.0,3906230.0,,496849.0,979973.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,133951
+Florida International,2006,C-USA,available,15996359.0,15151290.0,4717864.0,5636102.0,3906230.0,294383.0,496849.0,979973.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,133951
 Florida International,2007,C-USA,available,17936027.0,17936027.0,5905876.0,6466113.0,4376599.0,322054.0,978119.0,823432.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,133951
 Florida International,2008,C-USA,available,20230655.0,18475494.0,6039756.0,7164071.0,4385352.0,287468.0,1184732.0,865660.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,133951
 Florida International,2009,C-USA,available,21270045.0,21270045.0,5973113.0,6563171.0,4988428.0,347954.0,1225261.0,903526.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,133951
@@ -2379,7 +2379,7 @@ Fresno State,2002,Pac-12,available,19224482.0,21311855.0,4224530.0,5039161.0,243
 Fresno State,2003,Pac-12,available,20700907.0,20071792.0,4375537.0,6523953.0,2676324.0,419231.0,3550421.0,172945.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,110556
 Fresno State,2004,Pac-12,available,27537763.0,24572066.0,6078145.0,8418701.0,4434956.0,422718.0,4773552.0,540851.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,110556
 Fresno State,2005,Pac-12,available,25441202.0,24100412.0,6137066.0,9156157.0,3055205.0,361684.0,4439657.0,584776.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,110556
-Fresno State,2006,Pac-12,available,25673927.0,24211489.0,6657996.0,8389539.0,3109155.0,,2818537.0,160368.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,110556
+Fresno State,2006,Pac-12,available,25673927.0,24211489.0,6657996.0,8389539.0,3109155.0,375528.0,2818537.0,160368.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,110556
 Fresno State,2007,Pac-12,available,25153897.0,24379303.0,5905529.0,7902336.0,3171290.0,402701.0,2646266.0,81386.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,110556
 Fresno State,2008,Pac-12,available,26273405.0,26273405.0,6974561.0,9544629.0,3389324.0,408552.0,2909528.0,468647.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,110556
 Fresno State,2009,Pac-12,available,28806348.0,26658072.0,6958107.0,10414434.0,3675342.0,356185.0,2855258.0,464433.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,110556
@@ -2404,7 +2404,7 @@ Georgia Southern,2002,Sun Belt,available,7396853.0,7202161.0,2263272.0,1247558.0
 Georgia Southern,2003,Sun Belt,available,7390535.0,7231800.0,2110845.0,950767.0,1850014.0,140804.0,144221.0,226779.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,139931
 Georgia Southern,2004,Sun Belt,available,8257783.0,8238083.0,2242327.0,821247.0,3084775.0,119172.0,160125.0,234343.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,139931
 Georgia Southern,2005,Sun Belt,available,8572491.0,7119225.0,2078086.0,893054.0,2021639.0,133721.0,160187.0,224064.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,139931
-Georgia Southern,2006,Sun Belt,available,9274427.0,7857906.0,2681528.0,660182.0,2366331.0,,208105.0,281300.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,139931
+Georgia Southern,2006,Sun Belt,available,9274427.0,7857906.0,2681528.0,660182.0,2366331.0,133151.0,208105.0,281300.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,139931
 Georgia Southern,2007,Sun Belt,available,6519930.0,6415730.0,2311702.0,702346.0,2164405.0,156275.0,199637.0,14101.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,139931
 Georgia Southern,2008,Sun Belt,available,9351695.0,9115450.0,2206715.0,1792328.0,1958893.0,197726.0,346047.0,180060.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,139931
 Georgia Southern,2009,Sun Belt,available,10879521.0,10680021.0,2473760.0,2086516.0,2331201.0,203729.0,485667.0,220260.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,139931
@@ -2429,7 +2429,7 @@ Georgia State,2002,Sun Belt,available,5214924.0,5227400.0,,,1648345.0,94762.0,11
 Georgia State,2003,Sun Belt,available,6244941.0,6244941.0,,,1789211.0,102751.0,858399.0,604092.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,139940
 Georgia State,2004,Sun Belt,available,5603371.0,5399449.0,,,2604623.0,109300.0,34379.0,6015.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,139940
 Georgia State,2005,Sun Belt,available,6088623.0,6088623.0,,,1655037.0,106969.0,145088.0,17903.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,139940
-Georgia State,2006,Sun Belt,available,7227550.0,7227550.0,,,1920397.0,,346585.0,273166.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,139940
+Georgia State,2006,Sun Belt,available,7227550.0,7227550.0,,,1920397.0,198902.0,346585.0,273166.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,139940
 Georgia State,2007,Sun Belt,available,9239755.0,8848310.0,,,1895889.0,154932.0,324705.0,277660.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,139940
 Georgia State,2008,Sun Belt,available,11571362.0,10676645.0,,,1869346.0,213001.0,1171418.0,950032.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,139940
 Georgia State,2009,Sun Belt,available,16311528.0,13697936.0,,,2146918.0,191919.0,1287926.0,924206.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,139940
@@ -2454,7 +2454,7 @@ Hawai'i,2002,Mountain West,available,7885496.0,11427863.0,4345664.0,4292908.0,30
 Hawai'i,2003,Mountain West,available,18939111.0,18114233.0,4299917.0,4486314.0,2125846.0,395958.0,1398501.0,104534.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,141574
 Hawai'i,2004,Mountain West,available,7812278.0,20069305.0,4657652.0,4837475.0,4531200.0,415793.0,1395229.0,731313.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,141574
 Hawai'i,2005,Mountain West,available,20291955.0,19515884.0,4605644.0,5164810.0,3356679.0,422591.0,1383928.0,21075.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,141574
-Hawai'i,2006,Mountain West,available,23764711.0,23419770.0,6095601.0,5412764.0,3523596.0,,1577912.0,125563.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,141574
+Hawai'i,2006,Mountain West,available,23764711.0,23419770.0,6095601.0,5412764.0,3523596.0,383336.0,1577912.0,125563.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,141574
 Hawai'i,2007,Mountain West,available,26506426.0,26416743.0,7033664.0,7533652.0,3844314.0,380723.0,1406244.0,157668.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,141574
 Hawai'i,2008,Mountain West,available,33012865.0,30719401.0,9509675.0,12205141.0,4871424.0,409753.0,1458938.0,170464.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,141574
 Hawai'i,2009,Mountain West,available,30515408.0,30515408.0,9031878.0,7523084.0,5318433.0,466813.0,1452297.0,149483.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,141574
@@ -2479,7 +2479,7 @@ Jacksonville State,2002,C-USA,available,519974.0,4216420.0,1614472.0,258067.0,13
 Jacksonville State,2003,C-USA,available,5760471.0,5760471.0,1694141.0,1694141.0,1580573.0,204386.0,504149.0,452399.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,101480
 Jacksonville State,2004,C-USA,available,6707444.0,6707444.0,1786481.0,1786481.0,2433169.0,176483.0,531530.0,498245.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,101480
 Jacksonville State,2005,C-USA,available,6526093.0,6526093.0,1712943.0,1712943.0,1898730.0,166394.0,541417.0,487838.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,101480
-Jacksonville State,2006,C-USA,available,7107681.0,7107681.0,1845169.0,1845169.0,2303020.0,,642604.0,529708.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,101480
+Jacksonville State,2006,C-USA,available,7107681.0,7107681.0,1845169.0,1845169.0,2303020.0,139883.0,642604.0,529708.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,101480
 Jacksonville State,2007,C-USA,available,9459969.0,9459969.0,2557217.0,2557217.0,2355906.0,208439.0,825276.0,665619.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,101480
 Jacksonville State,2008,C-USA,available,9468578.0,9468578.0,2544874.0,2544874.0,2688855.0,165266.0,679445.0,617275.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,101480
 Jacksonville State,2009,C-USA,available,9968291.0,9968291.0,2773607.0,2773607.0,2896122.0,183564.0,804993.0,646967.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,101480
@@ -2504,7 +2504,7 @@ Kennesaw State,2002,C-USA,available,2565302.0,2325445.0,,,763643.0,52888.0,34647
 Kennesaw State,2003,C-USA,available,3277181.0,2890371.0,,,1039970.0,55317.0,439476.0,391591.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,140164
 Kennesaw State,2004,C-USA,available,4577873.0,4153596.0,,,1643868.0,72645.0,571736.0,488161.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,140164
 Kennesaw State,2005,C-USA,available,3760985.0,3760985.0,,,1126082.0,58721.0,533159.0,384125.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,140164
-Kennesaw State,2006,C-USA,available,5238871.0,5238871.0,,,1598062.0,,764223.0,545371.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,140164
+Kennesaw State,2006,C-USA,available,5238871.0,5238871.0,,,1598062.0,83931.0,764223.0,545371.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,140164
 Kennesaw State,2007,C-USA,available,7600733.0,6054336.0,,,1884743.0,99068.0,831321.0,527242.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,140164
 Kennesaw State,2008,C-USA,available,7689532.0,7689532.0,,,2080006.0,134507.0,275007.0,95637.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,140164
 Kennesaw State,2009,C-USA,available,9272932.0,8429920.0,,,2678083.0,97601.0,335974.0,147021.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,140164
@@ -2529,7 +2529,7 @@ Kent State,2002,MAC,available,12617799.0,12487507.0,2704058.0,989368.0,100.0,100
 Kent State,2003,MAC,available,13741811.0,14060381.0,3417540.0,683580.0,3789916.0,238780.0,322326.0,148706.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,203517
 Kent State,2004,MAC,available,11309300.0,13903590.0,3228287.0,866242.0,5585853.0,218847.0,392582.0,59179.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,203517
 Kent State,2005,MAC,available,15258385.0,14759587.0,3466219.0,777969.0,4214153.0,255825.0,362041.0,28763.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,203517
-Kent State,2006,MAC,available,15859390.0,15745742.0,3515606.0,824272.0,4504824.0,,349341.0,49713.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,203517
+Kent State,2006,MAC,available,15859390.0,15745742.0,3515606.0,824272.0,4504824.0,288858.0,349341.0,49713.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,203517
 Kent State,2007,MAC,available,17487695.0,16995460.0,4253652.0,2757760.0,4575014.0,274907.0,664798.0,321789.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,203517
 Kent State,2008,MAC,available,18891133.0,18891133.0,4493248.0,6040915.0,4754099.0,371199.0,1054019.0,609738.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,203517
 Kent State,2009,MAC,available,17942193.0,17179520.0,4203789.0,4997453.0,4796402.0,273088.0,1016802.0,628186.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,203517
@@ -2554,7 +2554,7 @@ Louisiana,2002,Sun Belt,available,1552277.0,4847703.0,2466986.0,973195.0,964857.
 Louisiana,2003,Sun Belt,available,6347067.0,6477531.0,2406944.0,1870741.0,1528343.0,154637.0,433152.0,2886.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,160658
 Louisiana,2004,Sun Belt,available,7250231.0,7250231.0,2585509.0,1574181.0,1943825.0,181886.0,451011.0,21696.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,160658
 Louisiana,2005,Sun Belt,available,8035657.0,8035657.0,2607302.0,1286266.0,2105875.0,167894.0,490276.0,44316.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,160658
-Louisiana,2006,Sun Belt,available,8033380.0,8033380.0,2747293.0,1484262.0,2123990.0,,433964.0,25610.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,160658
+Louisiana,2006,Sun Belt,available,8033380.0,8033380.0,2747293.0,1484262.0,2123990.0,186202.0,433964.0,25610.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,160658
 Louisiana,2007,Sun Belt,available,10107711.0,9962308.0,3100921.0,3043713.0,1973843.0,250356.0,470239.0,228247.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,160658
 Louisiana,2008,Sun Belt,available,11134598.0,10917355.0,3544612.0,3544612.0,2008964.0,362075.0,869614.0,647777.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,160658
 Louisiana,2009,Sun Belt,available,12122861.0,11940719.0,4015061.0,4015061.0,2128122.0,363675.0,1147914.0,819760.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,160658
@@ -2579,7 +2579,7 @@ Louisiana Tech,2002,Sun Belt,available,8689166.0,8573121.0,3241726.0,2453750.0,1
 Louisiana Tech,2003,Sun Belt,available,9181226.0,9130719.0,2898698.0,2552901.0,1924603.0,156471.0,347758.0,468350.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,159647
 Louisiana Tech,2004,Sun Belt,available,9203202.0,9024011.0,3053396.0,2477909.0,2698133.0,149713.0,304671.0,439849.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,159647
 Louisiana Tech,2005,Sun Belt,available,9796497.0,9783400.0,3050592.0,2879053.0,2356150.0,191631.0,303343.0,379853.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,159647
-Louisiana Tech,2006,Sun Belt,available,10075316.0,10075316.0,3209086.0,2187733.0,2526196.0,,435109.0,426531.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,159647
+Louisiana Tech,2006,Sun Belt,available,10075316.0,10075316.0,3209086.0,2187733.0,2526196.0,179711.0,435109.0,426531.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,159647
 Louisiana Tech,2007,Sun Belt,available,12440515.0,12440515.0,3886243.0,3152397.0,2759650.0,236857.0,390005.0,325759.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,159647
 Louisiana Tech,2008,Sun Belt,available,12465865.0,12440805.0,4254987.0,2804582.0,2590988.0,285954.0,388758.0,275987.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,159647
 Louisiana Tech,2009,Sun Belt,available,13901349.0,13897454.0,4952114.0,2835741.0,2804384.0,294177.0,308145.0,272587.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,159647
@@ -2604,7 +2604,7 @@ Marshall,2002,Sun Belt,available,13409611.0,12946663.0,4317971.0,4803824.0,27726
 Marshall,2003,Sun Belt,available,13831437.0,13867794.0,4705948.0,5386555.0,3085948.0,286999.0,913143.0,448177.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,237525
 Marshall,2004,Sun Belt,available,16461176.0,15790932.0,4322861.0,5432559.0,4661403.0,354987.0,1070775.0,526230.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,237525
 Marshall,2005,Sun Belt,available,16323459.0,16516504.0,4992762.0,5422949.0,3766417.0,456180.0,1041692.0,835725.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,237525
-Marshall,2006,Sun Belt,available,17946484.0,17633018.0,5732484.0,6482008.0,4246506.0,,1327078.0,975993.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,237525
+Marshall,2006,Sun Belt,available,17946484.0,17633018.0,5732484.0,6482008.0,4246506.0,496995.0,1327078.0,975993.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,237525
 Marshall,2007,Sun Belt,available,18965635.0,18965635.0,5653832.0,6604877.0,4487669.0,546706.0,1306502.0,1151114.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,237525
 Marshall,2008,Sun Belt,available,21340076.0,21340076.0,6992192.0,8112305.0,4510747.0,591723.0,1900449.0,1072637.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,237525
 Marshall,2009,Sun Belt,available,20040935.0,20040935.0,6737369.0,6859758.0,5046015.0,622320.0,2364205.0,1341579.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,237525
@@ -2629,7 +2629,7 @@ Massachusetts,2002,MAC,available,13243987.0,12758587.0,2911993.0,2900278.0,44398
 Massachusetts,2003,MAC,available,12722561.0,12421998.0,3084615.0,3194084.0,4207300.0,493084.0,2750871.0,965076.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,166629
 Massachusetts,2004,MAC,available,18013213.0,18652453.0,3806154.0,745038.0,5894031.0,468558.0,1149018.0,58716.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,166629
 Massachusetts,2005,MAC,available,19344591.0,18502005.0,3273833.0,429705.0,4475636.0,477828.0,683302.0,32942.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,166629
-Massachusetts,2006,MAC,available,20070489.0,19959263.0,3318205.0,388812.0,4649151.0,,823347.0,80534.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,166629
+Massachusetts,2006,MAC,available,20070489.0,19959263.0,3318205.0,388812.0,4649151.0,534657.0,823347.0,80534.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,166629
 Massachusetts,2007,MAC,available,21447401.0,21447401.0,3802745.0,3802745.0,4941087.0,543788.0,2482642.0,1227049.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,166629
 Massachusetts,2008,MAC,available,22729573.0,22121126.0,3877595.0,3877595.0,5437842.0,587297.0,2937331.0,1443635.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,166629
 Massachusetts,2009,MAC,available,23611645.0,23019792.0,4179726.0,4179726.0,5900890.0,618370.0,2752743.0,1505053.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,166629
@@ -2654,7 +2654,7 @@ Miami (OH),2002,MAC,available,10772052.0,10752183.0,3319440.0,3309493.0,4961610.
 Miami (OH),2003,MAC,available,15099098.0,15040792.0,3160012.0,3159743.0,4624957.0,511428.0,850901.0,726541.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,204024
 Miami (OH),2004,MAC,available,17550736.0,17882427.0,4325824.0,4322822.0,7523707.0,494077.0,942351.0,842096.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,204024
 Miami (OH),2005,MAC,available,20140111.0,18531261.0,4545311.0,4464311.0,5793221.0,589629.0,1078441.0,855436.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,204024
-Miami (OH),2006,MAC,available,20517403.0,20517403.0,4225044.0,4225044.0,6079861.0,,1046096.0,978074.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,204024
+Miami (OH),2006,MAC,available,20517403.0,20517403.0,4225044.0,4225044.0,6079861.0,559537.0,1046096.0,978074.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,204024
 Miami (OH),2007,MAC,available,22252089.0,22252089.0,4819872.0,4819872.0,6939364.0,577439.0,1211731.0,958954.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,204024
 Miami (OH),2008,MAC,available,23263940.0,23263940.0,5321463.0,5321463.0,7384186.0,458469.0,1417104.0,1171765.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,204024
 Miami (OH),2009,MAC,available,24685668.0,24685668.0,5356706.0,5356706.0,7530821.0,551486.0,1343259.0,1265987.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,204024
@@ -2679,7 +2679,7 @@ Middle Tennessee,2002,C-USA,available,9525661.0,9525661.0,3356352.0,3356352.0,29
 Middle Tennessee,2003,C-USA,available,10921977.0,10921977.0,3697833.0,3697833.0,3408857.0,222070.0,802880.0,641947.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,220978
 Middle Tennessee,2004,C-USA,available,12501536.0,12501536.0,4107458.0,4107458.0,5105978.0,267629.0,923394.0,745127.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,220978
 Middle Tennessee,2005,C-USA,available,13577458.0,13577458.0,3892130.0,3892130.0,3599795.0,265628.0,1147795.0,940551.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,220978
-Middle Tennessee,2006,C-USA,available,15267192.0,15267192.0,4750866.0,4750866.0,4470720.0,,1094622.0,909846.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,220978
+Middle Tennessee,2006,C-USA,available,15267192.0,15267192.0,4750866.0,4750866.0,4470720.0,272390.0,1094622.0,909846.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,220978
 Middle Tennessee,2007,C-USA,available,17348681.0,17348681.0,5838119.0,5838119.0,4487275.0,355423.0,1221539.0,1136207.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,220978
 Middle Tennessee,2008,C-USA,available,17254577.0,17254577.0,5532473.0,5532473.0,4782767.0,395905.0,1365880.0,1131738.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,220978
 Middle Tennessee,2009,C-USA,available,17204861.0,17204861.0,5513282.0,5513282.0,5064115.0,341341.0,1327404.0,1163331.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,220978
@@ -2704,7 +2704,7 @@ Missouri State,2002,C-USA,available,6824946.0,8297616.0,1965021.0,1305065.0,2818
 Missouri State,2003,C-USA,available,7279059.0,8531676.0,1964241.0,1375605.0,3065080.0,311804.0,1828945.0,1666592.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,179566
 Missouri State,2004,C-USA,available,11109553.0,11109553.0,2128196.0,1384059.0,4683324.0,351986.0,1878468.0,1696476.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,179566
 Missouri State,2005,C-USA,available,11928300.0,11928300.0,1932415.0,1351030.0,3531963.0,342563.0,2482414.0,1804265.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,179566
-Missouri State,2006,C-USA,available,12422186.0,12072542.0,2266558.0,1646792.0,3652142.0,,2185347.0,1929224.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,179566
+Missouri State,2006,C-USA,available,12422186.0,12072542.0,2266558.0,1646792.0,3652142.0,343236.0,2185347.0,1929224.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,179566
 Missouri State,2007,C-USA,available,13142418.0,13142418.0,2279970.0,2404590.0,3344627.0,355153.0,2006912.0,1787795.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,179566
 Missouri State,2008,C-USA,available,13889382.0,13889382.0,2400873.0,2505359.0,3663549.0,378761.0,2022133.0,1421661.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,179566
 Missouri State,2009,C-USA,available,13796746.0,13796746.0,2458259.0,2351805.0,3671460.0,359668.0,3745378.0,1705842.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,179566
@@ -2754,7 +2754,7 @@ Nevada,2002,Mountain West,available,5536045.0,8232820.0,2858745.0,3194375.0,3194
 Nevada,2003,Mountain West,available,14386013.0,14384415.0,3234690.0,3341820.0,3526670.0,272040.0,1616460.0,107285.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,182290
 Nevada,2004,Mountain West,available,14066920.0,13951805.0,3334135.0,4164850.0,5411130.0,243975.0,1955200.0,18830.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,182290
 Nevada,2005,Mountain West,available,18297975.0,18136270.0,3981470.0,2471430.0,3727876.0,288780.0,3251315.0,72770.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,182290
-Nevada,2006,Mountain West,available,19910766.0,19432995.0,4711780.0,3583907.0,4287590.0,0.0,3783713.0,20042.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,182290
+Nevada,2006,Mountain West,available,19910766.0,19432995.0,4711780.0,3583907.0,4287590.0,320691.0,3783713.0,20042.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,182290
 Nevada,2007,Mountain West,available,19878194.0,19878193.0,5127316.0,4446166.0,4497330.0,334740.0,4580694.0,72306.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,182290
 Nevada,2008,Mountain West,available,21057972.0,20913967.0,5032369.0,5498629.0,4499250.0,347205.0,4479350.0,72672.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,182290
 Nevada,2009,Mountain West,available,21444154.0,21444154.0,5703566.0,4816735.0,4640386.0,328907.0,4281323.0,101142.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,182290
@@ -2779,7 +2779,7 @@ New Mexico,2002,Mountain West,available,20302031.0,19776200.0,3724088.0,2693936.
 New Mexico,2003,Mountain West,available,19561754.0,19151261.0,4311846.0,5870195.0,2426536.0,401121.0,7038392.0,1609595.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,187985
 New Mexico,2004,Mountain West,available,20496333.0,12573156.0,4230436.0,6728270.0,4180971.0,807122.0,7162629.0,1673616.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,187985
 New Mexico,2005,Mountain West,available,18829053.0,13761342.0,4302153.0,6875650.0,2945368.0,395952.0,7974470.0,2033016.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,187985
-New Mexico,2006,Mountain West,available,24997808.0,24997808.0,4822248.0,7245875.0,3127101.0,,7704673.0,1905417.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,187985
+New Mexico,2006,Mountain West,available,24997808.0,24997808.0,4822248.0,7245875.0,3127101.0,530055.0,7704673.0,1905417.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,187985
 New Mexico,2007,Mountain West,available,26187718.0,26187718.0,5716739.0,3265057.0,2835263.0,436991.0,3214808.0,1026900.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,187985
 New Mexico,2008,Mountain West,available,28806308.0,28806308.0,5751198.0,5751198.0,3176679.0,506583.0,3888141.0,2053774.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,187985
 New Mexico,2009,Mountain West,available,31990662.0,31990662.0,7961505.0,7961505.0,6165850.0,585531.0,3967196.0,2095981.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,187985
@@ -2804,7 +2804,7 @@ New Mexico State,2002,C-USA,available,9174600.0,8613767.0,2817086.0,1869463.0,15
 New Mexico State,2003,C-USA,available,9415709.0,9382937.0,3189669.0,2193079.0,1823897.0,203108.0,935421.0,126109.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,188030
 New Mexico State,2004,C-USA,available,8846154.0,9985141.0,3263308.0,2006652.0,2525224.0,223078.0,820096.0,137639.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,188030
 New Mexico State,2005,C-USA,available,12856716.0,12643034.0,3642934.0,2051337.0,1971342.0,230282.0,737203.0,230329.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,188030
-New Mexico State,2006,C-USA,available,12784996.0,12191325.0,4104181.0,3242500.0,2347832.0,,1390600.0,603466.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,188030
+New Mexico State,2006,C-USA,available,12784996.0,12191325.0,4104181.0,3242500.0,2347832.0,358450.0,1390600.0,603466.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,188030
 New Mexico State,2007,C-USA,available,19434062.0,19434062.0,4953758.0,1118277.0,2001551.0,451991.0,1124367.0,54807.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,188030
 New Mexico State,2008,C-USA,available,25065502.0,25065502.0,6869529.0,6022277.0,5091179.0,527864.0,2574701.0,1128645.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,188030
 New Mexico State,2009,C-USA,available,25616185.0,25616185.0,7004434.0,6479728.0,4164603.0,371851.0,2860218.0,1249135.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,188030
@@ -2829,7 +2829,7 @@ North Dakota State,2002,Mountain West,available,3910112.0,4055502.0,1047948.0,11
 North Dakota State,2003,Mountain West,available,4484990.0,4598273.0,1131753.0,1216824.0,791662.0,173318.0,300092.0,284849.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,200332
 North Dakota State,2004,Mountain West,available,6280471.0,6320877.0,1553273.0,1309531.0,1347798.0,245765.0,409706.0,390467.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,200332
 North Dakota State,2005,Mountain West,available,7668848.0,7668848.0,2193263.0,1495719.0,1438911.0,274872.0,395234.0,349368.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,200332
-North Dakota State,2006,Mountain West,available,8769420.0,8769420.0,2313860.0,1582777.0,1851457.0,,546682.0,381419.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,200332
+North Dakota State,2006,Mountain West,available,8769420.0,8769420.0,2313860.0,1582777.0,1851457.0,314139.0,546682.0,381419.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,200332
 North Dakota State,2007,Mountain West,available,10054245.0,10054245.0,2658109.0,2319938.0,2010445.0,348313.0,572475.0,377476.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,200332
 North Dakota State,2008,Mountain West,available,11535056.0,11535056.0,2858173.0,2858173.0,2181550.0,348750.0,852658.0,926644.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,200332
 North Dakota State,2009,Mountain West,available,13039179.0,12922460.0,3287900.0,3287900.0,2432958.0,327604.0,954926.0,847937.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,200332
@@ -2854,7 +2854,7 @@ Northern Illinois,2002,Mountain West,available,11827144.0,11740443.0,2650592.0,9
 Northern Illinois,2003,Mountain West,available,13339642.0,12553351.0,2815576.0,1223198.0,3145429.0,156435.0,473184.0,185251.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,147703
 Northern Illinois,2004,Mountain West,available,16054662.0,15083636.0,4799786.0,3016082.0,4782965.0,188429.0,485813.0,155824.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,147703
 Northern Illinois,2005,Mountain West,available,13363801.0,12745937.0,4655778.0,2267048.0,3597987.0,243942.0,333950.0,147637.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,147703
-Northern Illinois,2006,Mountain West,available,14984007.0,14089908.0,4432466.0,2265844.0,4010734.0,,373286.0,148962.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,147703
+Northern Illinois,2006,Mountain West,available,14984007.0,14089908.0,4432466.0,2265844.0,4010734.0,241961.0,373286.0,148962.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,147703
 Northern Illinois,2007,Mountain West,available,16866401.0,16381631.0,5494091.0,3361600.0,4263023.0,254495.0,325412.0,126900.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,147703
 Northern Illinois,2008,Mountain West,available,19199427.0,17562775.0,5280045.0,5351447.0,4921836.0,322987.0,458288.0,419821.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,147703
 Northern Illinois,2009,Mountain West,available,19903785.0,19903785.0,7186711.0,5150310.0,5739903.0,352899.0,483475.0,365630.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,147703
@@ -2879,7 +2879,7 @@ North Texas,2002,American,available,9531629.0,9531629.0,2832396.0,1842999.0,1741
 North Texas,2003,American,available,11364494.0,11364494.0,3223764.0,2258744.0,1917993.0,218752.0,216506.0,43871.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,227216
 North Texas,2004,American,available,11362381.0,11326041.0,3131213.0,1514116.0,3434900.0,178712.0,186808.0,32305.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,227216
 North Texas,2005,American,available,14214129.0,12871833.0,2976279.0,1430676.0,2225283.0,149579.0,217534.0,22865.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,227216
-North Texas,2006,American,available,15101363.0,13878077.0,3200523.0,1502423.0,2831193.0,,184057.0,33176.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,227216
+North Texas,2006,American,available,15101363.0,13878077.0,3200523.0,1502423.0,2831193.0,190267.0,184057.0,33176.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,227216
 North Texas,2007,American,available,16787101.0,15873899.0,4219719.0,1433107.0,2694223.0,181841.0,319771.0,39030.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,227216
 North Texas,2008,American,available,15762952.0,15762952.0,4083748.0,2909550.0,2680125.0,191493.0,495539.0,239314.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,227216
 North Texas,2009,American,available,16621986.0,16621986.0,4352113.0,4352113.0,2833169.0,263925.0,1447428.0,1025329.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,227216
@@ -2904,7 +2904,7 @@ Ohio,2002,MAC,available,11495367.0,11228692.0,2761333.0,776516.0,3408095.0,29773
 Ohio,2003,MAC,available,12793053.0,11710441.0,2919198.0,2919198.0,3703271.0,315351.0,867273.0,736720.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,204857
 Ohio,2004,MAC,available,12946361.0,12939409.0,3321350.0,3336423.0,5757942.0,357080.0,1054793.0,762608.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,204857
 Ohio,2005,MAC,available,14730212.0,14699554.0,3764754.0,3764754.0,4736974.0,418750.0,1076513.0,857294.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,204857
-Ohio,2006,MAC,available,16704043.0,16704043.0,4265821.0,2353407.0,5260161.0,,825604.0,531497.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,204857
+Ohio,2006,MAC,available,16704043.0,16704043.0,4265821.0,2353407.0,5260161.0,326255.0,825604.0,531497.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,204857
 Ohio,2007,MAC,available,18671109.0,18671109.0,4445964.0,4445964.0,5521475.0,437623.0,1252041.0,938787.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,204857
 Ohio,2008,MAC,available,20448176.0,20448176.0,4986723.0,4986723.0,5471819.0,468813.0,1432379.0,1001081.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,204857
 Ohio,2009,MAC,available,21893603.0,21893603.0,5869228.0,6043619.0,5473808.0,498899.0,1956958.0,986733.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,204857
@@ -2929,7 +2929,7 @@ Old Dominion,2002,Sun Belt,available,8210125.0,7966059.0,,,1727255.0,233908.0,24
 Old Dominion,2003,Sun Belt,available,8760297.0,7759735.0,,,1841929.0,227816.0,454622.0,360874.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,232982
 Old Dominion,2004,Sun Belt,available,10350457.0,9805977.0,,,2903354.0,211743.0,537442.0,293987.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,232982
 Old Dominion,2005,Sun Belt,available,12223951.0,11019044.0,,,2016557.0,197710.0,743174.0,464232.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,232982
-Old Dominion,2006,Sun Belt,available,15035087.0,13990585.0,,,2314338.0,,1568802.0,435840.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,232982
+Old Dominion,2006,Sun Belt,available,15035087.0,13990585.0,,,2314338.0,281473.0,1568802.0,435840.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,232982
 Old Dominion,2007,Sun Belt,available,15729516.0,14954947.0,,,2498384.0,267536.0,1778570.0,664909.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,232982
 Old Dominion,2008,Sun Belt,available,19276659.0,17974306.0,,,2798596.0,246379.0,1433243.0,607975.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,232982
 Old Dominion,2009,Sun Belt,available,27219527.0,25520288.0,2712315.0,2075136.0,3764134.0,363263.0,1864258.0,1170999.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,232982
@@ -2954,7 +2954,7 @@ Rice,2002,American,available,14675102.0,18170245.0,5632878.0,1878587.0,5025919.0
 Rice,2003,American,available,9060022.0,14421458.0,5043483.0,3563250.0,5651544.0,573514.0,1458541.0,618883.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,227757
 Rice,2004,American,available,22960918.0,22023913.0,6205278.0,6761471.0,8921530.0,578392.0,1363403.0,1430696.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,227757
 Rice,2005,American,available,21622181.0,21759391.0,5870723.0,3486850.0,6699654.0,587276.0,866304.0,477099.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,227757
-Rice,2006,American,available,26359318.0,26359318.0,9062201.0,5752317.0,7452353.0,,904741.0,490478.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,227757
+Rice,2006,American,available,26359318.0,26359318.0,9062201.0,5752317.0,7452353.0,683946.0,904741.0,490478.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,227757
 Rice,2007,American,available,26031598.0,26031588.0,9123433.0,9553283.0,8479286.0,618323.0,1227301.0,517596.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,227757
 Rice,2008,American,available,26767228.0,26767227.0,8905788.0,7063464.0,8989500.0,627164.0,1367858.0,544262.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,227757
 Rice,2009,American,available,30671822.0,30671822.0,9541865.0,12682194.0,10395208.0,741642.0,3522202.0,1412371.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,227757
@@ -2979,7 +2979,7 @@ Sacramento State,2002,MAC,available,1916095.0,1149976.0,244892.0,517734.0,168604
 Sacramento State,2003,MAC,available,7569238.0,6533576.0,451300.0,783876.0,1812924.0,92827.0,260623.0,159756.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,110617
 Sacramento State,2004,MAC,available,2436833.0,5212346.0,1289136.0,752301.0,2948344.0,123804.0,249477.0,177845.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,110617
 Sacramento State,2005,MAC,available,6183820.0,5225093.0,566381.0,636268.0,2189216.0,150196.0,382486.0,189003.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,110617
-Sacramento State,2006,MAC,available,11922210.0,10392467.0,1729947.0,312172.0,2289355.0,,155149.0,29325.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,110617
+Sacramento State,2006,MAC,available,11922210.0,10392467.0,1729947.0,312172.0,2289355.0,170611.0,155149.0,29325.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,110617
 Sacramento State,2007,MAC,available,12590676.0,11491029.0,1930744.0,347998.0,2487377.0,218891.0,341307.0,45130.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,110617
 Sacramento State,2008,MAC,available,15030881.0,15030881.0,2155693.0,2302082.0,2816373.0,189134.0,870111.0,434473.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,110617
 Sacramento State,2009,MAC,available,14060767.0,14060767.0,2526780.0,2316920.0,3015634.0,177958.0,996203.0,877259.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,110617
@@ -3004,7 +3004,7 @@ Sam Houston,2002,C-USA,available,4399756.0,4399756.0,1226451.0,679584.0,1273460.
 Sam Houston,2003,C-USA,available,4573741.0,4525315.0,1285897.0,1265462.0,1340126.0,40845.0,446992.0,307827.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,227881
 Sam Houston,2004,C-USA,available,5566303.0,5416735.0,1304623.0,522877.0,2415400.0,60299.0,178675.0,73000.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,227881
 Sam Houston,2005,C-USA,available,6076849.0,1647096.0,254451.0,508162.0,1944960.0,34836.0,224622.0,96138.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,227881
-Sam Houston,2006,C-USA,available,6315607.0,6297032.0,1467995.0,611150.0,1938337.0,,177359.0,44667.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,227881
+Sam Houston,2006,C-USA,available,6315607.0,6297032.0,1467995.0,611150.0,1938337.0,57043.0,177359.0,44667.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,227881
 Sam Houston,2007,C-USA,available,7602358.0,7404143.0,1586695.0,796776.0,2086170.0,85696.0,235059.0,57243.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,227881
 Sam Houston,2008,C-USA,available,7924911.0,7884584.0,1821194.0,685234.0,2429240.0,118571.0,206007.0,76895.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,227881
 Sam Houston,2009,C-USA,available,8427927.0,8055234.0,1891498.0,1891498.0,2471578.0,104737.0,711202.0,470816.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,227881
@@ -3029,7 +3029,7 @@ San José State,2002,Mountain West,available,11608306.0,11597708.0,2888807.0,302
 San José State,2003,Mountain West,available,12437436.0,12765389.0,3474023.0,3127938.0,2158852.0,250935.0,1556171.0,6301.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,122755
 San José State,2004,Mountain West,available,11876448.0,12488864.0,3655368.0,1778361.0,3516769.0,201130.0,290485.0,8354.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,122755
 San José State,2005,Mountain West,available,13271445.0,13271445.0,4181856.0,1253550.0,2661282.0,190478.0,99687.0,28321.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,122755
-San José State,2006,Mountain West,available,17188520.0,17146865.0,4556193.0,949214.0,2787726.0,,164224.0,34672.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,122755
+San José State,2006,Mountain West,available,17188520.0,17146865.0,4556193.0,949214.0,2787726.0,196168.0,164224.0,34672.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,122755
 San José State,2007,Mountain West,available,16970448.0,16948819.0,4845310.0,4308283.0,2931440.0,158379.0,948710.0,829348.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,122755
 San José State,2008,Mountain West,available,18318325.0,16898245.0,4290281.0,3983347.0,2935031.0,165136.0,956291.0,862938.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,122755
 San José State,2009,Mountain West,available,17886445.0,16997789.0,4787063.0,4479682.0,3047102.0,185299.0,903733.0,878511.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,122755
@@ -3054,7 +3054,7 @@ South Alabama,2002,Sun Belt,available,5194733.0,5530577.0,,,1169366.0,151917.0,1
 South Alabama,2003,Sun Belt,available,4123723.0,3970994.0,,,1085140.0,142001.0,1201266.0,936378.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,102094
 South Alabama,2004,Sun Belt,available,6361282.0,6236647.0,,,2536055.0,128365.0,1120218.0,975633.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,102094
 South Alabama,2005,Sun Belt,available,6498327.0,6498327.0,,,1779644.0,126510.0,1182065.0,1027805.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,102094
-South Alabama,2006,Sun Belt,available,7378139.0,7378139.0,,,1866371.0,,1012291.0,805763.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,102094
+South Alabama,2006,Sun Belt,available,7378139.0,7378139.0,,,1866371.0,162890.0,1012291.0,805763.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,102094
 South Alabama,2007,Sun Belt,available,8307256.0,8307256.0,,,2113631.0,146937.0,1243614.0,969832.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,102094
 South Alabama,2008,Sun Belt,available,10250398.0,10250398.0,,,2301050.0,216849.0,1730858.0,1463734.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,102094
 South Alabama,2009,Sun Belt,available,12875018.0,12875018.0,,,2413919.0,178816.0,1589030.0,1087258.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,102094
@@ -3079,7 +3079,7 @@ Southern Miss,2002,Sun Belt,available,94253282.0,15874583.0,3804513.0,3514786.0,
 Southern Miss,2003,Sun Belt,available,15129570.0,14497678.0,4465478.0,4213344.0,2774132.0,242371.0,728848.0,45596.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,176372
 Southern Miss,2004,Sun Belt,available,16688977.0,15949369.0,5639258.0,4846178.0,3858623.0,260429.0,788925.0,9771.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,176372
 Southern Miss,2005,Sun Belt,available,18246484.0,16535914.0,4928391.0,4969368.0,2913751.0,339966.0,1338521.0,81893.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,176372
-Southern Miss,2006,Sun Belt,available,19600104.0,18396942.0,5556745.0,2697530.0,3005640.0,,328556.0,92913.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,176372
+Southern Miss,2006,Sun Belt,available,19600104.0,18396942.0,5556745.0,2697530.0,3005640.0,374390.0,328556.0,92913.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,176372
 Southern Miss,2007,Sun Belt,available,16022899.0,15206835.0,4460544.0,7221086.0,2516932.0,358938.0,2116427.0,725795.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,176372
 Southern Miss,2008,Sun Belt,available,14472618.0,14434715.0,2975000.0,5223825.0,3283347.0,557175.0,1870935.0,739556.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,176372
 Southern Miss,2009,Sun Belt,available,18623258.0,18623258.0,5550336.0,5550336.0,3800898.0,412451.0,1854092.0,1044310.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,176372
@@ -3104,7 +3104,7 @@ Temple,2002,American,available,6425265.0,14925867.0,7028221.0,3701437.0,4760998.
 Temple,2003,American,available,20961220.0,20961220.0,7072837.0,7072837.0,5167429.0,480861.0,2856261.0,1727182.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,216339
 Temple,2004,American,available,22751695.0,22751695.0,7982744.0,7982744.0,8927609.0,629273.0,2916619.0,1704851.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,216339
 Temple,2005,American,available,22908255.0,22908255.0,7632247.0,7632247.0,6272831.0,354184.0,2822129.0,1741425.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,216339
-Temple,2006,American,available,25819093.0,25819093.0,8870577.0,8870577.0,6789150.0,,3818649.0,1844910.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,216339
+Temple,2006,American,available,25819093.0,25819093.0,8870577.0,8870577.0,6789150.0,452288.0,3818649.0,1844910.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,216339
 Temple,2007,American,available,25836567.0,25836567.0,8717771.0,8717771.0,7190875.0,447256.0,2677901.0,2510154.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,216339
 Temple,2008,American,available,27478056.0,27478056.0,9184112.0,9184112.0,7608004.0,501160.0,3065916.0,2310305.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,216339
 Temple,2009,American,available,26879311.0,26879311.0,8037577.0,8037577.0,8016002.0,370369.0,2738917.0,2017754.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,216339
@@ -3129,7 +3129,7 @@ Texas State,2002,Pac-12,available,7551545.0,7369043.0,1503298.0,561068.0,1905321
 Texas State,2003,Pac-12,available,8442444.0,8180032.0,1633353.0,457129.0,2035176.0,119823.0,109869.0,57591.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,228459
 Texas State,2004,Pac-12,available,8862380.0,8639749.0,1757877.0,402658.0,2787546.0,145548.0,110526.0,64541.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,228459
 Texas State,2005,Pac-12,available,9759258.0,9169139.0,1923840.0,446909.0,2095762.0,136291.0,139124.0,57304.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,228459
-Texas State,2006,Pac-12,available,10848619.0,10616757.0,2437289.0,1092362.0,2340568.0,,178754.0,52487.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,228459
+Texas State,2006,Pac-12,available,10848619.0,10616757.0,2437289.0,1092362.0,2340568.0,174739.0,178754.0,52487.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,228459
 Texas State,2007,Pac-12,available,13300055.0,12609189.0,2346453.0,639253.0,2655552.0,159751.0,278694.0,135958.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,228459
 Texas State,2008,Pac-12,available,13179928.0,12191513.0,2325005.0,595126.0,2495186.0,157715.0,216767.0,150643.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,228459
 Texas State,2009,Pac-12,available,22228813.0,14142299.0,2687794.0,782547.0,2935024.0,184811.0,231984.0,134656.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,228459
@@ -3154,7 +3154,7 @@ Toledo,2002,MAC,available,1870574.0,7382447.0,2704078.0,970672.0,3301053.0,22241
 Toledo,2003,MAC,available,12878293.0,12626157.0,3217793.0,1651241.0,3835792.0,245108.0,488291.0,119624.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,206084
 Toledo,2004,MAC,available,2121983.0,15128643.0,4492495.0,1343825.0,6234551.0,337244.0,609910.0,96546.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,206084
 Toledo,2005,MAC,available,15314190.0,14816928.0,4235361.0,1424249.0,4655620.0,375771.0,378267.0,55672.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,206084
-Toledo,2006,MAC,available,16807163.0,16807163.0,4763244.0,7245746.0,4273692.0,,2160507.0,1153789.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,206084
+Toledo,2006,MAC,available,16807163.0,16807163.0,4763244.0,7245746.0,4273692.0,411284.0,2160507.0,1153789.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,206084
 Toledo,2007,MAC,available,16980819.0,16980819.0,4568762.0,1601476.0,4603804.0,490804.0,641504.0,79356.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,206084
 Toledo,2008,MAC,available,18127253.0,18127253.0,4441368.0,4441368.0,4932547.0,461622.0,1336303.0,1121409.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,206084
 Toledo,2009,MAC,available,19165629.0,19165629.0,5857513.0,5857513.0,4758217.0,416950.0,1934500.0,1228029.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,206084
@@ -3179,7 +3179,7 @@ Troy,2002,Sun Belt,available,1312751.0,4943787.0,1458647.0,1190134.0,1945309.0,1
 Troy,2003,Sun Belt,available,8742568.0,7024480.0,2683056.0,2970592.0,2372405.0,141377.0,721459.0,472005.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,102368
 Troy,2004,Sun Belt,available,10925851.0,7972732.0,3073529.0,3915451.0,3546014.0,165352.0,690308.0,520772.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,102368
 Troy,2005,Sun Belt,available,10440036.0,10028850.0,2790692.0,3512268.0,2750442.0,179480.0,723703.0,574649.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,102368
-Troy,2006,Sun Belt,available,12030129.0,12030129.0,4172853.0,3452351.0,3223379.0,,834411.0,593452.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,102368
+Troy,2006,Sun Belt,available,12030129.0,12030129.0,4172853.0,3452351.0,3223379.0,211539.0,834411.0,593452.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,102368
 Troy,2007,Sun Belt,available,13089969.0,13089969.0,3790663.0,3879598.0,3662438.0,223979.0,823246.0,720578.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,102368
 Troy,2008,Sun Belt,available,13134964.0,13134964.0,4031073.0,3715458.0,3595189.0,272981.0,873996.0,705549.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,102368
 Troy,2009,Sun Belt,available,14389423.0,14389423.0,4658547.0,4500149.0,3808234.0,208247.0,937765.0,691971.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,102368
@@ -3204,7 +3204,7 @@ Tulsa,2002,American,available,14372346.0,14372346.0,3919007.0,3195500.0,4959063.
 Tulsa,2003,American,available,15702224.0,15702224.0,4879438.0,4665361.0,5178229.0,243944.0,3267324.0,445026.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,207971
 Tulsa,2004,American,available,17050281.0,17075459.0,5113700.0,5027052.0,7913234.0,298432.0,2862108.0,439785.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,207971
 Tulsa,2005,American,available,15960339.0,15984758.0,5149534.0,4034571.0,6123465.0,334014.0,2174356.0,489472.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,207971
-Tulsa,2006,American,available,18169019.0,18169019.0,5472038.0,5483664.0,6760168.0,,1511022.0,475803.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,207971
+Tulsa,2006,American,available,18169019.0,18169019.0,5472038.0,5483664.0,6760168.0,341004.0,1511022.0,475803.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,207971
 Tulsa,2007,American,available,24276929.0,24276929.0,8670055.0,5015376.0,7404792.0,583380.0,2094789.0,584027.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,207971
 Tulsa,2008,American,available,25797664.0,25797664.0,7802448.0,8156480.0,7799791.0,463741.0,2003828.0,490819.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,207971
 Tulsa,2009,American,available,27130674.0,27130674.0,9786497.0,8792917.0,8835986.0,448339.0,3036872.0,740999.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,207971
@@ -3229,7 +3229,7 @@ UAB,2002,American,available,13220611.0,13220611.0,4428803.0,1274079.0,3457386.0,
 UAB,2003,American,available,14032357.0,14032357.0,4761415.0,4761415.0,3676993.0,352170.0,1472545.0,849104.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,100663
 UAB,2004,American,available,15454090.0,15454090.0,5115934.0,5163095.0,5520018.0,299481.0,1768134.0,942360.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,100663
 UAB,2005,American,available,18216876.0,18216876.0,5998002.0,5033862.0,4127492.0,30216.0,1925055.0,958266.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,100663
-UAB,2006,American,available,18701620.0,18381409.0,4777178.0,4469854.0,4654473.0,,2523332.0,1030791.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,100663
+UAB,2006,American,available,18701620.0,18381409.0,4777178.0,4469854.0,4654473.0,51585.0,2523332.0,1030791.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,100663
 UAB,2007,American,available,21600512.0,21104978.0,6201708.0,6348331.0,4128651.0,326473.0,2435014.0,1271688.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,100663
 UAB,2008,American,available,21566166.0,21417850.0,5320599.0,5453387.0,4482195.0,346755.0,2667427.0,1348979.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,100663
 UAB,2009,American,available,22620615.0,22430019.0,5715330.0,5853300.0,4729151.0,363707.0,2499318.0,1459198.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,100663
@@ -3254,7 +3254,7 @@ UL Monroe,2002,Sun Belt,available,4559829.0,5116817.0,1870340.0,1185775.0,194256
 UL Monroe,2003,Sun Belt,available,5113420.0,4942079.0,1826265.0,1754030.0,1238881.0,96432.0,187049.0,38438.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,159993
 UL Monroe,2004,Sun Belt,available,5503962.0,5359066.0,2096641.0,1796303.0,1811593.0,98945.0,236213.0,15619.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,159993
 UL Monroe,2005,Sun Belt,available,5535782.0,5531489.0,2161094.0,1734872.0,1483681.0,102386.0,211393.0,14237.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,159993
-UL Monroe,2006,Sun Belt,available,7220225.0,7191179.0,2538063.0,2063937.0,2515303.0,,367076.0,61704.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,159993
+UL Monroe,2006,Sun Belt,available,7220225.0,7191179.0,2538063.0,2063937.0,2515303.0,120944.0,367076.0,61704.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,159993
 UL Monroe,2007,Sun Belt,available,9122207.0,7279426.0,2652273.0,3593026.0,1884856.0,134302.0,441495.0,187477.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,159993
 UL Monroe,2008,Sun Belt,available,7733035.0,7733035.0,2597628.0,2597628.0,2011578.0,135126.0,766279.0,515341.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,159993
 UL Monroe,2009,Sun Belt,available,7907960.0,7907960.0,2649397.0,2649397.0,2778183.0,151627.0,789156.0,528384.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,159993
@@ -3279,7 +3279,7 @@ Utah State,2002,Pac-12,available,8139176.0,8550447.0,2615751.0,2263206.0,1707110
 Utah State,2003,Pac-12,available,8891888.0,8879092.0,2851854.0,2610907.0,1684994.0,244710.0,1000789.0,0.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,230728
 Utah State,2004,Pac-12,available,10559160.0,10552278.0,2697959.0,3362886.0,3116407.0,270722.0,1261709.0,51951.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,230728
 Utah State,2005,Pac-12,available,10390546.0,10390044.0,3156257.0,1867704.0,2411595.0,265900.0,760183.0,5510.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,230728
-Utah State,2006,Pac-12,available,11786082.0,10736389.0,2873022.0,1148638.0,2533474.0,,799324.0,11862.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,230728
+Utah State,2006,Pac-12,available,11786082.0,10736389.0,2873022.0,1148638.0,2533474.0,323741.0,799324.0,11862.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,230728
 Utah State,2007,Pac-12,available,12822145.0,12690335.0,2106989.0,1442827.0,3008940.0,251336.0,737354.0,8173.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,230728
 Utah State,2008,Pac-12,available,13205337.0,13205337.0,3687814.0,4200475.0,3351214.0,258932.0,2696172.0,704220.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,230728
 Utah State,2009,Pac-12,available,16498260.0,16498260.0,4724830.0,4738478.0,3549082.0,246960.0,3115559.0,207870.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,230728
@@ -3304,7 +3304,7 @@ UTEP,2002,Mountain West,available,8299262.0,10621452.0,2985365.0,2536889.0,22567
 UTEP,2003,Mountain West,available,11514564.0,10617118.0,3118039.0,1867519.0,2230560.0,315164.0,1998532.0,60653.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,228796
 UTEP,2004,Mountain West,available,12441210.0,13173731.0,3831545.0,3526517.0,3952451.0,288947.0,3364978.0,273831.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,228796
 UTEP,2005,Mountain West,available,23360464.0,21380110.0,5585829.0,6075559.0,4671374.0,400293.0,4333564.0,452469.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,228796
-UTEP,2006,Mountain West,available,20575450.0,20411599.0,6507291.0,7711299.0,4454251.0,,5407936.0,441348.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,228796
+UTEP,2006,Mountain West,available,20575450.0,20411599.0,6507291.0,7711299.0,4454251.0,421169.0,5407936.0,441348.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,228796
 UTEP,2007,Mountain West,available,20831731.0,20683906.0,6479397.0,8157860.0,4882240.0,525130.0,4837025.0,497636.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,228796
 UTEP,2008,Mountain West,available,22598732.0,22598732.0,7702153.0,9623983.0,4520275.0,564748.0,5298901.0,1006913.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,228796
 UTEP,2009,Mountain West,available,22990846.0,22943231.0,7760454.0,10229709.0,4651247.0,540797.0,3607046.0,1071894.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,228796
@@ -3329,7 +3329,7 @@ UTSA,2002,American,available,4538096.0,4327084.0,,,1059975.0,87940.0,351057.0,52
 UTSA,2003,American,available,5137469.0,4999735.0,,,1573715.0,97881.0,623604.0,622534.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,229027
 UTSA,2004,American,available,6522446.0,5907533.0,,,2662937.0,111432.0,712856.0,645235.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,229027
 UTSA,2005,American,available,6808591.0,6808591.0,,,1957828.0,123050.0,291644.0,144207.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,229027
-UTSA,2006,American,available,8381787.0,7826630.0,,,2084802.0,,881458.0,817073.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,229027
+UTSA,2006,American,available,8381787.0,7826630.0,,,2084802.0,164290.0,881458.0,817073.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,229027
 UTSA,2007,American,available,9184721.0,8649391.0,,,2260133.0,189159.0,971810.0,850412.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,229027
 UTSA,2008,American,available,10411274.0,9954280.0,,,2416381.0,202949.0,1115045.0,982326.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,229027
 UTSA,2009,American,available,10090196.0,10090196.0,,,2670475.0,224689.0,1200954.0,1025718.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,229027
@@ -3354,7 +3354,7 @@ Western Kentucky,2002,C-USA,available,7072194.0,6144422.0,1604710.0,1971430.0,18
 Western Kentucky,2003,C-USA,available,12812518.0,7442997.0,1699271.0,2052091.0,2009928.0,256854.0,1905046.0,1091984.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,157951
 Western Kentucky,2004,C-USA,available,20920087.0,13522945.0,1883147.0,2549940.0,3094471.0,305184.0,1930178.0,1281897.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,157951
 Western Kentucky,2005,C-USA,available,21194852.0,14651386.0,2269923.0,2577459.0,2729281.0,313471.0,1986863.0,1279242.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,157951
-Western Kentucky,2006,C-USA,available,16081045.0,16081045.0,2713921.0,2713921.0,3076689.0,,1454303.0,1046305.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,157951
+Western Kentucky,2006,C-USA,available,16081045.0,16081045.0,2713921.0,2713921.0,3076689.0,364172.0,1454303.0,1046305.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,157951
 Western Kentucky,2007,C-USA,available,17208710.0,17208710.0,2796724.0,2796724.0,3692730.0,433174.0,1688909.0,1221068.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,157951
 Western Kentucky,2008,C-USA,available,19957909.0,19957909.0,4206448.0,4206448.0,4319559.0,382550.0,1781450.0,1216418.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,157951
 Western Kentucky,2009,C-USA,available,21002792.0,21002792.0,5218006.0,5218006.0,5025082.0,394262.0,2048619.0,1307325.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,157951
@@ -3379,7 +3379,7 @@ Western Michigan,2002,MAC,available,15415828.0,14584556.0,3157540.0,1597323.0,29
 Western Michigan,2003,MAC,available,17503625.0,16829591.0,3341138.0,1918166.0,3300976.0,181380.0,332288.0,121019.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,172699
 Western Michigan,2004,MAC,available,19229478.0,19380472.0,3152675.0,1754840.0,4580091.0,155730.0,381375.0,128292.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,172699
 Western Michigan,2005,MAC,available,16581810.0,16564799.0,3632952.0,1535550.0,3900333.0,184964.0,406250.0,85891.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,172699
-Western Michigan,2006,MAC,available,18511424.0,18450174.0,3780126.0,1419840.0,4431613.0,,437888.0,116219.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,172699
+Western Michigan,2006,MAC,available,18511424.0,18450174.0,3780126.0,1419840.0,4431613.0,200639.0,437888.0,116219.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,172699
 Western Michigan,2007,MAC,available,18737921.0,18737921.0,4054783.0,1841527.0,4546162.0,235556.0,493959.0,60767.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,172699
 Western Michigan,2008,MAC,available,19190254.0,18834539.0,4557088.0,2522901.0,4404512.0,287044.0,629391.0,101418.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,172699
 Western Michigan,2009,MAC,available,21674165.0,21674165.0,5603913.0,5603913.0,5065738.0,337758.0,1496071.0,1313388.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,172699
@@ -3404,7 +3404,7 @@ Wyoming,2002,Mountain West,available,15367876.0,7388605.0,2812292.0,2363639.0,22
 Wyoming,2003,Mountain West,available,16664929.0,16650484.0,2876989.0,4454609.0,3129735.0,400337.0,1699931.0,783417.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2002-2003.zip,240727
 Wyoming,2004,Mountain West,available,17723365.0,17878568.0,3490464.0,5545301.0,3594651.0,425659.0,3022493.0,789854.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2003-2004.zip,240727
 Wyoming,2005,Mountain West,available,20344272.0,19823939.0,4203604.0,7501957.0,2940340.0,365053.0,2900258.0,775455.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2004-2005.zip,240727
-Wyoming,2006,Mountain West,available,21151898.0,21151898.0,4023940.0,7248390.0,2849561.0,,3034773.0,984521.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,240727
+Wyoming,2006,Mountain West,available,21151898.0,21151898.0,4023940.0,7248390.0,2849561.0,418517.0,3034773.0,984521.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2005-2006.zip,240727
 Wyoming,2007,Mountain West,available,21031881.0,21031881.0,4430217.0,6598307.0,3303437.0,524063.0,2344767.0,1541656.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2006-2007.zip,240727
 Wyoming,2008,Mountain West,available,23717482.0,23717482.0,5332411.0,6958278.0,2802295.0,473542.0,2287313.0,1021453.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2007-2008.zip,240727
 Wyoming,2009,Mountain West,available,24671158.0,24671158.0,5509247.0,8792537.0,3168056.0,481050.0,2689767.0,1073618.0,https://ope.ed.gov/athletics/api/dataFiles/file?fileName=EADA+2008-2009.zip,240727
