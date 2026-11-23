@@ -10,7 +10,7 @@ function circle(s,miles){return Array.from({length:121},(_,i)=>{let b=i/120*2*Ma
 players.forEach(p=>{if(Number.isFinite(p.lat)&&Number.isFinite(p.lon))p.xy=world(p.lon,p.lat);});schools.forEach(s=>{s.xy=world(s.lon,s.lat);s.color=colors[s.name]||'#344E64';});
 const defaultRegion='dmv',defaultBandwidth=15;
 const schoolFocusMinZoom=5.5;
-const schoolScaleMiles=500, detailScaleMiles=200;
+const schoolScaleMiles=500, detailScaleMiles=200, circleScaleMiles=150;
 let commitmentMode=false;
 let W=1000,H=600,z=3.5,cx=world(-97,38)[0],cy=world(-97,38)[1],filtered=[],mapped=[],years=17,lockedPeak=null,currentPeak=1,hits=[],statCache=null,selected=null,lastTouches=new Map(),drag=null,renderQueued=false;
 let sf={type:'blue',first:2010,last:2026,bandwidth:defaultBandwidth,radius:100,school:'',inside:false};
@@ -139,7 +139,7 @@ function drawSchools(scaleMiles){
   const show=mode==='on'||mode==='auto'&&scaleMiles<schoolScaleMiles;
   const visible=commitmentMode?[selected]:schools.filter(s=>campusVisible(s)||s===selected);
   const ss=show?visible:[];
-  const circles=show&&$('circles').checked&&scaleMiles<=detailScaleMiles&&(commitmentMode||sf.radius>0);
+  const circles=show&&$('circles').checked&&scaleMiles<=circleScaleMiles&&(commitmentMode||sf.radius>0);
   if(circles)ss.forEach(s=>{
     drawCircle(s,commitmentMode?100:sf.radius);
     if(commitmentMode)drawCircle(s,250,true);
@@ -154,7 +154,7 @@ function drawSchools(scaleMiles){
   }
   $('zoomNote').textContent=(circles
     ? commitmentMode?'Campus circles: 100 mi solid · 250 mi dashed':`Campus circles: ${sf.radius} miles`
-    : show&&$('circles').checked&&(commitmentMode||sf.radius>0)?'Distance circles appear at 200 miles or less'
+    : show&&$('circles').checked&&(commitmentMode||sf.radius>0)?'Distance circles appear at 150 miles or less'
     : show?'Campus markers':mode==='off'?'Campus markers hidden':'Campus markers appear below 500 miles')+' · '+yearsLabel();
   return ss;
 }

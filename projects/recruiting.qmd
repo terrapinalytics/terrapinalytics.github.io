@@ -7,9 +7,9 @@ page-layout: full
 ```{=html}
 <div class="tool-intro">
 <p>Explore 247Sports Composite recruits from 2010 through 2026. Use Commitments to see where a school’s class came from.</p>
-<a href="../assets/recruiting/dashboard.html?v=mile-scale" target="_blank" rel="noopener">Open full screen</a>
+<a href="../assets/recruiting/dashboard.html?v=circles-150" target="_blank" rel="noopener">Open full screen</a>
 </div>
-<iframe class="tool-frame" data-fit-content src="../assets/recruiting/dashboard.html?v=mile-scale" title="Interactive US recruiting heat map" loading="eager"></iframe>
+<iframe class="tool-frame" data-fit-content src="../assets/recruiting/dashboard.html?v=circles-150" title="Interactive US recruiting heat map" loading="eager"></iframe>
 <script src="../assets/tool-frame.js" defer></script>
 ```
 
