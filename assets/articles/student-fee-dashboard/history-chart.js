@@ -21,13 +21,12 @@
   }
   const allYears = [...years].sort((a,b)=>a-b);
   const yearLabel = year => `${year}–${String((year+1)%100).padStart(2,'0')}`;
-  const start = allYears[0], end = allYears.at(-1);
   for (const year of allYears) {
     from.add(new Option(yearLabel(year),year));
     through.add(new Option(yearLabel(year),year));
   }
-  from.value = start;
-  through.value = end;
+  from.value = 2019;
+  through.value = 2026;
   from.addEventListener('change',()=>{
     if (+from.value>+through.value) through.value=from.value;
     render();
@@ -38,8 +37,7 @@
   });
   metric.addEventListener('change',render);
 
-  const defaults = new Set(['Maryland','Virginia Tech','Georgia Tech','UCF']);
-  const articleSchools = new Set(['Virginia Tech','Georgia Tech','Georgia','Oklahoma State','Florida','Maryland',
+  const defaultSchools = new Set(['Virginia Tech','Georgia Tech','Georgia','Oklahoma State','Florida','Maryland',
     'West Virginia','Louisville','Clemson','South Carolina','Minnesota']);
   const articleColors = {'Virginia Tech':'#a2212a','Georgia Tech':'#277372','Georgia':'#277372',
     'Oklahoma State':'#865617','Florida':'#865617','Maryland':'#343d47'};
@@ -47,7 +45,7 @@
     const label = document.createElement('label');
     const input = document.createElement('input');
     input.type = 'checkbox';
-    input.checked = defaults.has(name);
+    input.checked = defaultSchools.has(name);
     const color = articleColors[name] ?? `hsl(${Math.round((i*137.508)%360)} 68% 36%)`;
     const swatch = document.createElement('span');
     swatch.className = 'series-color';
@@ -58,12 +56,6 @@
     input.addEventListener('change',render);
     return {name,input,color,swatch};
   });
-  get('fee-trends-preset').addEventListener('click',()=>{
-    from.value=2019; through.value=end; metric.value='standalone';
-    for (const {name,input} of choices) input.checked=articleSchools.has(name);
-    render();
-  });
-
   const left=76,right=897,top=28,bottom=289;
   const dollars = new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});
   const indices = new Intl.NumberFormat('en-US',{maximumFractionDigits:0});
