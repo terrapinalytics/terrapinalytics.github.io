@@ -5,7 +5,7 @@ page-layout: full
 toc: false
 ---
 
-Explore play-by-play data from 2023 through November 21, 2026. Maryland is selected by default. Use **Big Ten games only** to focus on league play, or **First 11 games** to compare each season through the same point.
+Explore play-by-play data from 2023 through November 21, 2026. The dashboard opens to Maryland’s 2026 offensive success rates grouped by down. Use **Big Ten games only** to focus on league play, or **First 11 games** to compare each season through the same point.
 
 ```{=html}
 <div class="tool-intro">

@@ -8,12 +8,13 @@ function inverse(x,y){return [x*360-180,Math.atan(Math.sinh(Math.PI*(1-2*y)))/ra
 function distance(a,b){const v=Math.sin((a.lat-b.lat)*rad/2)**2+Math.cos(a.lat*rad)*Math.cos(b.lat*rad)*Math.sin((a.lon-b.lon)*rad/2)**2;return 2*R*Math.asin(Math.sqrt(Math.min(1,v)));}
 function circle(s,miles){return Array.from({length:121},(_,i)=>{let b=i/120*2*Math.PI,p=s.lat*rad,l=s.lon*rad,d=miles/R;let lat=Math.asin(Math.sin(p)*Math.cos(d)+Math.cos(p)*Math.sin(d)*Math.cos(b));let lon=l+Math.atan2(Math.sin(b)*Math.sin(d)*Math.cos(p),Math.cos(d)-Math.sin(p)*Math.sin(lat));return [lon/rad,lat/rad];});}
 players.forEach(p=>{if(p.lat!==null)p.xy=world(p.lon,p.lat);});schools.forEach(s=>{s.xy=world(s.lon,s.lat);s.color=colors[s.name]||'#344E64';});
+const defaultRegion='dmv',defaultBandwidth=15;
 let W=1000,H=600,z=3.5,cx=world(-97,38)[0],cy=world(-97,38)[1],filtered=[],mapped=[],years=17,lockedPeak=null,currentPeak=1,hits=[],statCache=null,selected=null,lastTouches=new Map(),drag=null,renderQueued=false;
-let sf={type:'blue',first:2010,last:2026,bandwidth:25,radius:100,school:'',inside:false};
+let sf={type:'blue',first:2010,last:2026,bandwidth:defaultBandwidth,radius:100,school:'',inside:false};
 const statePolys=data.states.features.flatMap(f=>{const g=f.geometry;return (g.type==='Polygon'?[g.coordinates[0]]:g.coordinates.map(p=>p[0])).map(r=>({name:f.properties.name,ring:r.map(p=>world(p[0],p[1]))}));});
 for(let y=2010;y<=2026;y++){for(const id of ['first','last']){const o=document.createElement('option');o.value=y;o.textContent=y;$(id).append(o);}}$('last').value=2026;
 [...schools].sort((a,b)=>a.name.localeCompare(b.name)).forEach(s=>{const o=document.createElement('option');o.value=s.name;o.textContent=s.name;$('school').append(o);});
-const presets={us:[-97,38,3.5],dmv:[-77.5,38.8,6.1],nc:[-79.5,35.5,6],texas:[-99,31.5,4.7],southeast:[-84,32.7,4.9],california:[-119.5,36.5,4.7],hawaii:[-157,20.8,6],alaska:[-153,64,3.5]};
+const presets={us:[-97,38,3.5],nc:[-79.5,35.5,6],texas:[-99,31.5,4.7],southeast:[-84,32.7,4.9],california:[-119.5,36.5,4.7],hawaii:[-157,20.8,6],alaska:[-153,64,3.5]};
 function screen(xy){let dx=xy[0]-cx;if(dx>.5)dx--;if(dx<-.5)dx++;const scale=256*2**z;return [W/2+dx*scale,H/2+(xy[1]-cy)*scale];}
 function unproject(x,y){const scale=256*2**z;return inverse(cx+(x-W/2)/scale,cy+(y-H/2)/scale);}
 function yearsLabel(){return sf.first===sf.last?String(sf.first):sf.first+'–'+sf.last;}
@@ -42,7 +43,19 @@ function render(){if(!W||!H)return;ctx.clearRect(0,0,W,H);ctx.fillStyle='#e9eff4
 function drawScale(){const a=unproject(W-140,H-55),b=unproject(W-40,H-55);const miles=distance({lon:a[0],lat:a[1]},{lon:b[0],lat:b[1]});ctx.fillStyle='#ffffffdf';ctx.fillRect(W-155,H-75,140,35);ctx.strokeStyle='#303d48';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(W-140,H-65);ctx.lineTo(W-140,H-55);ctx.lineTo(W-40,H-55);ctx.lineTo(W-40,H-65);ctx.stroke();ctx.fillStyle='#303d48';ctx.font='11px system-ui';ctx.fillText(Math.round(miles)+' miles',W-135,H-43);}
 function resize(){const box=canvas.getBoundingClientRect();W=Math.round(box.width);H=Math.round(box.height);const dpr=Math.min(2,window.devicePixelRatio||1);canvas.width=W*dpr;canvas.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);renderSoon();}
 function zoom(amount,x=W/2,y=H/2){const scale=256*2**z;const wx=cx+(x-W/2)/scale,wy=cy+(y-H/2)/scale;z=Math.max(2,Math.min(11,z+amount));const ns=256*2**z;cx=wx-(x-W/2)/ns;cy=wy-(y-H/2)/ns;renderSoon();}
-function goPreset(key){const p=presets[key]||presets.us;[cx,cy]=world(p[0],p[1]);z=p[2]+Math.log2(Math.max(.45,W/1100));renderSoon();}
+function goPreset(key){
+  if(key==='dmv'){
+    // Fit the core DMV and its neighboring campuses without clipping the region on phones.
+    const [west,north]=world(-81.1,41.12),[east,south]=world(-74.15,36.9);
+    const rect=canvas.getBoundingClientRect();
+    cx=(west+east)/2;cy=(north+south)/2;
+    z=Math.log2(Math.min((rect.width-28)/(east-west),(rect.height-32)/(south-north))/256);
+  }else{
+    const p=presets[key]||presets.us;
+    [cx,cy]=world(p[0],p[1]);z=p[2]+Math.log2(Math.max(.45,W/1100));
+  }
+  renderSoon();
+}
 function focusSchool(name){$('school').value=name;readFilters();if(selected){[cx,cy]=selected.xy;z=6.3+Math.log2(Math.max(.45,W/1100));$('region').value='';showSchool(selected);renderSoon();}}
 function showSchool(s){
   const pool=players.filter(p=>p.xy&&p.year>=sf.first&&p.year<=sf.last&&
@@ -97,11 +110,11 @@ for(const id of ['threshold','first','last','bandwidth','radius','inside'])$(id)
 $('download').onclick=()=>{const fields=['class_year','player_name','national_rank','composite_rating','composite_stars','position','high_school_name','listed_city','listed_state','latitude','longitude','commitment_school','player_url'];const quote=v=>'"'+String(v??'').replaceAll('"','""')+'"';const text=[fields,...filtered.map(p=>[p.year,p.name,p.rank,p.rating,p.stars,p.position,p.hs,p.city,p.state,p.lat,p.lon,p.commit,p.url])].map(r=>r.map(quote).join(',')).join('\r\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type:'text/csv;charset=utf-8'}));a.download='recruits_'+sf.type+'_'+yearsLabel()+'.csv';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);$('message').textContent='Exported '+filtered.length+' filtered recruits (all regions).';};
 function saveHash(){const p=new URLSearchParams({t:sf.type,a:sf.first,b:sf.last,z:z.toFixed(2),lon:inverse(cx,cy)[0].toFixed(4),lat:inverse(cx,cy)[1].toFixed(4),r:sf.radius,s:sf.school,i:sf.inside?'1':'0',bw:sf.bandwidth,c:$('schoolMode').value,circles:$('circles').checked?'1':'0',p:$('points').checked?'1':'0',sc:$('scale').value,pk:lockedPeak===null?'':lockedPeak.toFixed(4)});history.replaceState(null,'','#'+p);}
 $('reset-filters').onclick=()=>{
-  for(const [id,value] of Object.entries({threshold:'blue',first:'2010',last:'2026',bandwidth:'25',radius:'100',school:'',scale:'auto',schoolMode:'auto',region:'us'})) $(id).value=value;
+  for(const [id,value] of Object.entries({threshold:'blue',first:'2010',last:'2026',bandwidth:String(defaultBandwidth),radius:'100',school:'',scale:'auto',schoolMode:'auto',region:defaultRegion})) $(id).value=value;
   $('inside').checked=false;$('points').checked=true;$('circles').checked=true;
-  readFilters();goPreset('us');
+  readFilters();goPreset(defaultRegion);
 };
 $('share').onclick=async()=>{try{await navigator.clipboard.writeText(location.href);$('message').textContent='View link copied.';}catch{window.prompt('Copy view link',location.href);}};
-function restore(){let p=new URLSearchParams(location.hash.slice(1));const opts={threshold:p.get('t'),first:p.get('a'),last:p.get('b'),radius:p.get('r'),school:p.get('s'),bandwidth:p.get('bw'),schoolMode:p.get('c')};for(const [id,value]of Object.entries(opts))if(value!==null&&[...$(id).options].some(o=>o.value===value))$(id).value=value;$('inside').checked=p.get('i')==='1';$('circles').checked=p.get('circles')!=='0';if(p.has('p'))$('points').checked=p.get('p')==='1';if(p.has('z')&&p.has('lon')&&p.has('lat')&&[p.get('z'),p.get('lon'),p.get('lat')].every(v=>Number.isFinite(+v))){z=Math.max(2,Math.min(11,+p.get('z')));[cx,cy]=world(+p.get('lon'),+p.get('lat'));}else{const rect=canvas.getBoundingClientRect();z=3.5+Math.log2(Math.max(.45,rect.width/1100));}}
+function restore(){let p=new URLSearchParams(location.hash.slice(1));const opts={threshold:p.get('t'),first:p.get('a'),last:p.get('b'),radius:p.get('r'),school:p.get('s'),bandwidth:p.get('bw'),schoolMode:p.get('c')};for(const [id,value]of Object.entries(opts))if(value!==null&&[...$(id).options].some(o=>o.value===value))$(id).value=value;$('inside').checked=p.get('i')==='1';$('circles').checked=p.get('circles')!=='0';if(p.has('p'))$('points').checked=p.get('p')==='1';if(p.has('z')&&p.has('lon')&&p.has('lat')&&[p.get('z'),p.get('lon'),p.get('lat')].every(v=>Number.isFinite(+v))){z=Math.max(2,Math.min(11,+p.get('z')));[cx,cy]=world(+p.get('lon'),+p.get('lat'));}else{$('region').value=defaultRegion;goPreset(defaultRegion);}}
 const savedScale=new URLSearchParams(location.hash.slice(1));restore();readFilters();if(savedScale.get('sc')==='lock'&&+savedScale.get('pk')>0){lockedPeak=+savedScale.get('pk');$('scale').value='lock';}new ResizeObserver(resize).observe(canvas);window.addEventListener('hashchange',()=>{restore();readFilters();});
 })();
