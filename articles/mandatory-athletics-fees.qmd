@@ -2,7 +2,7 @@
 title: "Mandatory Student Athletics Fees Across the Power Four"
 date: 2026-11-20
 categories: [economics, college-sports]
-description: "Published student athletics fees, what they cover, and what the missing entries mean."
+description: "Published student athletics fees, how they changed with the start of revenue sharing, and what students pay for tickets."
 ---
 
 Athletics departments are usually discussed in terms of media rights, ticket sales, and donor support. Some schools also charge students a **mandatory athletics fee**, whether or not those students attend games.
@@ -51,6 +51,22 @@ I assembled published fee schedules for the 68 schools in the current Power Four
   <div class="mini-bar-row"><b>NC State</b><div class="mini-bar-track"><span style="width:27.9%"></span></div><strong>$232</strong></div>
 </div>
 ```
+
+## When fees started rising
+
+Eight of the nine schools with comparable published fees in 2019–20, 2024–25, and both years since charged the same amount in 2019–20 and 2024–25. Six raised them over the next two years. The median school added **$40 per student per year**, while the average increase was **$84**, or **$45** without Virginia Tech.
+
+![Change in annual student athletics charges since 2019–20. Virginia Tech rises before 2025–26, several schools introduce or raise fees over the next two years, and Maryland stays flat.](../assets/articles/P4_Athletics_Fee_Dollar_Changes.png)
+
+Virginia Tech was already up **$111** by 2024–25, then added another **$395** over two years. Georgia and Georgia Tech raised existing fees in 2025–26, the first year of athlete revenue sharing. Florida and Oklahoma State followed in 2026–27. Maryland stayed at **$399 per year**.
+
+The chart also includes schools that introduced a standalone charge. Clemson and South Carolina added **$300** each in 2025–26, Louisville added **$400**, and Minnesota added a **$200** facilities fee. West Virginia introduced its **$250** fee in 2025–26 and doubled it the following year. The pre-launch zeros represent those specific charges.
+
+The timing lines up with new pressure on athletics budgets. [Minnesota’s FY2026 budget](https://regents.umn.edu/sites/regents.umn.edu/files/2025-06/docket-bor-jun182025.pdf) identifies $22.5 million in settlement-related costs and lists the new facilities fee among its responses. [Georgia Tech’s fee request](https://www.budgets.gatech.edu/File?F=MSFAC%2F26MSFAC+AthleticAssoc-Fee+Request+Workbook.pdf) cites lost ACC revenue related to NIL. [Virginia Tech’s budget](https://www.bov.vt.edu/assets/Materials-March%2024-25%2C%202025-35.pdf) attributes $188 of its first $295 increase to moving costs from other student fee categories. The fee changes show what happened to student bills. The budget documents explain why the increases differed by school.
+
+## Compare fees and tickets
+
+[Open the student athletics costs dashboard](../assets/articles/student-fee-dashboard/index.html) to compare all 68 schools. Expand a school to see its mandatory fee, enrollment assumptions for estimates, and ticket options. A paid season package can coexist with a free single-game lottery, as it does at Virginia Tech.
 
 ## Coverage
 
