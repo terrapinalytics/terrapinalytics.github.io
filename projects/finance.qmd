@@ -17,3 +17,5 @@ toc: false
 
 The NCAA download includes the original football spending amount, a comparison flag, and a quality note. The FY2012 reported zeros flagged by the audit are excluded from comparisons. EADA uses the institution ID reported for each fiscal year. School labels retain Penn State as one program across its change in reported institution ID. [Historical NCAA coaching compensation discrepancies (CSV)](../assets/finance/historical_coaching_compensation_conflicts.csv)
 [College Athletics Spending Index](athletics-spending-index.qmd) · [How Fast Is College Athletics Spending Growing?](../articles/college-athletics-spending-index.qmd)
+
+Athletics-index normalization uses the matched-school NCAA FBS benchmark. The four school-published FY2025 supplements for App State, Bowling Green, Miami (Ohio), and Western Kentucky add football coaching compensation, football ticket revenue and football contributions alongside the department figures. Football coaching compensation combines NCAA lines 22 and 23. The source panel includes a link per supplemented field.

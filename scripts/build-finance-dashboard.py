@@ -21,6 +21,9 @@ METRICS = {
         "media": "conference_ncaa_media_postseason_revenue_usd",
         "support": "total_subsidy_usd",
         "fees": "student_fees_revenue_usd",
+        "fbcoaches": "football_coaching_compensation_usd",
+        "fbtickets": "football_ticket_sales_revenue_usd",
+        "fbdonors": "football_donor_contributions_revenue_usd",
         "coaches": "coaches_compensation_expenditure_usd",
         "debt": "annual_debt_service_usd",
     },
@@ -77,7 +80,7 @@ def read_spending_index():
     with (ROOT / "escalation/explorer_series.csv").open(newline="", encoding="utf-8") as handle:
         index = {}
         for row in csv.DictReader(handle):
-            if row["series_id"] != "Total athletics spending benchmark":
+            if row["series_id"] != "NCAA total spending|FBS":
                 continue
             year, value = int(row["fiscal_year"]), float(row["index"])
             if year in index or not isfinite(value) or value <= 0:

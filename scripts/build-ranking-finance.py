@@ -17,6 +17,9 @@ CPI = {2022: 292.655, 2023: 304.702, 2024: 313.689, 2025: 321.943}
 METRICS = {
     'ncaa': (
         ('ncaa_football_expenses_FY2025_usd', 'football_expenditure_usd', 'NCAA football expenses'),
+        ('ncaa_football_coaching_compensation_FY2025_usd', 'football_coaching_compensation_usd', 'NCAA football coaches compensation'),
+        ('ncaa_football_ticket_sales_FY2025_usd', 'football_ticket_sales_revenue_usd', 'NCAA football ticket revenue'),
+        ('ncaa_football_contributions_FY2025_usd', 'football_donor_contributions_revenue_usd', 'NCAA football contributions'),
         ('ncaa_2025_total_expenditure_usd', 'total_expenditure_usd', 'NCAA athletics expenses'),
         ('ncaa_2025_ticket_sales_revenue_usd', 'ticket_sales_revenue_usd', 'NCAA athletics ticket revenue'),
         ('ncaa_2025_donor_contributions_revenue_usd', 'donor_contributions_revenue_usd', 'NCAA athletics contributions'),

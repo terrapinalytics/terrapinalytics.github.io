@@ -5,11 +5,11 @@ page-layout: full
 toc: false
 ---
 
-From FY2019 to FY2025, the NCAA spending index grew **6.6% per year** across 53 reporting Power Four schools, or **2.6% per year after CPI-U**. The same 53 schools show **6.8% annualized growth** in EADA. [Read the article](../articles/college-athletics-spending-index.qmd)
+From FY2019 to FY2025, the matched-school NCAA index for reporting FBS programs grew **5.8% per year**. The Group of Six series grew **4.8%** and the original 53-school Power Four benchmark grew **6.6%**. EADA shows **6.4%** for reporting FBS programs and **5.7%** for the Group of Six. [Read the Power Four analysis](../articles/college-athletics-spending-index.qmd)
 
 ## Explore the data {#explorer}
 
-The chart opens to FY2016–FY2025 with FY2019 set to 100. Compare spending in dollars, as an index, or by growth rate. Use the date controls to go back to FY2005 for NCAA total spending and FY2001 for many EADA sports.
+The chart opens to FY2016–FY2025 with FY2019 set to 100. The default view compares the FBS and Power Four NCAA benchmarks with CPI-U. Use the cohort filter to select Group of Six series. Compare spending in dollars, as an index, or by growth rate. Use the date controls to go back to FY2005 for NCAA total spending and FY2001 for many EADA sports.
 
 ```{=html}
 <div class="tool-intro">
@@ -63,7 +63,7 @@ The FY2025 scholarship and related support category reflects new reporting defin
 3. Compare it with the annual cross-sectional median spending level, also rebased to FY2019. The annual median-dollar figure describes the middle department each year. The matched calculation describes the median change at the school level.
 4. For the real series, divide the matched index by the CPI-U index and multiply by 100. CPI-U uses the U.S. city average for all items and is matched by the year in the fiscal-year label. [BLS annual CPI-U](https://www.bls.gov/regions/northeast/data/consumerpriceindex_us_table.htm)
 
-The headline has 53 usable school pairs in every annual link from FY2019 through FY2025. Earlier coverage varies with available reports. For example, FY2005 has 48 reporting schools, and the FY2006 growth calculation has 47 matched pairs. The NCAA football series excludes nine flagged zero values in FY2012. The NCAA G6 benchmark covers nine ranked public programs. Each chart series reports its source, cohort, and coverage.
+The FY2025 total spending observations cover 117 FBS schools in NCAA and 134 in EADA. The NCAA FY2025 link uses 116 matched schools, including 63 G6 programs. The EADA link uses 134, including 66 G6 programs. Historical grouping uses current conference membership. Earlier coverage varies by metric and fiscal year. The NCAA football series excludes nine flagged FY2012 zeros. The sport and budget-weight series from the original analysis retain their labeled reporting cohorts.
 
 The **fixed-weight composite** grew **5.7% per year** from FY2019 to FY2025. It combines the rebased indexes for coaches’ compensation, non-coaching staff compensation, facilities, debt and equipment, and all remaining expenses. It applies the FY2025 average-school budget shares of **19.3%, 16.9%, 21.6%, and 42.1%**, respectively. The comparable composite starts in FY2015 because NCAA facilities reporting changed that year.
 
