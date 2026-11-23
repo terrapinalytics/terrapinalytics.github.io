@@ -12,5 +12,5 @@ Explore play-by-play data from 2023 through November 21, 2026. Maryland is selec
 <a href="https://maryland-football-success-rates.jubilantzebra3.chatgpt.site/" target="_blank" rel="noopener">Open full screen</a>
 <a href="https://maryland-football-success-rates.jubilantzebra3.chatgpt.site/big-ten-football-plays.zip">Download all teams (ZIP)</a>
 </div>
-<iframe class="tool-frame" src="https://maryland-football-success-rates.jubilantzebra3.chatgpt.site/" title="Big Ten football success rates explorer" loading="eager" allow="clipboard-write"></iframe>
+<iframe class="tool-frame tool-frame-external" src="https://maryland-football-success-rates.jubilantzebra3.chatgpt.site/" title="Big Ten football success rates explorer" loading="eager" allow="clipboard-write"></iframe>
 ```

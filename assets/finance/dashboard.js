@@ -116,7 +116,9 @@ function renderChart(series, years, window) {
     $('trend-values').innerHTML = '';
     return;
   }
-  const width = 700, height = 300, left = 78, right = 24, top = 18, bottom = 38;
+  const compact = window.matchMedia?.("(max-width:700px)").matches;
+  const width = compact ? Math.max(240, $('trend').clientWidth) : 700;
+  const height = compact ? 240 : 300, left = compact ? 62 : 78, right = 24, top = 18, bottom = 38;
   const min = Math.min(0, ...amounts) * 1.05;
   const max = Math.max(1, ...amounts) * 1.05;
   const x = index => left + index * (width - left - right) / Math.max(1, years.length - 1);
@@ -125,7 +127,7 @@ function renderChart(series, years, window) {
   const grid = Array.from({length:5}, (_,i) => min + (max-min)*i/4).map(value => `
     <line x1="${left}" y1="${y(value)}" x2="${width-right}" y2="${y(value)}" stroke="#e9edf2"/>
     <text x="${left-7}" y="${y(value)+4}" text-anchor="end">${axisAmountFormat.format(value)}</text>`).join('');
-  const yearStep = Math.ceil(years.length / 6);
+  const yearStep = Math.ceil(years.length / (compact ? 4 : 6));
   const ticks = years.map((year,i) => i % yearStep === 0 || i === years.length - 1
     ? `<text x="${x(i)}" y="${height-12}" text-anchor="middle">${year}</text>` : '').join('');
   const lines = series.map(line => {
@@ -342,4 +344,16 @@ loadData().then(data => {
   render();
 }).catch(error => {
   $('stats').textContent = 'Unable to load financial data: ' + error.message;
+});
+
+const chartLayout = matchMedia('(max-width:700px)');
+let chartWidth = $('trend').clientWidth;
+new ResizeObserver(() => {
+  const width = $('trend').clientWidth;
+  if (width === chartWidth) return;
+  chartWidth = width;
+  if (chartLayout.matches && $('trend').querySelector('svg')) render();
+}).observe($('trend'));
+chartLayout.addEventListener('change', () => {
+  if ($('trend').querySelector('svg')) render();
 });

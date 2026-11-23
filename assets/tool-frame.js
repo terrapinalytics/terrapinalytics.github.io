@@ -1,11 +1,17 @@
 // Fit local dashboards to their content so the page handles vertical scrolling.
-for (const frame of document.querySelectorAll('iframe[data-fit-content]')) {
+const mobileFrame = matchMedia('(max-width:750px)');
+for (const frame of document.querySelectorAll('iframe[data-fit-content], iframe[data-fit-mobile]')) {
+  const mobileOnly = !frame.hasAttribute('data-fit-content');
   let observer;
   function fit() {
     observer?.disconnect();
     const document = frame.contentDocument;
     const body = document?.body;
     if (!body) return;
+    if (mobileOnly && !mobileFrame.matches) {
+      frame.style.height = originalHeight;
+      return;
+    }
     document.documentElement.classList.add("dashboard-embedded");
 
     const resize = () => {
@@ -18,6 +24,8 @@ for (const frame of document.querySelectorAll('iframe[data-fit-content]')) {
     observer.observe(body);
     resize();
   }
+  const originalHeight = frame.style.height;
+  if (mobileOnly) mobileFrame.addEventListener('change', fit);
   frame.addEventListener('load', fit);
   if (frame.contentDocument?.readyState === 'complete') fit();
 }

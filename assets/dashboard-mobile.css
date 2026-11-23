@@ -1,0 +1,52 @@
+.mobile-map-filters,.mobile-scroll-note{display:none}
+@media(max-width:700px){
+  body[data-dashboard] :is(main,section,aside,fieldset,.layout,.panel,.chart,.controls,.field,.card,.details,.workspace){min-width:0}
+  body[data-dashboard] :is(input,select,button){max-width:100%}
+  body[data-dashboard] :is(select,input:not([type="checkbox"],[type="radio"],[type="range"])){font-size:16px;min-height:44px;min-width:0}
+  body[data-dashboard] :is(summary,button:not(th button)){min-height:44px}
+  body[data-dashboard] summary{padding-block:.65rem}
+  body[data-dashboard] :is(.table-wrap,.tablewrap,.tablebox,.scroll,.ranking){max-width:100%;overscroll-behavior-x:contain}
+  .mobile-scroll-note:not([hidden]){display:block;margin:.45rem 0;color:#4c5963;font: .8rem/1.4 system-ui,sans-serif}
+  body[data-dashboard] [data-mobile-scroll="wide"]:focus-visible{outline:2px solid #9e1830;outline-offset:1px}
+  body[data-dashboard] [data-mobile-scroll="wide"] table>thead>tr>:first-child,
+  body[data-dashboard] [data-mobile-scroll="wide"] table>tbody>tr>:first-child:not([colspan]){
+    position:sticky;left:0;background:#f3f5f7;color:#26323c;z-index:1;box-shadow:1px 0 #d4dbe0
+  }
+  body[data-dashboard] [data-mobile-scroll="wide"] table>thead>tr>:first-child{z-index:3}
+  body[data-dashboard] [data-mobile-scroll="wide"] .selected>:first-child{background:#e8f3f4}
+  body[data-dashboard] [data-mobile-scroll="wide"] th button{min-height:36px}
+  body[data-dashboard="coaching"] .metric-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr))}
+  body[data-dashboard="coaching"] .tools>*{min-width:0}
+  body[data-dashboard="fouls"] :is(.cards,#filters,.ranktools,.smallcards){grid-template-columns:repeat(2,minmax(0,1fr))}
+  body[data-dashboard="fouls"] .panel-top>label{min-width:0;max-width:100%}
+  body[data-dashboard="fouls"] .mix-top select{width:100%}
+  body[data-dashboard="fouls"] :is(.tabs,.mix-tabs,.pagination){flex-wrap:wrap}
+  body:is([data-dashboard="finance"],[data-dashboard="championships"]) .field{flex:1 1 8rem}
+  body:is([data-dashboard="finance"],[data-dashboard="championships"]) .field select{width:100%;min-width:0}
+  body[data-dashboard="fees"] main{padding-inline:.75rem}
+  body[data-dashboard="fee-history"] :is(main,header div){padding-inline:.8rem}
+  body[data-dashboard="fee-history"] .chart-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+  body[data-dashboard="fee-history"] .school-menu{grid-column:1/-1}
+  body[data-dashboard="fee-history"] #school-series{position:static;width:auto;max-width:none;box-shadow:none}
+  body[data-dashboard="fee-history"] #school-series label{min-height:36px}
+  body[data-dashboard="fee-history"] #fee-chart{min-width:0}
+  body[data-dashboard="spending"] :is(.actions,.controls,.chart-head){flex-wrap:wrap}
+  body[data-dashboard="spending"] .series-option{overflow-wrap:anywhere}
+}
+@media(max-width:640px){
+  .mobile-map-filters{display:block;margin:.5rem .65rem;text-align:left}
+  .mobile-map-filters[hidden],body[data-dashboard="recruiting"] aside[hidden]{display:none}
+  body[data-dashboard="recruiting"] aside{max-height:none;display:block}
+  body[data-dashboard="recruiting"] #mapbox{height:clamp(260px,58svh,480px);min-height:260px}
+  body[data-dashboard="recruiting"] #legend{max-width:calc(100% - 24px)}
+  body[data-dashboard="recruiting"] #tooltip{max-width:calc(100% - 24px)}
+}
+@media(max-width:360px){
+  body[data-dashboard="fouls"] .smallcards{grid-template-columns:1fr}
+  body[data-dashboard="fouls"] .panel{padding:12px}
+}
+@media(max-width:700px){
+  body:is([data-dashboard="finance"],[data-dashboard="championships"]) .statrow{grid-template-columns:repeat(2,minmax(0,1fr))}
+  body:is([data-dashboard="finance"],[data-dashboard="championships"]) .stat{min-width:0;padding: .65rem;overflow-wrap:anywhere}
+  body:is([data-dashboard="finance"],[data-dashboard="championships"]) .stat b{font-size:clamp(.95rem,4vw,1.25rem)}
+}

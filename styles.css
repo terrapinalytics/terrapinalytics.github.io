@@ -132,3 +132,10 @@ body:not(:has(.landing-hero)) .content a{text-underline-offset:3px}
   .home-explore .explore-category{padding:1rem}
   .home-preview{padding-top:1.1rem;padding-bottom:1.1rem}
 }
+
+@media(max-width:750px){
+  main.content:has(.tool-frame,.mobile-embed){min-width:0}
+  .mobile-embed{display:block;max-width:100%;min-height:0!important}
+  .tool-intro a{display:inline-flex;align-items:center;min-height:44px}
+  .tool-frame-external{height:80vh;height:80svh;min-height:460px}
+}

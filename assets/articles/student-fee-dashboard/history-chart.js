@@ -56,7 +56,8 @@
     input.addEventListener('change',render);
     return {name,input,color,swatch};
   });
-  const left=76,right=897,top=28,bottom=289;
+  const chartPanel=chart.parentElement;
+  const compactChart=matchMedia("(max-width:700px)");
   const dollars = new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});
   const indices = new Intl.NumberFormat('en-US',{maximumFractionDigits:0});
   const newCharges = new Set(['West Virginia','Louisville','Clemson','South Carolina','Minnesota']);
@@ -78,6 +79,10 @@
   }
 
   function render() {
+    const compact=compactChart.matches;
+    const width=compact?Math.max(240,chartPanel.clientWidth):920;
+    const left=compact?52:76,right=width-(compact?14:23),top=28,bottom=compact?225:289;
+    chart.setAttribute("viewBox",`0 0 ${width} ${compact?265:340}`);
     const first=+from.value,last=+through.value,mode=metric.value;
     const format = mode==='index' ? indices : dollars;
     const x = year => first===last ? (left+right)/2 : left+(right-left)*(year-first)/(last-first);
@@ -117,17 +122,17 @@
     if(first<firstFeeYear && last>=firstFeeYear){
       const shadeX=(x(firstFeeYear-1)+x(firstFeeYear))/2;
       chart.append(svg('rect',{x:shadeX,y:top,width:right-shadeX,height:bottom-top,fill:'#f6ede4'}),
-        svg('text',{x:shadeX-5,y:top-8,'text-anchor':'end',fill:'#704f37','font-size':12},'Athlete revenue sharing begins'));
+        svg('text',{x:shadeX-5,y:top-8,'text-anchor':'end',fill:'#704f37','font-size':12},compact?'Revenue sharing':'Athlete revenue sharing begins'));
     }
     for(let v=lower;v<=upper;v+=step){
       chart.append(svg('line',{x1:left,x2:right,y1:y(v),y2:y(v),stroke:v===0?'#aab5b9':'#d9dedf'}),
         svg('text',{x:left-9,y:y(v)+4,'text-anchor':'end',fill:'#47525a','font-size':13},format.format(v)));
     }
-    const tickInterval=Math.max(1,Math.ceil((last-first)/7));
+    const tickInterval=Math.max(1,Math.ceil((last-first)/(compact?4:7)));
     for(let year=first;year<=last;year++){
       if(year!==last && (year-first)%tickInterval) continue;
       if(year!==first && year!==last && last-year<tickInterval/2) continue;
-      chart.append(svg('text',{x:x(year),y:320,'text-anchor':year===last&&year!==first?'end':'middle',fill:'#47525a','font-size':13},yearLabel(year)));
+      chart.append(svg('text',{x:x(year),y:compact?249:320,'text-anchor':year===last&&year!==first?'end':'middle',fill:'#47525a','font-size':13},yearLabel(year)));
     }
     for(const choice of lines){
       const color=choice.swatch.style.backgroundColor;
@@ -147,4 +152,10 @@
     }
   }
   render();
+  let previousWidth=chartPanel.clientWidth;
+  new ResizeObserver(()=>{
+    const width=chartPanel.clientWidth;
+    if (width!==previousWidth) { previousWidth=width; render(); }
+  }).observe(chartPanel);
+  compactChart.addEventListener("change",render);
 })();

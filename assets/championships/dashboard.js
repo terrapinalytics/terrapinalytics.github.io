@@ -72,9 +72,11 @@ function renderTrend(rows, label) {
   const sums = new Map(group(rows, 'y'));
   const values = seasons.map(season => sums.get(season) || 0);
   const max = Math.max(1, ...values);
-  const width = 1040;
-  const height = 260;
-  const pad = 38;
+  const compact = window.matchMedia?.("(max-width:700px)").matches;
+  const width = compact ? Math.max(240, $('trend').clientWidth) : 1040;
+  const height = compact ? 200 : 260;
+  const pad = compact ? 25 : 38;
+  const tickStep = compact ? Math.ceil(seasons.length / 4) : 1;
   const coords = values.map((value, i) => [
     pad + i * (width - 2 * pad) / (seasons.length - 1),
     height - pad - value / max * (height - 2 * pad)
@@ -83,7 +85,7 @@ function renderTrend(rows, label) {
   $('trend').innerHTML = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${label} by season">
     <line x1="${pad}" x2="${width - pad}" y1="${height - pad}" y2="${height - pad}" stroke="#cdd2d8"/>
     <path d="${path}" stroke="#c8102e" stroke-width="3" fill="none"/>
-    ${coords.map(([x, y], i) => `<circle cx="${x}" cy="${y}" r="4" fill="#c8102e"><title>${seasons[i]}: ${fmt(values[i])}</title></circle><text x="${x}" y="${height - 12}" text-anchor="middle" font-size="12" fill="#5c6772">${seasons[i].slice(2)}</text>`).join('')}</svg>`;
+    ${coords.map(([x, y], i) => `<circle cx="${x}" cy="${y}" r="4" fill="#c8102e"><title>${seasons[i]}: ${fmt(values[i])}</title></circle>${i % tickStep === 0 && i < seasons.length - Math.ceil(tickStep / 2) || i === seasons.length - 1 ? `<text x="${x}" y="${height - 12}" text-anchor="middle" font-size="12" fill="#5c6772">${seasons[i].slice(2)}</text>` : ''}`).join('')}</svg>`;
 }
 
 function drillRecords(records, levels, measure, split) {
@@ -199,4 +201,16 @@ loadData().then(inventory => {
   render();
 }).catch(error => {
   $('stats').textContent = 'Unable to load championship data: ' + error.message;
+});
+
+const chartLayout = matchMedia('(max-width:700px)');
+let chartWidth = $('trend').clientWidth;
+new ResizeObserver(() => {
+  const width = $('trend').clientWidth;
+  if (width === chartWidth) return;
+  chartWidth = width;
+  if (chartLayout.matches && $('trend').querySelector('svg')) render();
+}).observe($('trend'));
+chartLayout.addEventListener('change', () => {
+  if ($('trend').querySelector('svg')) render();
 });

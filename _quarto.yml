@@ -7,6 +7,8 @@ project:
     - assets/peer-context.js
     - assets/view-tools.js
     - assets/tool-frame.js
+    - assets/dashboard-mobile.css
+    - assets/dashboard-mobile.js
     - assets/peer-context.css
     - assets/peer-context-methodology.md
     - assets/recruiting/**
