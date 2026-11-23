@@ -51,7 +51,13 @@ for (const filename of normalizedFouls) {
 assert(normalizedCount > 0, 'The snapshot includes a box score that excludes technicals');
 
 const ncaaRows = finance.filter(record => record.a === 'NCAA');
-assert.equal(ncaaRows.filter(record => record.y === 2005 && record.exp != null).length, 49);
+const g6 = new Set(['American','C-USA','MAC','Mountain West','Pac-12','Sun Belt']);
+for (const [source, reporting] of [['NCAA',64],['EADA',66]]) {
+  const rows = finance.filter(r => r.a === source && r.y === 2025 && g6.has(r.c));
+  assert.equal(new Set(rows.map(r => r.s)).size, 69);
+  assert.equal(rows.filter(r => r.exp != null).length, reporting);
+}
+assert.equal(ncaaRows.filter(r => r.y === 2005 && g6.has(r.c) && r.exp != null).length, 59);
 const flagged = ncaaRows.filter(record => record.fbexpFlagged);
 assert.equal(flagged.length, 9);
 assert(flagged.every(record => record.y === 2012 && record.fbexp == null));

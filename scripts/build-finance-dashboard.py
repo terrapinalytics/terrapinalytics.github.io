@@ -32,8 +32,8 @@ METRICS = {
     },
 }
 PANELS = {
-    "NCAA": "ranked_ncaa_finances_FY2005_FY2025.csv",
-    "EADA": "ranked_eada_finances_FY2001_FY2025.csv",
+    "NCAA": "fbs_ncaa_finances_FY2005_FY2025.csv",
+    "EADA": "fbs_eada_finances_FY2001_FY2025.csv",
 }
 
 

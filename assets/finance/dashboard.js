@@ -16,6 +16,64 @@ const CPI = [
 const POWER_CONFERENCES = new Set(['ACC', 'Big Ten', 'Big 12', 'SEC']);
 const COMPARISON_COLORS = ['#7c3da4', '#147e70', '#a86211', '#566b9c'];
 const SCHOOL_COLORS = {
+  "Air Force": "#003594",
+  "Akron": "#041e42",
+  "App State": "#000000",
+  "Arkansas State": "#cc092f",
+  "Army": "#000000",
+  "Ball State": "#ba0c2f",
+  "Bowling Green": "#fd5000",
+  "Buffalo": "#005bbb",
+  "Central Michigan": "#6a0032",
+  "Charlotte": "#005035",
+  "Coastal Carolina": "#006f71",
+  "Delaware": "#00539f",
+  "East Carolina": "#592a8a",
+  "Eastern Michigan": "#046a38",
+  "Florida Atlantic": "#003366",
+  "Florida International": "#091f3f",
+  "Fresno State": "#c41230",
+  "Georgia Southern": "#041e42",
+  "Georgia State": "#0039a6",
+  "Hawai'i": "#024731",
+  "Jacksonville State": "#cc0000",
+  "Kennesaw State": "#fdbb30",
+  "Kent State": "#002664",
+  "Louisiana": "#ce181e",
+  "Louisiana Tech": "#003087",
+  "Marshall": "#00b140",
+  "Massachusetts": "#881c1c",
+  "Miami (OH)": "#c41230",
+  "Middle Tennessee": "#036eb7",
+  "Missouri State": "#5e0009",
+  "Navy": "#00225b",
+  "Nevada": "#041e42",
+  "New Mexico": "#ba0c2f",
+  "New Mexico State": "#8c0b42",
+  "North Dakota State": "#00583d",
+  "Northern Illinois": "#c8102e",
+  "North Texas": "#00853e",
+  "Ohio": "#024230",
+  "Old Dominion": "#043657",
+  "Rice": "#00205b",
+  "Sacramento State": "#00573c",
+  "Sam Houston": "#f56423",
+  "San Jos\u00e9 State": "#0055a2",
+  "South Alabama": "#00205b",
+  "Southern Miss": "#ffc72c",
+  "Temple": "#a41e35",
+  "Texas State": "#501214",
+  "Toledo": "#0b2240",
+  "Troy": "#862633",
+  "Tulsa": "#003595",
+  "UAB": "#1a5632",
+  "UL Monroe": "#840029",
+  "Utah State": "#0f2439",
+  "UTEP": "#ff8200",
+  "UTSA": "#0c2340",
+  "Western Kentucky": "#c60c30",
+  "Western Michigan": "#532e1f",
+  "Wyoming": "#492f24",
   Alabama:'#9e1b32', Arizona:'#ab0520', 'Arizona State':'#8c1d40', Arkansas:'#9d2235',
   Auburn:'#0c2340', BYU:'#002e5d', Baylor:'#154734', 'Boise State':'#0033a0',
   'Boston College':'#98002e', California:'#003262', Cincinnati:'#e00122', Clemson:'#f56600',
@@ -251,7 +309,7 @@ function render() {
     {label:primary.conference+' reporting sample', schools:conferencePeers}
   ];
   if (!POWER_CONFERENCES.has(primary.conference)) {
-    groups.splice(1,0,{label:'Ranked G6 reporting sample', schools:schools.filter(school => !POWER_CONFERENCES.has(school.conference))});
+    groups.splice(1,0,{label:'Group of Six reporting sample', schools:schools.filter(school => !POWER_CONFERENCES.has(school.conference))});
   }
 
   const trending = view === 'trend';
@@ -312,6 +370,7 @@ loadData().then(data => {
   view = params.get('view') === 'trend' ? 'trend' : 'compare';
   for (const id of ['source','conference','window','dollars']) ViewTools.restore($(id), params.get(id));
   sourceChanged(false);
+  setSchoolOptions();
   ViewTools.restore($('metric'), params.get('metric'));
   ViewTools.restore($('year'), params.get('year'));
   $('school').value = 'Maryland';
