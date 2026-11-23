@@ -46,7 +46,7 @@ html.embedded { overflow: hidden; }
 <div id="share-feedback" class="quiet share-feedback" role="status"></div>
 <div id="share-fallback" class="share-feedback" hidden><label class="label" for="share-url">Chart link</label><input id="share-url" type="url" readonly></div>
 <div class="controls">
-<label>View<select id="mode"><option value="index">Index · base year = 100</option><option value="dollars">Dollar amounts</option><option value="yoy">Annual % change</option><option value="change">Cumulative % change</option><option value="cagr">3-year annualized % change</option></select></label>
+<label>View<select id="mode"><option value="index">Index · base year = 100</option><option value="dollars">Dollar amounts</option><option value="yoy">Annual % change</option><option value="change">Cumulative % change</option><option value="cagr">3-year CAGR</option></select></label>
 <label id="base-field">Base fiscal year<select id="base"></select></label>
 <button id="shared-base" class="shared-base" type="button">Use a shared year</button>
 <label>Price basis<select id="prices"><option value="nominal">Nominal</option><option value="real">Inflation-adjusted</option></select></label>
@@ -70,7 +70,7 @@ html.embedded { overflow: hidden; }
 <details class="card"><summary>View chart data</summary><div class="table-wrap" id="table"></div></details>
 <details class="card"><summary>Sources and definitions</summary>
 <p>Dollar amounts are nominal or stated in FY2025 dollars using CPI-U. They show median reported spending per school or team. For scope and coverage, inspect a fiscal year using your pointer or arrow keys. Missing observations appear as gaps. Each series shows its available years in the picker.</p>
-<p>Index and cumulative change rebase the published spending series to the chosen fiscal year. Annual growth uses each source series’ reported year-over-year change. The 3-year view annualizes the change across three fiscal years. First year of each run uses a separate base for each uninterrupted span, so lines with different starting years show growth from different dates. The fixed-weight composite and CPI-U are index series, so they have no dollar values.</p>
+<p>Index and cumulative change rebase the published spending series to the chosen fiscal year. Annual growth uses each source series’ reported year-over-year change. The 3-year CAGR is the compound annual growth rate over three years. First year of each run uses a separate base for each uninterrupted span, so lines with different starting years show growth from different dates. The fixed-weight composite and CPI-U are index series, so they have no dollar values.</p>
 <p>Earlier NCAA spending and football values use the original and backfilled filings. Sample counts may vary and annual growth uses schools present in both years. The comparable facilities, remaining-expense and composite indices begin in FY2015 because NCAA changed the facilities definition. The seven-school games and travel comparison starts in FY2024.</p>
 <p>Spending indices reflect changes in the amount and composition of spending. Chart values describe spending escalation. NCAA budget categories and EADA sports use different cohorts and accounting definitions. Dollar medians and the median of school-level changes are distinct calculations.</p>
 <p><a href="explorer_series.csv" download>All explorer series (CSV)</a> · <a href="../../../projects/athletics-spending-index.html#downloads" target="_top">Methods and source downloads</a> · <a href="https://www.bls.gov/regions/northeast/data/consumerpriceindex_us_table.htm" target="_blank" rel="noopener">BLS CPI-U</a></p>
@@ -85,7 +85,10 @@ const S=new Map(data.series.map(s=>[s.id,s]));
 const $=id=>document.getElementById(id);
 const COLORS=['#166047','#95394c','#235b9b','#8a580e','#69428b','#067883','#474c5f','#a74815'];
 const earliestYear=Math.min(...Object.keys(data.cpi).map(Number));
-const YEARS=Array.from({length:2026-earliestYear},(_,i)=>earliestYear+i);
+const latestYear=Math.max(...Object.keys(data.cpi).map(Number));
+const YEARS=Array.from({length:latestYear-earliestYear+1},(_,i)=>earliestYear+i);
+const DEFAULT_BASE=2019;
+const DEFAULT_RANGE=10;
 const defaults=[
   'Total athletics spending benchmark',
   'CPI-U comparator'
@@ -108,7 +111,7 @@ const run=(s,y)=>level(s,y,5);
 const rebasing=()=>['index','change'].includes(mode);
 const reference=(s,y)=>mode==='cagr'?y-3:base==='first'?run(s,y):base;
 const baseLabel=()=>base==='first'?'first year of each run':'FY'+base;
-const periodFrom=p=>p==='all'?Math.min(...[...active.keys()].flatMap(id=>Object.keys(S.get(id).rows).filter(y=>number(run(S.get(id),y))).map(Number)),2025):p==='athletics'?2001:p==='2019'?2019:2026-Number(p);
+const periodFrom=p=>p==='all'?Math.min(...[...active.keys()].flatMap(id=>Object.keys(S.get(id).rows).filter(y=>number(run(S.get(id),y))).map(Number)),latestYear):p==='athletics'?2001:p==='2019'?2019:latestYear-Number(p)+1;
 function coverage(s) {
   const years=Object.keys(s.rows).filter(y=>number(run(s,y)));
   return years.length?'FY'+years[0]+'–'+years.at(-1):'';
@@ -121,9 +124,12 @@ const explanations={
   yoy:'Annual growth is the median of each matched school’s percentage change. The fixed-weight composite and CPI-U use changes in their index levels.',
   index:'Spending indices compound median matched-school growth rates. A level of 120 means 20% growth from the base year shown for that line.',
   change:'This view shows cumulative growth from the base year shown for each line, using the compounded index.',
-  cagr:'This view annualizes the change in the compounded index over three consecutive fiscal years.'
+  cagr:'Each point shows the compound annual growth rate over the three years ending in that fiscal year.'
 };
-const labels={index:'Index points',dollars:'Median spending',yoy:'Annual change',change:'Change from base year',cagr:'3-year annualized change'};
+const labels={index:'Index points',dollars:'Median spending',yoy:'Annual change',change:'Change from base year',cagr:'3-year CAGR'};
+function compoundAnnualGrowth(ratio, elapsedYears) {
+  return 100*(ratio**(1/elapsedYears)-1);
+}
 function value(s,y) {
   if(mode==='dollars') {
     const v=level(s,y,0);
@@ -138,7 +144,7 @@ function value(s,y) {
   const left=level(s,ref,1),right=level(s,y,1);
   if(!number(left)||left<=0||!number(right))return null;
   const ratio=right/left*(real?data.cpi[ref]/data.cpi[y]:1);
-  if(mode==='cagr')return 100*(Math.cbrt(ratio)-1);
+  if(mode==='cagr')return compoundAnnualGrowth(ratio,y-ref);
   return mode==='index'?100*ratio:100*(ratio-1);
 }
 function format(v,axis=false) {
@@ -206,9 +212,13 @@ function refreshCpiGap() {
     ? [...pair[0].points.keys()].reverse().find(y=>y>base&&pair.every(row=>number(row.points.get(y)))):null;
   $('cpi-gap').hidden=!year;
   if(!year)return;
-  const [spending,prices]=pair.map(row=>row.points.get(year)-(mode==='index'?100:0));
+  const [spending,prices]=pair.map(row=>{
+    const value=row.points.get(year);
+    const ratio=mode==='index'?value/100:1+value/100;
+    return compoundAnnualGrowth(ratio,year-base);
+  });
   const gap=spending-prices;
-  $('cpi-gap').textContent=`FY${base}–FY${year} · Spending ${signed(spending)}${spending.toFixed(1)}% · CPI-U ${signed(prices)}${prices.toFixed(1)}% · Gap ${signed(gap)}${gap.toFixed(1)} pp`;
+  $('cpi-gap').textContent=`FY${base}–FY${year} CAGR · Spending ${spending.toFixed(1)}% · CPI-U ${prices.toFixed(1)}% · Annual gap ${signed(gap)}${gap.toFixed(1)} pp`;
 }
 
 function refreshSeriesContext() {
@@ -235,7 +245,7 @@ function sharedYear() {
   if(active.size<2)return null;
   const selected=[...active.keys()].map(id=>S.get(id));
   const visible=years();
-  const target=base==='first'?2019:base;
+  const target=base==='first'?DEFAULT_BASE:base;
   const options=YEARS.filter(y=>selected.every(s=>number(run(s,y))&&level(s,y,1)>0));
   const score=y=>selected.reduce((total,s)=>total+visible.filter(t=>run(s,t)===run(s,y)).length,0);
   options.sort((a,b)=>score(b)-score(a)||Math.abs(a-target)-Math.abs(b-target));
@@ -250,6 +260,42 @@ function refreshSharedBase() {
 function refreshTable() {
   const ys=years();
   $('table').innerHTML='<table><thead><tr><th scope="col">Fiscal year</th>'+rendered.map(({s})=>'<th scope="col">'+esc(legendName(s))+'</th>').join('')+'</tr></thead><tbody>'+ys.map(y=>'<tr><th scope="row">FY'+y+'</th>'+rendered.map(row=>'<td>'+format(row.points.get(y))+'</td>').join('')+'</tr>').join('')+'</tbody></table>';
+}
+function niceStep(rawStep, minimumStep) {
+  const step=Math.max(rawStep,minimumStep);
+  const magnitude=10**Math.floor(Math.log10(step));
+  return magnitude*[1,2,5,10].find(factor=>factor>=step/magnitude);
+}
+function regularTicks(low,high,step) {
+  const start=Math.ceil(low/step-1e-9),end=Math.floor(high/step+1e-9);
+  return Array.from({length:Math.max(0,end-start+1)},(_,i)=>(start+i)*step);
+}
+function axisScale(values,logarithmic,minimumStep) {
+  const min=Math.min(...values),max=Math.max(...values);
+  if(logarithmic){
+    const low=Math.log10(min),high=Math.log10(max);
+    const pad=(high-low)*.1||.04;
+    const lo=low-pad,hi=high+pad;
+    const ticks=[];
+    for(let exponent=Math.floor(lo);exponent<=Math.floor(hi);exponent++){
+      for(const factor of [1,2,5]){
+        const tick=factor*10**exponent;
+        if(Math.log10(tick)>=lo&&Math.log10(tick)<=hi)ticks.push(tick);
+      }
+    }
+    if(ticks.length>=2){
+      const stride=Math.ceil(ticks.length/6);
+      return {lo,hi,ticks:ticks.filter((_,i)=>i%stride===0)};
+    }
+    const lower=10**lo,upper=10**hi;
+    const step=niceStep((upper-lower)/5,minimumStep);
+    return {lo,hi,ticks:regularTicks(lower,upper,step)};
+  }
+  const pad=(max-min)*.1||Math.max(Math.abs(max)*.06,minimumStep);
+  const step=niceStep((max-min+2*pad)/5,minimumStep);
+  const lo=Math.floor((min-pad)/step)*step;
+  const hi=Math.ceil((max+pad)/step)*step;
+  return {lo,hi,ticks:regularTicks(lo,hi,step)};
 }
 function render() {
   const ys=years(), svg=$('svg');
@@ -283,17 +329,15 @@ function render() {
     dimensions=null;$('tooltip').hidden=true;refreshTable();return;
   }
   const transform=log?Math.log10:v=>v;
-  const inverse=log?v=>10**v:v=>v;
   const baseline=mode==='index'?100:isRate()?0:null;
-  const min=Math.min(...values.map(transform)),max=Math.max(...values.map(transform));
-  const pad=(max-min)*.10||Math.max(Math.abs(max)*.06,.04);
-  const lo=min-pad,hi=max+pad;
+  const {lo,hi,ticks}=axisScale(values,log,mode==='dollars'?1:.1);
   const yy=v=>top+(hi-transform(v))/(hi-lo)*plotH;
-  const step=Math.max(1,Math.ceil((last-first+1)/(w<500?6:10)));
-  const xt=ys.filter((y,i)=>i%step===0||(y===last&&((last-first)%step)>=step*.65));
+  const xIntervals=Math.max(1,Math.min(9,Math.floor(plotW/42)-1));
+  const yearStep=niceStep((last-first)/xIntervals,1);
+  const xt=first===last?[first]:regularTicks(first,last,yearStep);
   let markup='<rect width="'+w+'" height="'+h+'" fill="#fff"/>';
-  for(let j=0;j<=5;j++){
-    const t=lo+(hi-lo)*j/5,v=inverse(t), py=yy(v);
+  for(const v of ticks){
+    const py=yy(v);
     markup+='<path d="M'+left+' '+py+'H'+(w-right)+'" stroke="#e1e7df"/><text x="'+(left-8)+'" y="'+(py+4)+'" text-anchor="end" fill="#566058" font-size="11">'+esc(format(v,true))+'</text>';
   }
   if(baseline!==null&&(!log||baseline>0)&&transform(baseline)>=lo&&transform(baseline)<=hi){
@@ -346,13 +390,13 @@ function sync() {
   $('base').value=base;$('start').value=first;$('end').value=last;
   document.querySelectorAll('[data-period]').forEach(b=>{
     const p=b.dataset.period;
-    b.setAttribute('aria-pressed',String(last===2025&&first===periodFrom(p)));
+    b.setAttribute('aria-pressed',String(last===latestYear&&first===periodFrom(p)));
   });
   refreshPicker();refreshChips();render();
 }
 function reset() {
   active.clear();defaults.forEach(select);
-  mode='index';real=false;base=2019;first=2019;last=2025;log=false;
+  mode='index';real=false;base=DEFAULT_BASE;first=periodFrom(DEFAULT_RANGE);last=latestYear;log=false;
   for(const id of ['search','group','cohort'])$(id).value='';
   clear();sync();
 }
@@ -447,7 +491,7 @@ for(const id of ['mode','base','prices','log','start','end'])$(id).addEventListe
   clear();sync();
 });
 document.querySelectorAll('[data-period]').forEach(b=>b.addEventListener('click',()=>{
-  last=2025;const p=b.dataset.period;first=periodFrom(p);clear();sync();
+  last=latestYear;const p=b.dataset.period;first=periodFrom(p);clear();sync();
 }));
 $('reset').addEventListener('click',()=>{
   if(new URLSearchParams(chartState()).get('view')==='1'){

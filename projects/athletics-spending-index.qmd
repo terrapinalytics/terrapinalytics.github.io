@@ -5,11 +5,11 @@ page-layout: full
 toc: false
 ---
 
-From FY2019 to FY2025, the NCAA spending index rose **46.9%** across 53 reporting Power Four schools, or **16.6% after CPI-U**. The same 53 schools show **48.6%** growth in EADA. [Read the article](../articles/college-athletics-spending-index.qmd)
+From FY2019 to FY2025, the NCAA spending index grew **6.6% per year** across 53 reporting Power Four schools, or **2.6% per year after CPI-U**. The same 53 schools show **6.8% annualized growth** in EADA. [Read the article](../articles/college-athletics-spending-index.qmd)
 
 ## Explore the data {#explorer}
 
-Compare spending in dollars, as an index, or by growth rate. Use the date controls to go back to FY2005 for NCAA total spending and FY2001 for many EADA sports.
+The chart opens to FY2016–FY2025 with FY2019 set to 100. Compare spending in dollars, as an index, or by growth rate. Use the date controls to go back to FY2005 for NCAA total spending and FY2001 for many EADA sports.
 
 ```{=html}
 <div class="tool-intro">
@@ -29,18 +29,18 @@ The **average school share** gives an equal vote to every AD. The **pooled share
 
 | Category | Average school share | Pooled share |
 |---|---:|---:|
-| Facilities, debt and equipment | 21.63% | 22.02% |
-| Coaches’ compensation | 19.33% | 19.07% |
-| Non-coaching staff compensation | 16.92% | 16.76% |
-| Athlete scholarships and related support | 12.94% | 12.61% |
-| Game expenses and travel | 11.63% | 11.63% |
-| Other expenses | 10.87% | 11.24% |
-| Recruiting | 1.89% | 1.90% |
-| Competition guarantees | 1.58% | 1.60% |
-| Medical expenses | 1.21% | 1.17% |
-| Coaching severance | 1.16% | 1.07% |
-| Institutional NIL revenue share | 0.49% | 0.51% |
-| Excess transfers back | 0.33% | 0.40% |
+| Facilities, debt and equipment | 21.6% | 22.0% |
+| Coaches’ compensation | 19.3% | 19.1% |
+| Non-coaching staff compensation | 16.9% | 16.8% |
+| Athlete scholarships and related support | 12.9% | 12.6% |
+| Game expenses and travel | 11.6% | 11.6% |
+| Other expenses | 10.9% | 11.2% |
+| Recruiting | 1.9% | 1.9% |
+| Competition guarantees | 1.6% | 1.6% |
+| Medical expenses | 1.2% | 1.2% |
+| Coaching severance | 1.2% | 1.1% |
+| Institutional NIL revenue share | 0.5% | 0.5% |
+| Excess transfers back | 0.3% | 0.4% |
 
 The FY2025 scholarship and related support category reflects new reporting definitions. The institutional NIL line reflects the amounts schools carried on their own reports in that fiscal year. Third-party NIL is outside the Knight-Newhouse dataset, and FY2025 ended before implementation of the House settlement. [Knight-Newhouse FAQ](https://knightnewhousedata.org/faq)
 
@@ -50,11 +50,11 @@ The FY2025 scholarship and related support category reflects new reporting defin
 
 | Sport or reporting bucket | Average school share | Pooled share |
 |---|---:|---:|
-| Football | 30.09% | 30.06% |
-| Men’s basketball | 9.13% | 8.71% |
-| Women’s basketball | 4.20% | 4.07% |
-| Other sports | 21.53% | 21.41% |
-| Unallocated to teams | 35.05% | 35.74% |
+| Football | 30.1% | 30.1% |
+| Men’s basketball | 9.1% | 8.7% |
+| Women’s basketball | 4.2% | 4.1% |
+| Other sports | 21.5% | 21.4% |
+| Unallocated to teams | 35.0% | 35.7% |
 
 ## How the index is built
 
@@ -65,7 +65,7 @@ The FY2025 scholarship and related support category reflects new reporting defin
 
 The headline has 53 usable school pairs in every annual link from FY2019 through FY2025. Earlier coverage varies with available reports. For example, FY2005 has 48 reporting schools, and the FY2006 growth calculation has 47 matched pairs. The NCAA football series excludes nine flagged zero values in FY2012. The NCAA G6 benchmark covers nine ranked public programs. Each chart series reports its source, cohort, and coverage.
 
-The **fixed-weight composite** rose **39.7%** from FY2019 to FY2025. It combines the rebased indexes for coaches’ compensation, non-coaching staff compensation, facilities, debt and equipment, and all remaining expenses. It applies the FY2025 average-school budget shares of **19.33%, 16.92%, 21.63%, and 42.12%**, respectively. The comparable composite starts in FY2015 because NCAA facilities reporting changed that year.
+The **fixed-weight composite** grew **5.7% per year** from FY2019 to FY2025. It combines the rebased indexes for coaches’ compensation, non-coaching staff compensation, facilities, debt and equipment, and all remaining expenses. It applies the FY2025 average-school budget shares of **19.3%, 16.9%, 21.6%, and 42.1%**, respectively. The comparable composite starts in FY2015 because NCAA facilities reporting changed that year.
 
 ## Downloads
 
