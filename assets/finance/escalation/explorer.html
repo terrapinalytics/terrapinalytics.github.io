@@ -17,6 +17,13 @@ html.embedded { overflow: hidden; }
 .embedded .plot svg { height: clamp(330px, 38vw, 460px); }
 .embedded .details { margin-bottom: 0; }
 [hidden]{display:none!important}.chart-options{margin:8px 0}.chart-options summary{cursor:pointer;font-weight:650}.chart-options .controls{margin-top:6px}
+.cagr-summary{padding:clamp(12px,2vw,20px);margin-bottom:16px}
+.cagr-summary h2{margin:0 0 4px;font-size:1rem}
+.cagr-summary p{margin:.4rem 0}
+.cagr-summary table{width:100%;max-width:40rem;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.cagr-summary th,.cagr-summary td{padding:.4rem .35rem;border-bottom:1px solid var(--stroke);text-align:left}
+.cagr-summary tbody th{font-weight:550}
+.cagr-summary th:last-child,.cagr-summary td:last-child{text-align:right}
 </style>
 <link rel="stylesheet" href="../../table-sort.css"><link rel="stylesheet" href="../../dashboard-mobile.css"><script defer src="../../dashboard-mobile.js"></script></head>
 <body data-dashboard="spending">
@@ -25,6 +32,21 @@ html.embedded { overflow: hidden; }
 <p>Compare total athletics spending from NCAA and EADA reports for the same 53 Power Four schools, alongside CPI-U. Use View to switch units or Compare series to add a line.</p>
 </header>
 <main>
+<section class="card cagr-summary" aria-labelledby="spending-cagr">
+<h2 id="spending-cagr">10-year annualized growth</h2>
+<p class="quiet">FY2015–FY2025 · Nominal spending for 53 reporting Power Four schools. Spending rates compound median year-over-year changes for schools reporting in both years.</p>
+<table aria-labelledby="spending-cagr" aria-describedby="spending-cagr-note">
+<thead><tr><th scope="col">Series</th><th scope="col">CAGR</th></tr></thead>
+<tbody><!-- cagr-rows:start -->
+<tr><th scope="row">College athletics expenses</th><td>6.6%</td></tr>
+<tr><th scope="row">Coaching compensation · all sports*</th><td>6.7%</td></tr>
+<tr><th scope="row">Football coaching compensation*</th><td>7.6%</td></tr>
+<tr><th scope="row">Football expenses</th><td>6.7%</td></tr>
+<tr><th scope="row">CPI-U · U.S. city average</th><td>3.1%</td></tr>
+<!-- cagr-rows:end --></tbody>
+</table>
+<p class="quiet" id="spending-cagr-note">* Coaching compensation covers staff pay and benefits. FY2015 excludes football postseason bonuses that are included in FY2025, which can lift the reported coaching growth rates. <a href="https://www.knightnewhousedata.org/about-the-data" target="_blank" rel="noopener">Reporting definitions</a></p>
+</section>
 <noscript><p class="card" style="padding:14px">This chart needs JavaScript. Open this page in Safari, Chrome, or another browser with JavaScript enabled.</p></noscript>
 <div class="layout">
 <aside id="picker" class="card picker">
