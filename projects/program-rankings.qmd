@@ -6,7 +6,7 @@ toc: false
 
 ```{=html}
 <div class="tool-intro">
-<p>79 FBS programs in the October 2026 edition.</p>
+<p>137 football head-coaching jobs · November 23, 2026</p>
 <a href="../assets/coaching/rankings.html" target="_blank" rel="noopener">Open full screen</a>
 </div>
 <iframe class="tool-frame" data-fit-content src="../assets/coaching/rankings.html" title="FBS program rankings and supporting data" loading="eager"></iframe>
@@ -18,7 +18,7 @@ toc: false
 
 ## How to read these rankings
 
-The rankings and tiers summarize our judgment about the attractiveness of a head-coaching job. They are informed by the evidence below, but are not measured facts or the output of a fitted statistical model. Tier boundaries and small differences between neighboring schools involve judgment.
+The field includes 67 Power Four football members, independent Notre Dame, and all 69 Group of Six teams. The November edition scores each job under the October framework. The October rank remains available for all 79 returning programs.
 
 ### Source observations, calculations, and judgment
 
@@ -31,7 +31,7 @@ The rankings and tiers summarize our judgment about the attractiveness of a head
 
 ### Ranking framework
 
-These category weights describe the intended editorial emphasis. They do not represent a reproducible weighted-score calculation: the current master does not contain school-level category scores or a numerical decomposition that produces each rank.
+Each category receives a score on a 0–100 scale. The weighted sum determines rank. Tiers begin at 90, 80, 70, 60, 50, 40 and 30 points.
 
 | Category | Editorial emphasis | Considerations |
 |---|---:|---|
@@ -41,9 +41,25 @@ These category weights describe the intended editorial emphasis. They do not rep
 | Fans and tradition | 15% | Engagement, history, institutional priorities |
 | Competitive ceiling | 15% | Sustainable success potential, difficulty of league |
 
+### How we scored the November field
+
+Football resources gives 50% of its weight to FY2022–24 football spending, 18% to head and assistant coach pay and football coaching payroll, 12% to available football roster estimates and direct revenue sharing, 12% to FY2025 athletics spending, and 8% to donations. Each finance source is ranked separately before combining scores. Roster estimates use available point estimates or midpoints of reported ranges.
+
+Recruiting gives 38% to the average number of geocoded top-1,000 prospects per class within 250 miles in 2021–25, 32% to recruiting class rank in those years, 20% to 2026 roster talent and 10% to incoming transfer quality. Nearby prospects can count for competing schools. This favors access to talent and gives national recruiters credit through their actual classes.
+
+Conference platform scores are editorial assumptions about media resources, exposure and stability. The SEC and Big Ten score 100, independent Notre Dame 95, the ACC and Big 12 78, the American and Pac-12 44, the Mountain West and Sun Belt 33, and the MAC and C-USA 26. The dashboard also ranks every job with this component removed, holding the other four scores fixed.
+
+Fan support and tradition combines recent home crowds (37%), 2010–19 crowds (16%), stadium capacity (12%), FY2025 ticket revenue (10%) and all-time winning percentage (25%). Winning history includes earlier subdivisions. Competitive ceiling gives 72% to national strength and 28% to standing among current conference peers. National strength blends 2016–25 SP+ and FPI with the November 21 Sagarin rating. Ten historical FBS seasons earn the full 75% historical weight, with older ratings receiving proportionally less weight for shorter histories. Notre Dame uses national standing in both parts.
+
+Metrics are converted to percentiles among observed schools, averaging ties. For sparsely disclosed pay, roster, donations, ticket sales and talent metrics, those percentiles are mapped onto the reporting schools’ range of football spending, crowds or recruiting rank as applicable. Within each category, remaining inputs share the weight of unavailable measures. A reported school-wide budget and football-only spending each retain their own comparison. Facilities quality, donor willingness, service-academy requirements and contract terms remain considerations a particular coach may value differently.
+
+The November score puts South Florida and Boise State just below Kansas, the lowest-ranked Power Four job. Removing the conference weight puts both ahead of Kansas. That distinction matters more than the fraction of a point separating the two G6 leaders.
+
+[All-time records](https://www.winsipedia.com/ranking/all-time-record) · [Sagarin ratings](https://cfbsaga.northbrand.net/) · [Recruit geography](../assets/recruiting/dashboard.html) · [Financial panels](finance.qmd) · [North Dakota State attendance](https://stats.gobison.com/custompages/fb/2025/teamcume.htm) · [Sacramento State attendance](https://hornetsports.com/sports/football/stats/2025)
+
 ### Evidence and limitations
 
-Use the five framework categories to compare key metrics across programs. Select a school to expand the evidence behind each category. The downloads include the source registry, reporting definitions, coverage, and unresolved conflicts. The inputs support and challenge our assessments; they do not mechanically determine the published order.
+Use the five framework categories to compare key metrics across programs. Select a school to expand the evidence behind each category. The downloads include the source registry, reporting definitions, coverage, and unresolved conflicts. [Download the full scoring inputs](../assets/coaching/program_inputs.csv).
 
 Financial sources retain their own accounting definitions; NCAA and EADA figures should not be treated as interchangeable. Annual observations and multi-year summaries may cover different periods. Attendance includes both official totals and reconstructed observations. NIL estimates can refer to different measures of spending. Missing private-school disclosures are not evidence of zero resources.
 
