@@ -7,9 +7,9 @@ toc: false
 ```{=html}
 <div class="tool-intro">
 <p>2026 coaching cycle. Each snapshot shows its reporting date.</p>
-<a href="../assets/coaching/odds.html" target="_blank" rel="noopener">Open full screen</a>
+<a href="../assets/coaching/odds.html?v=20261123" target="_blank" rel="noopener">Open full screen</a>
 </div>
-<iframe class="tool-frame" data-fit-content src="../assets/coaching/odds.html" title="2026 coaching departure odds" loading="eager"></iframe>
+<iframe class="tool-frame" data-fit-content src="../assets/coaching/odds.html?v=20261123" title="2026 coaching departure odds" loading="eager"></iframe>
 <script src="../assets/tool-frame.js" defer></script>
 ```
 
