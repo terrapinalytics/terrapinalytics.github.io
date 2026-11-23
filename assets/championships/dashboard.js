@@ -1,5 +1,6 @@
 const $ = id => document.getElementById(id);
-const fmt = number => Number.isInteger(number) ? String(number) : number.toFixed(2);
+const titleFormat = new Intl.NumberFormat(undefined, {maximumFractionDigits: 1});
+const fmt = number => titleFormat.format(number);
 const esc = value => String(value).replace(/[&<>"']/g, char => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
 })[char]);

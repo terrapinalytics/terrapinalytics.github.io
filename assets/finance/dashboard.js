@@ -16,14 +16,17 @@ const CPI = [
 const POWER_CONFERENCES = new Set(['ACC', 'Big Ten', 'Big 12', 'SEC']);
 const COMPARISON_COLORS = ['#7c3da4', '#147e70', '#a86211', '#566b9c'];
 const amountFormat = new Intl.NumberFormat(undefined, {
-  minimumFractionDigits: 1, maximumFractionDigits: 1
+  style: 'currency', currency: 'USD', maximumFractionDigits: 0
+});
+const axisAmountFormat = new Intl.NumberFormat(undefined, {
+  style: 'currency', currency: 'USD', notation: 'compact', maximumFractionDigits: 1
 });
 let DATA = [];
 let comparisonSchools = [];
 
 function money(value) {
   if (value == null) return '—';
-  return (value < 0 ? '−$' : '$') + amountFormat.format(Math.abs(value) / 1e6) + 'M';
+  return amountFormat.format(value);
 }
 
 function fiscalPeriod(year, window) {
@@ -121,7 +124,7 @@ function renderChart(series, years, window) {
   const baseline = `<line x1="${left}" y1="${y(0)}" x2="${width-right}" y2="${y(0)}" stroke="#bfc5cb"/>`;
   const grid = Array.from({length:5}, (_,i) => min + (max-min)*i/4).map(value => `
     <line x1="${left}" y1="${y(value)}" x2="${width-right}" y2="${y(value)}" stroke="#e9edf2"/>
-    <text x="${left-7}" y="${y(value)+4}" text-anchor="end">${money(value)}</text>`).join('');
+    <text x="${left-7}" y="${y(value)+4}" text-anchor="end">${axisAmountFormat.format(value)}</text>`).join('');
   const yearStep = Math.ceil(years.length / 6);
   const ticks = years.map((year,i) => i % yearStep === 0 || i === years.length - 1
     ? `<text x="${x(i)}" y="${height-12}" text-anchor="middle">${year}</text>` : '').join('');
@@ -161,7 +164,7 @@ function renderSchoolComparison(schools, index, period, dollars) {
     const value = school.periods[index].value;
     return `<div class="barrow"><button type="button" class="name school-link" data-school="${esc(school.school)}">${TeamLogos.label(school.school)}</button>
       <div class="track"><div class="fill" style="width:${100 * Math.abs(value) / max}%"></div></div>
-      <b>${money(value).replace(/M$/, '')}</b></div>`;
+      <b>${money(value)}</b></div>`;
   }).join('') || '<p class="disabled">No reported amounts</p>';
 }
 

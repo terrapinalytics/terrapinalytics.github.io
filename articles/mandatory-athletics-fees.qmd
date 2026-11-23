@@ -16,8 +16,8 @@ I assembled published fee schedules for the 68 schools in the current Power Four
 | Virginia Tech | $832 | 2026–27 | Published rate |
 | Virginia | $823 | 2026–27 | Published rate |
 | West Virginia | $500 | 2026–27 | Published rate |
-| Louisville | $450 | 2026–27 | Published rate |
-| UCF | $429.60 | 2026–27 | Published rate |
+| UCF | $430 | 2026–27 | Published rate |
+| Louisville | $400 | 2026–27 | Published rate |
 | Maryland | $399 | 2026–27 | Published rate |
 | Miami | $360 | 2026–27 | Published rate |
 | Georgia Tech | $346 | 2026–27 | Published rate |
@@ -25,16 +25,18 @@ I assembled published fee schedules for the 68 schools in the current Power Four
 | South Carolina | $300 | 2026–27 | Published rate |
 | North Carolina | $279 | 2026–27 | Published rate |
 | Florida State | $237 | 2026–27 | Published rate |
+| Illinois | $250 | 2026–27 | Identified facilities and arena allocations |
 | Auburn | $232 | 2026–27 | Published rate |
 | NC State | $232 | 2026–27 | Published rate |
 | Oklahoma State | $225 | 2026–27 | Published rate |
 | Minnesota | $212 | 2026–27 | Published rate |
 | Arizona State | $200 | Current schedule, year unspecified | Current published rate |
-| Colorado | $180 | 2026–27 | Published rate |
-| Utah | $165.38 | 2025–26 | Prior-year fee, same amount proposed for 2026–27 |
+| Colorado | $57–$180 | 2026–27 | Varies by entry cohort |
+| Utah | $165 | 2026–27 | Published rate |
 | Georgia | $146 | 2026–27 | Published rate |
-| Texas Tech | $128.56 | 2026–27 | Published rate |
-| Florida | $103.80 | 2026–27 | Published rate |
+| Texas Tech | $129 | 2026–27 | Published rate |
+| Florida | $104 | 2026–27 | Published rate |
+| Houston | $90 | 2026–27 | Identified facilities allocation |
 | Northwestern | $72 | 2026–27 | Published rate |
 | Kansas State | $0 | 2025–26 | Explicit zero |
 | Michigan | $0 | Current schedule, year unspecified | Explicit zero |
@@ -55,12 +57,12 @@ I assembled published fee schedules for the 68 schools in the current Power Four
 | Conference | Schools | Positive rate | Explicit zero | Unquantified |
 |---|---:|---:|---:|---:|
 | ACC | 18 | 9 | 0 | 9 |
-| Big 12 | 16 | 7 | 1 | 8 |
-| Big Ten | 18 | 3 | 3 | 12 |
+| Big 12 | 16 | 8 | 1 | 7 |
+| Big Ten | 18 | 4 | 3 | 11 |
 | SEC | 16 | 4 | 0 | 12 |
-| **Total** | **68** | **23** | **4** | **41** |
+| **Total** | **68** | **25** | **4** | **39** |
 
-Of the 27 numerical entries, 21 are explicitly dated 2026–27. The 41 unquantified schools include 11 with a bundled or shared charge whose athletics allocation could not be quantified and 30 without a verified athletics-specific rate.
+Of the 29 numerical entries, 24 are explicitly dated 2026–27. Houston and Illinois show identified allocations within broader fees. The Houston amount covers facilities debt, and Illinois includes the multi-use State Farm Center. The table displays whole dollars, with published precision retained in the CSV.
 
 This is a comparison of **what students are charged**, not a complete measure of institutional subsidy. To estimate the latter, we'd also need enrollment, exemptions, allocation rules, and the NCAA's accounting categories for direct institutional support and student fees.
 

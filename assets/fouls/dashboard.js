@@ -12,7 +12,7 @@ let playerPositions = {};
 let games = [], players = [], rows = [], visible = [], request = 0;
 const cache = new Map();
 const safe = value => String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const fmt = (value,places=2) => Number.isFinite(value) ? value.toFixed(places) : '—';
+const fmt = (value,places=1) => Number.isFinite(value) ? value.toFixed(places) : '—';
 const r100 = (count,poss) => poss>0 ? 100*count/poss : NaN;
 async function fetchData(path) {
   if (!cache.has(path)) cache.set(path,fetch(path).then(r=>{if(!r.ok)throw Error('Could not load '+path);return path.endsWith('.gz')?new Response(r.body.pipeThrough(new DecompressionStream('gzip'))).json():r.json()}));

@@ -7,7 +7,7 @@ function format(value, type = 'number') {
   if (type === 'text') return escapeHtml(value);
   const number = Number(value);
   if (!Number.isFinite(number)) return escapeHtml(value);
-  if (type === 'money') return '$' + (number / 1e6).toFixed(1) + 'M';
+  if (type === 'money') return number.toLocaleString('en-US', {style:'currency',currency:'USD',maximumFractionDigits:0});
   return number.toLocaleString('en-US', {maximumFractionDigits:type === 'integer' ? 0 : 1, minimumFractionDigits:type === 'number' ? 1 : 0});
 }
 function tier(value) { return `<span class="tier t${Number(value)}">Tier ${Number(value)}</span>`; }
@@ -174,7 +174,7 @@ async function start() {
       if (isOdds) {
         const probability = row[checkpoint];
         const delta = row.two_week_change_pp;
-        return `<tr><td>${school}<div class="status">${escapeHtml(row.status)}</div></td><td>${escapeHtml(row.coach)}</td><td class="bar-cell"><div class="bar-line"><div class="bar-track"><div class="bar-fill" style="width:${probability}%;background:${probability===100?'#c74445':probability>=30?'#d47136':probability>=10?'#c7a63e':'#4a8876'}"></div></div><strong>${probability}%</strong></div></td><td>${tier(row.tier)}</td><td class="number">${format(row.dismissal_buyout.amount_usd,'money')}</td>${checkpoint==='dec7_probability_pct'?'<td class="number delta">'+(delta == null ? '—' : (delta > 0 ? '+' : '') + delta + ' pp')+'</td>':''}</tr>`;
+        return `<tr><td>${school}<div class="status">${escapeHtml(row.status)}</div></td><td>${escapeHtml(row.coach)}</td><td class="bar-cell"><div class="bar-line"><div class="bar-track"><div class="bar-fill" style="width:${probability}%;background:${probability===100?'#c74445':probability>=30?'#d47136':probability>=10?'#c7a63e':'#4a8876'}"></div></div><strong>${format(probability)}%</strong></div></td><td>${tier(row.tier)}</td><td class="number">${format(row.dismissal_buyout.amount_usd,'money')}</td>${checkpoint==='dec7_probability_pct'?'<td class="number delta">'+(delta == null ? '—' : (delta > 0 ? '+' : '') + format(delta) + ' pp')+'</td>':''}</tr>`;
       }
       return `<tr><td class="number">${row.rank}</td><td>${school}${group==='Conference and realignment'?'':'<div class="status">'+escapeHtml(row.conference)+'</div>'}</td><td>${tier(row.tier)}</td>${metrics.map(m=>`<td class="${m.format==='text'?'':'number'}">${format(row[m.key],m.format)}</td>`).join('')}</tr>`;
     }).join('') || '<tr><td colspan="10">No matching programs.</td></tr>';

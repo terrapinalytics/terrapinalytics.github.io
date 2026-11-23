@@ -9,7 +9,7 @@ function stats(value,values,lower=false){
  const v=Number(value),less=a.filter(x=>x<v).length,equal=a.filter(x=>x===v).length;
  return {n,mean:a.reduce((x,y)=>x+y,0)/n,median:n%2?a[(n-1)/2]:(a[n/2-1]+a[n/2])/2,rank:n>=5?1+a.filter(x=>lower?x<v:x>v).length:null,percentile:n>=5?100*(less+(equal-1)/2)/(n-1):null};
 }
-function comparison({value,cohorts,format=v=>Number(v).toFixed(2),lower=false,label=''}){
+function comparison({value,cohorts,format=v=>Number(v).toFixed(1),lower=false,label=''}){
  if(!numeric(value))return '<p class="peer-note">Peer context unavailable: selected value is missing.</p>';
  const rows=cohorts.map(c=>{const s=stats(value,c.values,lower),inside=c.includesSelected!==false;
  return '<tr><th scope="row">'+esc(c.label)+'</th><td>'+s.n+'</td><td>'+(inside&&s.rank!==null?'#'+s.rank:'—')+'</td><td>'+(inside&&s.percentile!==null?s.percentile.toFixed(0)+'%ile':'—')+'</td><td>'+(s.mean===null?'—':esc(format(s.mean)))+'</td><td>'+(s.median===null?'—':esc(format(s.median)))+'</td></tr>';}).join('');
