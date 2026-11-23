@@ -5,6 +5,15 @@ const esc = value => String(value).replace(/[&<>"']/g, char => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
 })[char]);
 const filters = {sport: 'p', tier: 'k', season: 'y', type: 't'};
+const schoolColors = new Map([
+  ['Illinois', '#E84A27'], ['Indiana', '#990000'], ['Iowa', '#FFCD00'],
+  ['Johns Hopkins', '#68ACE5'], ['Maryland', '#E03A3E'], ['Michigan', '#00274C'],
+  ['Michigan State', '#18453B'], ['Minnesota', '#7A0019'], ['Nebraska', '#E41C38'],
+  ['Northwestern', '#4E2A84'], ['Notre Dame', '#0C2340'], ['Ohio State', '#BB0000'],
+  ['Oregon', '#007030'], ['Penn State', '#041E42'], ['Purdue', '#CFB991'],
+  ['Rutgers', '#CC0033'], ['UCLA', '#2774AE'], ['USC', '#990000'],
+  ['Washington', '#4B2E83'], ['Wisconsin', '#C5050C'],
+]);
 let data = [], exportRows = [];
 let seasons = [];
 
@@ -36,13 +45,15 @@ function options(id, values, all) {
   ).join('');
 }
 
-function plotBars(id, items) {
+function plotBars(id, items, school) {
   const max = Math.max(1, ...items.map(([, value]) => value));
   $(id).innerHTML = items.length ? items.map(([name, value]) => {
     const label = id === 'bars'
       ? `<button class="title-drill-button" type="button" data-title-school="${esc(name)}">${TeamLogos.label(name)}</button>`
       : `<button class="title-drill-button" type="button" data-title-sport="${esc(name)}">${esc(name)}</button>`;
-    return `<div class="barrow"><span class="name" title="${esc(name)}">${label}</span><div class="track"><div class="fill" style="width:${Math.max(0, value / max * 100)}%"></div></div><b>${fmt(value)}</b></div>`;
+    const color = schoolColors.get(school ?? name);
+    const fillColor = color ? `;background-color:${color}` : '';
+    return `<div class="barrow"><span class="name" title="${esc(name)}">${label}</span><div class="track"><div class="fill" style="width:${Math.max(0, value / max * 100)}%${fillColor}"></div></div><b>${fmt(value)}</b></div>`;
   }).join('') : '<p class="disabled">No observations for these filters</p>';
 }
 
@@ -139,7 +150,7 @@ function render() {
   }) + '<p class="peer-note">The peer group includes schools that won titles under these filters. Membership tenure and sports sponsored differ across schools.</p>' : '';
 
   plotBars('bars', group(rows, 's'));
-  if (school) plotBars('sportbars', group(rows, 'p'));
+  if (school) plotBars('sportbars', group(rows, 'p'), school);
   renderTrend(rows, measure);
 
   $('rows').innerHTML = drillRecords(rows, school ? ['p','y'] : ['s','p','y'], measure, split);
