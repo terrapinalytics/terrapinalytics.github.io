@@ -1,0 +1,3823 @@
+[
+  {
+    "file": "103.png",
+    "school": "Boston College",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/103.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "104.png",
+    "school": "Boston University",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/104.png"
+  },
+  {
+    "file": "107.png",
+    "school": "Holy Cross",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/107.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "108.png",
+    "school": "Harvard",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/108.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "111.png",
+    "school": "Northeastern",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/111.png"
+  },
+  {
+    "file": "112358.png",
+    "school": "Long Island University",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/112358.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "113.png",
+    "school": "Massachusetts",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/113.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "116.png",
+    "school": "Mount St. Mary's",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/116.png"
+  },
+  {
+    "file": "119.png",
+    "school": "Towson",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/119.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "12.png",
+    "school": "Arizona",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/12.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "120.png",
+    "school": "Maryland",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/120.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "127.png",
+    "school": "Michigan State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/127.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "13.png",
+    "school": "Cal Poly",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/13.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "130.png",
+    "school": "Michigan",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/130.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "135.png",
+    "school": "Minnesota",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/135.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "139.png",
+    "school": "Saint Louis",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/139.png"
+  },
+  {
+    "file": "140.png",
+    "school": "Kansas City",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/140.png"
+  },
+  {
+    "file": "142.png",
+    "school": "Missouri",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/142.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "145.png",
+    "school": "Ole Miss",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/145.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "147.png",
+    "school": "Montana State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/147.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "149.png",
+    "school": "Montana",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/149.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "150.png",
+    "school": "Duke",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/150.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "151.png",
+    "school": "East Carolina",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/151.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "152.png",
+    "school": "NC State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/152.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "153.png",
+    "school": "North Carolina",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/153.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "154.png",
+    "school": "Wake Forest",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/154.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "155.png",
+    "school": "North Dakota",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/155.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "156.png",
+    "school": "Creighton",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/156.png"
+  },
+  {
+    "file": "158.png",
+    "school": "Nebraska",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/158.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "159.png",
+    "school": "Dartmouth",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/159.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "16.png",
+    "school": "Sacramento State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/16.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "160.png",
+    "school": "New Hampshire",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/160.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "161.png",
+    "school": "Fairleigh Dickinson",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/161.png"
+  },
+  {
+    "file": "163.png",
+    "school": "Princeton",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/163.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "164.png",
+    "school": "Rutgers",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/164.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "166.png",
+    "school": "New Mexico State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/166.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "167.png",
+    "school": "New Mexico",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/167.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "171.png",
+    "school": "Columbia",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/171.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "172.png",
+    "school": "Cornell",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/172.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "179.png",
+    "school": "St. Bonaventure",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/179.png"
+  },
+  {
+    "file": "183.png",
+    "school": "Syracuse",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/183.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "189.png",
+    "school": "Bowling Green",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/189.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "193.png",
+    "school": "Miami (OH)",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/193.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "194.png",
+    "school": "Ohio State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/194.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "195.png",
+    "school": "Ohio",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/195.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "197.png",
+    "school": "Oklahoma State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/197.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "198.png",
+    "school": "Oral Roberts",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/198.png"
+  },
+  {
+    "file": "2.png",
+    "school": "Auburn",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2000.png",
+    "school": "Abilene Christian",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2000.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2005.png",
+    "school": "Air Force",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2005.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2006.png",
+    "school": "Akron",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2006.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "201.png",
+    "school": "Oklahoma",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/201.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2010.png",
+    "school": "Alabama A&M",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2010.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2011.png",
+    "school": "Alabama State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2011.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2016.png",
+    "school": "Alcorn State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2016.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "202.png",
+    "school": "Tulsa",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/202.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2026.png",
+    "school": "App State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2026.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2029.png",
+    "school": "Arkansas-Pine Bluff",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2029.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2031.png",
+    "school": "Little Rock",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2031.png"
+  },
+  {
+    "file": "2032.png",
+    "school": "Arkansas State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2032.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "204.png",
+    "school": "Oregon State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/204.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2046.png",
+    "school": "Austin Peay",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2046.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2050.png",
+    "school": "Ball State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2050.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2057.png",
+    "school": "Belmont",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2057.png"
+  },
+  {
+    "file": "2065.png",
+    "school": "Bethune-Cookman",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2065.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2066.png",
+    "school": "Binghamton",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2066.png"
+  },
+  {
+    "file": "2083.png",
+    "school": "Bucknell",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2083.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2084.png",
+    "school": "Buffalo",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2084.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2086.png",
+    "school": "Butler",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2086.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2097.png",
+    "school": "Campbell",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2097.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2099.png",
+    "school": "Canisius",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2099.png"
+  },
+  {
+    "file": "21.png",
+    "school": "San Diego State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/21.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2110.png",
+    "school": "Central Arkansas",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2110.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2115.png",
+    "school": "Central Connecticut",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2115.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2116.png",
+    "school": "UCF",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2116.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2117.png",
+    "school": "Central Michigan",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2117.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2127.png",
+    "school": "Charleston Southern",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2127.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "213.png",
+    "school": "Penn State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/213.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2130.png",
+    "school": "Chicago State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2130.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2132.png",
+    "school": "Cincinnati",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2132.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2142.png",
+    "school": "Colgate",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2142.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2154.png",
+    "school": "Coppin State",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2154.png"
+  },
+  {
+    "file": "2166.png",
+    "school": "Davidson",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2166.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2168.png",
+    "school": "Dayton",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2168.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2169.png",
+    "school": "Delaware State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2169.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2172.png",
+    "school": "Denver",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2172.png"
+  },
+  {
+    "file": "2174.png",
+    "school": "Detroit Mercy",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2174.png"
+  },
+  {
+    "file": "218.png",
+    "school": "Temple",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/218.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2181.png",
+    "school": "Drake",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2181.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2182.png",
+    "school": "Drexel",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2182.png"
+  },
+  {
+    "file": "2184.png",
+    "school": "Duquesne",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2184.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "219.png",
+    "school": "Pennsylvania",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/219.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2193.png",
+    "school": "East Tennessee State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2193.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2197.png",
+    "school": "Eastern Illinois",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2197.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2198.png",
+    "school": "Eastern Kentucky",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2198.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2199.png",
+    "school": "Eastern Michigan",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2199.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "221.png",
+    "school": "Pittsburgh",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/221.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2210.png",
+    "school": "Elon",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2210.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2217.png",
+    "school": "Fairfield",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2217.png"
+  },
+  {
+    "file": "222.png",
+    "school": "Villanova",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/222.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2226.png",
+    "school": "Florida Atlantic",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2226.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2229.png",
+    "school": "Florida International",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2229.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2230.png",
+    "school": "Fordham",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2230.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2239.png",
+    "school": "Cal State Fullerton",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2239.png"
+  },
+  {
+    "file": "2241.png",
+    "school": "Gardner-Webb",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2241.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2244.png",
+    "school": "George Mason",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2244.png"
+  },
+  {
+    "file": "2247.png",
+    "school": "Georgia State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2247.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "225.png",
+    "school": "Brown",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/225.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2250.png",
+    "school": "Gonzaga",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2250.png"
+  },
+  {
+    "file": "2253.png",
+    "school": "Grand Canyon",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2253.png"
+  },
+  {
+    "file": "2261.png",
+    "school": "Hampton",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2261.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "227.png",
+    "school": "Rhode Island",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/227.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2272.png",
+    "school": "High Point",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2272.png"
+  },
+  {
+    "file": "2275.png",
+    "school": "Hofstra",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2275.png"
+  },
+  {
+    "file": "2277.png",
+    "school": "Houston Christian",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2277.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "228.png",
+    "school": "Clemson",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/228.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2287.png",
+    "school": "Illinois State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2287.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2294.png",
+    "school": "Iowa",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2294.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2296.png",
+    "school": "Jackson State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2296.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "23.png",
+    "school": "San Jos\u00e9 State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/23.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2305.png",
+    "school": "Kansas",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2305.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2306.png",
+    "school": "Kansas State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2306.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2309.png",
+    "school": "Kent State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2309.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "231.png",
+    "school": "Furman",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/231.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "232.png",
+    "school": "Charleston",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/232.png"
+  },
+  {
+    "file": "2320.png",
+    "school": "Lamar",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2320.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2325.png",
+    "school": "La Salle",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2325.png"
+  },
+  {
+    "file": "2329.png",
+    "school": "Lehigh",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2329.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "233.png",
+    "school": "South Dakota",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/233.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2330.png",
+    "school": "Le Moyne",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2330.png"
+  },
+  {
+    "file": "2335.png",
+    "school": "Liberty",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2335.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2344.png",
+    "school": "Longwood",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2344.png"
+  },
+  {
+    "file": "2348.png",
+    "school": "Louisiana Tech",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2348.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2349.png",
+    "school": "UMass Lowell",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2349.png"
+  },
+  {
+    "file": "235.png",
+    "school": "Memphis",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/235.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2350.png",
+    "school": "Loyola Chicago",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2350.png"
+  },
+  {
+    "file": "2351.png",
+    "school": "Loyola Marymount",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2351.png"
+  },
+  {
+    "file": "2352.png",
+    "school": "Loyola Maryland",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2352.png"
+  },
+  {
+    "file": "236.png",
+    "school": "Chattanooga",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/236.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2363.png",
+    "school": "Manhattan",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2363.png"
+  },
+  {
+    "file": "2368.png",
+    "school": "Marist",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2368.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2377.png",
+    "school": "McNeese",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2377.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2378.png",
+    "school": "UMBC",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2378.png"
+  },
+  {
+    "file": "2379.png",
+    "school": "Maryland Eastern Shore",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2379.png"
+  },
+  {
+    "file": "238.png",
+    "school": "Vanderbilt",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/238.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2382.png",
+    "school": "Mercer",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2382.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2385.png",
+    "school": "Mercyhurst",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2385.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "239.png",
+    "school": "Baylor",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/239.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2390.png",
+    "school": "Miami",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2390.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2393.png",
+    "school": "Middle Tennessee",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2393.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "24.png",
+    "school": "Stanford",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/24.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2400.png",
+    "school": "Mississippi Valley State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2400.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2405.png",
+    "school": "Monmouth",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2405.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2413.png",
+    "school": "Morehead State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2413.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2415.png",
+    "school": "Morgan State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2415.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "242.png",
+    "school": "Rice",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/242.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2426.png",
+    "school": "Navy",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2426.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2427.png",
+    "school": "UNC Asheville",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2427.png"
+  },
+  {
+    "file": "2428.png",
+    "school": "North Carolina Central",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2428.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2429.png",
+    "school": "Charlotte",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2429.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2430.png",
+    "school": "UNC Greensboro",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2430.png"
+  },
+  {
+    "file": "2433.png",
+    "school": "UL Monroe",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2433.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2437.png",
+    "school": "Omaha",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2437.png"
+  },
+  {
+    "file": "2439.png",
+    "school": "UNLV",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2439.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2440.png",
+    "school": "Nevada",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2440.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2441.png",
+    "school": "New Haven",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2441.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2443.png",
+    "school": "LSU New Orleans",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2443.png"
+  },
+  {
+    "file": "2447.png",
+    "school": "Nicholls",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2447.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2448.png",
+    "school": "North Carolina A&T",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2448.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2449.png",
+    "school": "North Dakota State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2449.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "245.png",
+    "school": "Texas A&M",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/245.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2450.png",
+    "school": "Norfolk State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2450.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2453.png",
+    "school": "North Alabama",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2453.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2454.png",
+    "school": "North Florida",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2454.png"
+  },
+  {
+    "file": "2458.png",
+    "school": "Northern Colorado",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2458.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2459.png",
+    "school": "Northern Illinois",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2459.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2460.png",
+    "school": "Northern Iowa",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2460.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2463.png",
+    "school": "Cal State Northridge",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2463.png"
+  },
+  {
+    "file": "2464.png",
+    "school": "Northern Arizona",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2464.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2466.png",
+    "school": "Northwestern State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2466.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2473.png",
+    "school": "Oakland",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2473.png"
+  },
+  {
+    "file": "248.png",
+    "school": "Houston",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/248.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2483.png",
+    "school": "Oregon",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2483.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "249.png",
+    "school": "North Texas",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/249.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2492.png",
+    "school": "Pepperdine",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2492.png"
+  },
+  {
+    "file": "25.png",
+    "school": "California",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/25.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "250.png",
+    "school": "UT Arlington",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/250.png"
+  },
+  {
+    "file": "2501.png",
+    "school": "Portland",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2501.png"
+  },
+  {
+    "file": "2502.png",
+    "school": "Portland State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2502.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2504.png",
+    "school": "Prairie View A&M",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2504.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2506.png",
+    "school": "Presbyterian",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2506.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2507.png",
+    "school": "Providence",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2507.png"
+  },
+  {
+    "file": "2509.png",
+    "school": "Purdue",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2509.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "251.png",
+    "school": "Texas",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/251.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2511.png",
+    "school": "Queens University",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2511.png"
+  },
+  {
+    "file": "2514.png",
+    "school": "Quinnipiac",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2514.png"
+  },
+  {
+    "file": "2515.png",
+    "school": "Radford",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2515.png"
+  },
+  {
+    "file": "252.png",
+    "school": "BYU",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/252.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2520.png",
+    "school": "Rider",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2520.png"
+  },
+  {
+    "file": "2523.png",
+    "school": "Robert Morris",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2523.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2529.png",
+    "school": "Sacred Heart",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2529.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "253.png",
+    "school": "Southern Utah",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/253.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2534.png",
+    "school": "Sam Houston",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2534.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2535.png",
+    "school": "Samford",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2535.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2539.png",
+    "school": "San Francisco",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2539.png"
+  },
+  {
+    "file": "254.png",
+    "school": "Utah",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/254.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2540.png",
+    "school": "UC Santa Barbara",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2540.png"
+  },
+  {
+    "file": "2541.png",
+    "school": "Santa Clara",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2541.png"
+  },
+  {
+    "file": "2545.png",
+    "school": "SE Louisiana",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2545.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2546.png",
+    "school": "Southeast Missouri State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2546.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2547.png",
+    "school": "Seattle U",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2547.png"
+  },
+  {
+    "file": "2550.png",
+    "school": "Seton Hall",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2550.png"
+  },
+  {
+    "file": "256.png",
+    "school": "James Madison",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/256.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2561.png",
+    "school": "Siena",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2561.png"
+  },
+  {
+    "file": "2565.png",
+    "school": "SIU Edwardsville",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2565.png"
+  },
+  {
+    "file": "2567.png",
+    "school": "SMU",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2567.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2569.png",
+    "school": "South Carolina State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2569.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "257.png",
+    "school": "Richmond",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/257.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2571.png",
+    "school": "South Dakota State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2571.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2572.png",
+    "school": "Southern Miss",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2572.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2579.png",
+    "school": "South Carolina",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2579.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "258.png",
+    "school": "Virginia",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/258.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2582.png",
+    "school": "Southern",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2582.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "259.png",
+    "school": "Virginia Tech",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/259.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2599.png",
+    "school": "St. John's",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2599.png"
+  },
+  {
+    "file": "26.png",
+    "school": "UCLA",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/26.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2603.png",
+    "school": "Saint Joseph's",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2603.png"
+  },
+  {
+    "file": "2608.png",
+    "school": "Saint Mary's",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2608.png"
+  },
+  {
+    "file": "261.png",
+    "school": "Vermont",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/261.png"
+  },
+  {
+    "file": "2612.png",
+    "school": "Saint Peter's",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2612.png"
+  },
+  {
+    "file": "2617.png",
+    "school": "Stephen F. Austin",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2617.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2619.png",
+    "school": "Stony Brook",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2619.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2623.png",
+    "school": "Missouri State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2623.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2627.png",
+    "school": "Tarleton State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2627.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2628.png",
+    "school": "TCU",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2628.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2630.png",
+    "school": "UT Martin",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2630.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2633.png",
+    "school": "Tennessee",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2633.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2634.png",
+    "school": "Tennessee State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2634.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2635.png",
+    "school": "Tennessee Tech",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2635.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2636.png",
+    "school": "UTSA",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2636.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2638.png",
+    "school": "UTEP",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2638.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "264.png",
+    "school": "Washington",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/264.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2640.png",
+    "school": "Texas Southern",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2640.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2641.png",
+    "school": "Texas Tech",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2641.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2643.png",
+    "school": "The Citadel",
+    "sports": [
+      "football",
+      "mens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2643.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2649.png",
+    "school": "Toledo",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2649.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "265.png",
+    "school": "Washington State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/265.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2653.png",
+    "school": "Troy",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2653.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2655.png",
+    "school": "Tulane",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2655.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2670.png",
+    "school": "VCU",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2670.png"
+  },
+  {
+    "file": "2674.png",
+    "school": "Valparaiso",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2674.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2678.png",
+    "school": "VMI",
+    "sports": [
+      "football",
+      "mens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2678.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2681.png",
+    "school": "Wagner",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2681.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "269.png",
+    "school": "Marquette",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/269.png"
+  },
+  {
+    "file": "2692.png",
+    "school": "Weber State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2692.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2697.png",
+    "school": "West Florida",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2697.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2698.png",
+    "school": "West Georgia",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2698.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "27.png",
+    "school": "UC Riverside",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/27.png"
+  },
+  {
+    "file": "270.png",
+    "school": "Milwaukee",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/270.png"
+  },
+  {
+    "file": "2710.png",
+    "school": "Western Illinois",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2710.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2711.png",
+    "school": "Western Michigan",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2711.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2717.png",
+    "school": "Western Carolina",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2717.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2724.png",
+    "school": "Wichita State",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2724.png"
+  },
+  {
+    "file": "2729.png",
+    "school": "William & Mary",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2729.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2737.png",
+    "school": "Winthrop",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2737.png"
+  },
+  {
+    "file": "2739.png",
+    "school": "Green Bay",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2739.png"
+  },
+  {
+    "file": "2747.png",
+    "school": "Wofford",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2747.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "275.png",
+    "school": "Wisconsin",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/275.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2750.png",
+    "school": "Wright State",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2750.png"
+  },
+  {
+    "file": "2751.png",
+    "school": "Wyoming",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2751.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2752.png",
+    "school": "Xavier",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2752.png"
+  },
+  {
+    "file": "2754.png",
+    "school": "Youngstown State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2754.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2755.png",
+    "school": "Grambling",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2755.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "276.png",
+    "school": "Marshall",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/276.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "277.png",
+    "school": "West Virginia",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/277.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2771.png",
+    "school": "Merrimack",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2771.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "278.png",
+    "school": "Fresno State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/278.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "279.png",
+    "school": "Pacific",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/279.png"
+  },
+  {
+    "file": "28.png",
+    "school": "UC San Diego",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/28.png"
+  },
+  {
+    "file": "2803.png",
+    "school": "Bryant",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2803.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2815.png",
+    "school": "Lindenwood",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2815.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "282.png",
+    "school": "Indiana State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/282.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2837.png",
+    "school": "East Texas A&M",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2837.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "284.png",
+    "school": "Stonehill",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/284.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2856.png",
+    "school": "California Baptist",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2856.png"
+  },
+  {
+    "file": "2870.png",
+    "school": "Purdue Fort Wayne",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2870.png"
+  },
+  {
+    "file": "288.png",
+    "school": "Lipscomb",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/288.png"
+  },
+  {
+    "file": "2885.png",
+    "school": "NJIT",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2885.png"
+  },
+  {
+    "file": "290.png",
+    "school": "Georgia Southern",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/290.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "2900.png",
+    "school": "St. Thomas",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2900.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2908.png",
+    "school": "South Carolina Upstate",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2908.png"
+  },
+  {
+    "file": "2916.png",
+    "school": "Incarnate Word",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2916.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "292.png",
+    "school": "UT Rio Grande Valley",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/292.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "2934.png",
+    "school": "Cal State Bakersfield",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/2934.png"
+  },
+  {
+    "file": "294.png",
+    "school": "Jacksonville",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/294.png"
+  },
+  {
+    "file": "295.png",
+    "school": "Old Dominion",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/295.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "299.png",
+    "school": "Long Beach State",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/299.png"
+  },
+  {
+    "file": "30.png",
+    "school": "USC",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/30.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "300.png",
+    "school": "UC Irvine",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/300.png"
+  },
+  {
+    "file": "301.png",
+    "school": "San Diego",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/301.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "302.png",
+    "school": "UC Davis",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/302.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "304.png",
+    "school": "Idaho State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/304.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "305.png",
+    "school": "DePaul",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/305.png"
+  },
+  {
+    "file": "3084.png",
+    "school": "Utah Valley",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/3084.png"
+  },
+  {
+    "file": "309.png",
+    "school": "Louisiana",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/309.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "3101.png",
+    "school": "Utah Tech",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/3101.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "311.png",
+    "school": "Maine",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/311.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "314.png",
+    "school": "Iona",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/314.png"
+  },
+  {
+    "file": "315.png",
+    "school": "Niagara",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/315.png"
+  },
+  {
+    "file": "322.png",
+    "school": "Lafayette",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/322.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "324.png",
+    "school": "Coastal Carolina",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/324.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "325.png",
+    "school": "Cleveland State",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/325.png"
+  },
+  {
+    "file": "326.png",
+    "school": "Texas State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/326.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "328.png",
+    "school": "Utah State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/328.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "331.png",
+    "school": "Eastern Washington",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/331.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "333.png",
+    "school": "Alabama",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/333.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "338.png",
+    "school": "Kennesaw State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/338.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "339.png",
+    "school": "Evansville",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/339.png"
+  },
+  {
+    "file": "344.png",
+    "school": "Mississippi State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/344.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "349.png",
+    "school": "Army",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/349.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "350.png",
+    "school": "UNC Wilmington",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/350.png"
+  },
+  {
+    "file": "356.png",
+    "school": "Illinois",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/356.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "357.png",
+    "school": "Texas A&M-Corpus Christi",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/357.png"
+  },
+  {
+    "file": "36.png",
+    "school": "Colorado State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/36.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "38.png",
+    "school": "Colorado",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/38.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "399.png",
+    "school": "UAlbany",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/399.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "41.png",
+    "school": "UConn",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/41.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "43.png",
+    "school": "Yale",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/43.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "44.png",
+    "school": "American University",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/44.png"
+  },
+  {
+    "file": "45.png",
+    "school": "George Washington",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/45.png"
+  },
+  {
+    "file": "46.png",
+    "school": "Georgetown",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/46.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "47.png",
+    "school": "Howard",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/47.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "48.png",
+    "school": "Delaware",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/48.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "5.png",
+    "school": "UAB",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/5.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "50.png",
+    "school": "Florida A&M",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/50.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "52.png",
+    "school": "Florida State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/52.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "526.png",
+    "school": "Florida Gulf Coast",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/526.png"
+  },
+  {
+    "file": "55.png",
+    "school": "Jacksonville State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/55.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "56.png",
+    "school": "Stetson",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/56.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "57.png",
+    "school": "Florida",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/57.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "58.png",
+    "school": "South Florida",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/58.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "59.png",
+    "school": "Georgia Tech",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/59.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "6.png",
+    "school": "South Alabama",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/6.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "61.png",
+    "school": "Georgia",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/61.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "62.png",
+    "school": "Hawai'i",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/62.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "66.png",
+    "school": "Iowa State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/66.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "68.png",
+    "school": "Boise State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/68.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "70.png",
+    "school": "Idaho",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/70.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "71.png",
+    "school": "Bradley",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/71.png"
+  },
+  {
+    "file": "77.png",
+    "school": "Northwestern",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/77.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "79.png",
+    "school": "Southern Illinois",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/79.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "8.png",
+    "school": "Arkansas",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/8.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "82.png",
+    "school": "UIC",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/82.png"
+  },
+  {
+    "file": "84.png",
+    "school": "Indiana",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/84.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "85.png",
+    "school": "IU Indianapolis",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/85.png"
+  },
+  {
+    "file": "87.png",
+    "school": "Notre Dame",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/87.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "88.png",
+    "school": "Southern Indiana",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/88.png"
+  },
+  {
+    "file": "9.png",
+    "school": "Arizona State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/9.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "91.png",
+    "school": "Bellarmine",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/91.png"
+  },
+  {
+    "file": "93.png",
+    "school": "Murray State",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/93.png",
+    "footballSubdivision": "FCS"
+  },
+  {
+    "file": "94.png",
+    "school": "Northern Kentucky",
+    "sports": [
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/94.png"
+  },
+  {
+    "file": "96.png",
+    "school": "Kentucky",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/96.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "97.png",
+    "school": "Louisville",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/97.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "98.png",
+    "school": "Western Kentucky",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/98.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "99.png",
+    "school": "LSU",
+    "sports": [
+      "football",
+      "mens-basketball",
+      "womens-basketball"
+    ],
+    "source": "https://a.espncdn.com/i/teamlogos/ncaa/500/99.png",
+    "footballSubdivision": "FBS"
+  },
+  {
+    "file": "johns-hopkins.png",
+    "school": "Johns Hopkins",
+    "sports": [],
+    "source": "https://hopkinssports.com/images/logos/site/site.png"
+  }
+]

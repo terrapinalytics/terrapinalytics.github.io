@@ -106,7 +106,7 @@ function drillRecords(records, levels, measure, split) {
   return keys.map(name=>{
     const matching=buckets.get(name);
     const total=matching.reduce((sum, record)=>sum+record.score,0);
-    return `<details class="title-branch" data-branch="${esc(name)}"><summary>${esc(name)} <small>${fmt(total)}</small></summary>${drillRecords(matching,remaining,measure,split)}</details>`;
+    return `<details class="title-branch" data-branch="${esc(name)}"><summary>${level === 's' ? TeamLogos.label(name) : esc(name)} <small>${fmt(total)}</small></summary>${drillRecords(matching,remaining,measure,split)}</details>`;
   }).join('');
 }
 

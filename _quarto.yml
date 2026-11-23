@@ -17,6 +17,7 @@ project:
     - assets/fouls/**
     - assets/home/**
     - assets/team-logos.js
+    - assets/team-logos/**
 
 website:
   title: "Terrapinalytics"

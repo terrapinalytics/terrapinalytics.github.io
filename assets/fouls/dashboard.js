@@ -151,10 +151,14 @@ function render() {
 }
 function renderTable() {
   const ref=state.view==='refs';
+  const player=state.view==='players';
+  const displayName=x=>ref?safe(x.name):player
+    ? '<span class="team-label">'+TeamLogos.icon(x.team)+'<span>'+safe(x.name)+'</span></span>'
+    : TeamLogos.label(x.name,x.id);
   const headers=ref?['Rank','Referee','Games','Poss.','Combined / 100','Home edge / 100']:['Rank',state.view==='players'?'Player':'Team','Games','Poss.','Committed / 100','Drawn / 100','Margin / 100'];
   const list=visible.slice(state.page*15,(state.page+1)*15);
   $('ranktable').innerHTML='<thead><tr>'+headers.map(h=>'<th>'+h+'</th>').join('')+'</tr></thead><tbody>'+
-    list.map((x,i)=>'<tr data-id="'+safe(x.id)+'" class="'+(x.id===state.entity?'selected':'')+'"><td>'+(state.page*15+i+1)+'</td><td><button class="namebutton">'+safe(x.name)+'</button></td><td>'+x.n+'</td><td>'+fmt(x.p,1)+'</td>'+
+    list.map((x,i)=>'<tr data-id="'+safe(x.id)+'" class="'+(x.id===state.entity?'selected':'')+'"><td>'+(state.page*15+i+1)+'</td><td><button class="namebutton">'+displayName(x)+'</button></td><td>'+x.n+'</td><td>'+fmt(x.p,1)+'</td>'+
       (ref?'<td>'+fmt(x.committed)+'</td><td>'+fmt(x.home)+'</td>':'<td>'+fmt(x.committed)+'</td><td>'+fmt(x.drawn)+'</td><td class="'+(x.margin>=0?'pos':'neg')+'">'+(x.margin>0?'+':'')+fmt(x.margin)+'</td>')+'</tr>').join('')+
     (!list.length?'<tr><td colspan="'+headers.length+'"><div class="empty">No matching records. Try a lower minimum or broader filters.</div></td></tr>':'')+'</tbody>';
   document.querySelectorAll('#ranktable tr[data-id]').forEach(tr=>tr.onclick=()=>{state.entity=tr.dataset.id;renderTable();renderProfile();updateUrl();resize();$('entitytitle').setAttribute('tabindex','-1');$('entitytitle').focus();});

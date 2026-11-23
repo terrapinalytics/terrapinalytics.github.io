@@ -93,7 +93,7 @@ function schoolRow(row) {
   const status = partial && estimated ? 'Est. subtotal' : partial ? 'Subtotal' : estimated ? 'Estimated' : '';
   return `<details class="school" data-school="${escape(row.school)}">
     <summary class="grid">
-      <span class="school-name">${escape(row.school)}</span>
+      <span class="school-name">${TeamLogos.label(row.school)}</span>
       <span class="conference">${escape(row.conference)}</span>
       <span class="amount">${escape(cost)}${status ? `<span class="status">${status}</span>` : ''}</span>
     </summary>
