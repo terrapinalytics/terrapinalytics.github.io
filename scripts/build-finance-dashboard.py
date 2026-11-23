@@ -93,6 +93,11 @@ def main():
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
     records = [record for source, filename in PANELS.items() for record in read_panel(source, filename)]
+    conferences = {}
+    for record in records:
+        school, conference = record["s"], record["c"]
+        if not conference or conferences.setdefault(school, conference) != conference:
+            raise ValueError(f"Missing or inconsistent current conference for {school} in {record['y']}")
     packed = ROOT / "data.packed.txt"
     payload = {"records": records, "spendingIndex": read_spending_index()}
     if args.check:
