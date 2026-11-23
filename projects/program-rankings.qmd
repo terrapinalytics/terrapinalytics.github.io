@@ -31,7 +31,7 @@ The field includes 67 Power Four football members, independent Notre Dame, and a
 
 ### Ranking framework
 
-Each category receives a score on a 0–100 scale. The weighted sum determines rank. Tiers begin at 90, 80, 70, 60, 50, 40 and 30 points.
+Each category receives a score on a 0–100 scale. The weighted sum determines rank. Six tiers use the same score bands across all 137 programs. Tier 1 starts at 85, Tier 2 at 75, Tier 3 at 65, Tier 4 at 50, and Tier 5 at 35. Tier 6 covers scores below 35.
 
 | Category | Editorial emphasis | Considerations |
 |---|---:|---|

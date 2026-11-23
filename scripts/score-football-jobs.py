@@ -8,6 +8,8 @@ from statistics import mean
 ROOT = Path(__file__).resolve().parents[1]
 WEIGHTS = {'resources': .30, 'recruiting': .20, 'conference': .20, 'fans': .15, 'ceiling': .15}
 # Editorial assessments of the 2026 football platform, including independent Notre Dame.
+TIER_MINIMUMS = (85, 75, 65, 50, 35)
+
 PLATFORM = {'SEC':100,'Big Ten':100,'Independent':95,'ACC':78,'Big 12':78,'American':44,
             'Pac-12':44,'Mountain West':33,'Sun Belt':33,'MAC':26,'C-USA':26}
 
@@ -64,7 +66,7 @@ def score(rows):
         results.append(dict(school=s,conference=c,score=round(total,4),**{k+'_score':round(v,4) for k,v in components.items()},previous_rank=r.get('previous_rank','')))
     results.sort(key=lambda r:(-r['score'],r['school']))
     for i,r in enumerate(results,1):
-        r.update(rank=i,tier=1+sum(r['score']<t for t in [90,80,70,60,50,40,30]))
+        r.update(rank=i,tier=1+sum(r['score']<t for t in TIER_MINIMUMS))
     for i,r in enumerate(sorted(results,key=lambda r: (-(r['score']-.20*r['conference_score']),r['school'])),1):
         r['rank_without_conference']=i
     return results

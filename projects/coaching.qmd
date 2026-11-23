@@ -6,11 +6,11 @@ toc: false
 
 ```{=html}
 <div class="tool-intro">
-<p>2026 coaching cycle. Each snapshot shows its reporting date.</p>
-<a href="../assets/coaching/odds.html?v=20261123" target="_blank" rel="noopener">Open full screen</a>
+<p>Track 2026 coaching departures and searches in the ACC, Big Ten, Big 12 and SEC.</p>
+<a href="../assets/coaching/odds.html?v=20261123-p4" target="_blank" rel="noopener">Open full screen</a>
 </div>
-<iframe class="tool-frame" data-fit-content src="../assets/coaching/odds.html?v=20261123" title="2026 coaching departure odds" loading="eager"></iframe>
+<iframe class="tool-frame" data-fit-content src="../assets/coaching/odds.html?v=20261123-p4" title="2026 coaching departure odds" loading="eager"></iframe>
 <script src="../assets/tool-frame.js" defer></script>
 ```
 
-[Odds CSV](../assets/coaching/departure_odds.csv) · [Research notes and data](../assets/coaching/departure_support.zip)
+[Odds CSV](../assets/coaching/departure_odds.csv)
