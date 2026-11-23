@@ -6,13 +6,14 @@ const results = document.querySelector('#results');
 const count = document.querySelector('#count');
 
 const currency = new Intl.NumberFormat('en-US', {
-  style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 2,
+  style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0,
 });
 const integer = new Intl.NumberFormat('en-US');
 const dollars = value => value === '' ? 'Unverified' : currency.format(Number(value));
 const escape = value => String(value).replace(/[&<>"']/g, char => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
 })[char]);
+const roundMoneyInText = value => value.replace(/\$(\d[\d,]*\.\d+)\b/g, (_, amount) => currency.format(Number(amount.replaceAll(',', ''))));
 const pairs = entries => entries.map(([name, value]) =>
   `<dt>${escape(name)}</dt><dd>${escape(value)}</dd>`).join('');
 const numeric = value => value === '' ? -Infinity : Number(value);
@@ -70,7 +71,7 @@ function feeDetails(row) {
     feeFields.push(['FY2027 advisory operating allocation', '$4,187,322']);
   }
   return `<section class="panel"><h2>Tuition and mandatory fees</h2><dl>${pairs(feeFields)}</dl>
-    <p>${escape(row.fee_notes)}</p>
+    <p>${escape(roundMoneyInText(row.fee_notes))}</p>
     ${sourceLinks(row, [['fee_schedule_source', 'Tuition and fee schedule'], ['fee_detail_source', 'Fee detail'], ['finance_source', 'Athletics finance'], ['enrollment_proxy_source', 'IPEDS enrollment']])}</section>`;
 }
 
@@ -79,7 +80,7 @@ function ticketDetails(row) {
   const price = row.ticket_range_upper_usd ? `${low}–${dollars(row.ticket_range_upper_usd)}` : low;
   const fields = [['Category', row.category], ['Ticket cost used', price], ['Price coverage', row.ticket_status]];
   return `<section class="panel"><h2>Student ticket options</h2><dl>${pairs(fields)}</dl>
-    <p class="package">${escape(row.student_ticket_package)}</p><p>${escape(row.ticket_scope)}</p>
+    <p class="package">${escape(roundMoneyInText(row.student_ticket_package))}</p><p>${escape(roundMoneyInText(row.ticket_scope))}</p>
     ${sourceLinks(row, [['ticket_sources', 'Ticket policy']])}</section>`;
 }
 
