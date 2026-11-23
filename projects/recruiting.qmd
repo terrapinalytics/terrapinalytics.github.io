@@ -6,7 +6,7 @@ page-layout: full
 
 ```{=html}
 <div class="tool-intro">
-<p>247Sports Composite high-school classes from 2010 through 2026.</p>
+<p>Explore 247Sports Composite recruits from 2010 through 2026. Use Commitments to see where a school’s class came from.</p>
 <a href="../assets/recruiting/dashboard.html" target="_blank" rel="noopener">Open full screen</a>
 </div>
 <iframe class="tool-frame" data-fit-content src="../assets/recruiting/dashboard.html" title="Interactive US recruiting heat map" loading="eager"></iframe>

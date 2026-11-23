@@ -7,3 +7,24 @@
 .related-article{margin:0 0 .7rem;font-size:.9rem}.related-article a{color:#8b1430}
 .dashboard-embedded #mapbox{height:clamp(400px,55vw,700px)}
 @media(min-width:641px){.dashboard-embedded aside{max-height:none}}
+
+.map-view [hidden],#points-setting[hidden]{display:none}
+.map-view{display:flex;align-items:end;gap:12px;flex-wrap:wrap;margin:0 0 12px}
+.map-mode{display:flex;gap:5px;flex-wrap:wrap}
+.map-mode button[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:#fff}
+.map-view label{margin:0 0 3px}
+#commitment-school-field{flex:1 1 13rem;max-width:22rem}
+#commitment-school{margin:0}
+#commitment-breakdown{margin:14px 0;padding:12px;background:white;border:1px solid var(--line);border-radius:7px}
+#commitment-title{margin:0}
+#commitment-method{margin:.4rem 0 .8rem}
+.commitment-band{border-top:1px solid var(--line);padding:.5rem 0}
+.commitment-band summary{list-style-position:inside;padding:.3rem 0}
+
+.commitment-band-stats{display:flex;flex-wrap:wrap;gap:.35rem 1rem;margin:.45rem 0 .15rem;padding:0;font-weight:400;color:#374651}
+.commitment-band-stats strong{font-weight:700}
+.commitment-band table{min-width:44rem}
+.commitment-band td:nth-child(2),.commitment-band th:nth-child(2),.commitment-band td:nth-child(5),.commitment-band th:nth-child(5),.commitment-band td:nth-child(6),.commitment-band th:nth-child(6){text-align:left}
+#map-details.commitment-map-details{grid-template-columns:minmax(0,1fr)}
+#map-details.commitment-map-details #details:empty{display:none}
+@media(max-width:640px){.map-view{align-items:stretch}.map-mode button{flex:1}.map-mode{width:100%}#commitment-school-field{max-width:none}}

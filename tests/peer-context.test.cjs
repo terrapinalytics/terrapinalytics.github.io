@@ -55,3 +55,19 @@ assert.equal(ncaaRows.filter(record => record.y === 2005 && record.exp != null).
 const flagged = ncaaRows.filter(record => record.fbexpFlagged);
 assert.equal(flagged.length, 9);
 assert(flagged.every(record => record.y === 2012 && record.fbexp == null));
+
+// Distance bands are exclusive, and location gaps still count toward class share.
+const recruitingSource = fs.readFileSync('assets/recruiting/dashboard.js', 'utf8');
+const commitmentModel = recruitingSource.slice(
+  recruitingSource.indexOf('const commitmentBands'), recruitingSource.indexOf('function showCommitments'));
+const example = [
+  {xy: true, miles: 100, commit: 'Maryland'},
+  {xy: true, miles: 100.01, commit: 'Maryland'},
+  {xy: true, miles: 250, commit: 'Virginia'},
+  {xy: true, miles: 250.01, commit: 'Maryland'},
+  {xy: false, commit: 'Maryland'}
+];
+const bandCounts = vm.runInNewContext(
+  commitmentModel + '\nObject.values(commitmentBreakdown(example, {name: "Maryland"})).map(b => [b.eligible, b.commits.length]);',
+  {example, distance: player => player.miles});
+assert.equal(JSON.stringify(bandCounts), '[[1,1],[2,1],[1,1],[1,1]]');
