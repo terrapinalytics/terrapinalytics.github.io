@@ -68,6 +68,7 @@ toc: false
   <section class="explore-category">
     <h3>Basketball</h3>
     <ul>
+      <li><a href="projects/maryland-basketball-live.html">Maryland Basketball Live</a><p>Follow the score, scoring runs, Four Factors, and player rates against season averages.</p></li>
       <li><a href="projects/officiating.html">Basketball Officiating</a><p>Compare foul rates per possession and drill into team, player, and referee profiles.</p></li>
     </ul>
   </section>

@@ -84,6 +84,15 @@ def main(site):
     home_images = {local_file(site, site / "index.html", url) for url in home.images}
     for name in dashboards:
         assert site / "projects" / name in home_dashboard_links, f"Homepage missing direct link to {name}"
+        if name == "maryland-basketball-live.html":
+            explore = site / "projects" / "index.html"
+            assert any(target is not None and target.resolve() == (site / "projects" / name).resolve()
+                       for url in Page(explore).links if (target := local_file(site, explore, url))), (
+                f"{name}: missing Explore link"
+            )
+            for asset in ("app.mjs", "metrics.mjs", "score-trend.mjs", "style.css"):
+                assert (site / "assets" / "basketball-live" / asset).is_file(), f"Missing dashboard asset {asset}"
+            continue  # Listed in Explore on the homepage, outside the preview carousel.
         preview = site / "assets" / "home" / Path(name).with_suffix(".webp")
         assert preview in home_images and preview.is_file(), f"Missing homepage screenshot for {name}"
     assert not any((urlsplit(link).hostname or "").endswith(".chatgpt.site") for link in home.links), (
