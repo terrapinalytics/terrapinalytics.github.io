@@ -139,3 +139,8 @@
 .dashboard-embedded .game-heading h1{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);margin:0}
 
 @media(max-width:800px){section:has(#players[data-view=totals]) .rate-legend{display:none}}
+
+.game-splits{display:flex;justify-content:flex-end;gap:.25rem;margin:.2rem 0 .65rem}
+.game-splits button+button{margin-left:0}
+.game-splits button:disabled{opacity:.42;cursor:default}
+#players .team-total>*{background:#f3e9ea;font-weight:750;border-bottom:2px solid #d9bdc3}

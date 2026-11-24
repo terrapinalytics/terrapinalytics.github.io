@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Live Four Factors and player box scores for Maryland men's basketball">
 <title>Maryland Basketball Live | Terrapinalytics</title>
-<link rel="stylesheet" href="style.css">
-<script type="module" src="app.mjs?v=2"></script>
+<link rel="stylesheet" href="style.css?v=3">
+<script type="module" src="app.mjs?v=3"></script>
 </head>
 <body>
 <header><div class="wrap brand"><span>Terrapinalytics</span><span>Men’s basketball</span></div></header>
@@ -18,6 +18,11 @@
 </section>
 <div class="feed" id="status" role="status"></div>
 <div id="analysis" hidden>
+<div id="game-splits" class="game-splits" role="group" aria-label="Game split">
+<button type="button" data-half="0" aria-pressed="true">Total</button>
+<button type="button" data-half="1" aria-pressed="false">1H</button>
+<button type="button" data-half="2" aria-pressed="false">2H</button>
+</div>
 <section aria-labelledby="factors-title"><h2 id="factors-title">Four Factors</h2><p class="sub rate-key"><span>Vs. team season</span><span class="rate-gradient" aria-hidden="true"></span></p><div class="factors" id="factors"></div></section>
 <section aria-labelledby="players-title"><div class="heading"><h2 id="players-title">Player box score</h2><div id="teams" role="group" aria-label="Box score team"></div></div>
 <div class="box-views" id="box-views" role="group" aria-label="Box score view">
@@ -35,6 +40,7 @@
 <details><summary>How the rates are calculated</summary>
 <p>Team eFG% = (FGM + 0.5 × 3PM) / FGA. TO% = TO / estimated possessions, where possessions = FGA − ORB + TO + 0.475 × FTA. OR% = ORB / (ORB + opponent DRB). DR% = DRB / (DRB + opponent ORB). FT rate = FTA / FGA. 3P rate = 3PA / FGA. Team rebound totals follow the ESPN box score. The turnover breakdown uses opponent steals and the remaining turnovers. Each percentage uses estimated offensive possessions as its denominator.</p>
 <p>Player eFG% uses their own attempts. Player TO% uses TO / (FGA + 0.475 × FTA + TO), and player FT rate uses their own FTA / FGA. Player OR% and DR% divide the player’s rebounds by estimated opportunities while on the floor. Opportunities use player-credited rebounds on each end (own ORB + opponent DRB, or own DRB + opponent ORB), multiplied by five times the player’s minutes divided by total reported team player minutes. Blank rates indicate unavailable data or a zero denominator.</p>
+<p>Half splits use recorded plays and substitutions. Half minutes and player rebound rates may be blank when lineup coverage is incomplete. Total uses the official box score and includes overtime.</p>
 <p>Colors compare with season rates pooled from available completed games before the displayed matchup. Shooting splits use accuracy for shading. Lower turnover rates receive green shading. Rates with no season comparison are neutral. In the player box, OR% is above DR%.</p>
 </details>
 </div>

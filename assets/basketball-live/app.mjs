@@ -1,5 +1,6 @@
-import {rate,fmt,line,unpack} from './metrics.mjs?v=2';
-import {scoreTrend,periodLabel,trendSnapshot} from './score-trend.mjs';
+import {rate,fmt,line,unpack} from './metrics.mjs?v=3';
+import {halfBoxes} from './half-box.mjs';
+import {scoreTrend,periodLabel,trendSnapshot} from './score-trend.mjs?v=3';
 
 const api = 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball';
 const md = '120';
@@ -10,7 +11,7 @@ const time = (d, options) => new Intl.DateTimeFormat('en-US',{timeZone:'America/
 const gameDate = d => time(d,{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});
 const type = e => e.competitions?.[0]?.status?.type;
 const finalGames = new Map(), seasons = new Map();
-let selectedTeam = md, active, box, loading = false;
+let selectedTeam = md, selectedHalf = 0, active, box, loading = false;
 
 async function get(path) {
   const response = await fetch(api+path,{signal:AbortSignal.timeout(12000)});
@@ -353,9 +354,32 @@ function rateValue(pair,reference,i) {
   return '<strong class="rate-value" title="'+label+'" aria-label="'+label+'" style="'+style+'">'+value+'</strong>';
 }
 
+function visibleTeams() {
+  const selected = box.halves.get(selectedHalf);
+  return selected ? box.teams.map(({team})=>({team,data:selected.get(team.id)})) : box.teams;
+}
+
+function renderSplit() {
+  for (const button of $('game-splits').children) {
+    const half = Number(button.dataset.half);
+    button.disabled = half!==0 && !box.halves.has(half);
+    button.setAttribute('aria-pressed',String(half===selectedHalf));
+  }
+  renderFactors(visibleTeams(),box.samples);
+  renderPlayers();
+}
+
+for (const button of $('game-splits').children) {
+  button.onclick = () => {
+    selectedHalf = Number(button.dataset.half);
+    renderSplit();
+  };
+}
+
 function renderPlayers() {
   if (!box) return;
-  const {teams,samples} = box;
+  const teams = visibleTeams();
+  const {samples} = box;
   const {data,team} = teams.find(t => t.team.id === selectedTeam) ?? teams[0];
   const existing = [...$('teams').children];
   if (existing.map(button => button.dataset.id).join() !== teams.map(t => t.team.id).join()) {
@@ -369,25 +393,29 @@ function renderPlayers() {
     }));
   }
   for (const button of $('teams').children) button.setAttribute('aria-pressed',String(button.dataset.id===team.id));
-  const rows = data.players.map(p => {
-    const {stats:s} = p;
-    const reference = samples.get(team.id)?.players.get(p.id);
-    const [efg,to,or,dr,ftr] = p.pairs.map((pair,i)=>rateValue(pair,reference?.rates[i],i));
+  const row = (label,s,pairs,reference,rowClass='') => {
+    const [efg,to,or,dr,ftr] = pairs.map((pair,i)=>rateValue(pair,reference?.rates[i],i));
     const metrics = [efg,to,'<div class="rebound-rates">'+or+dr+'</div>',ftr];
-    const shooting = shootingStats(s).map(({text,pair},i)=>
-      shadedStat(text,rateComparison(pair,reference?.shooting[i])));
+    const shooting = shootingStats(s).map(({text,pair},i)=>reference?.shooting ?
+      shadedStat(text,rateComparison(pair,reference.shooting[i])) : escape(text));
     const count = key => escape(s[key] ?? '—');
     const raw = ['orb','drb','to','ast','stl','blk','pf'].map(count);
-    return '<tr><th scope="row">'+playerLabel(p)+'</th>'+
+    return '<tr'+rowClass+'><th scope="row">'+label+'</th>'+
       statCell(count('min'),1)+statCell(count('pts'),2)+metrics.map((html,i)=>'<td'+columnAttr(i+rateColumn)+'>'+html+'</td>').join('')+
       [...shooting,...raw].map((html,i)=>statCell(html,i+shootingColumn)).join('')+
       totalGroups.map((group,i)=>statCell(group.map(([label,key])=>
         '<span class="box-stat"><b>'+count(key)+'</b> '+label+'</span>').join(''),i+totalsColumn)).join('')+'</tr>';
-  });
+  };
+  const sample = samples.get(team.id);
+  const defensive = descriptors[2][2](data)[1].pair;
+  const [efg,to,or,ftr] = data.pairs;
+  const reference = sample ? {rates:[...sample.factors.slice(0,3),sample.details[2][1],sample.factors[3]]} : undefined;
+  const teamTotal = row('Team total',data.stats,[efg,to,or,defensive,ftr],reference,' class="team-total"');
+  const rows = data.players.map(p=>row(playerLabel(p),p.stats,p.pairs,sample?.players.get(p.id)));
   $('players').innerHTML = '<thead><tr>'+columns.map(([label,,short],i) =>
     '<th scope="col"'+columnAttr(i)+(short?' aria-label="'+label+'"':'')+'>'+
     (short?'<span class="box-long">'+label+'</span><span class="box-short">'+short+'</span>':label)+'</th>').join('')+
-    '</tr></thead><tbody>'+(rows.join('') || '<tr><td colspan="'+columns.length+'">Player stats are pending.</td></tr>')+'</tbody>';
+    '</tr></thead><tbody>'+teamTotal+(rows.join('') || '<tr><td colspan="'+columns.length+'">Player stats are pending.</td></tr>')+'</tbody>';
 }
 
 async function refresh() {
@@ -404,6 +432,7 @@ async function refresh() {
       active = event.id;
       box = null;
       selectedTeam = md;
+      selectedHalf = 0;
       $('analysis').hidden = true;
       renderScore(event,event.competitions[0]);
     }
@@ -416,17 +445,16 @@ async function refresh() {
         .sort((a,b) => Number(b.team.id===md)-Number(a.team.id===md));
       if (teams.length === 2 && teams.every(t=>t.data)) {
         const samples = box?.samples ?? new Map();
-        box = {teams,samples};
-        renderFactors(teams,samples);
-        renderPlayers();
+        box = {teams,samples,halves:halfBoxes(game,competition)};
+        if (!box.halves.has(selectedHalf)) selectedHalf = 0;
+        renderSplit();
         $('analysis').hidden = false;
         for (const {team} of teams) {
           if (samples.get(team.id)?.count === samples.get(team.id)?.total && samples.has(team.id)) continue;
           loadSeason(team.id,event,schedule).then(sample => {
             if (active !== event.id) return;
             samples.set(team.id,sample);
-            renderFactors(box.teams,samples);
-            renderPlayers();
+            renderSplit();
           }).catch(() => {});
         }
       } else if (!box) {

@@ -31,12 +31,12 @@ function minutes(value) {
   return /^\d+(\.\d+)?$/.test(value ?? '') ? Number(value) : null;
 }
 
-function playerLines(game, teamId) {
+export function playerLines(game, teamId, includeRoster=false) {
   const groups = game.boxscore?.players?.find(t => String(t.team.id) === teamId)?.statistics ?? [];
-  return groups.flatMap(g => g.athletes.filter(p => !p.didNotPlay && p.stats?.length).map(p => ({
-    id:p.athlete.id,name:p.athlete.displayName,shortName:p.athlete.shortName,
+  return groups.flatMap(g => g.athletes.filter(p => includeRoster || (!p.didNotPlay && p.stats?.length)).map(p => ({
+    id:String(p.athlete.id),starter:p.starter,name:p.athlete.displayName,shortName:p.athlete.shortName,
     position:p.athlete.position?.abbreviation,
-    stats:parse(key => p.stats[g.keys.indexOf(key)])
+    stats:parse(key => p.stats?.[g.keys.indexOf(key)])
   })));
 }
 
@@ -58,6 +58,21 @@ function playerPairs(s, own, other) {
     [s.drb,scale(sum(own.drb,other.orb),share)],
     [s.fta,s.fga]];
 }
+export const clockLabel = seconds => Math.floor(seconds/60)+':'+String(Math.floor(seconds%60)).padStart(2,'0');
+
+export function assembleBox(s,opponent,players,opponentPlayers) {
+  const ownRebounds = reboundTotals(players);
+  const otherRebounds = reboundTotals(opponentPlayers);
+  const totals = {
+    ...s,
+    pts:s.pts ?? sum(scale(s.fgm,2),s.threeM,s.ftm),
+    min:s.min ?? (ownRebounds.minutes==null ? null : Math.round(ownRebounds.minutes))
+  };
+  const ranked = players.map(player=>({...player,pairs:playerPairs(player.stats,ownRebounds,otherRebounds)}))
+    .sort((a,b)=>(minutes(b.stats.min) ?? -1)-(minutes(a.stats.min) ?? -1));
+  return {stats:totals,opponent,pairs:teamPairs(totals,opponent),players:ranked};
+}
+
 export function unpack(game, teamId) {
   const sides = game.boxscore?.teams ?? [];
   const own = sides.find(t => String(t.team.id) === teamId);
@@ -67,12 +82,5 @@ export function unpack(game, teamId) {
     const stats = new Map(t.statistics.map(s => [s.name,s.displayValue]));
     return parse(key => stats.get(key));
   };
-  const s = totals(own), opponent = totals(other);
-  const pairs = teamPairs(s,opponent);
-  const players = playerLines(game,teamId);
-  const ownRebounds = reboundTotals(players);
-  const otherRebounds = reboundTotals(playerLines(game,String(other.team.id)));
-  for (const player of players) player.pairs = playerPairs(player.stats,ownRebounds,otherRebounds);
-  players.sort((a,b) => (minutes(b.stats.min) ?? -1) - (minutes(a.stats.min) ?? -1));
-  return {stats:s,opponent,pairs,players};
+  return assembleBox(totals(own),totals(other),playerLines(game,teamId),playerLines(game,String(other.team.id)));
 }

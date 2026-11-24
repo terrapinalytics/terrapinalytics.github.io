@@ -5,7 +5,7 @@ const periodLength = period => period <= 2 ? HALF : OVERTIME;
 const periodStart = period => period <= 2 ? (period-1)*HALF : 2*HALF+(period-3)*OVERTIME;
 export const periodLabel = period => period <= 2 ? period+'H' : period === 3 ? 'OT' : (period-2)+'OT';
 
-function clockSeconds(clock) {
+export function clockSeconds(clock) {
   const [minute,second] = String(clock ?? '').split(':');
   if (second !== undefined && /^\d+$/.test(minute) && /^\d+(\.\d+)?$/.test(second)) {
     return Number(minute)*60+Number(second);
