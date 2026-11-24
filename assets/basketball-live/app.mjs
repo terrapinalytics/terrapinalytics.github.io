@@ -1,4 +1,4 @@
-import {rate,fmt,line,unpack} from './metrics.mjs';
+import {rate,fmt,line,unpack} from './metrics.mjs?v=2';
 import {scoreTrend,periodLabel,trendSnapshot} from './score-trend.mjs';
 
 const api = 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball';

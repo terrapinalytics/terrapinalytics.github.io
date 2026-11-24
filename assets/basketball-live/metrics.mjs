@@ -43,7 +43,8 @@ function playerLines(game, teamId) {
 function reboundTotals(players) {
   if (!players.length) return {minutes:null,orb:null,drb:null};
   return {
-    minutes:sum(...players.map(p => minutes(p.stats.min))),
+    // Live box scores can contain a dash for a player who just entered.
+    minutes:players.reduce((total,p) => total+(minutes(p.stats.min) ?? 0),0),
     orb:sum(...players.map(p => p.stats.orb)),
     drb:sum(...players.map(p => p.stats.drb))
   };
@@ -51,7 +52,7 @@ function reboundTotals(players) {
 
 function playerPairs(s, own, other) {
   const played = minutes(s.min);
-  const share = own.minutes > 0 && other.minutes > 0 && played != null ? played * 5 / own.minutes : null;
+  const share = own.minutes > 0 && played != null ? played * 5 / own.minutes : null;
   return [[effectiveMakes(s),s.fga],[s.to,used(s)],
     [s.orb,scale(sum(own.orb,other.drb),share)],
     [s.drb,scale(sum(own.drb,other.orb),share)],
