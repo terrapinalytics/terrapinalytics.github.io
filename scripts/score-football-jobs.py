@@ -8,7 +8,7 @@ from statistics import mean
 ROOT = Path(__file__).resolve().parents[1]
 WEIGHTS = {'resources': .30, 'recruiting': .20, 'conference': .20, 'fans': .15, 'ceiling': .15}
 # Editorial assessments of the 2026 football platform, including independent Notre Dame.
-TIER_MINIMUMS = (85, 75, 65, 50, 35)
+TIER_MINIMUMS = (90, 82, 75, 68, 61, 52, 40, 29)
 
 PLATFORM = {'SEC':100,'Big Ten':100,'Independent':95,'ACC':78,'Big 12':78,'American':44,
             'Pac-12':44,'Mountain West':33,'Sun Belt':33,'MAC':26,'C-USA':26}
