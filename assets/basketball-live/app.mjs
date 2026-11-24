@@ -1,6 +1,6 @@
 import {rate,fmt,line,unpack} from './metrics.mjs?v=3';
 import {halfBoxes} from './half-box.mjs';
-import {scoreTrend,periodLabel,trendSnapshot} from './score-trend.mjs?v=3';
+import {scoreTrend,periodLabel,trendSnapshot,recordedPossessionArrow} from './score-trend.mjs?v=4';
 
 const api = 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball';
 const md = '120';
@@ -235,14 +235,16 @@ function timeoutTicks(remaining) {
     remaining+' timeouts remaining">'+(remaining ? '<i></i>'.repeat(remaining) : '<i class="empty"></i>')+'</span>';
 }
 
-function possessionArrow(competition,fallback,sides,state) {
-  if (state !== 'in') return '';
+function possessionArrow(competition,fallback,sides,status,plays) {
+  if (status.type?.state !== 'in') return '';
   const source = [competition,fallback].find(c=>c?.possessionArrowAvailable===true);
   const teamId = source?.situation?.possessionArrow?.team?.id ?? source?.situation?.possessionArrow?.id;
   const flagged = source?.competitors?.filter(side=>side.possession===true) ?? [];
-  const owner = teamId ?? (flagged.length===1 ? flagged[0].team.id : null);
+  const official = teamId ?? (flagged.length===1 ? flagged[0].team.id : null);
+  const owner = official ?? recordedPossessionArrow(plays,sides.map(side=>String(side.team.id)),status);
   const index = sides.findIndex(side=>owner!=null && String(side.team.id)===String(owner));
-  const label = index<0 ? 'Possession arrow unavailable' : 'Possession arrow: '+sides[index].team.abbreviation;
+  const label = index<0 ? 'Possession arrow unavailable' :
+    (official==null?'Estimated possession arrow: ':'Possession arrow: ')+sides[index].team.abbreviation;
   return '<span class="possession" role="img" aria-label="'+escape(label)+'" title="'+escape(label)+'">'+
     '<span aria-hidden="true">'+(index===0?'←':index===1?'→':'↔')+'</span><small>Poss</small></span>';
 }
@@ -267,7 +269,7 @@ function renderScore(event,competition,plays=[],fallback={}) {
   };
   const label = state === 'pre' ? gameDate(event.date) : status.type?.shortDetail ?? 'Game status pending';
   const markup = team(sides[0],0)+'<div class="clock">'+escape(label)+
-    possessionArrow(competition,fallback,sides,state)+'</div>'+team(sides[1],1);
+    possessionArrow(competition,fallback,sides,status,plays)+'</div>'+team(sides[1],1);
   if ($('scoreboard').innerHTML !== markup) $('scoreboard').innerHTML = markup;
   renderTrend(trend,sides);
 }
