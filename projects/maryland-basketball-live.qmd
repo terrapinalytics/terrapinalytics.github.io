@@ -1,0 +1,14 @@
+---
+title: "Maryland Basketball Live"
+page-layout: full
+toc: false
+---
+
+```{=html}
+<div class="tool-intro">
+<p>Live scores, Four Factors, and player box scores for Maryland men’s basketball.</p>
+<a href="../assets/basketball-live/index.html" target="_blank" rel="noopener">Open full screen</a>
+</div>
+<iframe class="tool-frame" data-fit-content src="../assets/basketball-live/index.html" title="Maryland Basketball Live dashboard" loading="eager"></iframe>
+<script src="../assets/tool-frame.js" defer></script>
+```

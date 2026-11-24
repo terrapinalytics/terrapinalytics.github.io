@@ -15,6 +15,7 @@ toc: false
 ## Basketball
 
 ::: {.explore-directory}
+- [Maryland Basketball Live](maryland-basketball-live.qmd) [Follow the score, scoring runs, Four Factors, and player rates against season averages.]{.tool-description}
 - [Basketball Officiating](officiating.qmd) [Compare foul rates per possession and drill into team, player, and referee profiles.]{.tool-description}
 :::
 
