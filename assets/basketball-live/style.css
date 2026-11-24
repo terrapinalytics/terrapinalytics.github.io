@@ -137,3 +137,5 @@
 .dashboard-embedded body>header{display:none}
 .dashboard-embedded .game-heading{justify-content:flex-end;margin:.45rem 0}
 .dashboard-embedded .game-heading h1{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);margin:0}
+
+@media(max-width:800px){section:has(#players[data-view=totals]) .rate-legend{display:none}}

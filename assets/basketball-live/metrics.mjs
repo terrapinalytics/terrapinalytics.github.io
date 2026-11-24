@@ -23,7 +23,7 @@ export function teamPairs(s, opponent) {
   return [[effectiveMakes(s),s.fga],[s.to,minus(used(s),s.orb)],
     [s.orb,sum(s.orb,opponent.drb)],[s.fta,s.fga]];
 }
-export function minutes(value) {
+function minutes(value) {
   if (/^\d+:\d{2}$/.test(value ?? '')) {
     const [m, seconds] = value.split(':').map(Number);
     return m + seconds / 60;

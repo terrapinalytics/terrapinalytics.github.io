@@ -1,4 +1,4 @@
-import {rate,fmt,line,unpack,minutes} from './metrics.mjs';
+import {rate,fmt,line,unpack} from './metrics.mjs';
 import {scoreTrend,periodLabel,trendSnapshot} from './score-trend.mjs';
 
 const api = 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball';
@@ -25,8 +25,10 @@ const countAndRate = pair => ({
   text:[fmt(pair[0],0),percent(rate(pair))],pair
 });
 const descriptors = [
-  ['eFG%', ['2P','3P','FG'], ({stats:s}) =>
-    [shot(s.twoM,s.twoA),shot(s.threeM,s.threeA),shot(s.fgm,s.fga)]],
+  ['eFG%', ['2P','3P','3P Rate'], ({stats:s}) =>
+    [shot(s.twoM,s.twoA),shot(s.threeM,s.threeA),{
+      text:percent(rate([s.threeA,s.fga])),pair:[s.threeA,s.fga]
+    }]],
   ['Turnover %', ['Steal','Non-steal'], ({stats:s,opponent:o,pairs}) => {
     const steals = s.to != null && o.stl != null && o.stl <= s.to ? o.stl : null;
     const other = steals == null ? null : s.to-steals;
@@ -47,7 +49,6 @@ const totalGroups = [
   [['AST','ast'],['TO','to']],
   [['STL','stl'],['BLK','blk'],['PF','pf']]
 ];
-const totalValue = (s,key) => key === 'min' ? minutes(s.min) : s[key];
 
 function pool(total,pairs) {
   pairs.forEach(([n,d],i) => {
@@ -88,11 +89,10 @@ async function seasonRates(teamId,event,schedule) {
       descriptors.forEach(([, ,rows],k)=>pool(details[k],rows(data).map(row=>row.pair)));
       for (const player of data.players) {
         if (player.id == null) continue;
-        if (!players.has(player.id)) players.set(player.id,{rates:[],shooting:[],totals:[]});
+        if (!players.has(player.id)) players.set(player.id,{rates:[],shooting:[]});
         const playerSeason = players.get(player.id);
         pool(playerSeason.rates,player.pairs);
         pool(playerSeason.shooting,shootingStats(player.stats).map(shot=>shot.pair));
-        pool(playerSeason.totals,totalGroups.flat().map(([,key])=>[totalValue(player.stats,key),1]));
       }
     });
   }
@@ -114,19 +114,16 @@ function loadSeason(teamId,event,schedule) {
   return seasons.get(key);
 }
 
-function comparison(value,average,lower=false,format=percent) {
+function rateComparison(pair,reference,lower=false) {
+  const value = rate(pair), average = rate(reference ?? []);
   if (value == null || average == null) return {style:'',note:'Season comparison unavailable'};
   const edge = (value-average)*(lower?-1:1);
   const strength = average > 0 ? Math.min(1,Math.abs(edge)/average*2) : Number(edge!==0);
   const shade = edge >= 0 ? 'var(--bench-green)' : 'var(--bench-red)';
   return {
     style:'--rate-bg:color-mix(in srgb,'+shade+' '+Math.round(strength*100)+'%,var(--bench-neutral))',
-    note:'Game '+format(value)+' · Season '+format(average)
+    note:'Game '+percent(value)+' · Season '+percent(average)
   };
-}
-
-function rateComparison(pair,reference,lower=false) {
-  return comparison(rate(pair),rate(reference ?? []),lower);
 }
 
 function teamColor(team) {
@@ -379,21 +376,13 @@ function renderPlayers() {
     const metrics = [efg,to,'<div class="rebound-rates">'+or+dr+'</div>',ftr];
     const shooting = shootingStats(s).map(({text,pair},i)=>
       shadedStat(text,rateComparison(pair,reference?.shooting[i])));
-    let statIndex = 0;
-    const totals = totalGroups.map(group=>group.map(([label,key]) => {
-      const [sum, games] = reference?.totals[statIndex] ?? [];
-      statIndex++;
-      const average = games > 0 ? sum/games : null;
-      const stat = comparison(totalValue(s,key),average,key==='to' || key==='pf',fmt);
-      return {key,label,html:shadedStat(s[key],stat)};
-    }));
-    const byKey = new Map(totals.flat().map(({key,html})=>[key,html]));
-    const raw = ['orb','drb','to','ast','stl','blk','pf'].map(key=>byKey.get(key));
+    const count = key => escape(s[key] ?? '—');
+    const raw = ['orb','drb','to','ast','stl','blk','pf'].map(count);
     return '<tr><th scope="row">'+playerLabel(p)+'</th>'+
-      statCell(byKey.get('min'),1)+statCell(byKey.get('pts'),2)+metrics.map((html,i)=>statCell(html,i+rateColumn)).join('')+
+      statCell(count('min'),1)+statCell(count('pts'),2)+metrics.map((html,i)=>'<td'+columnAttr(i+rateColumn)+'>'+html+'</td>').join('')+
       [...shooting,...raw].map((html,i)=>statCell(html,i+shootingColumn)).join('')+
-      totals.map((group,i)=>statCell(group.map(({label,html})=>
-        '<span class="box-stat">'+html+' '+label+'</span>').join(''),i+totalsColumn)).join('')+'</tr>';
+      totalGroups.map((group,i)=>statCell(group.map(([label,key])=>
+        '<span class="box-stat"><b>'+count(key)+'</b> '+label+'</span>').join(''),i+totalsColumn)).join('')+'</tr>';
   });
   $('players').innerHTML = '<thead><tr>'+columns.map(([label,,short],i) =>
     '<th scope="col"'+columnAttr(i)+(short?' aria-label="'+label+'"':'')+'>'+
