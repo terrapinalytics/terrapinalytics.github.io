@@ -44,7 +44,11 @@ const descriptors = [
     [shot(s.fta,s.fga,'/'),shot(s.ftm,s.fta)]]
 ];
 
-const shootingStats = s => [shot(s.fgm,s.fga),shot(s.twoM,s.twoA),shot(s.threeM,s.threeA),shot(s.ftm,s.fta)];
+const threePointRateColumn = 2;
+const shootingStats = s => {
+  const pair = [s.threeA,s.fga];
+  return [shot(s.twoM,s.twoA),shot(s.threeM,s.threeA),{text:percent(rate(pair)),pair},shot(s.ftm,s.fta)];
+};
 const totalGroups = [
   [['MIN','min'],['PTS','pts']],
   [['ORB','orb'],['DRB','drb']],
@@ -93,7 +97,9 @@ function seasonShotLines(sample) {
     const games = sample.shootingGames[i]?.[0];
     if (!games) return '—';
     const [made,attempted] = sample.shooting[i] ?? [0,0];
-    return (made/games).toFixed(1)+'-'+(attempted/games).toFixed(1);
+    const percentage = percent(rate([made,attempted]));
+    if (i === threePointRateColumn) return percentage;
+    return (made/games).toFixed(1)+'-'+(attempted/games).toFixed(1)+'<small>'+percentage+'</small>';
   });
 }
 
@@ -358,7 +364,7 @@ const columns = [
   ['eFG%','rates'], ['Player TO%','rates','TO%'],
   ['Offensive and defensive rebound percentages','rates','OR% / DR%'],
   ['Free throw rate (FTA/FGA)','rates','FTR'],
-  ['FG','shooting'], ['2P','shooting'], ['3P','shooting'], ['FT','shooting'],
+  ['2P','shooting'], ['3P','shooting'], ['3P Rate','shooting'], ['FT','shooting'],
   ['ORB'], ['DRB'], ['TO'], ['AST'], ['STL'], ['BLK'], ['PF'],
   ['Minutes and points','totals','Time'], ['Offensive and defensive rebounds','totals','Reb'],
   ['Assists and turnovers','totals','Ball'], ['Steals, blocks and fouls','totals','Def']

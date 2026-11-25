@@ -8,5 +8,5 @@ toc: false
 
 ```{=html}
 <link rel="stylesheet" href="../assets/basketball-live/style.css?v=page1">
-<script type="module" src="../assets/basketball-live/app.mjs?v=page1"></script>
+<script type="module" src="../assets/basketball-live/app.mjs?v=shotpct1"></script>
 ```
