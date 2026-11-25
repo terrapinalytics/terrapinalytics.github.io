@@ -133,6 +133,20 @@ function teamColor(team) {
 }
 
 let inspectedTime = null;
+function dismissSnapshot() {
+  inspectedTime = null;
+  const overlay = document.querySelector('.trend-inspection');
+  if (overlay) overlay.hidden = true;
+  if (document.activeElement?.matches('.trend-plot')) document.activeElement.blur();
+}
+document.addEventListener('pointerdown', event => {
+  if (!event.target.closest('.trend-plot')) dismissSnapshot();
+}, true);
+window.addEventListener('blur', dismissSnapshot);
+if (parent !== window) {
+  try { parent.document.addEventListener('pointerdown', dismissSnapshot, true); }
+  catch { /* Cross-origin embeds use the window blur listener. */ }
+}
 
 function inspectTrend(plot,points,end,maximum,sides) {
   const overlay = plot.querySelector('.trend-inspection');
@@ -361,7 +375,42 @@ function visibleTeams() {
   return selected ? box.teams.map(({team})=>({team,data:selected.get(team.id)})) : box.teams;
 }
 
+const profileLabels = ['eFG%', '2P%', '3P%', '3P Rate', 'TO%', 'Steal TO%', 'Non-steal TO%', 'OReb%', 'DReb%', 'FT Rate', 'FT%'];
+let profileData, profileKey;
+async function renderProfiles() {
+  if (!box || !$('team-profiles').open) return;
+  const teams = box.teams.map(t => t.team);
+  const key = teams.map(t => t.id).join('/');
+  if (profileKey === key) return;
+  profileKey = key;
+  const out = $('profile-body');
+  out.textContent = 'Loading profiles…';
+  try {
+    profileData ??= fetch('./profiles.json').then(r => {
+      if (!r.ok) throw Error('Profiles unavailable');
+      return r.json();
+    });
+    const data = await profileData;
+    if (profileKey !== key) return;
+    const cells = (side,i) => teams.map(t => {
+      const value = data.teams[t.id]?.[side]?.[i];
+      return '<td>'+(value ? value[0].toFixed(1)+'% <small>#'+value[1]+'</small>' : '—')+'</td>';
+    }).join('');
+    out.innerHTML = '<p>Through '+escape(data.through)+' · '+Object.keys(data.teams).length+
+      ' D-I teams · D-I games only. Defense shows opponent rates. 3P Rate ranks shot frequency.</p>'+
+      '<table><thead><tr><th rowspan="2">Rate</th><th colspan="2">Offense</th><th colspan="2">Defense</th></tr><tr>'+
+      [...teams,...teams].map(t=>'<th>'+escape(t.abbreviation)+'</th>').join('')+'</tr></thead><tbody>'+
+      profileLabels.map((label,i)=>'<tr class="'+([0,4,7,9].includes(i)?'factor-row':'')+'"><th scope="row">'+label+
+        '</th>'+cells(0,i)+cells(1,i)+'</tr>').join('')+'</tbody></table>';
+  } catch {
+    profileData = profileKey = null;
+    out.textContent = 'Profiles unavailable. Reopen to retry.';
+  }
+}
+$('team-profiles').ontoggle = renderProfiles;
+
 function renderSplit() {
+  renderProfiles();
   for (const button of $('game-splits').children) {
     const half = Number(button.dataset.half);
     button.disabled = half!==0 && !box.halves.has(half);

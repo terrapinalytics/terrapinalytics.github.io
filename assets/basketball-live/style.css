@@ -148,3 +148,11 @@
 .game-splits button+button{margin-left:0}
 .game-splits button:disabled{opacity:.42;cursor:default}
 #players .team-total>*{background:#f3e9ea;font-weight:750;border-bottom:2px solid #d9bdc3}
+
+#team-profiles{margin-top:.45rem;padding:.4rem .65rem}
+#profile-body table{table-layout:fixed;width:100%}
+#profile-body th,#profile-body td{padding:.18rem .12rem;text-align:center;font-size:.8rem}
+#profile-body tbody th,#profile-body thead th[rowspan]{text-align:left;width:30%;white-space:normal}
+#profile-body td small{display:block;color:var(--muted)}
+#profile-body .factor-row>*{background:#f3eeea;font-weight:700}
+#profile-body p{margin:.35rem 0;font-size:.76rem}
