@@ -11,7 +11,7 @@ const time = (d, options) => new Intl.DateTimeFormat('en-US',{timeZone:'America/
 const gameDate = d => time(d,{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});
 const type = e => e.competitions?.[0]?.status?.type;
 const finalGames = new Map(), seasons = new Map();
-let showSeason = false;
+const expandedSeasonRows = new Set();
 let selectedTeam = md, selectedHalf = 0, active, box, loading = false;
 
 async function get(path) {
@@ -74,7 +74,10 @@ function finalGame(id, teamId) {
 const seasonCounts = ['min','pts','orb','drb','to','ast','stl','blk','pf'];
 function collectSeason(sample, stats, pairs) {
   pool(sample.rates,pairs);
-  pool(sample.shooting,shootingStats(stats).map(shot=>shot.pair));
+  const shots = shootingStats(stats).map(shot=>shot.pair);
+  pool(sample.shooting,shots);
+  pool(sample.shootingGames,shots.map(([made,attempted])=>
+    made != null && attempted != null ? [1,1] : []));
   const counts = seasonCounts.map(key => {
     const value = stats[key];
     if (value == null || value === '' || value === '-') return [];
@@ -83,6 +86,15 @@ function collectSeason(sample, stats, pairs) {
     return Number.isFinite(number) ? [number,1] : [];
   });
   pool(sample.counts,counts);
+}
+
+function seasonShotLines(sample) {
+  return Array.from({length:4},(_,i) => {
+    const games = sample.shootingGames[i]?.[0];
+    if (!games) return '—';
+    const [made,attempted] = sample.shooting[i] ?? [0,0];
+    return (made/games).toFixed(1)+'-'+(attempted/games).toFixed(1);
+  });
 }
 
 function averageCounts(sample) {
@@ -97,7 +109,7 @@ async function seasonRates(teamId,event,schedule) {
   const ids = [...new Set(calendar.events.filter(e => type(e)?.completed && e.id !== event.id &&
     Date.parse(e.date) < Date.parse(event.date)).map(e => e.id))];
   const factors = [], details = descriptors.map(()=>[]), players = new Map();
-  const teamSeason = {rates:[],shooting:[],counts:[]};
+  const teamSeason = {rates:[],shooting:[],shootingGames:[],counts:[]};
   let count = 0;
   for (let i=0;i<ids.length;i+=5) {
     const results = await Promise.allSettled(ids.slice(i,i+5).map(id=>finalGame(id,teamId)));
@@ -115,7 +127,7 @@ async function seasonRates(teamId,event,schedule) {
       collectSeason(teamSeason,data.stats,[efg,to,or,descriptors[2][2](data)[1].pair,ftr,[],[data.stats.pts,to[1]]]);
       for (const player of data.players) {
         if (player.id == null) continue;
-        if (!players.has(player.id)) players.set(player.id,{player,rates:[],shooting:[],counts:[]});
+        if (!players.has(player.id)) players.set(player.id,{rates:[],shooting:[],shootingGames:[],counts:[]});
         collectSeason(players.get(player.id),player.stats,player.pairs);
       }
     });
@@ -465,11 +477,16 @@ for (const button of $('game-splits').children) {
   };
 }
 
-$('box-season').onclick = () => {
-  showSeason = !showSeason;
-  $('box-season').setAttribute('aria-pressed',String(showSeason));
-  renderPlayers();
-};
+$('players').addEventListener('click', event => {
+  const button = event.target.closest('[data-season-row]');
+  if (!button) return;
+  const id = button.dataset.seasonRow;
+  const expanded = !expandedSeasonRows.has(id);
+  if (expanded) expandedSeasonRows.add(id);
+  else expandedSeasonRows.delete(id);
+  button.setAttribute('aria-expanded',String(expanded));
+  $(id).hidden = !expanded;
+});
 
 function renderPlayers() {
   if (!box) return;
@@ -488,7 +505,7 @@ function renderPlayers() {
     }));
   }
   for (const button of $('teams').children) button.setAttribute('aria-pressed',String(button.dataset.id===team.id));
-  const row = (label,s,pairs,reference,rowClass='',seasonShooting) => {
+  const row = (label,s,pairs,reference,rowAttrs='',seasonShooting) => {
     const [efg,to,or,dr,ftr] = Array.from({length:5},(_,i)=>rateValue(pairs[i] ?? [],reference?.rates[i],i));
     const rating = pairs[6] ?? [];
     const shade = rateComparison(rating,reference?.rates[6]);
@@ -497,36 +514,43 @@ function renderPlayers() {
     const role = '<div class="rebound-rates"><span class="rate-value" style="'+usageShade.style+'" title="Usage · '+usageShade.note+'">'+percent(rate(usage))+
       '</span><strong class="rate-value" style="'+shade.style+'" title="ORtg · Season '+fmt(rate(reference?.rates[6] ?? []))+'">'+fmt(rate(rating))+'</strong></div>';
     const metrics = [role,efg,to,'<div class="rebound-rates">'+or+dr+'</div>',ftr];
-    const shooting = seasonShooting ? Array.from({length:4},(_,i)=> {
-      const pair = seasonShooting[i];
-      return pair ? percent(rate(pair)) : '—';
-    }) : shootingStats(s).map(({text,pair},i)=>reference?.shooting ?
+    const shooting = seasonShooting ?? shootingStats(s).map(({text,pair},i)=>reference?.shooting ?
       shadedStat(text,rateComparison(pair,reference.shooting[i])) : escape(text));
     const count = key => escape(s[key] ?? '—');
     const raw = ['orb','drb','to','ast','stl','blk','pf'].map(count);
-    return '<tr'+rowClass+'><th scope="row">'+label+'</th>'+
+    return '<tr'+rowAttrs+'><th scope="row">'+label+'</th>'+
       statCell(count('min'),1)+statCell(count('pts'),2)+metrics.map((html,i)=>'<td'+columnAttr(i+rateColumn)+'>'+html+'</td>').join('')+
       [...shooting,...raw].map((html,i)=>statCell(html,i+shootingColumn)).join('')+
       totalGroups.map((group,i)=>statCell(group.map(([label,key])=>
         '<span class="box-stat"><b>'+count(key)+'</b> '+label+'</span>').join(''),i+totalsColumn)).join('')+'</tr>';
   };
   const sample = samples.get(team.id);
-  $('box-period').textContent = showSeason
-    ? (sample?.count ? 'Season before this game · Shooting % · Totals per game' : 'Season before this game · Stats unavailable')
-    : '';
-  $('players').classList.toggle('season-stats',showSeason);
   const defensive = descriptors[2][2](data)[1].pair;
   const [efg,to,or,ftr] = data.pairs;
   const reference = sample ? {rates:[...sample.factors.slice(0,3),sample.details[2][1],sample.factors[3]]} : undefined;
-  const teamTotal = showSeason ? (sample?.count ? row('Team average',averageCounts(sample.teamSeason),sample.teamSeason.rates,undefined,' class="team-total"',sample.teamSeason.shooting) : '') : row('Team total',data.stats,[efg,to,or,defensive,ftr,[],[data.stats.pts,data.pairs[1][1]]],reference,' class="team-total"');
-  const rows = showSeason ? Array.from(sample?.players.values() ?? [])
-    .sort((a,b)=>(averageCounts(b).min ?? 0)-(averageCounts(a).min ?? 0))
-    .map(entry=>row(playerLabel(entry.player),averageCounts(entry),entry.rates,undefined,'',entry.shooting))
-    : data.players.map(p=>row(playerLabel(p),p.stats,p.pairs,sample?.players.get(p.id)));
+  const focused = document.activeElement?.dataset.seasonRow;
+  const withSeason = (id,name,label,stats,pairs,baseline,average,rowAttrs='') => {
+    if (!average) return row(label,stats,pairs,baseline,rowAttrs);
+    const target = 'season-'+team.id+'-'+id;
+    const expanded = expandedSeasonRows.has(target);
+    const disclosure = '<button type="button" class="season-disclosure" data-season-row="'+target+
+      '" aria-label="'+escape(name+' season stats')+'" aria-controls="'+target+'" aria-expanded="'+expanded+'">'+
+      label+'<span class="season-chevron" aria-hidden="true"></span></button>';
+    return row(disclosure,stats,pairs,baseline,rowAttrs)+
+      row('<span class="season-label">Season</span>',averageCounts(average),average.rates,undefined,
+        ' id="'+target+'" class="season-row"'+(expanded?'':' hidden'),seasonShotLines(average));
+  };
+  const teamTotal = withSeason('team','Team','Team total',data.stats,[efg,to,or,defensive,ftr,[],[data.stats.pts,to[1]]],
+    reference,sample?.count ? sample.teamSeason : undefined,' class="team-total"');
+  const rows = data.players.map(player => {
+    const average = sample?.players.get(player.id);
+    return withSeason(escape(player.id),player.name ?? 'Player',playerLabel(player),player.stats,player.pairs,average,average);
+  });
   $('players').innerHTML = '<thead><tr>'+columns.map(([label,,short],i) =>
     '<th scope="col"'+columnAttr(i)+(short?' aria-label="'+label+'"':'')+'>'+
     (short?'<span class="box-long">'+label+'</span><span class="box-short">'+short+'</span>':label)+'</th>').join('')+
     '</tr></thead><tbody>'+teamTotal+(rows.join('') || '<tr><td colspan="'+columns.length+'">Player stats are pending.</td></tr>')+'</tbody>';
+  if (focused) $('players').querySelector('[aria-controls="'+CSS.escape(focused)+'"]')?.focus({preventScroll:true});
 }
 
 const minute = 60000;
@@ -588,6 +612,7 @@ async function refresh(pushedGame) {
     if (active !== event.id) {
       active = event.id;
       box = null;
+      expandedSeasonRows.clear();
       selectedTeam = md;
       selectedHalf = 0;
       $('analysis').hidden = true;

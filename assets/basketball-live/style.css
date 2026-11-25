@@ -163,6 +163,11 @@
 #profile-body .team-metrics th[colspan]{width:auto;text-align:center}
 .profile-value{display:inline-block;max-width:100%;border-radius:.25rem;padding:.1rem .12rem;color:#221e1b}
 
-#box-season{margin:.35rem 0 .15rem;min-height:2rem}
-#box-period:empty{display:none}
-section:has(#players.season-stats) .rate-legend{display:none}
+#players .season-disclosure{display:flex;align-items:center;justify-content:space-between;gap:.22rem;width:100%;min-width:0;padding:0;border:0;background:none;text-align:left;font:inherit}
+#players .season-chevron{flex:0 0 .36rem;width:.36rem;height:.36rem;margin-right:.1rem;border:solid currentColor;border-width:0 1.5px 1.5px 0;transform:rotate(45deg)}
+#players [aria-expanded=true]>.season-chevron{transform:rotate(225deg)}
+#players .season-row>*{background:#f7f4f0;color:#524a43;font-size:.74rem}
+#players .season-row .view-shooting{white-space:nowrap;font-size:clamp(.54rem,2.7vw,.74rem)}
+#players .season-label{font-weight:500}
+#players .season-row .rate-value{background:transparent}
+.season-hint{font-size:.75rem;margin:.2rem 0 .35rem}

@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Live Four Factors and player box scores for Maryland men's basketball">
 <title>Maryland Basketball Live | Terrapinalytics</title>
-<link rel="stylesheet" href="style.css?v=season1">
-<script type="module" src="app.mjs?v=season1"></script>
+<link rel="stylesheet" href="style.css?v=season2">
+<script type="module" src="app.mjs?v=season2"></script>
 </head>
 <body>
 <header><div class="wrap brand"><span>Terrapinalytics</span><span>Men’s basketball</span></div></header>
@@ -37,13 +37,12 @@
 <button type="button" data-view="shooting" aria-pressed="false">Shooting</button>
 <button type="button" data-view="totals" aria-pressed="false">Totals</button>
 </div>
-<button type="button" id="box-season" aria-pressed="false">Season</button>
-<p class="sub" id="box-period" role="status"></p>
 <div class="rate-legend">
 <p class="sub rate-key"><span>Vs. player season</span><span class="rate-gradient" aria-hidden="true"></span></p>
 
 </div>
 
+<p class="sub season-hint">Tap a player to see their pregame season stats. Shooting and totals are per game.</p>
 <div class="tablebox" tabindex="0" role="region" aria-label="Player box score"><table id="players" data-view="rates"></table></div>
 </section>
 <details><summary>How the rates are calculated</summary>
