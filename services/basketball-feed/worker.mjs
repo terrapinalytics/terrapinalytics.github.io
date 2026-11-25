@@ -1,3 +1,4 @@
+import {seasonRates} from '../../assets/basketball-live/benchmarks.mjs';
 import { DurableObject } from 'cloudflare:workers';
 
 const origin = 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball';
@@ -40,10 +41,25 @@ function schedule(shared, team, season) {
 async function route(url, shared, liveInterval) {
   const md = '/teams/120/schedule';
   const opponent = /^\/teams\/(\d+)\/schedule$/.exec(url.pathname);
-  if (!opponent && url.pathname !== '/summary') throw new FeedError(404,'Unknown route');
+  if (!opponent && !['/summary','/benchmarks'].includes(url.pathname)) throw new FeedError(404,'Unknown route');
   const maryland = await schedule(shared, '120');
   if (url.pathname === md) return maryland;
   const year = String(maryland.data.season.year);
+  if (url.pathname === '/benchmarks') {
+    const event = maryland.data.events.find(e=>String(e.id)===url.searchParams.get('event'));
+    const team = url.searchParams.get('team');
+    if (!event || !sides(event).some(side=>String(side.team.id)===team))
+      throw new FeedError(404,'Matchup unavailable');
+    return ready(await shared('benchmarks/'+event.id+'/'+team,async () => {
+      const calendar = team === '120' ? maryland : await schedule(shared,team,year);
+      const data = await seasonRates(team,event,calendar.data,async id => {
+        const prior = calendar.data.events.find(e=>String(e.id)===String(id));
+        const entry = await gameSummary(shared,prior,liveInterval);
+        return entry.data;
+      });
+      return {data,ttl:data.count === data.total && !calendar.stale ? day : 5*minute};
+    }));
+  }
   const team = opponent?.[1] ?? url.searchParams.get('team') ?? '120';
   let calendar = maryland;
   if (team !== '120') {
@@ -55,6 +71,11 @@ async function route(url, shared, liveInterval) {
   const event = calendar.data.events.find(e => String(e.id) === id);
   if (!event || (team !== '120' && !state(event)?.completed) || Date.parse(event.date)>Date.now()+minute)
     throw new FeedError(404,'Game unavailable');
+  return gameSummary(shared,event,liveInterval);
+}
+
+async function gameSummary(shared,event,liveInterval) {
+  const id = event.id;
   return ready(await shared('games/'+id, async () => {
     const {header,boxscore,plays} = await upstream('/summary?event='+id);
     if (!header?.competitions?.length) throw Error('Missing game');
@@ -96,7 +117,9 @@ export class BasketballFeed extends DurableObject {
     try {
       const {data, ttl} = await load();
       const asOf = Date.now();
-      entry = {data, asOf, until: asOf + ttl};
+      const unchanged = key.startsWith('games/') && JSON.stringify(previous?.data) === JSON.stringify(data);
+      const revision = unchanged ? (previous.revision ?? previous.asOf) : asOf;
+      entry = {data, asOf, revision, until: asOf + ttl};
     } catch (error) {
       entry = {...previous, stale: true, until: Date.now() + (error.retry ?? 5 * minute)};
     }
@@ -130,7 +153,7 @@ export class BasketballFeed extends DurableObject {
         const pair = new WebSocketPair();
         const server = pair[1];
         this.ctx.acceptWebSocket(server, [id]);
-        server.serializeAttachment({asOf: entry.asOf, stale: !!entry.stale});
+        server.serializeAttachment({revision: revisionOf(entry), stale: !!entry.stale});
         server.send(JSON.stringify(snapshot(entry)));
         await this.arm(entry);
         return new Response(null, {status: 101, webSocket: pair[0]});
@@ -160,13 +183,16 @@ export class BasketballFeed extends DurableObject {
       const sockets = this.ctx.getWebSockets(id);
       try {
         const entry = await this.game(id);
+        const revision = revisionOf(entry);
+        const stale = !!entry.stale;
+        let message;
         for (const socket of sockets) {
           if (socket.readyState !== WebSocket.OPEN) continue;
           const last = socket.deserializeAttachment();
-          const stale = !!entry.stale;
-          if (last?.asOf !== entry.asOf || last?.stale !== stale) {
-            socket.send(JSON.stringify(snapshot(entry)));
-            socket.serializeAttachment({asOf: entry.asOf, stale});
+          if (last?.revision !== revision || last?.stale !== stale) {
+            message ??= JSON.stringify(snapshot(entry));
+            socket.send(message);
+            socket.serializeAttachment({revision, stale});
           }
         }
         if (this.ctx.getWebSockets(id).length) await this.arm(entry);
@@ -187,8 +213,10 @@ function chunkKeys(key, count) {
   return Array.from({length: count}, (_, index) => key + '/part/' + index);
 }
 
+const revisionOf = entry => entry.revision ?? entry.asOf;
+
 function snapshot(entry) {
-  return {...entry.data, feed:{asOf: entry.asOf, stale: !!entry.stale}};
+  return {...entry.data, feed:{asOf: entry.asOf, revision:revisionOf(entry), stale: !!entry.stale}};
 }
 
 export default {

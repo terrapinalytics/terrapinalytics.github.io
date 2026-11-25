@@ -201,3 +201,7 @@
 .maryland-live{min-width:0;color:#1d1a19}
 .maryland-live #refresh{margin-bottom:.5rem}
 .maryland-live [hidden]{display:none!important}
+.maryland-live .trend-zero{stroke:#fff9;stroke-width:1px;vector-effect:non-scaling-stroke}
+.maryland-live .recent-games{display:flex;align-items:center;justify-content:flex-end;gap:.4rem;margin:.35rem 0;font-size:.8rem}
+.maryland-live .recent-games select{max-width:70%;padding:.18rem .3rem;border:1px solid var(--line);border-radius:.3rem;background:white;color:inherit;font:inherit}
+.maryland-live #pregame-profile:not(:empty){margin-bottom:.35rem}

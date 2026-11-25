@@ -1,4 +1,5 @@
-import {rate,fmt,line,unpack} from './metrics.mjs?v=4';
+import {descriptors,shootingStats,threePointRateColumn,seasonCounts} from './benchmarks.mjs';
+import {rate,fmt,unpack} from './metrics.mjs?v=4';
 import {halfBoxes} from './half-box.mjs?v=4';
 import {scoreTrend,periodLabel,trendSnapshot,recordedPossessionArrow} from './score-trend.mjs?v=4';
 
@@ -10,7 +11,7 @@ const percent = n => n == null ? '—' : fmt(n)+'%';
 const time = (d, options) => new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',...options}).format(new Date(d));
 const gameDate = d => time(d,{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});
 const type = e => e.competitions?.[0]?.status?.type;
-const finalGames = new Map(), seasons = new Map();
+const seasons = new Map();
 const expandedSeasonRows = new Set();
 let selectedTeam = md, selectedHalf = 0, active, box, loading = false;
 
@@ -20,77 +21,12 @@ async function get(path) {
   return response.json();
 }
 
-const shot = (makes,attempts,separator='–') => ({
-  text:line(makes,attempts).replace('–',separator),pair:[makes,attempts]
-});
-const countAndRate = pair => ({
-  text:[fmt(pair[0],0),percent(rate(pair))],pair
-});
-const descriptors = [
-  ['eFG%', ['2P','3P','3P Rate'], ({stats:s}) =>
-    [shot(s.twoM,s.twoA),shot(s.threeM,s.threeA),{
-      text:percent(rate([s.threeA,s.fga])),pair:[s.threeA,s.fga]
-    }]],
-  ['Turnover %', ['Steal','Non-steal'], ({stats:s,opponent:o,pairs}) => {
-    const steals = s.to != null && o.stl != null && o.stl <= s.to ? o.stl : null;
-    const other = steals == null ? null : s.to-steals;
-    return [steals,other].map(count=>countAndRate([count,pairs[1][1]]));
-  }],
-  ['OReb%', ['ORB','DRB'], ({stats:s,opponent:o,pairs}) => [
-    countAndRate(pairs[2]),
-    countAndRate([s.drb,s.drb == null || o.orb == null ? null : s.drb+o.orb])
-  ]],
-  ['Free throw rate', ['FTA/FGA','FT'], ({stats:s}) =>
-    [shot(s.fta,s.fga,'/'),shot(s.ftm,s.fta)]]
-];
-
-const threePointRateColumn = 2;
-const shootingStats = s => {
-  const pair = [s.threeA,s.fga];
-  return [shot(s.twoM,s.twoA),shot(s.threeM,s.threeA),{text:percent(rate(pair)),pair},shot(s.ftm,s.fta)];
-};
 const totalGroups = [
   [['MIN','min'],['PTS','pts']],
   [['ORB','orb'],['DRB','drb']],
   [['AST','ast'],['TO','to']],
   [['STL','stl'],['BLK','blk'],['PF','pf']]
 ];
-
-function pool(total,pairs) {
-  pairs.forEach(([n,d],i) => {
-    if (n == null || !(d > 0)) return;
-    total[i] ??= [0,0];
-    total[i][0] += n;
-    total[i][1] += d;
-  });
-}
-
-function finalGame(id, teamId) {
-  if (!finalGames.has(id)) {
-    finalGames.set(id,get('/summary?event='+id+'&team='+teamId).catch(error => {
-      finalGames.delete(id);
-      throw error;
-    }));
-  }
-  return finalGames.get(id);
-}
-
-const seasonCounts = ['min','pts','orb','drb','to','ast','stl','blk','pf'];
-function collectSeason(sample, stats, pairs) {
-  pool(sample.rates,pairs);
-  const shots = shootingStats(stats).map(shot=>shot.pair);
-  pool(sample.shooting,shots);
-  pool(sample.shootingGames,shots.map(([made,attempted])=>
-    made != null && attempted != null ? [1,1] : []));
-  const counts = seasonCounts.map(key => {
-    const value = stats[key];
-    if (value == null || value === '' || value === '-') return [];
-    const [first,seconds] = String(value).split(':').map(Number);
-    const number = first + (seconds ?? 0)/60;
-    return Number.isFinite(number) ? [number,1] : [];
-  });
-  pool(sample.counts,counts);
-}
 
 function seasonShotLines(sample) {
   return Array.from({length:4},(_,i) => {
@@ -110,41 +46,11 @@ function averageCounts(sample) {
   }));
 }
 
-async function seasonRates(teamId,event,schedule) {
-  const calendar = teamId === md ? schedule : await get('/teams/'+teamId+'/schedule?season='+schedule.season.year);
-  const ids = [...new Set(calendar.events.filter(e => type(e)?.completed && e.id !== event.id &&
-    Date.parse(e.date) < Date.parse(event.date)).map(e => e.id))];
-  const factors = [], details = descriptors.map(()=>[]), players = new Map();
-  const teamSeason = {rates:[],shooting:[],shootingGames:[],counts:[]};
-  let count = 0;
-  for (let i=0;i<ids.length;i+=5) {
-    const results = await Promise.allSettled(ids.slice(i,i+5).map(id=>finalGame(id,teamId)));
-    results.forEach((result,j) => {
-      if (result.status !== 'fulfilled') return;
-      const data = unpack(result.value,teamId);
-      if (!data || !data.pairs.some(pair=>rate(pair)!=null)) {
-        finalGames.delete(ids[i+j]);
-        return;
-      }
-      count++;
-      pool(factors,data.pairs);
-      descriptors.forEach(([, ,rows],k)=>pool(details[k],rows(data).map(row=>row.pair)));
-      const [efg,to,or,ftr] = data.pairs;
-      collectSeason(teamSeason,data.stats,[efg,to,or,descriptors[2][2](data)[1].pair,ftr,[],[data.stats.pts,to[1]]]);
-      for (const player of data.players) {
-        if (player.id == null) continue;
-        if (!players.has(player.id)) players.set(player.id,{rates:[],shooting:[],shootingGames:[],counts:[]});
-        collectSeason(players.get(player.id),player.stats,player.pairs);
-      }
-    });
-  }
-  return {count,total:ids.length,factors,details,players,teamSeason};
-}
-
-function loadSeason(teamId,event,schedule) {
+function loadSeason(teamId,event) {
   const key = event.id+':'+teamId;
   if (!seasons.has(key)) {
-    const request = seasonRates(teamId,event,schedule).then(sample => {
+    const request = get('/benchmarks?event='+event.id+'&team='+teamId).then(sample => {
+      sample.players = new Map(Object.entries(sample.players));
       if (sample.count !== sample.total) seasons.delete(key);
       return sample;
     }).catch(error => {
@@ -186,11 +92,14 @@ document.addEventListener('pointerdown', event => {
 window.addEventListener('blur', dismissSnapshot);
 
 
+const scoreMargin = scores => scores[0]-scores[1];
+const marginY = (margin,maximum) => 50*(1-margin/maximum);
+
 function inspectTrend(plot,points,end,maximum,sides) {
   const overlay = plot.querySelector('.trend-inspection');
   const clock = overlay.querySelector('.trend-inspect-clock');
   const score = overlay.querySelector('.trend-inspect-score');
-  const dots = overlay.querySelectorAll('.trend-dot');
+  const dot = overlay.querySelector('.trend-dot');
   const latest = points.at(-1).time;
   const abbreviations = sides.map(side=>side.team.abbreviation);
   const update = time => {
@@ -201,7 +110,7 @@ function inspectTrend(plot,points,end,maximum,sides) {
     overlay.style.setProperty('--inspect-x',100*inspectedTime/end+'%');
     clock.textContent = label;
     score.textContent = result;
-    snapshot.scores.forEach((points,i)=>dots[i].style.top = 100*(1-points/maximum)+'%');
+    dot.style.top = marginY(scoreMargin(snapshot.scores),maximum)+'%';
     overlay.hidden = false;
     plot.setAttribute('aria-valuenow',String(Math.round(inspectedTime)));
     plot.setAttribute('aria-valuetext',label+' · '+result);
@@ -242,16 +151,14 @@ function renderTrend(trend,sides) {
     return;
   }
   const {points,runs,end} = trend;
-  const maximum = Math.max(20,Math.ceil(Math.max(...points.flatMap(p=>p.scores))/20)*20);
+  const maximum = Math.max(10,Math.ceil(Math.max(...points.map(p=>Math.abs(scoreMargin(p.scores))))/10)*10);
   const x = time => 100*time/end;
-  const y = score => 100*(1-score/maximum);
-  const lines = sides.map((side,i) => {
-    const path = points.map(({time,scores},j)=> j===0 ? 'M 0 '+y(scores[i]) : 'H '+x(time)+' V '+y(scores[i])).join(' ');
-    return '<path class="trend-line" style="--series:'+teamColor(side.team)+'" d="'+path+'"/>';
-  }).join('');
+  const y = margin => marginY(margin,maximum);
+  const path = points.map(({time,scores},j)=> j===0 ? 'M 0 '+y(scoreMargin(scores)) :
+    'H '+x(time)+' V '+y(scoreMargin(scores))).join(' ');
   const runMarkers = runs.map((run,i)=>
-    '<span class="trend-marker" aria-hidden="true" style="--x:'+x(run.end)+'%;--y:'+y(run.score)+
-    '%">'+(i+1)+'</span>').join('');
+    '<span class="trend-marker" aria-hidden="true" style="--x:'+x(run.end)+'%;--y:'+
+    y(scoreMargin(trendSnapshot(points,run.end).scores))+'%">'+(i+1)+'</span>').join('');
   const runLabels = runs.map((run,i)=>'<li><b>'+(i+1)+'</b> '+escape(sides[run.team].team.abbreviation)+
     ' <strong>'+run.points+'–0</strong> <span>'+escape(periodLabel(run.period)+' '+run.clock)+'</span></li>').join('');
   const breaks = [1200,2400].filter(t=>t<end);
@@ -260,12 +167,12 @@ function renderTrend(trend,sides) {
     breaks.map(time=>'M '+x(time)+' 0 V 100').join(' ')+'"/>';
   const ticks = [0,...breaks,end].map((time,i)=>
     '<span style="left:'+x(time)+'%">'+(i===0?'Tip':time===1200?'Half':time===2400?'40 min':time/60+' min')+'</span>').join('');
-  const dots = sides.map(side=>'<i class="trend-dot" style="--series:'+teamColor(side.team)+'"></i>').join('');
+  const dot = '<i class="trend-dot" style="--series:#ffe08a"></i>';
   const inspection = '<div class="trend-inspection" hidden aria-hidden="true"><i class="trend-crosshair"></i>'+
-    dots+'<div class="trend-tooltip"><span class="trend-inspect-clock"></span><strong class="trend-inspect-score"></strong></div></div>';
-  const markup = '<div class="trend-plot" tabindex="0" role="slider" aria-valuemin="0" aria-label="Game score timeline">'+
-    '<div class="trend-y" aria-hidden="true"><span>'+maximum+'</span><span>'+(maximum/2)+'</span><span>0</span></div>'+
-    '<svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">'+grid+lines+'</svg>'+
+    dot+'<div class="trend-tooltip"><span class="trend-inspect-clock"></span><strong class="trend-inspect-score"></strong></div></div>';
+  const markup = '<div class="trend-plot" tabindex="0" role="slider" aria-valuemin="0" aria-label="Maryland score margin timeline">'+
+    '<div class="trend-y" aria-hidden="true"><span>+'+maximum+'</span><span>0</span><span>−'+maximum+'</span></div>'+
+    '<svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">'+grid+'<path class="trend-zero" d="M 0 50 H 100"/><path class="trend-line" style="--series:#ffe08a" d="'+path+'"/></svg>'+
     runMarkers+inspection+'<div class="trend-x" aria-hidden="true">'+ticks+'</div></div>'+
     (runs.length?'<ul class="trend-runs" aria-label="Unanswered runs of at least eight points">'+runLabels+'</ul>':'');
   if (target.chartMarkup !== markup) {
@@ -327,7 +234,7 @@ function renderScore(event,competition,plays=[],fallback={}) {
 }
 
 function renderFactors(teams,samples) {
-  $('factors').innerHTML = descriptors.map(([title,labels,raw],i) => {
+  const markup = descriptors.map(([title,labels,raw],i) => {
     const values = teams.map(t => rate(t.data.pairs[i]));
     const maximum = Math.max(25,Math.ceil(Math.max(...values,0)/25)*25);
     const ticks = '<div class="factor-axis" aria-hidden="true">'+[maximum,maximum/2,0]
@@ -356,6 +263,10 @@ function renderFactors(teams,samples) {
       '<table class="factor-stats" aria-label="'+title+' details"><thead><tr><td></td>'+headings+
       '</tr></thead><tbody>'+rows+'</tbody></table></article>';
   }).join('');
+  if ($('factors').renderedMarkup !== markup) {
+    $('factors').innerHTML = markup;
+    $('factors').renderedMarkup = markup;
+  }
 }
 
 const columns = [
@@ -415,10 +326,10 @@ function visibleTeams() {
 }
 
 const profileLabels = ['eFG%', '2P%', '3P%', '3P Rate', 'TO%', 'Steal TO%', 'Non-steal TO%', 'OReb%', 'DReb%', 'FT Rate', 'FT%', 'Assist Rate', 'Block Rate'];
-let profileData, profileKey;
+let profileData, profileKey, matchupTeams = [];
 async function renderProfiles() {
-  if (!box || !$('team-profiles').open) return;
-  const teams = box.teams.map(t => t.team);
+  if (matchupTeams.length !== 2 || !$('team-profiles').open) return;
+  const teams = matchupTeams;
   const key = teams.map(t => t.id).join('/');
   if (profileKey === key) return;
   profileKey = key;
@@ -462,6 +373,18 @@ async function renderProfiles() {
 }
 $('team-profiles').ontoggle = renderProfiles;
 
+function placeProfiles(competition, pregame) {
+  matchupTeams = competition.competitors.map(({team})=>({...team,id:String(team.id)}))
+    .sort((a,b)=>Number(b.id===md)-Number(a.id===md));
+  const profile = $('team-profiles');
+  const slot = $(pregame ? 'pregame-profile' : 'game-profile');
+  if (profile.parentElement !== slot) {
+    slot.append(profile);
+    profile.open = pregame;
+  }
+  renderProfiles();
+}
+
 function renderSplit() {
   const suffix = selectedHalf ? ' · '+selectedHalf+'H' : '';
   $('factors-title').textContent = 'Four Factors'+suffix;
@@ -492,6 +415,7 @@ $('players').addEventListener('click', event => {
   else expandedSeasonRows.delete(id);
   button.setAttribute('aria-expanded',String(expanded));
   $(id).hidden = !expanded;
+  $('players').renderedMarkup = null;
 });
 
 function renderPlayers() {
@@ -552,10 +476,13 @@ function renderPlayers() {
     const average = sample?.players.get(player.id);
     return withSeason(escape(player.id),player.name ?? 'Player',playerLabel(player),player.stats,player.pairs,average,average);
   });
-  $('players').innerHTML = '<thead><tr>'+columns.map(([label,,short],i) =>
+  const markup = '<thead><tr>'+columns.map(([label,,short],i) =>
     '<th scope="col"'+columnAttr(i)+(short?' aria-label="'+label+'"':'')+'>'+
     (short?'<span class="box-long">'+label+'</span><span class="box-short">'+short+'</span>':label)+'</th>').join('')+
     '</tr></thead><tbody>'+teamTotal+(rows.join('') || '<tr><td colspan="'+columns.length+'">Player stats are pending.</td></tr>')+'</tbody>';
+  if ($('players').renderedMarkup === markup) return;
+  $('players').innerHTML = markup;
+  $('players').renderedMarkup = markup;
   if (focused) $('players').querySelector('[aria-controls="'+CSS.escape(focused)+'"]')?.focus({preventScroll:true});
 }
 
@@ -600,33 +527,77 @@ function armTimer() {
   }, Math.min(2147483647, Math.max(0, nextCheck - Date.now())));
 }
 
+let selectedGame = '', renderedRevision;
+
+function updateRecentGames(events) {
+  const recent = events.filter(e=>type(e)?.completed).slice(-8).reverse();
+  const items = recent.map(event => {
+    const opponent = event.competitions[0].competitors.find(side=>String(side.team.id)!==md)?.team;
+    const date = time(event.date,{month:'short',day:'numeric'});
+    return '<option value="'+escape(event.id)+'">'+escape(date+' · '+(opponent?.shortDisplayName ?? opponent?.location ?? 'Maryland'))+'</option>';
+  }).join('');
+  if (items !== $('recent-game').recentOptions) {
+    $('recent-game').innerHTML = '<option value="">Current matchup</option>'+items;
+    $('recent-game').recentOptions = items;
+  }
+  if (selectedGame && !recent.some(e=>String(e.id)===selectedGame)) selectedGame = '';
+  $('recent-game').value = selectedGame;
+  $('recent-games').hidden = !recent.length;
+}
+
+$('recent-game').onchange = () => {
+  selectedGame = $('recent-game').value;
+  closeStream();
+  liveSchedule = null;
+  refresh();
+};
+
+function fillBenchmarks(teams,event,samples) {
+  for (const team of teams) {
+    if (samples.has(team.id) && samples.get(team.id).count === samples.get(team.id).total) continue;
+    loadSeason(team.id,event).then(sample => {
+      if (active !== event.id || box?.samples !== samples || samples.get(team.id) === sample) return;
+      samples.set(team.id,sample);
+      renderSplit();
+    }).catch(() => {});
+  }
+}
+
 async function refresh(pushedGame) {
   if (loading) return;
   loading = true;
   $('refresh').disabled = true;
+  $('recent-game').disabled = true;
   try {
     const schedule = liveSchedule ?? await get('/teams/120/schedule');
     let staleFeed = schedule.feed?.stale ? schedule.feed : null;
     const events = [...schedule.events].sort((a,b) => Date.parse(a.date)-Date.parse(b.date));
+    updateRecentGames(events);
     const now = Date.now();
     const tips = scheduledTips(events);
     const next = tips.find(e => Date.parse(e.date) > now);
     const starting = tips.find(e => Date.parse(e.date) <= now && now - Date.parse(e.date) < 4 * 60 * minute);
     const today = gameOnDay(events,now);
     nextCheck = Math.min(next ? Date.parse(next.date) : Infinity,nextEasternMidnight(now));
-    const event = (liveSchedule && events.find(e => e.id === active)) ?? events.find(e => type(e)?.state === 'in') ?? today ?? starting ?? events.filter(e => type(e)?.completed).at(-1) ?? next;
+    const final = selectedGame && events.find(e=>String(e.id)===selectedGame);
+    const event = (final || null) ?? (liveSchedule && events.find(e => e.id === active)) ?? events.find(e => type(e)?.state === 'in') ?? today ?? starting ?? events.filter(e => type(e)?.completed).at(-1) ?? next;
     if (!event) throw Error('Maryland schedule is empty');
     if (active !== event.id) {
       active = event.id;
       box = null;
+      renderedRevision = undefined;
       expandedSeasonRows.clear();
       selectedTeam = md;
       selectedHalf = 0;
       $('analysis').hidden = true;
       renderScore(event,event.competitions[0]);
     }
-    if (type(event)?.state === 'pre' && event !== starting) renderScore(event,event.competitions[0]);
-    if (type(event)?.state !== 'pre' || event === starting) {
+    if (type(event)?.state === 'pre' && event !== starting) {
+      renderScore(event,event.competitions[0]);
+      placeProfiles(event.competitions[0],true);
+      // Warm the shared cache while the matchup is in its pregame view.
+      for (const team of matchupTeams) loadSeason(team.id,event).catch(()=>{});
+    } else {
       const game = pushedGame ?? await get('/summary?event='+event.id);
       if (game.feed?.stale) staleFeed = game.feed;
       const competition = game.header?.competitions?.[0] ?? event.competitions[0];
@@ -642,25 +613,23 @@ async function refresh(pushedGame) {
         closeStream();
         if (waiting) nextCheck = now + 5 * minute;
       }
-      renderScore(event,competition,game.plays ?? [],event.competitions[0]);
-      const teams = [...competition.competitors].map(({team}) =>
-        ({team:{...team,id:String(team.id)},data:unpack(game,String(team.id))}))
-        .sort((a,b) => Number(b.team.id===md)-Number(a.team.id===md));
-      if (teams.length === 2 && teams.every(t=>t.data)) {
-        const samples = box?.samples ?? new Map();
-        box = {teams,samples,halves:halfBoxes(game,competition)};
-        if (!box.halves.has(selectedHalf)) selectedHalf = 0;
-        renderSplit();
-        $('analysis').hidden = false;
-        for (const {team} of teams) {
-          if (samples.get(team.id)?.count === samples.get(team.id)?.total && samples.has(team.id)) continue;
-          loadSeason(team.id,event,schedule).then(sample => {
-            if (active !== event.id) return;
-            samples.set(team.id,sample);
-            renderSplit();
-          }).catch(() => {});
+      const revision = game.feed?.revision;
+      if (revision == null || revision !== renderedRevision) {
+        renderScore(event,competition,game.plays ?? [],event.competitions[0]);
+        placeProfiles(competition,status?.state === 'pre');
+        const teams = matchupTeams.map(team=>({team,data:unpack(game,team.id)}));
+        if (teams.length === 2 && teams.every(t=>t.data)) {
+          const samples = box?.samples ?? new Map();
+          box = {teams,samples,halves:halfBoxes(game,competition)};
+          if (!box.halves.has(selectedHalf)) selectedHalf = 0;
+          renderSplit();
+          $('analysis').hidden = false;
         }
-      } else if (!box) {
+        renderedRevision = revision;
+      }
+      if (box) {
+        fillBenchmarks(box.teams.map(t=>t.team),event,box.samples);
+      } else if (!waiting) {
         $('status').textContent = 'Box score pending from ESPN.';
         return;
       }
@@ -676,6 +645,7 @@ async function refresh(pushedGame) {
   } finally {
     loading = false;
     $('refresh').disabled = false;
+    $('recent-game').disabled = false;
     armTimer();
   }
 }

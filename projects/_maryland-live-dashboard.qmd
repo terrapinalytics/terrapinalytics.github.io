@@ -6,6 +6,8 @@
 </section>
 <div class="feed" id="status" role="status"></div>
 <button id="refresh" type="button" hidden>Retry connection</button>
+<div id="pregame-profile"></div>
+<label class="recent-games" id="recent-games" hidden>Recent games <select id="recent-game"></select></label>
 <div id="analysis" hidden>
 <section aria-labelledby="factors-title">
 <div class="factors-heading">
@@ -18,7 +20,7 @@
 </div>
 <p class="sub rate-key factors-key"><span>Vs. team season</span><span class="rate-gradient" aria-hidden="true"></span></p>
 <div class="factors" id="factors"></div>
-<details id="team-profiles"><summary>Team profiles · National ranks</summary><div id="profile-body"></div></details>
+<div id="game-profile"><details id="team-profiles"><summary>Team profiles · National ranks</summary><div id="profile-body"></div></details></div>
 </section>
 <section aria-labelledby="players-title"><div class="heading"><h2 id="players-title">Player box score</h2><div id="teams" role="group" aria-label="Box score team"></div></div>
 <div class="box-views" id="box-views" role="group" aria-label="Box score view">
