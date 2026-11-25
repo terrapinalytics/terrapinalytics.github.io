@@ -5,6 +5,16 @@ title-block-banner: false
 toc: false
 ---
 
+```{=html}
+<div class="game-day" id="maryland-game-day" hidden>
+  <a class="content-container game-day-link" href="projects/maryland-basketball-live.html">
+    <span class="game-day-matchup"></span>
+    <span class="game-day-action">Open live dashboard</span>
+  </a>
+</div>
+<script src="assets/home/game-day.js" defer></script>
+```
+
 ::: {.content-band .home-preview}
 ::: {.content-container}
 ```{=html}

@@ -143,3 +143,10 @@ body #quarto-content:has(.tool-frame,.mobile-embed){padding-bottom:.5rem}
   .tool-intro a{display:inline-flex;align-items:center;min-height:44px}
   .tool-frame-external{height:80vh;height:80svh;min-height:460px}
 }
+
+.game-day{background:#8f1027;color:#fff}
+.game-day-link{display:flex;align-items:center;justify-content:space-between;gap:.35rem 1.25rem;flex-wrap:wrap;padding:.7rem 1rem;color:inherit;text-decoration:none}
+.game-day-link:hover,.game-day-link:focus-visible{color:inherit;background:#720c1e}
+.game-day-link:focus-visible{outline:2px solid #fff;outline-offset:-4px}
+.game-day-matchup{font-weight:750}
+.game-day-action{font-size:.9rem;text-decoration:underline;text-underline-offset:.16em}
