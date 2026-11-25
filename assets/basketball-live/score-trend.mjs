@@ -1,6 +1,8 @@
 const HALF = 20 * 60;
 const OVERTIME = 5 * 60;
-const MIN_RUN = 8;
+const MIN_SWING = 8;
+const RUN_WINDOW = 4 * 60;
+const MAX_RUNS = 2;
 const periodLength = period => period <= 2 ? HALF : OVERTIME;
 const periodStart = period => period <= 2 ? (period-1)*HALF : 2*HALF+(period-3)*OVERTIME;
 export const periodLabel = period => period <= 2 ? period+'H' : period === 3 ? 'OT' : (period-2)+'OT';
@@ -22,6 +24,30 @@ const playScore = (play,side) => {
   return score != null && /^\d+$/.test(String(score)) ? Number(score) : null;
 };
 
+function scoringRuns(points) {
+  const candidates = [];
+  for (let i = 1; i < points.length; i++) {
+    const first = points[i];
+    const before = points[i-1].scores;
+    for (let j = i; j < points.length; j++) {
+      const last = points[j];
+      if (first.period !== last.period || last.time-first.time > RUN_WINDOW) break;
+      const [a,b] = last.scores.map((score,k)=>score-before[k]);
+      const swing = Math.abs(a-b);
+      if (a < 0 || b < 0 || swing < MIN_SWING) continue;
+      candidates.push({team:a>b?0:1,points:Math.max(a,b),allowed:Math.min(a,b),swing,
+        start:first.time,end:last.time,period:last.period,clock:last.clock});
+    }
+  }
+  candidates.sort((a,b)=>b.swing-a.swing || (a.end-a.start)-(b.end-b.start) || a.start-b.start);
+  const selected = [];
+  for (const run of candidates) {
+    if (selected.every(other=>run.end<other.start || run.start>other.end)) selected.push(run);
+    if (selected.length === MAX_RUNS) break;
+  }
+  return selected.sort((a,b)=>a.end-b.end);
+}
+
 export function scoreTrend(plays,sides,status) {
   const recent = plays.at(-1);
   const period = Number(status.period) || Number(recent?.period?.number) || 1;
@@ -29,12 +55,8 @@ export function scoreTrend(plays,sides,status) {
   const counters = sides.map(()=>({fouls:0,timeoutsRemaining:4}));
   const timeouts = sides.map(()=>[]);
   const byTeam = new Map(sides.map(({team},i)=>[String(team.id),i]));
-  const points = [{time:0,scores:[0,0]}], runs = [];
-  let run, latest = 0;
-  const finishRun = () => {
-    if (run?.points >= MIN_RUN) runs.push(run);
-    run = null;
-  };
+  const points = [{time:0,scores:[0,0]}];
+  let latest = 0;
 
   for (const play of plays) {
     const playPeriod = Number(play.period?.number);
@@ -54,25 +76,10 @@ export function scoreTrend(plays,sides,status) {
     const scores = sides.map(side=>playScore(play,side));
     if (scores.some(score=>score===null)) continue;
     const previous = points.at(-1).scores;
-    const delta = scores.map((score,i)=>score-previous[i]);
-    if (delta.every(change=>change===0)) continue;
-    points.push({time:latest,scores});
-    const scorer = delta.findIndex(change=>change>0);
-    if (scorer < 0 || delta[1-scorer] !== 0) {
-      finishRun();
-      continue;
-    }
-    if (run?.team !== scorer) {
-      finishRun();
-      run = {team:scorer,points:0,start:latest};
-    }
-    run.points += delta[scorer];
-    run.end = latest;
-    run.score = scores[scorer];
-    run.period = playPeriod;
-    run.clock = play.clock.displayValue;
+    if (scores.every((score,i)=>score===previous[i])) continue;
+    points.push({time:latest,scores,period:playPeriod,clock:play.clock.displayValue});
   }
-  finishRun();
+  const runs = scoringRuns(points);
 
   // Three 30s and one 60s. At most two 30s survive halftime; each OT adds one timeout.
   timeouts.forEach((used,i) => {

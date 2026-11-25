@@ -1,7 +1,7 @@
 import {descriptors,shootingStats,threePointRateColumn,seasonCounts} from './benchmarks.mjs';
 import {rate,fmt,unpack} from './metrics.mjs?v=4';
 import {halfBoxes} from './half-box.mjs?v=4';
-import {scoreTrend,periodLabel,trendSnapshot,recordedPossessionArrow} from './score-trend.mjs?v=4';
+import {scoreTrend,periodLabel,trendSnapshot,recordedPossessionArrow} from './score-trend.mjs?v=5';
 
 import {feedOrigin as api, gameOnDay, nextEasternMidnight} from './game-day.mjs';
 const md = '120';
@@ -160,7 +160,7 @@ function renderTrend(trend,sides) {
     '<span class="trend-marker" aria-hidden="true" style="--x:'+x(run.end)+'%;--y:'+
     y(scoreMargin(trendSnapshot(points,run.end).scores))+'%">'+(i+1)+'</span>').join('');
   const runLabels = runs.map((run,i)=>'<li><b>'+(i+1)+'</b> '+escape(sides[run.team].team.abbreviation)+
-    ' <strong>'+run.points+'–0</strong> <span>'+escape(periodLabel(run.period)+' '+run.clock)+'</span></li>').join('');
+    ' <strong>'+run.points+'–'+run.allowed+'</strong> <span>'+escape(periodLabel(run.period)+' '+run.clock)+'</span></li>').join('');
   const breaks = [1200,2400].filter(t=>t<end);
   for (let time=2700;time<end;time+=300) breaks.push(time);
   const grid = '<path class="trend-grid" d="M 0 0 H 100 M 0 50 H 100 M 0 100 H 100 '+
@@ -174,7 +174,7 @@ function renderTrend(trend,sides) {
     '<div class="trend-y" aria-hidden="true"><span>+'+maximum+'</span><span>0</span><span>−'+maximum+'</span></div>'+
     '<svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">'+grid+'<path class="trend-zero" d="M 0 50 H 100"/><path class="trend-line" style="--series:#ffe08a" d="'+path+'"/></svg>'+
     runMarkers+inspection+'<div class="trend-x" aria-hidden="true">'+ticks+'</div></div>'+
-    (runs.length?'<ul class="trend-runs" aria-label="Unanswered runs of at least eight points">'+runLabels+'</ul>':'');
+    (runs.length?'<ul class="trend-runs" aria-label="Biggest scoring runs">'+runLabels+'</ul>':'');
   if (target.chartMarkup !== markup) {
     const oldPlot = target.querySelector('.trend-plot');
     const restoreFocus = oldPlot && document.activeElement === oldPlot;
