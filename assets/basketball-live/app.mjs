@@ -375,16 +375,17 @@ function visibleTeams() {
   return selected ? box.teams.map(({team})=>({team,data:selected.get(team.id)})) : box.teams;
 }
 
-const profileLabels = ['eFG%', '2P%', '3P%', '3P Rate', 'TO%', 'Steal TO%', 'Non-steal TO%', 'OReb%', 'DReb%', 'FT Rate', 'FT%'];
+const profileLabels = ['eFG%', '2P%', '3P%', '3P Rate', 'TO%', 'Steal TO%', 'Non-steal TO%', 'OReb%', 'DReb%', 'FT Rate', 'FT%', 'Assist Rate', 'Block Rate'];
 let profileData, profileKey;
 async function renderProfiles() {
-  if (!box || !$('team-profiles').open) return;
+  if (!box || !($('team-profiles').open || $('comparison').open)) return;
   const teams = box.teams.map(t => t.team);
   const key = teams.map(t => t.id).join('/');
   if (profileKey === key) return;
   profileKey = key;
   const out = $('profile-body');
-  out.textContent = 'Loading profiles…';
+  const compare = $('comparison-body');
+  compare.textContent = out.textContent = 'Loading…';
   try {
     profileData ??= fetch('./profiles.json').then(r => {
       if (!r.ok) throw Error('Profiles unavailable');
@@ -392,22 +393,35 @@ async function renderProfiles() {
     });
     const data = await profileData;
     if (profileKey !== key) return;
-    const cells = (side,i) => teams.map(t => {
-      const value = data.teams[t.id]?.[side]?.[i];
-      return '<td>'+(value ? value[0].toFixed(1)+'% <small>#'+value[1]+'</small>' : '—')+'</td>';
-    }).join('');
-    out.innerHTML = '<p>Through '+escape(data.through)+' · '+Object.keys(data.teams).length+
-      ' D-I teams · D-I games only. Defense shows opponent rates. 3P Rate ranks shot frequency.</p>'+
-      '<table><thead><tr><th rowspan="2">Rate</th><th colspan="2">Offense</th><th colspan="2">Defense</th></tr><tr>'+
-      [...teams,...teams].map(t=>'<th>'+escape(t.abbreviation)+'</th>').join('')+'</tr></thead><tbody>'+
-      profileLabels.map((label,i)=>'<tr class="'+([0,4,7,9].includes(i)?'factor-row':'')+'"><th scope="row">'+label+
-        '</th>'+cells(0,i)+cells(1,i)+'</tr>').join('')+'</tbody></table>';
+    const count = Object.keys(data.teams).length;
+    const cell = (value,unit) => {
+      if (!value) return '<td>—</td>';
+      const [n,rank] = value;
+      const fraction = (rank-1)/Math.max(1,count-1);
+      const color = fraction <= .5 ? 'var(--bench-green)' : 'var(--bench-red)';
+      const shade = Math.round(Math.abs(1-2*fraction)*100);
+      return '<td><span class="profile-value" style="background:color-mix(in srgb,'+color+' '+shade+
+        '%,var(--bench-neutral))">'+n.toFixed(1)+unit+' <small>#'+rank+'</small></span></td>';
+    };
+    const order = [0,1,2,3,11,12,4,5,6,7,8,9,10];
+    out.innerHTML = '<p>D-I games through '+escape(data.through)+' · '+count+' teams</p>'+
+      teams.map((off,j) => {
+        const def = teams[1-j];
+        return '<table><caption>When '+escape(off.location || off.displayName)+' has the ball</caption>'+
+          '<thead><tr><th>Rate</th><th>'+escape(off.abbreviation)+' offense</th><th>'+escape(def.abbreviation)+' defense</th></tr></thead><tbody>'+
+          order.map(i=>'<tr class="'+([0,4,7,9].includes(i)?'factor-row':'')+'"><th scope="row">'+profileLabels[i]+'</th>'+
+            cell(data.teams[off.id]?.[0]?.[i],'%')+cell(data.teams[def.id]?.[1]?.[i],'%')+'</tr>').join('')+'</tbody></table>';
+      }).join('')+'<p>Assist rate is assists per made FG. Block rate is shots blocked per 2PA. Defense shows opponent outcomes.</p>';
+    compare.innerHTML = '<table><thead><tr><th>Season</th>'+teams.map(t=>'<th>'+escape(t.abbreviation)+'</th>').join('')+
+      '</tr></thead><tbody>'+['Tempo','Effective height','Roster experience'].map((label,i)=>
+        '<tr><th scope="row">'+label+'</th>'+teams.map(t=>cell(data.comparison?.[t.id]?.[i],['','″',' yr'][i])).join('')+'</tr>'
+      ).join('')+'</tbody></table><p>Tempo is estimated possessions per 40 minutes. Height averages the tallest 40% of rotation minutes. Experience weights class years by minutes (freshman = 0). Rotation players average at least four minutes per 40. Higher ranks indicate faster, taller or more experienced teams.</p>';
   } catch {
     profileData = profileKey = null;
-    out.textContent = 'Profiles unavailable. Reopen to retry.';
+    compare.textContent = out.textContent = 'Profiles unavailable. Reopen to retry.';
   }
 }
-$('team-profiles').ontoggle = renderProfiles;
+$('team-profiles').ontoggle = $('comparison').ontoggle = renderProfiles;
 
 function renderSplit() {
   renderProfiles();

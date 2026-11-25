@@ -156,3 +156,11 @@
 #profile-body td small{display:block;color:var(--muted)}
 #profile-body .factor-row>*{background:#f3eeea;font-weight:700}
 #profile-body p{margin:.35rem 0;font-size:.76rem}
+
+#profile-body caption{caption-side:top;text-align:left;font-weight:700;padding:.45rem 0}
+.profile-value{display:inline-block;min-width:4em;border-radius:.25rem;padding:.1rem .25rem;color:#221e1b}
+#comparison{margin-top:.4rem;padding:.4rem .65rem}
+#comparison-body table{table-layout:fixed}
+#comparison-body td,#comparison-body th{font-size:.8rem;padding:.25rem;text-align:center;white-space:normal}
+#comparison-body th:first-child{text-align:left}
+#comparison-body p{font-size:.76rem;margin:.35rem 0}
