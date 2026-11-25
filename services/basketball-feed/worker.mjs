@@ -61,9 +61,12 @@ async function route(url, shared, liveInterval) {
     const type = state(header);
     const ttl = type?.completed && boxscore?.players?.length
       ? (Date.now()-Date.parse(event.date)>day ? 30*day : 60*minute)
-      : type?.state==='pre' ? 5*minute : liveInterval;
+      : isLive(type) ? liveInterval : 5*minute;
     return {data:{header,boxscore,plays},ttl};
   }));
+}
+function isLive(type) {
+  return type?.state === 'in' && !type.completed && !/suspend|postponed|cancel/i.test(type.name ?? '');
 }
 export class BasketballFeed extends DurableObject {
   pending = new Map();
@@ -117,7 +120,7 @@ export class BasketballFeed extends DurableObject {
     const headers = {'Access-Control-Allow-Origin': '*', 'Cache-Control': 'no-store'};
     try {
       if (request.method !== 'GET') throw new FeedError(405, 'GET required');
-      if (url.pathname === '/health') return Response.json({ok: true}, {headers});
+      if (url.pathname === '/health') return Response.json({ok: true, liveSeconds: this.liveInterval / 1000}, {headers});
       if (url.pathname === '/stream') {
         if (request.headers.get('Upgrade')?.toLowerCase() !== 'websocket')
           throw new FeedError(426, 'WebSocket required');
@@ -145,7 +148,7 @@ export class BasketballFeed extends DurableObject {
   }
 
   async arm(entry) {
-    if (state(entry.data.header)?.completed) return;
+    if (!isLive(state(entry.data.header))) return;
     const due = Math.max(Date.now() + 1000, entry.until);
     const alarm = await this.ctx.storage.getAlarm();
     if (alarm == null || due < alarm) await this.ctx.storage.setAlarm(due);

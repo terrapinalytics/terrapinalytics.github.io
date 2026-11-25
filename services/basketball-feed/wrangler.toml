@@ -4,7 +4,7 @@ compatibility_date = "2026-11-25"
 workers_dev = true
 
 [vars]
-LIVE_SECONDS = "60"
+LIVE_SECONDS = "10"
 
 [[durable_objects.bindings]]
 name = "FEED"

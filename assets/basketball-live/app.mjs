@@ -423,6 +423,28 @@ function renderPlayers() {
 const minute = 60000;
 let timer, nextCheck = 0, liveSchedule;
 
+let stream;
+function closeStream() {
+  const old = stream;
+  stream = null;
+  old?.close();
+}
+function subscribe(id) {
+  if (document.hidden || stream || !window.WebSocket) return;
+  const socket = new WebSocket(api.replace('https:', 'wss:')+'/stream?event='+id);
+  stream = socket;
+  socket.onmessage = message => {
+    if (stream !== socket || active !== id || document.hidden) return;
+    refresh(JSON.parse(message.data));
+  };
+  socket.onclose = () => {
+    if (stream !== socket) return;
+    stream = null;
+    nextCheck = Date.now() + 10000;
+    armTimer();
+  };
+}
+
 function scheduledTips(events) {
   return events.filter(e => type(e)?.state === 'pre' &&
     !/postponed|cancel|suspend/i.test(type(e)?.name ?? '') && Number.isFinite(Date.parse(e.date)));
@@ -439,7 +461,7 @@ function armTimer() {
   }, Math.min(2147483647, Math.max(0, nextCheck - Date.now())));
 }
 
-async function refresh() {
+async function refresh(pushedGame) {
   if (loading) return;
   loading = true;
   $('refresh').disabled = true;
@@ -463,7 +485,7 @@ async function refresh() {
       renderScore(event,event.competitions[0]);
     }
     if (type(event)?.state !== 'pre' || event === starting) {
-      const game = await get('/summary?event='+event.id);
+      const game = pushedGame ?? await get('/summary?event='+event.id);
       if (game.feed?.stale) staleFeed = game.feed;
       const competition = game.header?.competitions?.[0] ?? event.competitions[0];
       const status = competition.status?.type ?? type(event);
@@ -471,7 +493,13 @@ async function refresh() {
       const waiting = event === starting && status?.state === 'pre' &&
         !/suspend|postponed|cancel/i.test(status.name ?? '');
       liveSchedule = live ? schedule : null;
-      if (live || waiting) nextCheck = now + (live ? minute : 5 * minute);
+      if (live) {
+        subscribe(event.id);
+        nextCheck = now + (stream ? minute : 10000);
+      } else {
+        closeStream();
+        if (waiting) nextCheck = now + 5 * minute;
+      }
       renderScore(event,competition,game.plays ?? [],event.competitions[0]);
       const teams = [...competition.competitors].map(({team}) =>
         ({team:{...team,id:String(team.id)},data:unpack(game,String(team.id))}))
@@ -511,5 +539,9 @@ $('refresh').onclick = () => {
   liveSchedule = null;
   refresh();
 };
-document.addEventListener('visibilitychange', armTimer);
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) closeStream();
+  else if (liveSchedule) nextCheck = 0;
+  armTimer();
+});
 armTimer();
