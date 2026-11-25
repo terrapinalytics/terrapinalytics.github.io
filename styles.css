@@ -161,3 +161,7 @@ body:has(.tool-frame,.mobile-embed,.maryland-live) .nav-footer p{margin:0}
 @media(max-width:750px){
   .maryland-live{width:100vw;margin-inline-start:calc(50% - 50vw);padding-inline:.5rem}
 }
+
+#quarto-header .navbar .dropdown-menu{max-width:min(25rem,calc(100vw - 2rem));max-height:calc(100dvh - 8rem);overflow-y:auto}
+#quarto-header .navbar .dropdown-item{white-space:normal}
+#quarto-header .navbar .dropdown-header{font-weight:700;padding-top:.65rem}

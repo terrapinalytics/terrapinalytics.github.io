@@ -40,10 +40,35 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: projects/index.qmd
-        text: Explore
-      - href: articles/index.qmd
-        text: Articles
+      - text: Explore
+        menu:
+          - text: All dashboards
+            href: projects/index.qmd
+          - text: Football
+          - href: projects/football-success.qmd
+          - href: projects/coaching.qmd
+          - href: projects/program-rankings.qmd
+          - href: projects/recruiting.qmd
+          - text: Basketball
+          - href: projects/officiating.qmd
+          - href: projects/maryland-basketball-live.qmd
+          - text: College Athletics
+          - href: projects/finance.qmd
+          - href: projects/championships.qmd
+          - href: projects/athletics-spending-index.qmd
+          - href: projects/student-athletics-costs.qmd
+      - text: Articles
+        menu:
+          - text: All articles
+            href: articles/index.qmd
+          - text: Football
+          - href: articles/down-14-two-point-conversions.qmd
+          - href: articles/recruiting-distance.qmd
+          - text: College Athletics
+          - href: articles/college-athletics-spending-index.qmd
+          - href: articles/mandatory-athletics-fees.qmd
+          - text: Site
+          - href: articles/welcome.qmd
       - href: about.qmd
         text: About
     right:
