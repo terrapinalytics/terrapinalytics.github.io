@@ -11,6 +11,7 @@ const time = (d, options) => new Intl.DateTimeFormat('en-US',{timeZone:'America/
 const gameDate = d => time(d,{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});
 const type = e => e.competitions?.[0]?.status?.type;
 const finalGames = new Map(), seasons = new Map();
+let showSeason = false;
 let selectedTeam = md, selectedHalf = 0, active, box, loading = false;
 
 async function get(path) {
@@ -70,11 +71,33 @@ function finalGame(id, teamId) {
   return finalGames.get(id);
 }
 
+const seasonCounts = ['min','pts','orb','drb','to','ast','stl','blk','pf'];
+function collectSeason(sample, stats, pairs) {
+  pool(sample.rates,pairs);
+  pool(sample.shooting,shootingStats(stats).map(shot=>shot.pair));
+  const counts = seasonCounts.map(key => {
+    const value = stats[key];
+    if (value == null || value === '' || value === '-') return [];
+    const [first,seconds] = String(value).split(':').map(Number);
+    const number = first + (seconds ?? 0)/60;
+    return Number.isFinite(number) ? [number,1] : [];
+  });
+  pool(sample.counts,counts);
+}
+
+function averageCounts(sample) {
+  return Object.fromEntries(seasonCounts.map((key,i) => {
+    const [total,games] = sample.counts[i] ?? [];
+    return [key,games ? (total/games).toFixed(1) : null];
+  }));
+}
+
 async function seasonRates(teamId,event,schedule) {
   const calendar = teamId === md ? schedule : await get('/teams/'+teamId+'/schedule?season='+schedule.season.year);
   const ids = [...new Set(calendar.events.filter(e => type(e)?.completed && e.id !== event.id &&
     Date.parse(e.date) < Date.parse(event.date)).map(e => e.id))];
   const factors = [], details = descriptors.map(()=>[]), players = new Map();
+  const teamSeason = {rates:[],shooting:[],counts:[]};
   let count = 0;
   for (let i=0;i<ids.length;i+=5) {
     const results = await Promise.allSettled(ids.slice(i,i+5).map(id=>finalGame(id,teamId)));
@@ -88,16 +111,16 @@ async function seasonRates(teamId,event,schedule) {
       count++;
       pool(factors,data.pairs);
       descriptors.forEach(([, ,rows],k)=>pool(details[k],rows(data).map(row=>row.pair)));
+      const [efg,to,or,ftr] = data.pairs;
+      collectSeason(teamSeason,data.stats,[efg,to,or,descriptors[2][2](data)[1].pair,ftr,[],[data.stats.pts,to[1]]]);
       for (const player of data.players) {
         if (player.id == null) continue;
-        if (!players.has(player.id)) players.set(player.id,{rates:[],shooting:[]});
-        const playerSeason = players.get(player.id);
-        pool(playerSeason.rates,player.pairs);
-        pool(playerSeason.shooting,shootingStats(player.stats).map(shot=>shot.pair));
+        if (!players.has(player.id)) players.set(player.id,{player,rates:[],shooting:[],counts:[]});
+        collectSeason(players.get(player.id),player.stats,player.pairs);
       }
     });
   }
-  return {count,total:ids.length,factors,details,players};
+  return {count,total:ids.length,factors,details,players,teamSeason};
 }
 
 function loadSeason(teamId,event,schedule) {
@@ -442,6 +465,12 @@ for (const button of $('game-splits').children) {
   };
 }
 
+$('box-season').onclick = () => {
+  showSeason = !showSeason;
+  $('box-season').setAttribute('aria-pressed',String(showSeason));
+  renderPlayers();
+};
+
 function renderPlayers() {
   if (!box) return;
   const teams = visibleTeams();
@@ -459,8 +488,8 @@ function renderPlayers() {
     }));
   }
   for (const button of $('teams').children) button.setAttribute('aria-pressed',String(button.dataset.id===team.id));
-  const row = (label,s,pairs,reference,rowClass='') => {
-    const [efg,to,or,dr,ftr] = pairs.slice(0,5).map((pair,i)=>rateValue(pair,reference?.rates[i],i));
+  const row = (label,s,pairs,reference,rowClass='',seasonShooting) => {
+    const [efg,to,or,dr,ftr] = Array.from({length:5},(_,i)=>rateValue(pairs[i] ?? [],reference?.rates[i],i));
     const rating = pairs[6] ?? [];
     const shade = rateComparison(rating,reference?.rates[6]);
     const usage = pairs[5] ?? [];
@@ -468,7 +497,10 @@ function renderPlayers() {
     const role = '<div class="rebound-rates"><span class="rate-value" style="'+usageShade.style+'" title="Usage · '+usageShade.note+'">'+percent(rate(usage))+
       '</span><strong class="rate-value" style="'+shade.style+'" title="ORtg · Season '+fmt(rate(reference?.rates[6] ?? []))+'">'+fmt(rate(rating))+'</strong></div>';
     const metrics = [role,efg,to,'<div class="rebound-rates">'+or+dr+'</div>',ftr];
-    const shooting = shootingStats(s).map(({text,pair},i)=>reference?.shooting ?
+    const shooting = seasonShooting ? Array.from({length:4},(_,i)=> {
+      const pair = seasonShooting[i];
+      return pair ? percent(rate(pair)) : '—';
+    }) : shootingStats(s).map(({text,pair},i)=>reference?.shooting ?
       shadedStat(text,rateComparison(pair,reference.shooting[i])) : escape(text));
     const count = key => escape(s[key] ?? '—');
     const raw = ['orb','drb','to','ast','stl','blk','pf'].map(count);
@@ -479,11 +511,18 @@ function renderPlayers() {
         '<span class="box-stat"><b>'+count(key)+'</b> '+label+'</span>').join(''),i+totalsColumn)).join('')+'</tr>';
   };
   const sample = samples.get(team.id);
+  $('box-period').textContent = showSeason
+    ? (sample?.count ? 'Season before this game · Shooting % · Totals per game' : 'Season before this game · Stats unavailable')
+    : '';
+  $('players').classList.toggle('season-stats',showSeason);
   const defensive = descriptors[2][2](data)[1].pair;
   const [efg,to,or,ftr] = data.pairs;
   const reference = sample ? {rates:[...sample.factors.slice(0,3),sample.details[2][1],sample.factors[3]]} : undefined;
-  const teamTotal = row('Team total',data.stats,[efg,to,or,defensive,ftr,[],[data.stats.pts,data.pairs[1][1]]],reference,' class="team-total"');
-  const rows = data.players.map(p=>row(playerLabel(p),p.stats,p.pairs,sample?.players.get(p.id)));
+  const teamTotal = showSeason ? (sample?.count ? row('Team average',averageCounts(sample.teamSeason),sample.teamSeason.rates,undefined,' class="team-total"',sample.teamSeason.shooting) : '') : row('Team total',data.stats,[efg,to,or,defensive,ftr,[],[data.stats.pts,data.pairs[1][1]]],reference,' class="team-total"');
+  const rows = showSeason ? Array.from(sample?.players.values() ?? [])
+    .sort((a,b)=>(averageCounts(b).min ?? 0)-(averageCounts(a).min ?? 0))
+    .map(entry=>row(playerLabel(entry.player),averageCounts(entry),entry.rates,undefined,'',entry.shooting))
+    : data.players.map(p=>row(playerLabel(p),p.stats,p.pairs,sample?.players.get(p.id)));
   $('players').innerHTML = '<thead><tr>'+columns.map(([label,,short],i) =>
     '<th scope="col"'+columnAttr(i)+(short?' aria-label="'+label+'"':'')+'>'+
     (short?'<span class="box-long">'+label+'</span><span class="box-short">'+short+'</span>':label)+'</th>').join('')+

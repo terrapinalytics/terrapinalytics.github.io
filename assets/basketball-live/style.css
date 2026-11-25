@@ -162,3 +162,7 @@
 #profile-body .team-metrics tr:first-child th{border-top:2px solid var(--line)}
 #profile-body .team-metrics th[colspan]{width:auto;text-align:center}
 .profile-value{display:inline-block;max-width:100%;border-radius:.25rem;padding:.1rem .12rem;color:#221e1b}
+
+#box-season{margin:.35rem 0 .15rem;min-height:2rem}
+#box-period:empty{display:none}
+section:has(#players.season-stats) .rate-legend{display:none}
