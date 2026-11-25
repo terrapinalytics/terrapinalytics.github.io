@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Big Ten Football Success Rates</title>
+  <meta name="description" content="Explore Big Ten offensive success and defensive stops by game, drive, quarter, down, and play type.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../team-logos/style.css">
+  <script defer src="../team-logos.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header>
+    <div class="shell masthead">
+      <div>
+        <p class="edition">Big Ten football · 2023–2026</p>
+        <h1>Success rate by play</h1>
+        <p class="intro">Open a quarter, then a game and drive, to see the snaps behind the rate.</p>
+      </div>
+      <a id="method-link" href="#method">How success is measured</a>
+    </div>
+  </header>
+  <main class="shell">
+    <section class="panel control-panel" aria-label="Analysis filters">
+      <div class="topline">
+        <div class="segmented" role="group" aria-label="Selected team unit">
+          <button type="button" id="offense" aria-pressed="true">Offense</button>
+          <button type="button" id="defense" aria-pressed="false">Defense</button>
+        </div>
+        <button type="button" class="text-button" id="reset">Reset filters</button>
+      </div>
+      <div class="filters">
+        <label>Team<select id="team" disabled></select></label>
+        <label>Season<select id="season"></select></label>
+        <label>Game<select id="game"></select></label>
+        <label>Down<select id="down"></select></label>
+      </div>
+      <details id="more-filters">
+        <summary>More filters</summary>
+        <div class="filters extra-filters">
+        <label>Quarter<select id="quarter"></select></label>
+        <label>Play type<select id="type"></select></label>
+        <label>Distance<select id="distance"></select></label>
+        <label>Score before snap<select id="score"></select></label>
+        </div>
+      <div class="scope-filters">
+        <label><input id="league" type="checkbox"> Big Ten games only</label>
+        <label><input id="matched" type="checkbox"> First 11 games per team and season</label>
+      </div>
+      </details>
+      <div class="filter-chips" id="active-filters" aria-label="Active filters" hidden></div>
+      <p id="status" role="status">Loading play-by-play…</p>
+    </section>
+
+    <section class="panel" aria-labelledby="pivot-heading">
+      <div class="section-heading">
+        <div><h2 id="pivot-heading">Offensive success rate</h2><p id="rate-note"></p></div>
+        <div class="actions">
+          <label>Group rows by<select id="group"></select></label>
+          <button type="button" id="collapse" disabled>Collapse all</button>
+          <button type="button" id="share">Copy view link</button>
+          <button type="button" id="download" disabled>Download filtered data</button>
+          <a class="download-all" href="big-ten-football-plays.zip" download>Download all teams (ZIP)</a>
+        </div>
+      </div>
+      <figure class="rate-chart" id="rate-chart" aria-labelledby="chart-caption" hidden>
+        <figcaption id="chart-caption"><span><i class="legend-marker" aria-hidden="true"></i> Big Ten average</span><label class="chart-toggle"><input type="checkbox" id="chart-details"> Show snap counts and gap</label></figcaption>
+        <p id="benchmark-note" class="table-note"></p>
+        <ul id="chart-bars" class="chart-bars"></ul>
+      </figure>
+      <table class="pivot" aria-labelledby="pivot-heading" aria-describedby="pivot-note">
+        <thead><tr><th scope="col"><button type="button" data-pivot-sort="label" id="group-heading">Down → Game → Drive → Play</button></th><th scope="col" class="num"><button type="button" data-pivot-sort="wins" id="count-heading">Successes / snaps</button></th><th scope="col" class="num"><button type="button" data-pivot-sort="rate">Rate</button></th></tr></thead>
+        <tbody id="pivot-rows"><tr><td colspan="3">Loading play-by-play…</td></tr></tbody>
+      </table>
+      <p id="pivot-note" class="table-note">Game and drive subtotals use only snaps that match the filters. The score and drive result describe the full game and drive.</p>
+    </section>
+
+    <details class="panel" id="method">
+      <summary>Method and sources</summary>
+      <p>A play succeeds for the team with the ball if it gains at least 50% of yards to go on first down, 70% on second, or 100% on third and fourth. Thresholds round up to the next whole yard, and goal-to-go distance is capped at the goal line. Offensive touchdowns qualify and turnovers and sacks fail. A defensive stop is an opponent play that fails the same rule. An opponent can therefore gain yards and still be stopped by this measure.</p>
+      <p>Dropbacks include sacks and interceptions. Scrambles recorded as rushes stay in Rush. Other captures live snaps whose run/pass class cannot be recovered, such as a fumble-return touchdown recorded without the original action. The denominator excludes special-teams and administrative events, kneels and spikes, nullified or offsetting penalties, and plays with enforced or unresolved flags. Plays with declined penalties can count. Drive rows with zero rated snaps show a dash. All game situations are included by default. The score filter uses the selected team’s perspective on both sides. The source sometimes repeats the same clock across several plays. The play rows keep the reported quarter and hide the clock for runs of at least three snaps with the same timestamp.</p>
+      <p>Ordinary rates pool the qualifying plays in the current selection. A drive that spans quarters appears in each applicable quarter, with only that quarter’s snaps in each subtotal. Each drive row uses its own denominator, so a one-play row can show 0% or 100%. Rates are descriptive and unadjusted for opponent strength.</p>
+      <p>The Big Ten average pools eligible snaps for teams that were conference members in the season played, including nonconference and postseason games. Oregon, UCLA, USC and Washington enter the benchmark in 2024. The benchmark uses the same side of the ball, season, quarter, down, play type, distance and score filters. For a single-game selection or a Game chart row, it compares the same season and ESPN schedule week across the conference. Postseason selections use the same season’s postseason games. The selected team contributes when it was a conference member.</p>
+      <p>Each bar’s Big Ten rank compares the displayed rate with member teams that have at least one rated snap under the same filters. Higher is better for offensive success and defensive stops. Exact ties share a rank. A rank is unavailable when the displayed rate includes snaps from before the selected team joined the conference.</p>
+      <p><strong>Big Ten games only</strong> uses regular-season games between teams that were conference members that year. Conference championship games and bowls are outside that filter. <strong>First 11 games</strong> uses each team’s first 11 regular-season games in each year, matching the 2026 snapshot. With both filters on, only conference games within those first 11 games qualify. Chart gaps use team rate minus Big Ten rate in percentage points.</p>
+      <p>Coverage includes the current 18 members’ games from 2023 through Nov. 21, 2026. Five regular-season games missing from ESPN’s feed use the <a href="https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfbfastR_cfb_pbp">CollegeFootballData release</a>. Game IDs and source checksums are in the <a href="coverage.json">coverage data</a>.</p>
+      <p>The all-team ZIP contains one CSV per season. Big Ten matchups appear once from each team’s perspective. Use <code>game_id</code> and <code>play_id</code> together to identify unique snaps.</p>
+      <ul class="sources">
+        <li><a href="https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/espn_cfb_pbp">SportsDataverse ESPN play-by-play releases</a></li>
+        <li><a href="https://bigten.org/wotf/article/blt257197176c07308f/">Big Ten membership timeline</a></li>
+        <li>Maryland schedules <a href="https://umterps.com/sports/football/schedule/2023">2023</a>, <a href="https://umterps.com/sports/football/schedule/2024">2024</a>, <a href="https://umterps.com/sports/football/schedule/2025">2025</a>, <a href="https://bigten.org/schedule.aspx?schedule=2175">2026</a></li>
+        <li><a href="https://www.smwwearena.com/files/19_football_outsiders_almanac.pdf">Football Outsiders success rate convention</a></li>
+        <li><a href="https://s3.us-east-2.amazonaws.com/sidearm.nextgen.sites/uclabruins.com/documents/2025/10/19/BoxScore_-_UCLA-Maryland.PDF?timestamp=20251019035441">UCLA official game book used to verify the interception on Oct. 18, 2025</a></li>
+      </ul>
+      <p id="exclusions"></p>
+    </details>
+  </main>
+</body>
+</html>
