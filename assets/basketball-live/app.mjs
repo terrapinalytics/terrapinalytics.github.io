@@ -322,10 +322,10 @@ function renderFactors(teams,samples) {
 
 const columns = [
   ['Player'], ['MIN'], ['PTS'],
+  ['Usage percentage and individual offensive rating','rates','Usg% / ORtg'],
   ['eFG%','rates'], ['Player TO%','rates','TO%'],
   ['Offensive and defensive rebound percentages','rates','OR% / DR%'],
   ['Free throw rate (FTA/FGA)','rates','FTR'],
-  ['Usage percentage and individual offensive rating','rates','Usg% / ORtg'],
   ['FG','shooting'], ['2P','shooting'], ['3P','shooting'], ['FT','shooting'],
   ['ORB'], ['DRB'], ['TO'], ['AST'], ['STL'], ['BLK'], ['PF'],
   ['Minutes and points','totals','Time'], ['Offensive and defensive rebounds','totals','Reb'],
@@ -463,9 +463,11 @@ function renderPlayers() {
     const [efg,to,or,dr,ftr] = pairs.slice(0,5).map((pair,i)=>rateValue(pair,reference?.rates[i],i));
     const rating = pairs[6] ?? [];
     const shade = rateComparison(rating,reference?.rates[6]);
-    const role = '<div class="rebound-rates"><span>'+percent(rate(pairs[5] ?? []))+
+    const usage = pairs[5] ?? [];
+    const usageShade = rateComparison(usage,reference?.rates[5]);
+    const role = '<div class="rebound-rates"><span class="rate-value" style="'+usageShade.style+'" title="Usage · '+usageShade.note+'">'+percent(rate(usage))+
       '</span><strong class="rate-value" style="'+shade.style+'" title="ORtg · Season '+fmt(rate(reference?.rates[6] ?? []))+'">'+fmt(rate(rating))+'</strong></div>';
-    const metrics = [efg,to,'<div class="rebound-rates">'+or+dr+'</div>',ftr,role];
+    const metrics = [role,efg,to,'<div class="rebound-rates">'+or+dr+'</div>',ftr];
     const shooting = shootingStats(s).map(({text,pair},i)=>reference?.shooting ?
       shadedStat(text,rateComparison(pair,reference.shooting[i])) : escape(text));
     const count = key => escape(s[key] ?? '—');
