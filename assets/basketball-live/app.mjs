@@ -405,7 +405,7 @@ async function renderProfiles() {
         '%,var(--bench-neutral))">'+n.toFixed(1)+unit+' <small>#'+rank+'</small></span></td>';
     };
     const order = [0,1,2,3,11,12,4,5,6,7,8,9,10];
-    out.innerHTML = '<p>D-I games through '+escape(data.through)+' · '+count+' teams · Adjusted ratings: <a href="https://barttorvik.com/">T-Rank</a></p>'+
+    out.innerHTML = '<p>D-I games through '+escape(data.through)+' · '+count+' teams · Adjusted ratings: <a href="https://barttorvik.com/">T-Rank</a> '+escape(data.ratingsDate ?? '')+'</p>'+
       '<table><thead><tr><th rowspan="2">Rate</th>'+teams.map(t=>
         '<th colspan="2">When '+escape(t.location || t.displayName)+' has the ball</th>').join('')+'</tr><tr>'+
       teams.map((off,j)=>'<th>'+escape(off.abbreviation)+'<br>Off</th><th>'+escape(teams[1-j].abbreviation)+'<br>Def</th>').join('')+

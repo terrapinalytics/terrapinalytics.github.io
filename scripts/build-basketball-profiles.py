@@ -117,8 +117,19 @@ if __name__ == "__main__":
     data = build(teams, season_rows("team_boxscores","team_box"),
                  season_rows("player_boxscores","player_box"), season_rows("player_core","player_core"))
     ids = json.loads(Path(__file__).with_name("torvik-team-ids.json").read_text())
-    with urlopen(f"https://barttorvik.com/{season}_team_results.csv", timeout=60) as response:
-        ratings = list(csv.DictReader(response.read().decode().splitlines()))
+    try:
+        with urlopen(f"https://barttorvik.com/{season}_team_results.csv", timeout=30) as response:
+            ratings = list(csv.DictReader(response.read().decode().splitlines()))
+        if not ratings or "adjoe" not in ratings[0]:
+            raise ValueError("Adjusted ratings unavailable")
+        data["ratingsDate"] = str(today)
+    except (OSError, ValueError):
+        snapshots = sorted(Path(__file__).parent.glob(f"torvik-{season}-*.csv"))
+        ratings = []
+        if snapshots:
+            with snapshots[-1].open() as source:
+                ratings = list(csv.DictReader(source))
+            data["ratingsDate"] = snapshots[-1].stem[-10:]
     margins = sorted((float(r["adjoe"])-float(r["adjde"]) for r in ratings), reverse=True)
     data["adjusted"] = {}
     for r in ratings:
