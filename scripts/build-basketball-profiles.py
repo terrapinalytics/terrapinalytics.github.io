@@ -116,4 +116,15 @@ if __name__ == "__main__":
         teams = json.load(response)
     data = build(teams, season_rows("team_boxscores","team_box"),
                  season_rows("player_boxscores","player_box"), season_rows("player_core","player_core"))
+    ids = json.loads(Path(__file__).with_name("torvik-team-ids.json").read_text())
+    with urlopen(f"https://barttorvik.com/{season}_team_results.csv", timeout=60) as response:
+        ratings = list(csv.DictReader(response.read().decode().splitlines()))
+    margins = sorted((float(r["adjoe"])-float(r["adjde"]) for r in ratings), reverse=True)
+    data["adjusted"] = {}
+    for r in ratings:
+        team = ids.get(r["team"])
+        if team:
+            offense, defense = float(r["adjoe"]), float(r["adjde"])
+            data["adjusted"][team] = [[offense,int(r["oe Rank"])],[defense,int(r["de Rank"])],
+                                      [offense-defense,1+margins.index(offense-defense)]]
     Path("assets/basketball-live/profiles.json").write_text(json.dumps(data, separators=(",",":")))

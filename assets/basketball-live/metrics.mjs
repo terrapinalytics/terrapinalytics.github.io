@@ -50,13 +50,37 @@ function reboundTotals(players) {
   };
 }
 
-function playerPairs(s, own, other) {
+// Dean Oliver's individual points produced and possessions, using the CBB FT weight.
+function production(p,t,opp,share) {
+  const keys = ['fgm','fga','threeM','ftm','fta','to','ast','orb','pts'];
+  if (!(share > 0) || opp.drb == null || keys.some(k=>p[k]==null || t[k]==null)) return [null,null];
+  const div = (n,d) => d > 0 ? n/d : 0;
+  const ftPoss = s => .475*s.fta*(1-(1-div(s.ftm,s.fta))**2);
+  const scoring = t.fgm + ftPoss(t);
+  const play = div(scoring,used(t));
+  const reb = div(t.orb,t.orb+opp.drb);
+  const weight = div((1-reb)*play,(1-reb)*play+reb*(1-play));
+  const keep = 1-div(t.orb,scoring)*weight*play;
+  const qAst = share*1.14*div(t.ast-p.ast,t.fgm) +
+    (1-share)*div(t.ast*share-p.ast,t.fgm*share-p.fgm);
+  const fgCredit = 1-.5*div(p.pts-p.ftm,2*p.fga)*qAst;
+  const astPart = .5*div(t.pts-t.ftm-p.pts+p.ftm,2*(t.fga-p.fga))*p.ast;
+  const orbPart = p.orb*weight*play;
+  const scoringPoss = (p.fgm*fgCredit+astPart+ftPoss(p))*keep+orbPart;
+  const possessions = scoringPoss+(p.fga-p.fgm)*(1-1.07*reb)+
+    .475*p.fta*(1-div(p.ftm,p.fta))**2+p.to;
+  const astPoints = 2*div(t.fgm-p.fgm+.5*(t.threeM-p.threeM),t.fgm-p.fgm)*astPart;
+  const produced = ((2*p.fgm+p.threeM)*fgCredit+astPoints+p.ftm)*keep+orbPart*div(t.pts,scoring);
+  return [produced,possessions];
+}
+
+function playerPairs(s, own, other, team, opponent) {
   const played = minutes(s.min);
   const share = own.minutes > 0 && played != null ? played * 5 / own.minutes : null;
   return [[effectiveMakes(s),s.fga],[s.to,used(s)],
     [s.orb,scale(sum(own.orb,other.drb),share)],
     [s.drb,scale(sum(own.drb,other.orb),share)],
-    [s.fta,s.fga]];
+    [s.fta,s.fga],[used(s),scale(used(team),share)],production(s,team,opponent,share)];
 }
 export const clockLabel = seconds => Math.floor(seconds/60)+':'+String(Math.floor(seconds%60)).padStart(2,'0');
 
@@ -68,7 +92,7 @@ export function assembleBox(s,opponent,players,opponentPlayers) {
     pts:s.pts ?? sum(scale(s.fgm,2),s.threeM,s.ftm),
     min:s.min ?? (ownRebounds.minutes==null ? null : Math.round(ownRebounds.minutes))
   };
-  const ranked = players.map(player=>({...player,pairs:playerPairs(player.stats,ownRebounds,otherRebounds)}))
+  const ranked = players.map(player=>({...player,pairs:playerPairs(player.stats,ownRebounds,otherRebounds,totals,opponent)}))
     .sort((a,b)=>(minutes(b.stats.min) ?? -1)-(minutes(a.stats.min) ?? -1));
   return {stats:totals,opponent,pairs:teamPairs(totals,opponent),players:ranked};
 }

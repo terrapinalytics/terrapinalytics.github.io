@@ -1,5 +1,5 @@
-import {rate,fmt,line,unpack} from './metrics.mjs?v=3';
-import {halfBoxes} from './half-box.mjs';
+import {rate,fmt,line,unpack} from './metrics.mjs?v=4';
+import {halfBoxes} from './half-box.mjs?v=4';
 import {scoreTrend,periodLabel,trendSnapshot,recordedPossessionArrow} from './score-trend.mjs?v=4';
 
 const api = 'https://terrapinalytics-basketball-feed.terrapinalytics.workers.dev';
@@ -325,6 +325,7 @@ const columns = [
   ['eFG%','rates'], ['Player TO%','rates','TO%'],
   ['Offensive and defensive rebound percentages','rates','OR% / DR%'],
   ['Free throw rate (FTA/FGA)','rates','FTR'],
+  ['Usage percentage and individual offensive rating','rates','Usg% / ORtg'],
   ['FG','shooting'], ['2P','shooting'], ['3P','shooting'], ['FT','shooting'],
   ['ORB'], ['DRB'], ['TO'], ['AST'], ['STL'], ['BLK'], ['PF'],
   ['Minutes and points','totals','Time'], ['Offensive and defensive rebounds','totals','Reb'],
@@ -404,13 +405,15 @@ async function renderProfiles() {
         '%,var(--bench-neutral))">'+n.toFixed(1)+unit+' <small>#'+rank+'</small></span></td>';
     };
     const order = [0,1,2,3,11,12,4,5,6,7,8,9,10];
-    out.innerHTML = '<p>D-I games through '+escape(data.through)+' · '+count+' teams</p>'+
+    out.innerHTML = '<p>D-I games through '+escape(data.through)+' · '+count+' teams · Adjusted ratings: <a href="https://barttorvik.com/">T-Rank</a></p>'+
       '<table><thead><tr><th rowspan="2">Rate</th>'+teams.map(t=>
         '<th colspan="2">When '+escape(t.location || t.displayName)+' has the ball</th>').join('')+'</tr><tr>'+
       teams.map((off,j)=>'<th>'+escape(off.abbreviation)+'<br>Off</th><th>'+escape(teams[1-j].abbreviation)+'<br>Def</th>').join('')+
-      '</tr></thead><tbody>'+order.map(i=>'<tr class="'+([0,4,7,9].includes(i)?'factor-row':'')+'"><th scope="row">'+profileLabels[i]+'</th>'+
+      '</tr></thead><tbody><tr class="factor-row"><th title="Bart Torvik · points per 100 possessions">Adj. efficiency</th>'+
+      teams.map((off,j)=>cell(data.adjusted?.[off.id]?.[0],'')+cell(data.adjusted?.[teams[1-j].id]?.[1],'')).join('')+'</tr>'+order.map(i=>'<tr class="'+([0,4,7,9].includes(i)?'factor-row':'')+'"><th scope="row">'+profileLabels[i]+'</th>'+
         teams.map((off,j)=>cell(data.teams[off.id]?.[0]?.[i],'%')+cell(data.teams[teams[1-j].id]?.[1]?.[i],'%')).join('')+'</tr>').join('')+
       '</tbody><tbody class="team-metrics"><tr><th>Team comparison</th>'+teams.map(t=>'<th colspan="2">'+escape(t.abbreviation)+'</th>').join('')+'</tr>'+
+      '<tr><th title="Opponent-adjusted efficiency margin · Bart Torvik">AdjEM</th>'+teams.map(t=>cell(data.adjusted?.[t.id]?.[2],'',2)).join('')+'</tr>'+
       ['Tempo','Effective height','Roster experience'].map((label,i)=>
         '<tr><th scope="row">'+label+'</th>'+teams.map(t=>cell(data.comparison?.[t.id]?.[i],['','″',' yr'][i],2)).join('')+'</tr>'
       ).join('')+'</tbody></table>';
@@ -457,8 +460,12 @@ function renderPlayers() {
   }
   for (const button of $('teams').children) button.setAttribute('aria-pressed',String(button.dataset.id===team.id));
   const row = (label,s,pairs,reference,rowClass='') => {
-    const [efg,to,or,dr,ftr] = pairs.map((pair,i)=>rateValue(pair,reference?.rates[i],i));
-    const metrics = [efg,to,'<div class="rebound-rates">'+or+dr+'</div>',ftr];
+    const [efg,to,or,dr,ftr] = pairs.slice(0,5).map((pair,i)=>rateValue(pair,reference?.rates[i],i));
+    const rating = pairs[6] ?? [];
+    const shade = rateComparison(rating,reference?.rates[6]);
+    const role = '<div class="rebound-rates"><span>'+percent(rate(pairs[5] ?? []))+
+      '</span><strong class="rate-value" style="'+shade.style+'" title="ORtg · Season '+fmt(rate(reference?.rates[6] ?? []))+'">'+fmt(rate(rating))+'</strong></div>';
+    const metrics = [efg,to,'<div class="rebound-rates">'+or+dr+'</div>',ftr,role];
     const shooting = shootingStats(s).map(({text,pair},i)=>reference?.shooting ?
       shadedStat(text,rateComparison(pair,reference.shooting[i])) : escape(text));
     const count = key => escape(s[key] ?? '—');
@@ -473,7 +480,7 @@ function renderPlayers() {
   const defensive = descriptors[2][2](data)[1].pair;
   const [efg,to,or,ftr] = data.pairs;
   const reference = sample ? {rates:[...sample.factors.slice(0,3),sample.details[2][1],sample.factors[3]]} : undefined;
-  const teamTotal = row('Team total',data.stats,[efg,to,or,defensive,ftr],reference,' class="team-total"');
+  const teamTotal = row('Team total',data.stats,[efg,to,or,defensive,ftr,[],[data.stats.pts,data.pairs[1][1]]],reference,' class="team-total"');
   const rows = data.players.map(p=>row(playerLabel(p),p.stats,p.pairs,sample?.players.get(p.id)));
   $('players').innerHTML = '<thead><tr>'+columns.map(([label,,short],i) =>
     '<th scope="col"'+columnAttr(i)+(short?' aria-label="'+label+'"':'')+'>'+

@@ -1,4 +1,4 @@
-import {assembleBox,clockLabel,playerLines} from './metrics.mjs?v=3';
+import {assembleBox,clockLabel,playerLines} from './metrics.mjs?v=4';
 import {clockSeconds} from './score-trend.mjs?v=3';
 
 const halfSeconds = 20*60;

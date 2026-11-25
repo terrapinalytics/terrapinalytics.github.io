@@ -31,7 +31,7 @@
   #players .player-line{display:block;font-size:clamp(.59rem,calc(153cqi / var(--name-length)),.76rem);overflow:hidden;text-overflow:ellipsis}
   #players .rebound-rates{justify-items:center}
   #players[data-view=rates] th.view-rates{font-size:.68rem}
-  #players[data-view=rates] th:first-child{width:38%}
+  #players[data-view=rates] th:first-child{width:32%}
   #players[data-view=rates] .view-rates{padding-inline:.12rem;font-size:.75rem}
   #players[data-view=rates] .rate-value{padding-inline:.12rem;max-width:100%;overflow-wrap:anywhere}
   #players th small,#players td small{font-size:.75rem;font-weight:400}
