@@ -1,6 +1,5 @@
 ---
 title: "College Athletics Spending Index"
-description: "Compare college athletics spending by sport and expense category, with FY2025 budget weights and downloadable data."
 page-layout: full
 toc: false
 ---

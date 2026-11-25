@@ -6,7 +6,6 @@ toc: false
 
 ```{=html}
 <div class="tool-intro">
-<p>NCAA/Knight-Newhouse FY2005–2025 and EADA FY2001–2025. Coverage varies by school.</p>
 <a href="../assets/finance/dashboard.html" target="_blank" rel="noopener">Open full screen</a>
 </div>
 <iframe class="tool-frame" data-fit-content src="../assets/finance/dashboard.html" title="Power Four and Group of Six athletics financial reporting" loading="eager"></iframe>

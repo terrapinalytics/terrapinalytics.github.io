@@ -6,7 +6,6 @@ toc: false
 
 ```{=html}
 <div class="tool-intro">
-<p>137 football head-coaching jobs · November 23, 2026</p>
 <a href="../assets/coaching/rankings.html" target="_blank" rel="noopener">Open full screen</a>
 </div>
 <iframe class="tool-frame" data-fit-content src="../assets/coaching/rankings.html" title="FBS program rankings and supporting data" loading="eager"></iframe>

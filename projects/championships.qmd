@@ -6,7 +6,6 @@ toc: false
 
 ```{=html}
 <div class="tool-intro">
-<p>Big Ten titles from 2014–15 through 2025–26.</p>
 <a href="../assets/championships/dashboard.html" target="_blank" rel="noopener">Open full screen</a>
 </div>
 <iframe class="tool-frame" data-fit-content src="../assets/championships/dashboard.html" title="Big Ten championship tracker" loading="eager"></iframe>
