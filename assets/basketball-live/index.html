@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Live Four Factors and player box scores for Maryland men's basketball">
 <title>Maryland Basketball Live | Terrapinalytics</title>
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=5">
 <script type="module" src="app.mjs?v=4"></script>
 </head>
 <body>
@@ -18,12 +18,18 @@
 </section>
 <div class="feed" id="status" role="status"></div>
 <div id="analysis" hidden>
+<section aria-labelledby="factors-title">
+<div class="factors-heading">
+<h2 id="factors-title">Four Factors</h2>
 <div id="game-splits" class="game-splits" role="group" aria-label="Game split">
 <button type="button" data-half="0" aria-pressed="true">Total</button>
 <button type="button" data-half="1" aria-pressed="false">1H</button>
 <button type="button" data-half="2" aria-pressed="false">2H</button>
 </div>
-<section aria-labelledby="factors-title"><h2 id="factors-title">Four Factors</h2><p class="sub rate-key"><span>Vs. team season</span><span class="rate-gradient" aria-hidden="true"></span></p><div class="factors" id="factors"></div></section>
+</div>
+<p class="sub rate-key factors-key"><span>Vs. team season</span><span class="rate-gradient" aria-hidden="true"></span></p>
+<div class="factors" id="factors"></div>
+</section>
 <section aria-labelledby="players-title"><div class="heading"><h2 id="players-title">Player box score</h2><div id="teams" role="group" aria-label="Box score team"></div></div>
 <div class="box-views" id="box-views" role="group" aria-label="Box score view">
 <button type="button" data-view="rates" aria-pressed="true">Rates</button>
