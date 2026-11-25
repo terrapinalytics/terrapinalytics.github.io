@@ -11,7 +11,7 @@ page-layout: full
 [Open the current costs dashboard in its own page](../assets/articles/student-fee-dashboard/index.html) · [Download current costs (CSV)](../assets/articles/student-fee-dashboard/P4_Student_Annual_Athletics_Cost.csv)
 
 ```{=html}
-<iframe class="mobile-embed" data-fit-mobile src="../assets/articles/student-fee-dashboard/index.html" title="Current Power Four student athletics costs"></iframe>
+<iframe class="mobile-embed" data-fit-content src="../assets/articles/student-fee-dashboard/index.html" title="Current Power Four student athletics costs"></iframe>
 ```
 
 ## Historical fees
@@ -19,7 +19,7 @@ page-layout: full
 [Open the historical fees dashboard in its own page](../assets/articles/student-fee-dashboard/history.html) · [Read the analysis of when fees rose](../articles/mandatory-athletics-fees.qmd)
 
 ```{=html}
-<iframe class="mobile-embed" data-fit-mobile src="../assets/articles/student-fee-dashboard/history.html" title="Historical Power Four student athletics fees" loading="lazy"></iframe>
+<iframe class="mobile-embed" data-fit-content src="../assets/articles/student-fee-dashboard/history.html" title="Historical Power Four student athletics fees" loading="lazy"></iframe>
 ```
 
 :::

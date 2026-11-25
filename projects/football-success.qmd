@@ -9,5 +9,6 @@ toc: false
 <a href="../assets/football-success/index.html" target="_blank" rel="noopener">Open full screen</a>
 <a href="../assets/football-success/big-ten-football-plays.zip">Download all teams (ZIP)</a>
 </div>
-<iframe class="tool-frame tool-frame-external" src="../assets/football-success/index.html" title="Big Ten football success rates explorer" loading="eager" allow="clipboard-write"></iframe>
+<iframe class="tool-frame" data-fit-content src="../assets/football-success/index.html" title="Big Ten football success rates explorer" loading="eager" allow="clipboard-write"></iframe>
+<script src="../assets/tool-frame.js" defer></script>
 ```
