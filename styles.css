@@ -150,3 +150,14 @@ body #quarto-content:has(.tool-frame,.mobile-embed){padding-bottom:.5rem}
 .game-day-link:focus-visible{outline:2px solid #fff;outline-offset:-4px}
 .game-day-matchup{font-weight:750}
 .game-day-action{font-size:.9rem;text-decoration:underline;text-underline-offset:.16em}
+
+
+#quarto-content:has(.tool-frame,.mobile-embed,.maryland-live){min-height:0}
+body:not(:has(.landing-hero)) #quarto-content:has(.tool-frame,.mobile-embed,.maryland-live){padding-top:.65rem;padding-bottom:.2rem}
+body:not(:has(.landing-hero)) #quarto-content:has(.tool-frame,.mobile-embed,.maryland-live) .quarto-title{padding-bottom:.25rem;margin-bottom:.3rem}
+main.content:has(.maryland-live){min-width:0;padding-bottom:0;margin-bottom:0}
+body:has(.tool-frame,.mobile-embed,.maryland-live) .nav-footer{padding-block:.4rem;min-height:0}
+body:has(.tool-frame,.mobile-embed,.maryland-live) .nav-footer p{margin:0}
+@media(max-width:750px){
+  .maryland-live{width:100vw;margin-inline-start:calc(50% - 50vw);padding-inline:.5rem}
+}

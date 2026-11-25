@@ -2,7 +2,7 @@ import {rate,fmt,line,unpack} from './metrics.mjs?v=4';
 import {halfBoxes} from './half-box.mjs?v=4';
 import {scoreTrend,periodLabel,trendSnapshot,recordedPossessionArrow} from './score-trend.mjs?v=4';
 
-const api = 'https://terrapinalytics-basketball-feed.terrapinalytics.workers.dev';
+import {feedOrigin as api, gameOnDay, nextEasternMidnight} from './game-day.mjs';
 const md = '120';
 const $ = id => document.getElementById(id);
 const escape = value => String(value ?? '').replace(/[&<>"']/g,c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -178,10 +178,7 @@ document.addEventListener('pointerdown', event => {
   if (!event.target.closest('.trend-plot')) dismissSnapshot();
 }, true);
 window.addEventListener('blur', dismissSnapshot);
-if (parent !== window) {
-  try { parent.document.addEventListener('pointerdown', dismissSnapshot, true); }
-  catch { /* Cross-origin embeds use the window blur listener. */ }
-}
+
 
 function inspectTrend(plot,points,end,maximum,sides) {
   const overlay = plot.querySelector('.trend-inspection');
@@ -422,7 +419,7 @@ async function renderProfiles() {
   const out = $('profile-body');
   out.textContent = 'Loading…';
   try {
-    profileData ??= fetch('./profiles.json').then(r => {
+    profileData ??= fetch(new URL('./profiles.json',import.meta.url)).then(r => {
       if (!r.ok) throw Error('Profiles unavailable');
       return r.json();
     });
@@ -460,6 +457,9 @@ async function renderProfiles() {
 $('team-profiles').ontoggle = renderProfiles;
 
 function renderSplit() {
+  const suffix = selectedHalf ? ' · '+selectedHalf+'H' : '';
+  $('factors-title').textContent = 'Four Factors'+suffix;
+  $('players-title').textContent = 'Player box score'+suffix;
   renderProfiles();
   for (const button of $('game-splits').children) {
     const half = Number(button.dataset.half);
@@ -606,8 +606,9 @@ async function refresh(pushedGame) {
     const tips = scheduledTips(events);
     const next = tips.find(e => Date.parse(e.date) > now);
     const starting = tips.find(e => Date.parse(e.date) <= now && now - Date.parse(e.date) < 4 * 60 * minute);
-    nextCheck = next ? Date.parse(next.date) : Infinity;
-    const event = (liveSchedule && events.find(e => e.id === active)) ?? events.find(e => type(e)?.state === 'in') ?? starting ?? events.filter(e => type(e)?.completed).at(-1) ?? next;
+    const today = gameOnDay(events,now);
+    nextCheck = Math.min(next ? Date.parse(next.date) : Infinity,nextEasternMidnight(now));
+    const event = (liveSchedule && events.find(e => e.id === active)) ?? events.find(e => type(e)?.state === 'in') ?? today ?? starting ?? events.filter(e => type(e)?.completed).at(-1) ?? next;
     if (!event) throw Error('Maryland schedule is empty');
     if (active !== event.id) {
       active = event.id;
@@ -618,6 +619,7 @@ async function refresh(pushedGame) {
       $('analysis').hidden = true;
       renderScore(event,event.competitions[0]);
     }
+    if (type(event)?.state === 'pre' && event !== starting) renderScore(event,event.competitions[0]);
     if (type(event)?.state !== 'pre' || event === starting) {
       const game = pushedGame ?? await get('/summary?event='+event.id);
       if (game.feed?.stale) staleFeed = game.feed;
@@ -657,11 +659,13 @@ async function refresh(pushedGame) {
         return;
       }
     }
+    $('refresh').hidden = !staleFeed;
     $('status').textContent = staleFeed ? 'Feed delayed · Updated '+gameDate(staleFeed.asOf) : '';
   } catch {
+    $('refresh').hidden = false;
     liveSchedule = null;
     nextCheck = Date.now() + 5 * minute;
-    $('status').textContent = active ? 'ESPN refresh failed. Showing the last available update.' : 'ESPN feed unavailable. Try Refresh.';
+    $('status').textContent = active ? 'ESPN refresh failed. Showing the last available update.' : 'Game feed unavailable.';
     if (!active) $('scoreboard').textContent = 'Maryland schedule unavailable';
   } finally {
     loading = false;

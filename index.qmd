@@ -12,7 +12,7 @@ toc: false
     <span class="game-day-action">Open live dashboard</span>
   </a>
 </div>
-<script src="assets/home/game-day.js" defer></script>
+<script type="module" src="assets/home/game-day.js?v=page1"></script>
 ```
 
 ::: {.content-band .home-preview}

@@ -1,0 +1,46 @@
+```{=html}
+<div class="maryland-live">
+<section class="game-score" aria-label="Game score and trends">
+<div class="scoreboard" id="scoreboard" aria-live="polite">Loading Maryland schedule…</div>
+<div class="score-trend" id="score-trend" hidden></div>
+</section>
+<div class="feed" id="status" role="status"></div>
+<button id="refresh" type="button" hidden>Retry connection</button>
+<div id="analysis" hidden>
+<section aria-labelledby="factors-title">
+<div class="factors-heading">
+<h2 id="factors-title">Four Factors</h2>
+<div id="game-splits" class="game-splits" role="group" aria-label="Game split">
+<button type="button" data-half="0" aria-pressed="true">Total</button>
+<button type="button" data-half="1" aria-pressed="false">1H</button>
+<button type="button" data-half="2" aria-pressed="false">2H</button>
+</div>
+</div>
+<p class="sub rate-key factors-key"><span>Vs. team season</span><span class="rate-gradient" aria-hidden="true"></span></p>
+<div class="factors" id="factors"></div>
+<details id="team-profiles"><summary>Team profiles · National ranks</summary><div id="profile-body"></div></details>
+</section>
+<section aria-labelledby="players-title"><div class="heading"><h2 id="players-title">Player box score</h2><div id="teams" role="group" aria-label="Box score team"></div></div>
+<div class="box-views" id="box-views" role="group" aria-label="Box score view">
+<button type="button" data-view="rates" aria-pressed="true">Rates</button>
+<button type="button" data-view="shooting" aria-pressed="false">Shooting</button>
+<button type="button" data-view="totals" aria-pressed="false">Totals</button>
+</div>
+<div class="rate-legend">
+<p class="sub rate-key"><span>Vs. player season</span><span class="rate-gradient" aria-hidden="true"></span></p>
+
+</div>
+
+<p class="sub season-hint">Tap a player to see their pregame season stats. Shooting and totals are per game.</p>
+<div class="tablebox" tabindex="0" role="region" aria-label="Player box score"><table id="players" data-view="rates"></table></div>
+</section>
+<details><summary>How the rates are calculated</summary>
+<p>Team eFG% = (FGM + 0.5 × 3PM) / FGA. TO% = TO / estimated possessions, where possessions = FGA − ORB + TO + 0.475 × FTA. OR% = ORB / (ORB + opponent DRB). DR% = DRB / (DRB + opponent ORB). FT rate = FTA / FGA. 3P rate = 3PA / FGA. Team rebound totals follow the ESPN box score. The turnover breakdown uses opponent steals and the remaining turnovers. Each percentage uses estimated offensive possessions as its denominator.</p>
+<p>Player eFG% uses their own attempts. Player TO% uses TO / (FGA + 0.475 × FTA + TO), and player FT rate uses their own FTA / FGA. Player OR% and DR% divide the player’s rebounds by estimated opportunities while on the floor. Opportunities use player-credited rebounds on each end (own ORB + opponent DRB, or own DRB + opponent ORB), multiplied by five times the player’s minutes divided by total reported team player minutes. Blank rates indicate unavailable data or a zero denominator.</p>
+<p>Half splits use recorded plays and substitutions. Half minutes and player rebound rates may be blank when lineup coverage is incomplete. Total uses the official box score and includes overtime.</p>
+<p>Colors compare with season rates pooled from available completed games before the displayed matchup. Shooting splits use accuracy for shading. Lower turnover rates receive green shading. Rates with no season comparison are neutral. In the player box, OR% is above DR%.</p>
+</details>
+</div>
+<footer>Box scores and game status from <a href="https://www.espn.com/mens-college-basketball/team/_/id/120/maryland-terrapins">ESPN</a>.</footer>
+</div>
+```

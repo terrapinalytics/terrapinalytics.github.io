@@ -74,8 +74,11 @@ def main(site):
                 f"{path}: missing Explore link"
             )
         elif path.parent.name == "projects" and path.name != "index.html":
-            assert len(page.frames) == 1, f"{path}: expected one dashboard embed"
-            assert page.frames[0] in page.links, f"{path}: missing full-screen link"
+            if path.name == "maryland-basketball-live.html":
+                assert not page.frames and "scoreboard" in page.ids, f"{path}: expected inline dashboard"
+            else:
+                assert len(page.frames) == 1, f"{path}: expected one dashboard embed"
+                assert page.frames[0] in page.links, f"{path}: missing full-screen link"
             dashboards.append(path.name)
     assert len(dashboards) >= 8, f"Missing dashboard pages: found {dashboards}"
 
