@@ -1,0 +1,15 @@
+name = "terrapinalytics-basketball-feed"
+main = "worker.mjs"
+compatibility_date = "2026-11-25"
+workers_dev = true
+
+[vars]
+LIVE_SECONDS = "60"
+
+[[durable_objects.bindings]]
+name = "FEED"
+class_name = "BasketballFeed"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["BasketballFeed"]
