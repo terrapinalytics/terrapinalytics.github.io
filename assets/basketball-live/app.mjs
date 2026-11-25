@@ -2,7 +2,7 @@ import {rate,fmt,line,unpack} from './metrics.mjs?v=3';
 import {halfBoxes} from './half-box.mjs';
 import {scoreTrend,periodLabel,trendSnapshot,recordedPossessionArrow} from './score-trend.mjs?v=4';
 
-const api = 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball';
+const api = 'https://terrapinalytics-basketball-feed.jubilantzebra3.chatgpt.site';
 const md = '120';
 const $ = id => document.getElementById(id);
 const escape = value => String(value ?? '').replace(/[&<>"']/g,c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -14,8 +14,8 @@ const finalGames = new Map(), seasons = new Map();
 let selectedTeam = md, selectedHalf = 0, active, box, loading = false;
 
 async function get(path) {
-  const response = await fetch(api+path,{signal:AbortSignal.timeout(12000)});
-  if (!response.ok) throw Error('ESPN returned '+response.status);
+  const response = await fetch(api+path,{signal:AbortSignal.timeout(25000)});
+  if (!response.ok) throw Error('Shared feed returned '+response.status);
   return response.json();
 }
 
@@ -60,9 +60,9 @@ function pool(total,pairs) {
   });
 }
 
-function finalGame(id) {
+function finalGame(id, teamId) {
   if (!finalGames.has(id)) {
-    finalGames.set(id,get('/summary?event='+id).catch(error => {
+    finalGames.set(id,get('/summary?event='+id+'&team='+teamId).catch(error => {
       finalGames.delete(id);
       throw error;
     }));
@@ -77,7 +77,7 @@ async function seasonRates(teamId,event,schedule) {
   const factors = [], details = descriptors.map(()=>[]), players = new Map();
   let count = 0;
   for (let i=0;i<ids.length;i+=5) {
-    const results = await Promise.allSettled(ids.slice(i,i+5).map(finalGame));
+    const results = await Promise.allSettled(ids.slice(i,i+5).map(id=>finalGame(id,teamId)));
     results.forEach((result,j) => {
       if (result.status !== 'fulfilled') return;
       const data = unpack(result.value,teamId);
@@ -445,6 +445,7 @@ async function refresh() {
   $('refresh').disabled = true;
   try {
     const schedule = liveSchedule ?? await get('/teams/120/schedule');
+    let staleFeed = schedule.feed?.stale ? schedule.feed : null;
     const events = [...schedule.events].sort((a,b) => Date.parse(a.date)-Date.parse(b.date));
     const now = Date.now();
     const tips = scheduledTips(events);
@@ -463,6 +464,7 @@ async function refresh() {
     }
     if (type(event)?.state !== 'pre' || event === starting) {
       const game = await get('/summary?event='+event.id);
+      if (game.feed?.stale) staleFeed = game.feed;
       const competition = game.header?.competitions?.[0] ?? event.competitions[0];
       const status = competition.status?.type ?? type(event);
       const live = status?.state === 'in' && !/suspend|postponed|cancel/i.test(status.name ?? '');
@@ -493,7 +495,7 @@ async function refresh() {
         return;
       }
     }
-    $('status').textContent = '';
+    $('status').textContent = staleFeed ? 'Feed delayed · Updated '+gameDate(staleFeed.asOf) : '';
   } catch {
     liveSchedule = null;
     nextCheck = Date.now() + 5 * minute;
