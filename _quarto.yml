@@ -18,6 +18,7 @@ project:
     - assets/articles/**
     - assets/fouls/**
     - assets/basketball-live/**
+    - assets/football-success/**
     - assets/home/**
     - assets/table-sort.js
     - assets/table-sort.css

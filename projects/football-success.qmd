@@ -6,8 +6,8 @@ toc: false
 
 ```{=html}
 <div class="tool-intro">
-<a href="https://maryland-football-success-rates.jubilantzebra3.chatgpt.site/" target="_blank" rel="noopener">Open full screen</a>
-<a href="https://maryland-football-success-rates.jubilantzebra3.chatgpt.site/big-ten-football-plays.zip">Download all teams (ZIP)</a>
+<a href="../assets/football-success/index.html" target="_blank" rel="noopener">Open full screen</a>
+<a href="../assets/football-success/big-ten-football-plays.zip">Download all teams (ZIP)</a>
 </div>
-<iframe class="tool-frame tool-frame-external" src="https://maryland-football-success-rates.jubilantzebra3.chatgpt.site/" title="Big Ten football success rates explorer" loading="eager" allow="clipboard-write"></iframe>
+<iframe class="tool-frame tool-frame-external" src="../assets/football-success/index.html" title="Big Ten football success rates explorer" loading="eager" allow="clipboard-write"></iframe>
 ```
