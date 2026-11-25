@@ -413,7 +413,7 @@ async function renderProfiles() {
       '</tbody><tbody class="team-metrics"><tr><th>Team comparison</th>'+teams.map(t=>'<th colspan="2">'+escape(t.abbreviation)+'</th>').join('')+'</tr>'+
       ['Tempo','Effective height','Roster experience'].map((label,i)=>
         '<tr><th scope="row">'+label+'</th>'+teams.map(t=>cell(data.comparison?.[t.id]?.[i],['','″',' yr'][i],2)).join('')+'</tr>'
-      ).join('')+'</tbody></table><p>Assist rate is assists per made FG. Block rate is shots blocked per 2PA. Defense shows opponent outcomes. Tempo is estimated possessions per 40 minutes. Height averages the tallest 40% of rotation minutes. Experience weights class years by minutes (freshman = 0). Rotation players average at least four minutes per 40. Higher ranks indicate faster, taller or more experienced teams.</p>';
+      ).join('')+'</tbody></table>';
   } catch {
     profileData = profileKey = null;
     out.textContent = 'Profiles unavailable. Reopen to retry.';
