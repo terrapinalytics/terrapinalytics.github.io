@@ -420,15 +420,38 @@ function renderPlayers() {
     '</tr></thead><tbody>'+teamTotal+(rows.join('') || '<tr><td colspan="'+columns.length+'">Player stats are pending.</td></tr>')+'</tbody>';
 }
 
+const minute = 60000;
+let timer, nextCheck = 0, liveSchedule;
+
+function scheduledTips(events) {
+  return events.filter(e => type(e)?.state === 'pre' &&
+    !/postponed|cancel|suspend/i.test(type(e)?.name ?? '') && Number.isFinite(Date.parse(e.date)));
+}
+
+function armTimer() {
+  clearTimeout(timer);
+  if (document.hidden || loading || !Number.isFinite(nextCheck)) return;
+  // Browser timers have a signed 32-bit limit. Re-arm long waits without fetching.
+  timer = setTimeout(() => {
+    if (document.hidden) return;
+    if (Date.now() < nextCheck) armTimer();
+    else refresh();
+  }, Math.min(2147483647, Math.max(0, nextCheck - Date.now())));
+}
+
 async function refresh() {
   if (loading) return;
   loading = true;
   $('refresh').disabled = true;
   try {
-    const schedule = await get('/teams/120/schedule');
+    const schedule = liveSchedule ?? await get('/teams/120/schedule');
     const events = [...schedule.events].sort((a,b) => Date.parse(a.date)-Date.parse(b.date));
-    const next = events.find(e => type(e)?.state === 'pre');
-    const event = events.find(e => type(e)?.state === 'in') ?? events.filter(e => type(e)?.completed).at(-1) ?? next;
+    const now = Date.now();
+    const tips = scheduledTips(events);
+    const next = tips.find(e => Date.parse(e.date) > now);
+    const starting = tips.find(e => Date.parse(e.date) <= now && now - Date.parse(e.date) < 4 * 60 * minute);
+    nextCheck = next ? Date.parse(next.date) : Infinity;
+    const event = (liveSchedule && events.find(e => e.id === active)) ?? events.find(e => type(e)?.state === 'in') ?? starting ?? events.filter(e => type(e)?.completed).at(-1) ?? next;
     if (!event) throw Error('Maryland schedule is empty');
     if (active !== event.id) {
       active = event.id;
@@ -438,9 +461,15 @@ async function refresh() {
       $('analysis').hidden = true;
       renderScore(event,event.competitions[0]);
     }
-    if (type(event)?.state !== 'pre') {
+    if (type(event)?.state !== 'pre' || event === starting) {
       const game = await get('/summary?event='+event.id);
       const competition = game.header?.competitions?.[0] ?? event.competitions[0];
+      const status = competition.status?.type ?? type(event);
+      const live = status?.state === 'in' && !/suspend|postponed|cancel/i.test(status.name ?? '');
+      const waiting = event === starting && status?.state === 'pre' &&
+        !/suspend|postponed|cancel/i.test(status.name ?? '');
+      liveSchedule = live ? schedule : null;
+      if (live || waiting) nextCheck = now + (live ? minute : 5 * minute);
       renderScore(event,competition,game.plays ?? [],event.competitions[0]);
       const teams = [...competition.competitors].map(({team}) =>
         ({team:{...team,id:String(team.id)},data:unpack(game,String(team.id))}))
@@ -466,14 +495,19 @@ async function refresh() {
     }
     $('status').textContent = '';
   } catch {
+    liveSchedule = null;
+    nextCheck = Date.now() + 5 * minute;
     $('status').textContent = active ? 'ESPN refresh failed. Showing the last available update.' : 'ESPN feed unavailable. Try Refresh.';
     if (!active) $('scoreboard').textContent = 'Maryland schedule unavailable';
   } finally {
     loading = false;
     $('refresh').disabled = false;
+    armTimer();
   }
 }
-$('refresh').onclick = refresh;
-document.addEventListener('visibilitychange',() => {if (!document.hidden) refresh();});
-setInterval(() => {if (!document.hidden) refresh();},30000);
-refresh();
+$('refresh').onclick = () => {
+  liveSchedule = null;
+  refresh();
+};
+document.addEventListener('visibilitychange', armTimer);
+armTimer();
