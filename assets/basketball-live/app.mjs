@@ -2,7 +2,7 @@ import {rate,fmt,line,unpack} from './metrics.mjs?v=3';
 import {halfBoxes} from './half-box.mjs';
 import {scoreTrend,periodLabel,trendSnapshot,recordedPossessionArrow} from './score-trend.mjs?v=4';
 
-const api = 'https://terrapinalytics-basketball-feed.jubilantzebra3.chatgpt.site';
+const api = 'https://terrapinalytics-basketball-feed.terrapinalytics.workers.dev';
 const md = '120';
 const $ = id => document.getElementById(id);
 const escape = value => String(value ?? '').replace(/[&<>"']/g,c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
