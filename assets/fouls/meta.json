@@ -1,5 +1,5 @@
 {
-  "through": "2026-11-22",
+  "through": "2026-11-26",
   "seasons": [
     {
       "year": 2019,
@@ -54,9 +54,9 @@
     {
       "year": 2027,
       "label": "2026–27",
-      "games": 944,
-      "clean": 668,
-      "crew": 922
+      "games": 1115,
+      "clean": 831,
+      "crew": 1090
     }
   ],
   "types": [
@@ -68,6 +68,7 @@
     "technical",
     "unknown"
   ],
-  "typesThrough": "2026-11-17",
-  "crewThrough": "2026-11-22"
+  "typesThrough": "2026-11-22",
+  "crewThrough": "2026-11-26",
+  "playersThrough": "2026-11-22"
 }
