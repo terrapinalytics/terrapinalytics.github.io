@@ -205,7 +205,8 @@ function renderProfile() {
   setOptions('entity',rows.slice().sort((a,b)=>a.name.localeCompare(b.name)).map(x=>[x.id,x.name]),state.entity);
   $('entitytitle').innerHTML=entity?(ref?safe(entity.name):TeamLogos.label(player?entity.team:entity.name,player?null:entity.id)+(player?' '+safe(entity.name):'')):'No profile available';
   $('entity').disabled=!entity;
-  $('profile-mix').hidden=$('profile-peers').hidden=$('profile-games').hidden=!entity;
+  $('profile-mix').hidden=$('profile-games').hidden=!entity;
+  $('profile-peers').hidden=ref||!entity;
   if(!entity){
     for(const id of ['peer-context','profilemetrics','foul-counts','mix','gamelog','method'])$(id).innerHTML='';
     $('profilenote').textContent='Try broader filters to view a profile.';
@@ -240,7 +241,7 @@ function renderProfile() {
   $('foul-counts').textContent=entity.n+' games · '+fmt(entity.p,1)+' possessions · '+
     (ref?entity.c+' combined fouls · '+fmt(entity.edgeP,1)+' non-neutral possessions for home edge':
       entity.c+' fouls committed · '+entity.d+' fouls drawn');
-  $('peer-context').innerHTML=metrics.map(([key,label,lower])=>PeerContext.comparison(
+  if (!ref) $('peer-context').innerHTML=metrics.map(([key,label,lower])=>PeerContext.comparison(
     comparison(key,label+' · season ending '+state.year+' · minimum '+state.minimum+' games'+(player?' and 100 on-court possessions':''),lower,peerGroups))).join('')+
     '<p class="peer-note">Peers use the same filters. Name search does not change the peer group. '+
     (player?(position?'Position from ESPN 2026–27 roster: '+safe(position)+'. Unknown positions are excluded from position peers.':'Position unavailable; rank uses filtered player peers.'):'')+
@@ -283,7 +284,17 @@ function renderMix(entity, peerGroups, headline, ref, player) {
   const benchmark = mixSummary(peerRecords, player, useDrawn);
   const ownTotal = sumCounts(own.counts);
   const peerTotal = sumCounts(benchmark.counts);
-  $('mixlabel').textContent = (ref ? 'Crew calls' : useDrawn ? 'Fouls drawn' : 'Fouls committed') +
+  const ownRates = own.counts.map(count => r100(count, own.possessions));
+  const benchmarkRates = benchmark.counts.map(count => r100(count, benchmark.possessions));
+  const scale = ref
+    ? 5 * Math.ceil(Math.max(1, ...[...ownRates, ...benchmarkRates].filter(Number.isFinite)) / 5)
+    : 100;
+  const eligible = ref ? peer.members.map(member => ({
+    id: member.id,
+    ...mixSummary(member.records, player, useDrawn)
+  })).filter(member => member.games.size >= state.minimum && member.possessions > 0) : [];
+  const canRank = eligible.some(member => member.id === entity.id);
+  $('mixlabel').textContent = (ref ? 'Crew fouls per 100 possessions · Bar scale 0–'+scale : useDrawn ? 'Fouls drawn' : 'Fouls committed') +
     ' · '+own.games.size+' games with type detail'+(benchmark.games.size ? ' · '+benchmark.games.size+' peer games with type detail' : '')+
     (state.type ? ' · Mix includes all types within those games.' : '');
   if (!own.games.size) {
@@ -292,25 +303,35 @@ function renderMix(entity, peerGroups, headline, ref, player) {
   }
   const rows = mixBuckets.map((label,i) => {
     const count = own.counts[i];
-    const share = ownTotal ? 100*count/ownTotal : NaN;
-    const peerShare = peerTotal ? 100*benchmark.counts[i]/peerTotal : NaN;
-    const peerLabel = 'Peer benchmark '+fmt(peerShare,1)+'%';
-    const tick = Number.isFinite(peerShare)
-      ? '<span class="benchmark-marker" style="left:'+peerShare+'%"></span>' : '';
+    const value = ref ? ownRates[i] : ownTotal ? 100*count/ownTotal : NaN;
+    const peerValue = ref ? benchmarkRates[i] : peerTotal ? 100*benchmark.counts[i]/peerTotal : NaN;
+    const unit = ref ? ' / 100' : '%';
+    const percentile = canRank
+      ? PeerContext.stats(value, eligible.map(member => r100(member.counts[i], member.possessions))).percentile
+      : null;
+    const percentileLabel = percentile === null ? 'Percentile unavailable' : Math.round(percentile)+'%ile';
+    const peerLabel = 'Peer benchmark '+fmt(peerValue,1)+unit;
+    const tick = Number.isFinite(peerValue)
+      ? '<span class="benchmark-marker" style="left:'+(100*peerValue/scale)+'%"></span>' : '';
     return '<tr><th scope="row">'+label+'</th><td><div class="mix-value"><strong>'+
-      fmt(share,1)+(Number.isFinite(share)?'%':'')+'</strong><small>'+count.toLocaleString()+
-      ' fouls · '+fmt(r100(count,own.possessions),1)+' / 100</small></div>'+
+      fmt(value,1)+(Number.isFinite(value)?unit:'')+'</strong><small>'+count.toLocaleString()+
+      ' fouls'+(ref?'':' · '+fmt(ownRates[i],1)+' / 100')+'</small>'+
+      (ref?'<span class="peer-badge">'+percentileLabel+'</span>':'')+'</div>'+
       '<div class="bartrack" aria-hidden="true"'+(tick?' title="'+peerLabel+'"':'')+'><div class="barfill" style="width:'+
-      (Number.isFinite(share)?share:0)+'%"></div>'+tick+'</div>'+
+      (Number.isFinite(value)?100*value/scale:0)+'%"></div>'+tick+'</div>'+
       (tick?'<span class="mix-sr-only">'+peerLabel+'</span>':'')+'</td></tr>';
   }).join('');
-  const legend = peerTotal ? '<p class="muted mix-legend"><span class="benchmark-marker" aria-hidden="true"></span>'+
+  const legend = (ref ? benchmark.possessions > 0 : peerTotal > 0) ?
+    '<p class="muted mix-legend"><span class="benchmark-marker" aria-hidden="true"></span>'+
     safe(peer.shortLabel)+' benchmark</p>' : '';
+  const benchmarkNote = benchmark.games.size ?
+    (ref?'The benchmark pools unique games outside this official’s assignments.':'Peer mix pools eligible records from other '+peerGroups[0].shortLabel+'.') :
+    'No comparable peer games under the current filters.';
+  const percentileNote = ref ? ' Percentiles compare crew rates across '+eligible.length+
+    ' officials with at least '+state.minimum+' games with type detail. Higher percentiles mean more fouls per 100. Percentiles require at least five eligible officials and an eligible selected official.' : '';
   $('mix').innerHTML = legend+'<div class="tablewrap"><table class="mix-table"><thead><tr><th scope="col">Type</th>'+
     '<th scope="col">'+safe(ref?'Selected crew assignments':entity.name)+'</th></tr></thead><tbody>'+
-    rows+'</tbody></table></div><p class="muted">'+(benchmark.games.size ?
-      (ref?'Peer mix pools unique games outside this official’s assignments.':'Peer mix pools eligible records from other '+peerGroups[0].shortLabel+'.') :
-      'No comparable peer games under the current filters.')+'</p>';
+    rows+'</tbody></table></div><p class="muted">'+benchmarkNote+percentileNote+'</p>';
 }
 
 function renderGameLog(entity, ref) {
