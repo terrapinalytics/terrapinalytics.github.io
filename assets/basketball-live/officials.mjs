@@ -3,25 +3,19 @@ const normalize = name => name.normalize('NFKD').replace(/\p{M}/gu,'')
   .toLowerCase().replace(/[^\p{L}]/gu,'');
 
 function summarize(games) {
-  const totals = {games:0, possessions:0, fouls:0, shootingGames:0, shootingPossessions:0, shootingFouls:0};
+  const totals = {possessions:0, fouls:0, homeGames:0, homePossessions:0, homeMargin:0};
   for (const game of games) {
-    totals.games++;
     totals.possessions += game.p;
     totals.fouls += game.hf + game.af;
-    if (!game.clean || !Array.isArray(game.ht) || !Array.isArray(game.at)) continue;
-    const reconciles = (counts, fouls) => {
-      const sum = counts.reduce((a,b)=>a+b,0);
-      return sum === fouls || sum-counts[5] === fouls;
-    };
-    if (!reconciles(game.ht,game.hf) || !reconciles(game.at,game.af)) continue;
-    totals.shootingGames++;
-    totals.shootingPossessions += game.p;
-    totals.shootingFouls += game.ht[0]+game.at[0];
+    if (game.n) continue;
+    totals.homeGames++;
+    totals.homePossessions += game.p;
+    totals.homeMargin += game.af - game.hf;
   }
   return {
-    games:totals.games, shootingGames:totals.shootingGames,
+    games:games.length, homeGames:totals.homeGames,
     fouls:totals.possessions ? 100*totals.fouls/totals.possessions : null,
-    shooting:totals.shootingPossessions ? 100*totals.shootingFouls/totals.shootingPossessions : null
+    homeMargin:totals.homePossessions ? 100*totals.homeMargin/totals.homePossessions : null
   };
 }
 
@@ -47,7 +41,7 @@ export function crewTendencies(games,names,cutoff,eventId) {
     officials,
     crew:names.length===3 && officials.every(ref=>ref.games) ? summarize(crewGames) : null,
     average:summarize(eligible),
-    peers:{fouls:distribution('fouls','games'),shooting:distribution('shooting','shootingGames')}
+    peers:{fouls:distribution('fouls','games'),homeMargin:distribution('homeMargin','homeGames')}
   };
 }
 

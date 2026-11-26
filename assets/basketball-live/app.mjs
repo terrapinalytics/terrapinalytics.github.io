@@ -1,5 +1,5 @@
-import {crewTendencies,refPercentile} from './officials.mjs?v=2';
-import {descriptors,shootingStats,threePointRateColumn,seasonCounts} from './benchmarks.mjs?v=3';
+import {crewTendencies,refPercentile} from './officials.mjs?v=3';
+import {descriptors,shootingStats,threePointRateColumn,seasonCounts} from './benchmarks.mjs?v=4';
 import {rate,fmt,unpack,clockLabel} from './metrics.mjs?v=4';
 import {halfBoxes} from './half-box.mjs?v=5';
 import {scoreTrend,periodLabel,trendSnapshot,recordedPossessionArrow,gameElapsed} from './score-trend.mjs?v=6';
@@ -283,19 +283,18 @@ async function renderOfficials() {
     }
     const refCell = (value,metric,games,shade) => {
       const percentile = shade && games>=3 ? refPercentile(value,peers[metric]) : null;
-      if (percentile == null) return fmt(value);
+      const display = (metric==='homeMargin' && value>0 ? '+' : '')+fmt(value);
+      if (percentile == null) return display;
       return '<span class="profile-value" style="background:'+scaleColor(2*percentile-1,true)+
-        '" title="Referee percentile: '+Math.round(percentile*100)+'">'+fmt(value)+'</span>';
+        '">'+display+'<small class="ref-percentile">'+Math.round(percentile*100)+'%ile</small></span>';
     };
     const row = (name,r,summary=false,shade=true)=>'<tr'+(summary?' class="ref-summary"':'')+'><th scope="row">'+escape(name)+
       '</th><td>'+r.games+'</td><td>'+refCell(r.fouls,'fouls',r.games,shade)+'</td><td>'+
-      refCell(r.shooting,'shooting',r.shootingGames,shade)+
-      (r.shootingGames ? '<small>n='+r.shootingGames+'</small>' : '')+'</td></tr>';
+      refCell(r.homeMargin,'homeMargin',r.homeGames,shade)+'</td></tr>';
     out.innerHTML = '<table><thead><tr><th scope="col">Official</th><th scope="col">Games</th><th scope="col">Fouls / 100</th>'+
-      '<th scope="col">Shooting / 100</th></tr></thead><tbody>'+officials.map(ref=>row(ref.name,ref)).join('')+
-      (crew ? row('Crew estimate',crew,true) : '')+row('D-I baseline',average,false,false)+'</tbody></table>'+
-      '<p>Both teams’ fouls per 100 possessions in season assignments before game day. Shooting rates use games with verified foul types. Blue is lower and orange is higher among officials with at least three qualifying games.'+
-      (crew?' The crew estimate pools distinct games worked by these officials.':'')+'</p>';
+      '<th scope="col" title="Visitor fouls minus home fouls per 100 possessions, excluding neutral sites">Home margin / 100</th></tr></thead><tbody>'+
+      officials.map(ref=>row(ref.name,ref)).join('')+
+      (crew ? row('Crew estimate',crew,true) : '')+row('D-I baseline',average,false,false)+'</tbody></table>';
   } catch {
     if (crewKey !== key) return;
     out.renderedCrew = null;
@@ -320,9 +319,9 @@ function renderFactors(teams,samples) {
     }).join('');
     const details = teams.map(({data})=>raw(data));
     const headings = teams.map(({team},j)=>'<th scope="col"'+(j===0?' class="md"':'')+'>'+escape(team.abbreviation)+'</th>').join('');
-    const rows = labels.map((label,row)=>'<tr><th scope="row">'+label+'</th>'+details.map((values,j) => {
+    const rows = labels.map((label,row)=>'<tr><th scope="row"'+(label==='FD/100'?' class="fd-label" title="Fouls drawn per 100 possessions" aria-label="Fouls drawn per 100 possessions"':'')+'>'+label+'</th>'+details.map((values,j) => {
       const {text:value,pair} = values[row];
-      const foulRate = label === 'Fouls Drawn / 100';
+      const foulRate = label === 'FD/100';
       const {style,note} = rateComparison(pair,samples.get(teams[j].team.id)?.details[i][row],i===1,
         foulRate || label==='3P Rate',foulRate ? n=>fmt(n)+' / 100' : percent);
       const markup = Array.isArray(value)
