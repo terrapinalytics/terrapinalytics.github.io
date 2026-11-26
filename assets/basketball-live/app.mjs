@@ -1,7 +1,7 @@
-import {descriptors,shootingStats,threePointRateColumn,seasonCounts} from './benchmarks.mjs';
-import {rate,fmt,unpack} from './metrics.mjs?v=4';
-import {halfBoxes} from './half-box.mjs?v=4';
-import {scoreTrend,periodLabel,trendSnapshot,recordedPossessionArrow} from './score-trend.mjs?v=5';
+import {descriptors,shootingStats,threePointRateColumn,seasonCounts} from './benchmarks.mjs?v=2';
+import {rate,fmt,unpack,clockLabel} from './metrics.mjs?v=4';
+import {halfBoxes} from './half-box.mjs?v=5';
+import {scoreTrend,periodLabel,trendSnapshot,recordedPossessionArrow,gameElapsed} from './score-trend.mjs?v=6';
 
 import {feedOrigin as api, gameOnDay, nextEasternMidnight} from './game-day.mjs';
 const md = '120';
@@ -231,6 +231,14 @@ function renderScore(event,competition,plays=[],fallback={}) {
     possessionArrow(competition,fallback,sides,status,plays)+'</div>'+team(sides[1],1);
   if ($('scoreboard').innerHTML !== markup) $('scoreboard').innerHTML = markup;
   renderTrend(trend,sides);
+}
+
+function renderOfficials(officials) {
+  const names = [...new Set((Array.isArray(officials) ? officials : [])
+    .map(official=>String(official.fullName ?? official.displayName ?? '').trim())
+    .filter(name=>/\p{L}.*\s+.*\p{L}/u.test(name) && !/^(?:to be announced|not available|not announced|not assigned|unknown|no officials)$/i.test(name)))];
+  $('ref-crew').hidden = !names.length;
+  $('ref-names').textContent = names.join(' · ');
 }
 
 function renderFactors(teams,samples) {
@@ -493,7 +501,8 @@ function renderPlayers() {
       row('<span class="season-label">Season</span>',averageCounts(average),average.rates,undefined,
         ' id="'+target+'" class="season-row"'+(expanded?'':' hidden'),seasonShotLines(average));
   };
-  const teamTotal = withSeason('team','Team','Team total',data.stats,[efg,to,or,defensive,ftr,[],[data.stats.pts,to[1]]],
+  const teamStats = selectedHalf ? data.stats : {...data.stats,min:clockLabel(box.elapsed)};
+  const teamTotal = withSeason('team','Team','Team total',teamStats,[efg,to,or,defensive,ftr,[],[data.stats.pts,to[1]]],
     reference,sample?.count ? sample.teamSeason : undefined,' class="team-total"');
   const rows = data.players.map(player => {
     const average = sample?.players.get(player.id);
@@ -613,6 +622,7 @@ async function refresh(pushedGame) {
       selectedTeam = md;
       selectedHalf = 0;
       $('analysis').hidden = true;
+      renderOfficials(event.competitions[0].officials);
       renderScore(event,event.competitions[0]);
     }
     if (type(event)?.state === 'pre' && event !== starting) {
@@ -640,10 +650,11 @@ async function refresh(pushedGame) {
       if (revision == null || revision !== renderedRevision) {
         renderScore(event,competition,game.plays ?? [],event.competitions[0]);
         placeProfiles(competition,status?.state === 'pre');
+        renderOfficials(game.officials?.length ? game.officials : competition.officials ?? event.competitions[0].officials);
         const teams = matchupTeams.map(team=>({team,data:unpack(game,team.id)}));
         if (teams.length === 2 && teams.every(t=>t.data)) {
           const samples = box?.samples ?? new Map();
-          box = {teams,samples,halves:halfBoxes(game,competition)};
+          box = {teams,samples,halves:halfBoxes(game,competition),elapsed:gameElapsed({...competition,status},game.plays)};
           if (!box.halves.has(selectedHalf)) selectedHalf = 0;
           renderSplit();
           $('analysis').hidden = false;

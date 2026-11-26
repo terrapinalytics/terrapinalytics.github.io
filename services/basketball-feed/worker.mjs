@@ -50,11 +50,11 @@ async function route(url, shared, liveInterval) {
     const team = url.searchParams.get('team');
     if (!event || !sides(event).some(side=>String(side.team.id)===team))
       throw new FeedError(404,'Matchup unavailable');
-    return ready(await shared('benchmarks/'+event.id+'/'+team,async () => {
+    return ready(await shared('benchmarks/v2/'+event.id+'/'+team,async () => {
       const calendar = team === '120' ? maryland : await schedule(shared,team,year);
       const data = await seasonRates(team,event,calendar.data,async id => {
         const prior = calendar.data.events.find(e=>String(e.id)===String(id));
-        const entry = await gameSummary(shared,prior,liveInterval);
+        const entry = await gameSummary(shared,prior,liveInterval,false);
         return entry.data;
       });
       return {data,ttl:data.count === data.total && !calendar.stale ? day : 5*minute};
@@ -74,17 +74,18 @@ async function route(url, shared, liveInterval) {
   return gameSummary(shared,event,liveInterval);
 }
 
-async function gameSummary(shared,event,liveInterval) {
+async function gameSummary(shared,event,liveInterval,includeOfficials=true) {
   const id = event.id;
   return ready(await shared('games/'+id, async () => {
-    const {header,boxscore,plays} = await upstream('/summary?event='+id);
+    const {header,boxscore,plays,gameInfo} = await upstream('/summary?event='+id);
     if (!header?.competitions?.length) throw Error('Missing game');
     const type = state(header);
     const ttl = type?.completed && boxscore?.players?.length
       ? (Date.now()-Date.parse(event.date)>day ? 30*day : 60*minute)
       : isLive(type) ? liveInterval : 5*minute;
-    return {data:{header,boxscore,plays},ttl};
-  }));
+    const officials = (gameInfo?.officials ?? header.competitions[0].officials ?? []).map(({fullName,displayName})=>({fullName,displayName}));
+    return {data:{header,boxscore,plays,officials},ttl};
+  },data=>!includeOfficials || Array.isArray(data?.officials)));
 }
 function isLive(type) {
   return type?.state === 'in' && !type.completed && !/suspend|postponed|cancel/i.test(type.name ?? '');
@@ -97,7 +98,7 @@ export class BasketballFeed extends DurableObject {
     return Number.isFinite(seconds) && seconds >= 5 ? seconds * 1000 : minute;
   }
 
-  async shared(key, load) {
+  async shared(key, load, accept) {
     const cached = await this.ctx.storage.transaction(async txn => {
       const count = await txn.get(key);
       if (!count) return null;
@@ -105,7 +106,7 @@ export class BasketballFeed extends DurableObject {
       const parts = await txn.get(keys);
       return JSON.parse(keys.map(part => parts.get(part)).join(''));
     });
-    if (cached?.until > Date.now()) return cached;
+    if (cached?.until > Date.now() && (cached.stale || !accept || accept(cached.data))) return cached;
     if (!this.pending.has(key)) {
       this.pending.set(key, this.update(key, cached, load).finally(() => this.pending.delete(key)));
     }

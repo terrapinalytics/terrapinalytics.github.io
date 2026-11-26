@@ -223,3 +223,7 @@
 .maryland-live #profile-body .profile-factor-toggle{width:100%;border:0;background:transparent;font:inherit;text-align:left;padding:.2rem 0}
 .maryland-live #profile-body .profile-factor-toggle::before{content:"▸";margin-right:.18em}
 .maryland-live #profile-body .profile-factor-toggle[aria-expanded=true]::before{content:"▾"}
+
+.maryland-live #ref-crew{margin:.6rem 0;padding:.45rem .65rem;border:1px solid var(--line);border-radius:8px;background:white;font-size:.85rem}
+.maryland-live #ref-crew h2{font-size:1rem;margin:0}
+.maryland-live #ref-crew p{margin:.14rem 0 .22rem}

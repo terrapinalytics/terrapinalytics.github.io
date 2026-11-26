@@ -92,7 +92,7 @@ export function halfBoxes(game,competition) {
     for (const [id,team] of teams) {
       accrue(team,endpoint-elapsed);
       lineups.set(id,team.lineup);
-      team.stats.min = clockLabel(endpoint*5);
+      team.stats.min = clockLabel(endpoint);
       players.set(id,[...team.players.values()].filter(p=>p.appeared || p.seconds>0).map(p=>({
         ...p,stats:{...p.stats,min:team.complete ? clockLabel(p.seconds) : null}
       })));

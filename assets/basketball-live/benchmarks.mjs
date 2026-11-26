@@ -1,4 +1,5 @@
-import {rate,fmt,line,unpack} from './metrics.mjs?v=4';
+import {gameElapsed} from './score-trend.mjs?v=6';
+import {rate,fmt,line,unpack,clockLabel} from './metrics.mjs?v=4';
 
 const percent = n => n == null ? '—' : fmt(n)+'%';
 const type = e => e.competitions?.[0]?.status?.type;
@@ -75,7 +76,9 @@ export async function seasonRates(teamId,event,calendar,finalGame) {
       pool(factors,data.pairs);
       descriptors.forEach(([, ,rows],k)=>pool(details[k],rows(data).map(row=>row.pair)));
       const [efg,to,or,ftr] = data.pairs;
-      collectSeason(teamSeason,data.stats,[efg,to,or,descriptors[2][2](data)[1].pair,ftr,[],[data.stats.pts,to[1]]]);
+      const competition = result.value.header?.competitions?.[0];
+      const min = competition ? clockLabel(gameElapsed(competition,result.value.plays)) : null;
+      collectSeason(teamSeason,{...data.stats,min},[efg,to,or,descriptors[2][2](data)[1].pair,ftr,[],[data.stats.pts,to[1]]]);
       for (const player of data.players) {
         if (player.id == null) continue;
         if (!players.has(player.id)) players.set(player.id,{rates:[],shooting:[],shootingGames:[],counts:[]});

@@ -19,6 +19,23 @@ function gameTime(period,remaining) {
   return periodStart(period)+Math.max(0,periodLength(period)-remaining);
 }
 
+export function gameElapsed(competition, plays=[]) {
+  const {status = {}, competitors = []} = competition;
+  const last = plays.at(-1);
+  const period = Number(status.period) || Number(last?.period?.number) || 1;
+  if (status.type?.completed) {
+    const finalPeriod = Math.max(2,period,...competitors.map(side=>side.linescores?.length ?? 0));
+    return periodStart(finalPeriod)+periodLength(finalPeriod);
+  }
+  if (status.type?.name === 'STATUS_HALFTIME') return HALF;
+  const remaining = clockSeconds(status.displayClock);
+  const recorded = clockSeconds(last?.clock?.displayValue);
+  return Math.max(
+    remaining == null ? 0 : gameTime(period,remaining),
+    recorded == null ? 0 : gameTime(Number(last.period?.number) || period,recorded)
+  );
+}
+
 const playScore = (play,side) => {
   const score = play[side.homeAway+'Score'];
   return score != null && /^\d+$/.test(String(score)) ? Number(score) : null;
