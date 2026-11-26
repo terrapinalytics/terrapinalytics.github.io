@@ -206,9 +206,8 @@ function renderProfile() {
   $('entitytitle').innerHTML=entity?(ref?safe(entity.name):TeamLogos.label(player?entity.team:entity.name,player?null:entity.id)+(player?' '+safe(entity.name):'')):'No profile available';
   $('entity').disabled=!entity;
   $('profile-mix').hidden=$('profile-games').hidden=!entity;
-  $('profile-peers').hidden=ref||!entity;
   if(!entity){
-    for(const id of ['peer-context','profilemetrics','foul-counts','mix','gamelog','method'])$(id).innerHTML='';
+    for(const id of ['profilemetrics','foul-counts','mix','gamelog','method'])$(id).innerHTML='';
     $('profilenote').textContent='Try broader filters to view a profile.';
     return;
   }
@@ -241,11 +240,6 @@ function renderProfile() {
   $('foul-counts').textContent=entity.n+' games · '+fmt(entity.p,1)+' possessions · '+
     (ref?entity.c+' combined fouls · '+fmt(entity.edgeP,1)+' non-neutral possessions for home edge':
       entity.c+' fouls committed · '+entity.d+' fouls drawn');
-  if (!ref) $('peer-context').innerHTML=metrics.map(([key,label,lower])=>PeerContext.comparison(
-    comparison(key,label+' · season ending '+state.year+' · minimum '+state.minimum+' games'+(player?' and 100 on-court possessions':''),lower,peerGroups))).join('')+
-    '<p class="peer-note">Peers use the same filters. Name search does not change the peer group. '+
-    (player?(position?'Position from ESPN 2026–27 roster: '+safe(position)+'. Unknown positions are excluded from position peers.':'Position unavailable; rank uses filtered player peers.'):'')+
-    ' Referee rates describe crews.</p>';
   renderMix(entity, peerGroups, headline, ref, player);
   renderGameLog(entity, ref);
   $('method').textContent=ref?'Rates divide the combined fouls from both teams by estimated possessions per team. Home edge measures visitor fouls minus home fouls, excluding neutral sites.':
@@ -282,19 +276,17 @@ function renderMix(entity, peerGroups, headline, ref, player) {
       .map(record => [record.g.id, record])).values()];
   }
   const benchmark = mixSummary(peerRecords, player, useDrawn);
-  const ownTotal = sumCounts(own.counts);
-  const peerTotal = sumCounts(benchmark.counts);
   const ownRates = own.counts.map(count => r100(count, own.possessions));
   const benchmarkRates = benchmark.counts.map(count => r100(count, benchmark.possessions));
-  const scale = ref
-    ? 5 * Math.ceil(Math.max(1, ...[...ownRates, ...benchmarkRates].filter(Number.isFinite)) / 5)
-    : 100;
-  const eligible = ref ? peer.members.map(member => ({
+  const scale = 5 * Math.ceil(Math.max(1, ...[...ownRates, ...benchmarkRates].filter(Number.isFinite)) / 5);
+  const eligible = peer.members.map(member => ({
     id: member.id,
     ...mixSummary(member.records, player, useDrawn)
-  })).filter(member => member.games.size >= state.minimum && member.possessions > 0) : [];
+  })).filter(member => member.games.size >= state.minimum && member.possessions >= (player ? 100 : 0) &&
+    member.possessions > 0);
   const canRank = eligible.some(member => member.id === entity.id);
-  $('mixlabel').textContent = (ref ? 'Crew fouls per 100 possessions · Bar scale 0–'+scale : useDrawn ? 'Fouls drawn' : 'Fouls committed') +
+  $('mixlabel').textContent = (ref ? 'Crew fouls' : useDrawn ? 'Fouls drawn' : 'Fouls committed') +
+    ' per 100 possessions · Bar scale 0–'+scale+
     ' · '+own.games.size+' games with type detail'+(benchmark.games.size ? ' · '+benchmark.games.size+' peer games with type detail' : '')+
     (state.type ? ' · Mix includes all types within those games.' : '');
   if (!own.games.size) {
@@ -303,9 +295,9 @@ function renderMix(entity, peerGroups, headline, ref, player) {
   }
   const rows = mixBuckets.map((label,i) => {
     const count = own.counts[i];
-    const value = ref ? ownRates[i] : ownTotal ? 100*count/ownTotal : NaN;
-    const peerValue = ref ? benchmarkRates[i] : peerTotal ? 100*benchmark.counts[i]/peerTotal : NaN;
-    const unit = ref ? ' / 100' : '%';
+    const value = ownRates[i];
+    const peerValue = benchmarkRates[i];
+    const unit = ' / 100';
     const percentile = canRank
       ? PeerContext.stats(value, eligible.map(member => r100(member.counts[i], member.possessions))).percentile
       : null;
@@ -315,20 +307,21 @@ function renderMix(entity, peerGroups, headline, ref, player) {
       ? '<span class="benchmark-marker" style="left:'+(100*peerValue/scale)+'%"></span>' : '';
     return '<tr><th scope="row">'+label+'</th><td><div class="mix-value"><strong>'+
       fmt(value,1)+(Number.isFinite(value)?unit:'')+'</strong><small>'+count.toLocaleString()+
-      ' fouls'+(ref?'':' · '+fmt(ownRates[i],1)+' / 100')+'</small>'+
-      (ref?'<span class="peer-badge">'+percentileLabel+'</span>':'')+'</div>'+
+      ' fouls</small><span class="peer-badge">'+percentileLabel+'</span></div>'+
       '<div class="bartrack" aria-hidden="true"'+(tick?' title="'+peerLabel+'"':'')+'><div class="barfill" style="width:'+
       (Number.isFinite(value)?100*value/scale:0)+'%"></div>'+tick+'</div>'+
       (tick?'<span class="mix-sr-only">'+peerLabel+'</span>':'')+'</td></tr>';
   }).join('');
-  const legend = (ref ? benchmark.possessions > 0 : peerTotal > 0) ?
+  const legend = benchmark.possessions > 0 ?
     '<p class="muted mix-legend"><span class="benchmark-marker" aria-hidden="true"></span>'+
     safe(peer.shortLabel)+' benchmark</p>' : '';
   const benchmarkNote = benchmark.games.size ?
     (ref?'The benchmark pools unique games outside this official’s assignments.':'Peer mix pools eligible records from other '+peerGroups[0].shortLabel+'.') :
     'No comparable peer games under the current filters.';
-  const percentileNote = ref ? ' Percentiles compare crew rates across '+eligible.length+
-    ' officials with at least '+state.minimum+' games with type detail. Higher percentiles mean more fouls per 100. Percentiles require at least five eligible officials and an eligible selected official.' : '';
+  const percentileNote = ' Percentiles compare rates across '+eligible.length+' eligible '+peerGroups[0].shortLabel+
+    ' in the selected peer group. Eligibility requires '+state.minimum+' games with type detail'+
+    (player?' and 100 tracked possessions in those games':'')+
+    '. Higher percentiles mean more fouls per 100. Percentiles require at least five eligible profiles and an eligible selected profile.';
   $('mix').innerHTML = legend+'<div class="tablewrap"><table class="mix-table"><thead><tr><th scope="col">Type</th>'+
     '<th scope="col">'+safe(ref?'Selected crew assignments':entity.name)+'</th></tr></thead><tbody>'+
     rows+'</tbody></table></div><p class="muted">'+benchmarkNote+percentileNote+'</p>';
@@ -379,6 +372,7 @@ function exportCsv() {
 }
 document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{
   columnSort=null;state.view=b.dataset.view;state.page=0;state.search='';$('search').value='';state.entity=state.view==='teams'?'120':state.view==='refs'?'Paul Szelc':'';
+  state.sort=state.view==='refs'?'committed':defaults.sort;
   state.type='';state.location='';state.mixPeer='';loadSeason();
 });
 for(const id of ['conference','stage','location','type','minimum','sort'])$(id).onchange=()=>{

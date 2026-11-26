@@ -16,10 +16,20 @@ els.source.value='EADA';els.metric.value='fbrev';els.year.value='2024';els.windo
 f=fs.readFileSync('assets/fouls/dashboard.js','utf8').split("document.querySelectorAll('[data-view]').forEach(b=>b.onclick")[0];c=ctx();vm.createContext(c);vm.runInContext(f,c);
 const games=JSON.parse(zlib.gunzipSync(fs.readFileSync('assets/fouls/games-2027.json.gz'))),players=JSON.parse(zlib.gunzipSync(fs.readFileSync('assets/fouls/players-2027.json.gz'))),positions=JSON.parse(fs.readFileSync('assets/fouls/player-positions-2027.json')).positions;
 vm.runInContext('games='+JSON.stringify(games)+';players='+JSON.stringify(players)+';playerPositions='+JSON.stringify(positions)+';state.view="players";state.minimum=3;rows=aggregate(getRecords());state.entity=rows.find(x=>playerPositions[x.id]&&x.p>=100&&x.n>=3).id;renderProfile();',c);
-assert(els['peer-context'].innerHTML.includes('position · filtered season sample'));assert(els['peer-context'].innerHTML.includes('100 on-court possessions'));
-const before=els['peer-context'].innerHTML;vm.runInContext('state.search="Nobody";renderProfile()',c);assert.equal(els['peer-context'].innerHTML,before);
-// Historical single-player coverage cannot yield player ranks.
-vm.runInContext('state.year=2024;playerPositions={};rows=rows.slice(0,1);state.entity=rows[0].id;renderProfile()',c);assert(els['peer-context'].innerHTML.includes('<td>—</td>'));
+assert(els['mix-peer'].innerHTML.includes('position'));
+assert(els.mix.innerHTML.includes('100 tracked possessions'));
+assert(els.mix.innerHTML.includes('%ile'));
+const before=els.mix.innerHTML;vm.runInContext('state.search="Nobody";renderProfile()',c);assert.equal(els.mix.innerHTML,before);
+// Historical single-player coverage cannot yield player percentiles.
+vm.runInContext('state.year=2024;playerPositions={};rows=[rows.find(x=>x.id===state.entity)];renderProfile()',c);
+assert(els.mix.innerHTML.includes('Percentile unavailable'));
+// Both team roles and referee profiles show rates and percentiles.
+for(const [view,role] of [['teams','committed'],['teams','drawn'],['refs','committed']]){
+ c.view=view;c.role=role;
+ vm.runInContext('games=games.map(reconcileGameTypes);state.view=view;state.mixRole=role;rows=aggregate(getRecords());state.entity=rows.find(x=>x.records.filter(r=>r.g.clean).length>=state.minimum).id;renderProfile()',c);
+ assert(els.mixlabel.textContent.includes('per 100 possessions'));
+ assert.equal((els.mix.innerHTML.match(/%ile/g)||[]).length,4);
+}
 // Program detail actual metric cohorts use all 137 programs, independent of UI filters.
 const rankings=JSON.parse(fs.readFileSync('assets/coaching/rankings.json'));const merged=rankings.programs.map(p=>({...rankings.panel.find(x=>x.school===p.school),...p}));assert.equal(merged.length,137);const md=merged.find(x=>x.school==='Maryland'),p4=merged.filter(x=>x.p4_2026==='True');assert(p4.length>60);assert(pc.stats(md.eada_football_expenses_mean_FY2022_2024_2025usd,p4.map(x=>x.eada_football_expenses_mean_FY2022_2024_2025usd)).n>60);
 // Recruiting school peers use the full class pool, not the spatial viewport/crop.
