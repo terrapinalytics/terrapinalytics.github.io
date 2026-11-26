@@ -64,34 +64,11 @@ toc: false
 <a class="section-link" href="projects/index.html">All dashboards</a>
 </div>
 
-```{=html}
-<div class="home-explore">
-  <section class="explore-category">
-    <h3>Football</h3>
-    <ul>
-      <li><a href="projects/football-success.html">Big Ten Football Success Rates</a><p>Compare your team with the Big Ten by down, play type, or quarter. Drill into drives and individual plays.</p></li>
-      <li><a href="projects/recruiting.html">Recruiting Geography</a><p>See where blue-chip recruits come from and how much talent is within reach of each campus.</p></li>
-      <li><a href="projects/program-rankings.html">FBS Program Rankings</a><p>Compare 79 head-coaching jobs and see how resources, recruiting, and performance factor into the rankings.</p></li>
-      <li><a href="projects/coaching.html">Coaching Carousel</a><p>Track announced openings, changes in departure estimates, and reported buyouts.</p></li>
-    </ul>
-  </section>
-  <section class="explore-category">
-    <h3>Basketball</h3>
-    <ul>
-      <li><a href="projects/maryland-basketball-live.html">Maryland Basketball Live</a><p>Follow the score, scoring runs, Four Factors, and player rates against season averages.</p></li>
-      <li><a href="projects/officiating.html">Basketball Officiating</a><p>Compare foul rates per possession and drill into team, player, and referee profiles.</p></li>
-    </ul>
-  </section>
-  <section class="explore-category">
-    <h3>College Athletics</h3>
-    <ul>
-      <li><a href="projects/championships.html">Big Ten Championships</a><p>Compare titles by school, sport, and era, with the option to split shared titles.</p></li>
-      <li><a href="projects/finance.html">Athletics Financials</a><p>Compare school budgets with conference and Power Four benchmarks across fiscal years.</p></li>
-      <li><a href="projects/athletics-spending-index.html">College Athletics Spending Index</a><p>See how spending on sports, salaries, and facilities has changed over time.</p></li>
-    </ul>
-  </section>
-</div>
-```
+<nav class="home-categories" aria-label="Dashboard categories">
+  <a href="projects/index.html#football">Football</a>
+  <a href="projects/index.html#basketball">Basketball</a>
+  <a href="projects/index.html#college-athletics">College Athletics</a>
+</nav>
 :::
 :::
 
@@ -104,7 +81,7 @@ toc: false
 
 <a class="article-teaser" href="articles/college-athletics-spending-index.html"><div><h3>How Fast Is College Athletics Spending Growing?</h3><p>Spending growth by sport and the breakdown of an athletics budget.</p></div></a>
 <a class="article-teaser" href="articles/recruiting-distance.html"><div><h3>How Far Do Blue-Chip Recruits Travel?</h3><p>Distance distributions and the Maryland recruiting market.</p></div></a>
-<a class="article-teaser" href="articles/down-14-two-point-conversions.html"><div><h3>Down 14: Why Don't More Teams Go for Two?</h3><p>Fourth-quarter decisions in the NFL and FBS.</p></div></a>
+<a class="article-teaser" href="articles/down-14-two-point-conversions.html"><div><h3>Down 14: The 2PA Strategy: Game Theory and Football</h3><p>Fourth-quarter decisions in the NFL and FBS.</p></div></a>
 
 :::
 :::

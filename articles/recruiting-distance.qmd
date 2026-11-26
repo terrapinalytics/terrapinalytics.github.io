@@ -5,6 +5,8 @@ categories: [recruiting, geography]
 description: "A first pass at distance, recruiting geography, and Maryland's local market."
 ---
 
+[Explore the interactive recruiting map](../projects/recruiting.qmd)
+
 Recruiting maps usually show where talent is produced. I'm more interested in the recruit's decision: **how far does a player go, and how much does a nearby program's reputation change the choice?**
 
 This first cut looks at the distances traveled by four- and five-star recruits who committed to selected programs. It uses the listed high-school city as a proxy for origin and straight-line distance to campus.

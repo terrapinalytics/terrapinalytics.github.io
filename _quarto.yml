@@ -20,6 +20,7 @@ project:
     - assets/basketball-live/**
     - assets/football-success/**
     - assets/home/**
+    - assets/menu-categories.js
     - assets/table-sort.js
     - assets/table-sort.css
     - assets/team-logos.js
@@ -83,6 +84,8 @@ format:
   html:
     theme: cosmo
     css: styles.css
+    include-after-body:
+      - text: <script src="/assets/menu-categories.js" defer></script>
     toc: true
     link-external-newwindow: true
 

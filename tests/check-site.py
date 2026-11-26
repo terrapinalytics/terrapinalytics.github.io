@@ -10,6 +10,8 @@ class Page(HTMLParser):
     def __init__(self, path):
         super().__init__()
         self.links = []
+        self.main_links = []
+        self.in_main = False
         self.frames = []
         self.scripts = []
         self.images = []
@@ -20,12 +22,20 @@ class Page(HTMLParser):
         attrs = dict(attrs)
         if "id" in attrs:
             self.ids.add(attrs["id"])
+        if tag == "main":
+            self.in_main = True
         if tag == "a" and "href" in attrs:
+            if self.in_main:
+                self.main_links.append(attrs["href"])
             self.links.append(attrs["href"])
         if tag == "img" and "src" in attrs:
             self.images.append(attrs["src"])
         if tag in {"iframe", "script"} and "src" in attrs:
             (self.frames if tag == "iframe" else self.scripts).append(attrs["src"])
+
+    def handle_endtag(self, tag):
+        if tag == "main":
+            self.in_main = False
 
 
 def local_file(site, page, url):
@@ -101,6 +111,33 @@ def main(site):
     assert not any((urlsplit(link).hostname or "").endswith(".chatgpt.site") for link in home.links), (
         "Homepage dashboard links should go to the GitHub Pages project pages"
     )
+
+    explore = site / "projects" / "index.html"
+    directory = Page(explore)
+    catalog = {target.resolve() for url in directory.main_links if (target := local_file(site, explore, url))}
+    for project in explore.parent.glob("*.html"):
+        if project != explore:
+            assert project.resolve() in catalog, f"Explore is missing {project.name}"
+            assert project in home_dashboard_links, f"Navigation is missing {project.name}"
+    for category in ("football", "basketball", "college-athletics"):
+        assert category in directory.ids
+        assert any(urlsplit(url).fragment == category and local_file(site, site / "index.html", url) == explore
+                   for url in home.main_links), f"Missing homepage category {category}"
+
+    for project, article in [
+        ("recruiting", "recruiting-distance"),
+        ("athletics-spending-index", "college-athletics-spending-index"),
+        ("student-athletics-costs", "mandatory-athletics-fees"),
+        ("finance", "mandatory-athletics-fees"),
+        ("finance", "college-athletics-spending-index"),
+    ]:
+        dashboard = site / "projects" / (project + ".html")
+        companion = site / "articles" / (article + ".html")
+        for source, target in ((dashboard, companion), (companion, dashboard)):
+            assert any(link.resolve() == target.resolve() for url in Page(source).main_links
+                       if (link := local_file(site, source, url))), (
+                f"{source.name}: missing companion link to {target.name}"
+            )
 
     recruiting = preset_link(Page(site / "articles/recruiting-distance.html"), path_end="dashboard.html")
     mapped = parse_qs(recruiting.fragment)

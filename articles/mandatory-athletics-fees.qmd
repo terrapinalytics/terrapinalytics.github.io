@@ -5,6 +5,8 @@ categories: [economics, college-sports]
 description: "Published student athletics fees, how they changed with the start of revenue sharing, and what students pay for tickets."
 ---
 
+[Compare student athletics costs](../projects/student-athletics-costs.qmd)
+
 Athletics departments are usually discussed in terms of media rights, ticket sales, and donor support. Some schools also charge students a **mandatory athletics fee**, whether or not those students attend games.
 
 I assembled published fee schedules for the 68 schools in the current Power Four. The comparison is harder than it sounds: some institutions have a distinct athletics line item, others bundle athletics into broader campus fees, and some have no separately verifiable charge.

@@ -4,6 +4,8 @@ toc: false
 page-layout: full
 ---
 
+[Read the analysis of student athletics fees](../articles/mandatory-athletics-fees.qmd)
+
 ::: {.panel-tabset}
 
 ## Current costs
@@ -16,7 +18,7 @@ page-layout: full
 
 ## Historical fees
 
-[Open the historical fees dashboard in its own page](../assets/articles/student-fee-dashboard/history.html) · [Read the analysis of when fees rose](../articles/mandatory-athletics-fees.qmd)
+[Open the historical fees dashboard in its own page](../assets/articles/student-fee-dashboard/history.html)
 
 ```{=html}
 <iframe class="mobile-embed" data-fit-content src="../assets/articles/student-fee-dashboard/history.html" title="Historical Power Four student athletics fees" loading="lazy"></iframe>

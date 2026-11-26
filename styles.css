@@ -167,3 +167,13 @@ body:has(.tool-frame,.mobile-embed,.maryland-live) .nav-footer p{margin:0}
 #quarto-header .navbar .dropdown-header{font-weight:700;padding-top:.65rem}
 
 iframe.content-fit{min-height:0;border:0}
+
+.home-categories{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.55rem}
+.home-categories a{display:grid;place-items:center;min-height:44px;padding:.45rem .3rem;border:1px solid var(--line);border-radius:5px;background:white;text-align:center;font-weight:750;line-height:1.18}
+.home-categories a:hover,.home-categories a:focus-visible{border-color:var(--red)}
+.first-band:has(.home-categories),.last-band:has(.article-teaser){padding-block:1.25rem}
+.explore-directory{scroll-margin-top:6rem}
+#football,#basketball,#college-athletics{scroll-margin-top:6rem}
+.mobile-menu-category summary{padding:.5rem var(--bs-dropdown-item-padding-x);cursor:pointer;font-weight:700}
+.mobile-menu-category ul{list-style:none;padding:0 0 0 .55rem;margin:0}
+.mobile-menu-category .dropdown-item{padding-block:.4rem}
