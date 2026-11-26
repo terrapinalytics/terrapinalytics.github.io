@@ -1,4 +1,4 @@
-import {crewTendencies} from './officials.mjs';
+import {crewTendencies,refPercentile} from './officials.mjs?v=2';
 import {descriptors,shootingStats,threePointRateColumn,seasonCounts} from './benchmarks.mjs?v=2';
 import {rate,fmt,unpack,clockLabel} from './metrics.mjs?v=4';
 import {halfBoxes} from './half-box.mjs?v=5';
@@ -63,14 +63,20 @@ function loadSeason(teamId,event) {
   return seasons.get(key);
 }
 
-function rateComparison(pair,reference,lower=false) {
+function scaleColor(value, descriptive=false) {
+  const high = descriptive ? 'orange' : 'green';
+  const low = descriptive ? 'blue' : 'red';
+  const color = value >= 0 ? high : low;
+  return 'color-mix(in srgb,var(--bench-'+color+') '+Math.round(Math.min(1,Math.abs(value))*100)+'%,var(--bench-neutral))';
+}
+
+function rateComparison(pair,reference,lower=false,descriptive=false) {
   const value = rate(pair), average = rate(reference ?? []);
   if (value == null || average == null) return {style:'',note:'Season comparison unavailable'};
   const edge = (value-average)*(lower?-1:1);
   const strength = average > 0 ? Math.min(1,Math.abs(edge)/average*2) : Number(edge!==0);
-  const shade = edge >= 0 ? 'var(--bench-green)' : 'var(--bench-red)';
   return {
-    style:'--rate-bg:color-mix(in srgb,'+shade+' '+Math.round(strength*100)+'%,var(--bench-neutral))',
+    style:'--rate-bg:'+scaleColor(Math.sign(edge)*strength,descriptive),
     note:'Game '+percent(value)+' · Season '+percent(average)
   };
 }
@@ -270,18 +276,25 @@ async function renderOfficials() {
     if (crewKey !== key) return;
     const [month,day,y] = easternDay(new Date(event.date)).split('/');
     const cutoff = [y,month.padStart(2,'0'),day.padStart(2,'0')].join('-');
-    const {officials,crew,average} = crewTendencies(games,names,cutoff,event.id);
+    const {officials,crew,average,peers} = crewTendencies(games,names,cutoff,event.id);
     if (!officials.some(ref=>ref.games)) {
       out.textContent = names.join(' · ')+' — No prior assignments in this season’s data.';
       return;
     }
-    const row = (name,r,summary=false)=>'<tr'+(summary?' class="ref-summary"':'')+'><th scope="row">'+escape(name)+
-      '</th><td>'+r.games+'</td><td>'+fmt(r.fouls)+'</td><td>'+fmt(r.shooting)+
+    const refCell = (value,metric,games,shade) => {
+      const percentile = shade && games>=3 ? refPercentile(value,peers[metric]) : null;
+      if (percentile == null) return fmt(value);
+      return '<span class="profile-value" style="background:'+scaleColor(2*percentile-1,true)+
+        '" title="Referee percentile: '+Math.round(percentile*100)+'">'+fmt(value)+'</span>';
+    };
+    const row = (name,r,summary=false,shade=true)=>'<tr'+(summary?' class="ref-summary"':'')+'><th scope="row">'+escape(name)+
+      '</th><td>'+r.games+'</td><td>'+refCell(r.fouls,'fouls',r.games,shade)+'</td><td>'+
+      refCell(r.shooting,'shooting',r.shootingGames,shade)+
       (r.shootingGames ? '<small>n='+r.shootingGames+'</small>' : '')+'</td></tr>';
     out.innerHTML = '<table><thead><tr><th scope="col">Official</th><th scope="col">Games</th><th scope="col">Fouls / 100</th>'+
       '<th scope="col">Shooting / 100</th></tr></thead><tbody>'+officials.map(ref=>row(ref.name,ref)).join('')+
-      (crew ? row('Crew estimate',crew,true) : '')+row('D-I baseline',average)+'</tbody></table>'+
-      '<p>Both teams’ fouls per 100 possessions in season assignments before game day. Shooting rates use games with verified foul types.'+
+      (crew ? row('Crew estimate',crew,true) : '')+row('D-I baseline',average,false,false)+'</tbody></table>'+
+      '<p>Both teams’ fouls per 100 possessions in season assignments before game day. Shooting rates use games with verified foul types. Blue is lower and orange is higher among officials with at least three qualifying games.'+
       (crew?' The crew estimate pools distinct games worked by these officials.':'')+'</p>';
   } catch {
     if (crewKey !== key) return;
@@ -309,7 +322,7 @@ function renderFactors(teams,samples) {
     const headings = teams.map(({team},j)=>'<th scope="col"'+(j===0?' class="md"':'')+'>'+escape(team.abbreviation)+'</th>').join('');
     const rows = labels.map((label,row)=>'<tr><th scope="row">'+label+'</th>'+details.map((values,j) => {
       const {text:value,pair} = values[row];
-      const {style,note} = rateComparison(pair,samples.get(teams[j].team.id)?.details[i][row],i===1);
+      const {style,note} = rateComparison(pair,samples.get(teams[j].team.id)?.details[i][row],i===1,label==='3P Rate');
       const markup = Array.isArray(value)
         ? '<span class="factor-pair"><span>'+value[0]+'</span><span>'+value[1]+'</span></span>'
         : escape(value);
@@ -401,21 +414,21 @@ async function renderProfiles() {
     const data = await profileData;
     if (profileKey !== key) return;
     const count = Object.keys(data.teams).length;
-    const cell = (value,unit,span=1,divider=false,foulLabel='') => {
+    const cell = (value,unit,span=1,divider=false,foulLabel='',direction=0) => {
       const td = '<td'+(span === 2 ? ' colspan="2"' : '')+(divider ? ' class="matchup-divider"' : '')+'>';
       if (!value) return td+'—</td>';
       const [n,rank] = value;
       const fraction = (rank-1)/Math.max(1,count-1);
-      const color = fraction <= .5 ? 'var(--bench-green)' : 'var(--bench-red)';
-      const shade = Math.round(Math.abs(1-2*fraction)*100);
-      return td+'<span class="profile-value" style="background:color-mix(in srgb,'+color+' '+shade+
-        '%,var(--bench-neutral))">'+(foulLabel ? (n/100).toFixed(2) : n.toFixed(1))+unit+' <small>#'+rank+'</small></span>'+(foulLabel ? '<small>'+foulLabel+'</small>' : '')+'</td>';
+      const background = scaleColor((1-2*fraction)*(direction || 1),Boolean(direction));
+      return td+'<span class="profile-value" style="background:'+background+
+        '">'+(foulLabel ? (n/100).toFixed(2) : n.toFixed(1))+unit+' <small>#'+rank+'</small></span>'+(foulLabel ? '<small>'+foulLabel+'</small>' : '')+'</td>';
     };
     const factorCells = i => teams.map((off,j) => {
       const defense = teams[1-j];
       const fouls = i === 13;
-      return cell(data.teams[off.id]?.[0]?.[i],fouls?'':'%',1,j===1,fouls?'Drawn':'')+
-        cell(data.teams[defense.id]?.[1]?.[i],fouls?'':'%',1,false,fouls?'Committed':'');
+      const descriptive = [3,11,13].includes(i);
+      return cell(data.teams[off.id]?.[0]?.[i],fouls?'':'%',1,j===1,fouls?'Drawn':'',descriptive?1:0)+
+        cell(data.teams[defense.id]?.[1]?.[i],fouls?'':'%',1,false,fouls?'Committed':'',descriptive?-1:0);
     }).join('');
     const comparison = '<table class="team-metrics"><thead><tr><th scope="col">Team comparison</th>'+
       teams.map(t=>'<th scope="col">'+escape(t.abbreviation)+'</th>').join('')+'</tr></thead><tbody>'+
@@ -523,12 +536,12 @@ function renderPlayers() {
     const rating = pairs[6] ?? [];
     const shade = rateComparison(rating,reference?.rates[6]);
     const usage = pairs[5] ?? [];
-    const usageShade = rateComparison(usage,reference?.rates[5]);
+    const usageShade = rateComparison(usage,reference?.rates[5],false,true);
     const role = '<div class="rebound-rates"><span class="rate-value" style="'+usageShade.style+'" title="Usage · '+usageShade.note+'">'+percent(rate(usage))+
       '</span><strong class="rate-value" style="'+shade.style+'" title="ORtg · Season '+fmt(rate(reference?.rates[6] ?? []))+'">'+fmt(rate(rating))+'</strong></div>';
     const metrics = [role,efg,to,'<div class="rebound-rates">'+or+dr+'</div>',ftr];
     const shooting = seasonShooting ?? shootingStats(s).map(({text,pair},i)=>reference?.shooting ?
-      shadedStat(text,rateComparison(pair,reference.shooting[i])) : escape(text));
+      shadedStat(text,rateComparison(pair,reference.shooting[i],false,i===threePointRateColumn)) : escape(text));
     const count = key => escape(s[key] ?? '—');
     const raw = ['orb','drb','to','ast','stl','blk','pf'].map(count);
     return '<tr'+rowAttrs+'><th scope="row">'+label+'</th>'+

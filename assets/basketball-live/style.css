@@ -232,3 +232,8 @@
 .maryland-live #ref-stats th:first-child{width:44%}
 .maryland-live #ref-stats .ref-summary>*{background:#eee5e0;font-weight:750}
 .maryland-live #ref-stats p{font-size:.72rem}
+
+.maryland-live{--bench-blue:#98bde7;--bench-orange:#f4b472}
+.maryland-live .descriptive-gradient{background:linear-gradient(90deg,var(--bench-blue),var(--bench-neutral),var(--bench-orange))}
+.maryland-live .rate-key-swatch{display:inline-flex;align-items:center;gap:.22rem;font-size:.7rem}
+.maryland-live .rate-key-swatch .rate-gradient{width:2rem}

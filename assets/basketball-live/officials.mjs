@@ -29,17 +29,31 @@ export function crewTendencies(games,names,cutoff,eventId) {
   const eligible = [...new Map(games.filter(g=>g.date < cutoff && String(g.id)!==String(eventId) &&
     g.p>0 && Number.isFinite(g.hf) && Number.isFinite(g.af) && g.refs?.length===3)
     .map(g=>[String(g.id),g])).values()];
-  const byName = names.map(name=>({name,key:normalize(name),games:[]}));
+  const assignments = new Map();
+  const keys = names.map(normalize);
   const crewGames = [];
   for (const game of eligible) {
     const members = new Set(game.refs.map(normalize));
-    const matching = byName.filter(ref=>members.has(ref.key));
-    for (const ref of matching) ref.games.push(game);
-    if (matching.length) crewGames.push(game);
+    for (const member of members) {
+      if (!assignments.has(member)) assignments.set(member,[]);
+      assignments.get(member).push(game);
+    }
+    if (keys.some(key=>members.has(key))) crewGames.push(game);
   }
+  const rates = new Map([...assignments].map(([name,games])=>[name,summarize(games)]));
+  const officials = names.map((name,i)=>({name,...(rates.get(keys[i]) ?? summarize([]))}));
+  const distribution = (metric,count) => [...rates.values()].filter(r=>r[count]>=3).map(r=>r[metric]);
   return {
-    officials:byName.map(({name,games})=>({name,...summarize(games)})),
-    crew:names.length===3 && byName.every(ref=>ref.games.length) ? summarize(crewGames) : null,
-    average:summarize(eligible)
+    officials,
+    crew:names.length===3 && officials.every(ref=>ref.games) ? summarize(crewGames) : null,
+    average:summarize(eligible),
+    peers:{fouls:distribution('fouls','games'),shooting:distribution('shooting','shootingGames')}
   };
+}
+
+export function refPercentile(value,peers) {
+  if (!Number.isFinite(value) || peers.length < 2) return null;
+  const below = peers.filter(peer=>peer<value).length;
+  const tied = peers.filter(peer=>peer===value).length;
+  return (below+tied/2)/peers.length;
 }
