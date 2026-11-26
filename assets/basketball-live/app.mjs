@@ -1,5 +1,5 @@
 import {crewTendencies,refPercentile} from './officials.mjs?v=2';
-import {descriptors,shootingStats,threePointRateColumn,seasonCounts} from './benchmarks.mjs?v=2';
+import {descriptors,shootingStats,threePointRateColumn,seasonCounts} from './benchmarks.mjs?v=3';
 import {rate,fmt,unpack,clockLabel} from './metrics.mjs?v=4';
 import {halfBoxes} from './half-box.mjs?v=5';
 import {scoreTrend,periodLabel,trendSnapshot,recordedPossessionArrow,gameElapsed} from './score-trend.mjs?v=6';
@@ -70,14 +70,14 @@ function scaleColor(value, descriptive=false) {
   return 'color-mix(in srgb,var(--bench-'+color+') '+Math.round(Math.min(1,Math.abs(value))*100)+'%,var(--bench-neutral))';
 }
 
-function rateComparison(pair,reference,lower=false,descriptive=false) {
+function rateComparison(pair,reference,lower=false,descriptive=false,format=percent) {
   const value = rate(pair), average = rate(reference ?? []);
   if (value == null || average == null) return {style:'',note:'Season comparison unavailable'};
   const edge = (value-average)*(lower?-1:1);
   const strength = average > 0 ? Math.min(1,Math.abs(edge)/average*2) : Number(edge!==0);
   return {
     style:'--rate-bg:'+scaleColor(Math.sign(edge)*strength,descriptive),
-    note:'Game '+percent(value)+' · Season '+percent(average)
+    note:'Game '+format(value)+' · Season '+format(average)
   };
 }
 
@@ -322,7 +322,9 @@ function renderFactors(teams,samples) {
     const headings = teams.map(({team},j)=>'<th scope="col"'+(j===0?' class="md"':'')+'>'+escape(team.abbreviation)+'</th>').join('');
     const rows = labels.map((label,row)=>'<tr><th scope="row">'+label+'</th>'+details.map((values,j) => {
       const {text:value,pair} = values[row];
-      const {style,note} = rateComparison(pair,samples.get(teams[j].team.id)?.details[i][row],i===1,label==='3P Rate');
+      const foulRate = label === 'Fouls Drawn / 100';
+      const {style,note} = rateComparison(pair,samples.get(teams[j].team.id)?.details[i][row],i===1,
+        foulRate || label==='3P Rate',foulRate ? n=>fmt(n)+' / 100' : percent);
       const markup = Array.isArray(value)
         ? '<span class="factor-pair"><span>'+value[0]+'</span><span>'+value[1]+'</span></span>'
         : escape(value);
@@ -435,7 +437,7 @@ async function renderProfiles() {
       '<tr class="profile-headline"><th scope="row" title="Opponent-adjusted efficiency margin · Bart Torvik">AdjEM</th>'+
       teams.map(t=>cell(data.adjusted?.[t.id]?.[2],'')).join('')+'</tr>'+
       ['Tempo','Effective height','Roster experience'].map((label,i)=>
-        '<tr><th scope="row">'+label+'</th>'+teams.map(t=>cell(data.comparison?.[t.id]?.[i],['','″',' yr'][i])).join('')+'</tr>'
+        '<tr><th scope="row">'+label+'</th>'+teams.map(t=>cell(data.comparison?.[t.id]?.[i],['','″',' yr'][i],1,false,'',1)).join('')+'</tr>'
       ).join('')+'</tbody></table>';
     out.innerHTML = comparison+'<p>D-I games through '+escape(data.through)+' · '+count+' teams · Adjusted ratings: <a href="https://barttorvik.com/">T-Rank</a> '+escape(data.ratingsDate ?? '')+'</p>'+
       '<table><colgroup><col class="profile-metric"></colgroup><colgroup span="2"></colgroup><colgroup span="2"></colgroup>'+

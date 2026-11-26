@@ -50,7 +50,7 @@ async function route(url, shared, liveInterval) {
     const team = url.searchParams.get('team');
     if (!event || !sides(event).some(side=>String(side.team.id)===team))
       throw new FeedError(404,'Matchup unavailable');
-    return ready(await shared('benchmarks/v2/'+event.id+'/'+team,async () => {
+    return ready(await shared('benchmarks/v3/'+event.id+'/'+team,async () => {
       const calendar = team === '120' ? maryland : await schedule(shared,team,year);
       const data = await seasonRates(team,event,calendar.data,async id => {
         const prior = calendar.data.events.find(e=>String(e.id)===String(id));

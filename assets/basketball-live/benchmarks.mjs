@@ -23,8 +23,10 @@ export const descriptors = [
     countAndRate(pairs[2]),
     countAndRate([s.drb,s.drb == null || o.orb == null ? null : s.drb+o.orb])
   ]],
-  ['Free throw rate', ['FTA/FGA','FT'], ({stats:s}) =>
-    [shot(s.fta,s.fga,'/'),shot(s.ftm,s.fta)]]
+  ['Free throw rate', ['FTA/FGA','FT','Fouls Drawn / 100'], ({stats:s,opponent:o,pairs}) => {
+    const pair = [o.pf,pairs[1][1]];
+    return [shot(s.fta,s.fga,'/'),shot(s.ftm,s.fta),{text:fmt(rate(pair)),pair}];
+  }]
 ];
 
 export const threePointRateColumn = 2;
