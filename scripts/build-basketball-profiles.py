@@ -10,7 +10,7 @@ today = date.today()
 season = today.year + (today.month >= 10)
 release = "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_mens_college_basketball_team_boxscores"
 teams_url = "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/teams?groups=50&limit=1000"
-fields = "field_goals_made field_goals_attempted three_point_field_goals_made three_point_field_goals_attempted total_turnovers offensive_rebounds defensive_rebounds steals free_throws_made free_throws_attempted assists blocks".split()
+fields = "field_goals_made field_goals_attempted three_point_field_goals_made three_point_field_goals_attempted total_turnovers offensive_rebounds defensive_rebounds steals free_throws_made free_throws_attempted assists blocks fouls".split()
 
 
 def rates(a, b):
@@ -22,7 +22,7 @@ def rates(a, b):
             pct(three, attempts), pct(attempts, fga), pct(to, possessions),
             pct(b["steals"], possessions), pct(to-b["steals"], possessions),
             pct(orb, orb+b["defensive_rebounds"]), pct(drb, drb+b["offensive_rebounds"]),
-            pct(fta, fga), pct(ft, fta), pct(a["assists"], fg), pct(b["blocks"], fga-attempts)]
+            pct(fta, fga), pct(ft, fta), pct(a["assists"], fg), pct(b["blocks"], fga-attempts), pct(b["fouls"], possessions)]
 
 
 def build(teams, rows, players, bios):
@@ -50,7 +50,7 @@ def build(teams, rows, players, bios):
         dates.append(a["game_date"])
     profiles = {t: [rates(a,b), rates(b,a)] for t,(a,b) in totals.items()}
     for side in range(2):
-        for i in range(13):
+        for i in range(14):
             low = (i in (4,5,6,12)) != bool(side)
             values = {t: round(p[side][i], 8) for t,p in profiles.items() if p[side][i] is not None}
             ordered = sorted(values.values(), reverse=not low)

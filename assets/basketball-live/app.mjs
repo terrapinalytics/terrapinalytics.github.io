@@ -325,7 +325,8 @@ function visibleTeams() {
   return selected ? box.teams.map(({team})=>({team,data:selected.get(team.id)})) : box.teams;
 }
 
-const profileLabels = ['eFG%', '2P%', '3P%', '3P Rate', 'TO%', 'Steal TO%', 'Non-steal TO%', 'OReb%', 'DReb%', 'FT Rate', 'FT%', 'Assist Rate', 'Block Rate'];
+const profileLabels = ['eFG%', '2P%', '3P%', '3P Rate', 'TO%', 'Steal TO%', 'Non-steal TO%', 'OReb%', 'DReb%', 'FT Rate', 'FT%', 'Assist Rate', 'Block Rate', 'Fouls / poss.'];
+const profileGroups = [[0,1,2,3,11,12],[4,5,6],[7,8],[9,10,13]];
 let profileData, profileKey, matchupTeams = [];
 async function renderProfiles() {
   if (matchupTeams.length !== 2 || !$('team-profiles').open) return;
@@ -343,7 +344,7 @@ async function renderProfiles() {
     const data = await profileData;
     if (profileKey !== key) return;
     const count = Object.keys(data.teams).length;
-    const cell = (value,unit,span=1,divider=false) => {
+    const cell = (value,unit,span=1,divider=false,foulLabel='') => {
       const td = '<td'+(span === 2 ? ' colspan="2"' : '')+(divider ? ' class="matchup-divider"' : '')+'>';
       if (!value) return td+'—</td>';
       const [n,rank] = value;
@@ -351,29 +352,49 @@ async function renderProfiles() {
       const color = fraction <= .5 ? 'var(--bench-green)' : 'var(--bench-red)';
       const shade = Math.round(Math.abs(1-2*fraction)*100);
       return td+'<span class="profile-value" style="background:color-mix(in srgb,'+color+' '+shade+
-        '%,var(--bench-neutral))">'+n.toFixed(1)+unit+' <small>#'+rank+'</small></span></td>';
+        '%,var(--bench-neutral))">'+(foulLabel ? (n/100).toFixed(2) : n.toFixed(1))+unit+' <small>#'+rank+'</small></span>'+(foulLabel ? '<small>'+foulLabel+'</small>' : '')+'</td>';
     };
-    const order = [0,1,2,3,11,12,4,5,6,7,8,9,10];
-    out.innerHTML = '<p>D-I games through '+escape(data.through)+' · '+count+' teams · Adjusted ratings: <a href="https://barttorvik.com/">T-Rank</a> '+escape(data.ratingsDate ?? '')+'</p>'+
+    const factorCells = i => teams.map((off,j) => {
+      const defense = teams[1-j];
+      const fouls = i === 13;
+      return cell(data.teams[off.id]?.[0]?.[i],fouls?'':'%',1,j===1,fouls?'Drawn':'')+
+        cell(data.teams[defense.id]?.[1]?.[i],fouls?'':'%',1,false,fouls?'Committed':'');
+    }).join('');
+    const comparison = '<table class="team-metrics"><thead><tr><th scope="col">Team comparison</th>'+
+      teams.map(t=>'<th scope="col">'+escape(t.abbreviation)+'</th>').join('')+'</tr></thead><tbody>'+
+      '<tr class="profile-headline"><th scope="row" title="Opponent-adjusted efficiency margin · Bart Torvik">AdjEM</th>'+
+      teams.map(t=>cell(data.adjusted?.[t.id]?.[2],'')).join('')+'</tr>'+
+      ['Tempo','Effective height','Roster experience'].map((label,i)=>
+        '<tr><th scope="row">'+label+'</th>'+teams.map(t=>cell(data.comparison?.[t.id]?.[i],['','″',' yr'][i])).join('')+'</tr>'
+      ).join('')+'</tbody></table>';
+    out.innerHTML = comparison+'<p>D-I games through '+escape(data.through)+' · '+count+' teams · Adjusted ratings: <a href="https://barttorvik.com/">T-Rank</a> '+escape(data.ratingsDate ?? '')+'</p>'+
       '<table><colgroup><col class="profile-metric"></colgroup><colgroup span="2"></colgroup><colgroup span="2"></colgroup>'+
       '<thead><tr><th rowspan="2" scope="col">Metric</th>'+teams.map((t,i)=>
         '<th colspan="2" scope="colgroup" class="matchup-heading group-'+i+'">'+
         escape(t.location || t.displayName)+'<small>Has the ball</small></th>').join('')+'</tr><tr>'+
       teams.map((off,j)=>'<th scope="col"'+(j===1?' class="matchup-divider"':'')+'>'+escape(off.abbreviation)+'<small>Offense</small></th><th scope="col">'+escape(teams[1-j].abbreviation)+'<small>Defense</small></th>').join('')+
       '</tr></thead><tbody><tr class="profile-headline"><th scope="row" title="Bart Torvik · points per 100 possessions">Adj. efficiency</th>'+
-      teams.map((off,j)=>cell(data.adjusted?.[off.id]?.[0],'',1,j===1)+cell(data.adjusted?.[teams[1-j].id]?.[1],'')).join('')+'</tr>'+order.map(i=>'<tr class="'+([0,4,7,9].includes(i)?'factor-row':'profile-component')+'"><th scope="row">'+profileLabels[i]+'</th>'+
-        teams.map((off,j)=>cell(data.teams[off.id]?.[0]?.[i],'%',1,j===1)+cell(data.teams[teams[1-j].id]?.[1]?.[i],'%')).join('')+'</tr>').join('')+
-      '</tbody><tbody class="team-metrics"><tr><th>Team comparison</th>'+teams.map(t=>'<th colspan="2">'+escape(t.abbreviation)+'</th>').join('')+'</tr>'+
-      '<tr class="profile-headline"><th scope="row" title="Opponent-adjusted efficiency margin · Bart Torvik">AdjEM</th>'+teams.map(t=>cell(data.adjusted?.[t.id]?.[2],'',2)).join('')+'</tr>'+
-      ['Tempo','Effective height','Roster experience'].map((label,i)=>
-        '<tr><th scope="row">'+label+'</th>'+teams.map(t=>cell(data.comparison?.[t.id]?.[i],['','″',' yr'][i],2)).join('')+'</tr>'
-      ).join('')+'</tbody></table>';
+      teams.map((off,j)=>cell(data.adjusted?.[off.id]?.[0],'',1,j===1)+cell(data.adjusted?.[teams[1-j].id]?.[1],'')).join('')+ '</tr></tbody>'+
+      profileGroups.map(([metric,...components])=> {
+        const groupId = 'profile-factor-'+metric;
+        return '<tbody><tr class="factor-row"><th scope="row"><button type="button" class="profile-factor-toggle" aria-expanded="false" aria-controls="'+groupId+'">'+
+          profileLabels[metric]+'</button></th>'+factorCells(metric)+'</tr></tbody>'+
+          '<tbody id="'+groupId+'" hidden>'+components.map(i=>'<tr class="profile-component"><th scope="row"'+
+            (i===13?' title="Box score fouls divided by estimated possessions"':'')+'>'+profileLabels[i]+'</th>'+factorCells(i)+'</tr>').join('')+'</tbody>';
+      }).join('')+'</table>';
   } catch {
     profileData = profileKey = null;
     out.textContent = 'Profiles unavailable. Reopen to retry.';
   }
 }
 $('team-profiles').ontoggle = renderProfiles;
+$('profile-body').addEventListener('click',event=>{
+  const button = event.target.closest('.profile-factor-toggle');
+  if (!button) return;
+  const rows = $(button.getAttribute('aria-controls'));
+  rows.hidden = !rows.hidden;
+  button.setAttribute('aria-expanded',String(!rows.hidden));
+});
 
 function placeProfiles(competition, pregame) {
   matchupTeams = competition.competitors.map(({team})=>({...team,id:String(team.id)}))

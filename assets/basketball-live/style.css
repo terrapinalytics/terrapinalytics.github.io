@@ -217,3 +217,9 @@
 .maryland-live #profile-body .profile-component th{padding-left:.5rem;color:var(--muted);font-weight:500;font-size:.73rem}
 .maryland-live #profile-body .profile-component td{font-size:.73rem}
 .maryland-live #profile-body .profile-component td small{font-size:.67rem}
+
+.maryland-live #profile-body .team-metrics th:first-child{width:27%;white-space:normal}
+.maryland-live #profile-body .team-metrics thead th{border-top:0}
+.maryland-live #profile-body .profile-factor-toggle{width:100%;border:0;background:transparent;font:inherit;text-align:left;padding:.2rem 0}
+.maryland-live #profile-body .profile-factor-toggle::before{content:"▸";margin-right:.18em}
+.maryland-live #profile-body .profile-factor-toggle[aria-expanded=true]::before{content:"▾"}
