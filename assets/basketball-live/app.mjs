@@ -343,8 +343,8 @@ async function renderProfiles() {
     const data = await profileData;
     if (profileKey !== key) return;
     const count = Object.keys(data.teams).length;
-    const cell = (value,unit,span=1) => {
-      const td = span === 2 ? '<td colspan="2">' : '<td>';
+    const cell = (value,unit,span=1,divider=false) => {
+      const td = '<td'+(span === 2 ? ' colspan="2"' : '')+(divider ? ' class="matchup-divider"' : '')+'>';
       if (!value) return td+'—</td>';
       const [n,rank] = value;
       const fraction = (rank-1)/Math.max(1,count-1);
@@ -355,14 +355,16 @@ async function renderProfiles() {
     };
     const order = [0,1,2,3,11,12,4,5,6,7,8,9,10];
     out.innerHTML = '<p>D-I games through '+escape(data.through)+' · '+count+' teams · Adjusted ratings: <a href="https://barttorvik.com/">T-Rank</a> '+escape(data.ratingsDate ?? '')+'</p>'+
-      '<table><thead><tr><th rowspan="2">Rate</th>'+teams.map(t=>
-        '<th colspan="2">When '+escape(t.location || t.displayName)+' has the ball</th>').join('')+'</tr><tr>'+
-      teams.map((off,j)=>'<th>'+escape(off.abbreviation)+'<br>Off</th><th>'+escape(teams[1-j].abbreviation)+'<br>Def</th>').join('')+
-      '</tr></thead><tbody><tr class="factor-row"><th title="Bart Torvik · points per 100 possessions">Adj. efficiency</th>'+
-      teams.map((off,j)=>cell(data.adjusted?.[off.id]?.[0],'')+cell(data.adjusted?.[teams[1-j].id]?.[1],'')).join('')+'</tr>'+order.map(i=>'<tr class="'+([0,4,7,9].includes(i)?'factor-row':'')+'"><th scope="row">'+profileLabels[i]+'</th>'+
-        teams.map((off,j)=>cell(data.teams[off.id]?.[0]?.[i],'%')+cell(data.teams[teams[1-j].id]?.[1]?.[i],'%')).join('')+'</tr>').join('')+
+      '<table><colgroup><col class="profile-metric"></colgroup><colgroup span="2"></colgroup><colgroup span="2"></colgroup>'+
+      '<thead><tr><th rowspan="2" scope="col">Metric</th>'+teams.map((t,i)=>
+        '<th colspan="2" scope="colgroup" class="matchup-heading group-'+i+'">'+
+        escape(t.location || t.displayName)+'<small>Has the ball</small></th>').join('')+'</tr><tr>'+
+      teams.map((off,j)=>'<th scope="col"'+(j===1?' class="matchup-divider"':'')+'>'+escape(off.abbreviation)+'<small>Offense</small></th><th scope="col">'+escape(teams[1-j].abbreviation)+'<small>Defense</small></th>').join('')+
+      '</tr></thead><tbody><tr class="profile-headline"><th scope="row" title="Bart Torvik · points per 100 possessions">Adj. efficiency</th>'+
+      teams.map((off,j)=>cell(data.adjusted?.[off.id]?.[0],'',1,j===1)+cell(data.adjusted?.[teams[1-j].id]?.[1],'')).join('')+'</tr>'+order.map(i=>'<tr class="'+([0,4,7,9].includes(i)?'factor-row':'profile-component')+'"><th scope="row">'+profileLabels[i]+'</th>'+
+        teams.map((off,j)=>cell(data.teams[off.id]?.[0]?.[i],'%',1,j===1)+cell(data.teams[teams[1-j].id]?.[1]?.[i],'%')).join('')+'</tr>').join('')+
       '</tbody><tbody class="team-metrics"><tr><th>Team comparison</th>'+teams.map(t=>'<th colspan="2">'+escape(t.abbreviation)+'</th>').join('')+'</tr>'+
-      '<tr><th title="Opponent-adjusted efficiency margin · Bart Torvik">AdjEM</th>'+teams.map(t=>cell(data.adjusted?.[t.id]?.[2],'',2)).join('')+'</tr>'+
+      '<tr class="profile-headline"><th scope="row" title="Opponent-adjusted efficiency margin · Bart Torvik">AdjEM</th>'+teams.map(t=>cell(data.adjusted?.[t.id]?.[2],'',2)).join('')+'</tr>'+
       ['Tempo','Effective height','Roster experience'].map((label,i)=>
         '<tr><th scope="row">'+label+'</th>'+teams.map(t=>cell(data.comparison?.[t.id]?.[i],['','″',' yr'][i],2)).join('')+'</tr>'
       ).join('')+'</tbody></table>';

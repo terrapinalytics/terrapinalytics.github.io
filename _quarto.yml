@@ -85,7 +85,7 @@ format:
     theme: cosmo
     css: styles.css
     include-after-body:
-      - text: <script src="/assets/menu-categories.js" defer></script>
+      - text: <script src="/assets/menu-categories.js?v=home-links1" defer></script>
     toc: true
     link-external-newwindow: true
 

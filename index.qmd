@@ -64,6 +64,7 @@ toc: false
 <a class="section-link" href="projects/index.html">All dashboards</a>
 </div>
 
+<nav class="home-dashboard-links" id="home-dashboard-links" aria-label="Dashboards" hidden></nav>
 <nav class="home-categories" aria-label="Dashboard categories">
   <a href="projects/index.html#football">Football</a>
   <a href="projects/index.html#basketball">Basketball</a>

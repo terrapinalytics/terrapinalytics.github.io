@@ -23,6 +23,28 @@
       section.append(details);
       sections.push({heading,items,section,list});
     }
+    const home = id === 'nav-menu-explore' && document.getElementById('home-dashboard-links');
+    if (home) {
+      for (const {heading,items} of sections) {
+        const group = document.createElement('section');
+        const title = document.createElement('h3');
+        title.textContent = heading.textContent.trim();
+        const list = document.createElement('ul');
+        for (const item of items) {
+          const link = item.querySelector('a');
+          if (!link) continue;
+          const entry = document.createElement('li');
+          const direct = document.createElement('a');
+          direct.href = link.href;
+          direct.textContent = link.textContent.trim();
+          entry.append(direct);
+          list.append(entry);
+        }
+        group.append(title,list);
+        home.append(group);
+      }
+      if (home.querySelector('a')) home.hidden = false;
+    }
     function update() {
       for (const {heading,items,section,list} of sections) {
         heading.hidden = mobile.matches;
