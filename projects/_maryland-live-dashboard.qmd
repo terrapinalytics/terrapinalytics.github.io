@@ -20,12 +20,13 @@
 </div>
 <p class="sub rate-key factors-key"><span>Vs. team season</span><span class="rate-gradient" aria-hidden="true"></span></p>
 <div class="factors" id="factors"></div>
-<div id="game-profile"><details id="team-profiles"><summary>Matchup analysis</summary><div id="profile-body"></div></details></div>
-</section>
+<div id="game-profile"><details id="team-profiles"><summary>Matchup analysis</summary><div id="profile-body"></div>
 <section id="ref-crew" aria-labelledby="ref-title" hidden>
 <h2 id="ref-title">Referee crew</h2>
-<p id="ref-names"></p>
+<div id="ref-stats"></div>
 <a href="officiating.html">Explore officiating rates</a>
+</section>
+</details></div>
 </section>
 <section aria-labelledby="players-title"><div class="heading"><h2 id="players-title">Player box score</h2><div id="teams" role="group" aria-label="Box score team"></div></div>
 <div class="box-views" id="box-views" role="group" aria-label="Box score view">

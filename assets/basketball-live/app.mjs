@@ -1,9 +1,10 @@
+import {crewTendencies} from './officials.mjs';
 import {descriptors,shootingStats,threePointRateColumn,seasonCounts} from './benchmarks.mjs?v=2';
 import {rate,fmt,unpack,clockLabel} from './metrics.mjs?v=4';
 import {halfBoxes} from './half-box.mjs?v=5';
 import {scoreTrend,periodLabel,trendSnapshot,recordedPossessionArrow,gameElapsed} from './score-trend.mjs?v=6';
 
-import {feedOrigin as api, gameOnDay, nextEasternMidnight} from './game-day.mjs';
+import {feedOrigin as api, gameOnDay, nextEasternMidnight, easternDay} from './game-day.mjs';
 const md = '120';
 const $ = id => document.getElementById(id);
 const escape = value => String(value ?? '').replace(/[&<>"']/g,c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -233,12 +234,60 @@ function renderScore(event,competition,plays=[],fallback={}) {
   renderTrend(trend,sides);
 }
 
-function renderOfficials(officials) {
+const officialGames = new Map();
+let crewKey, crewData;
+function setOfficials(officials,event,year) {
   const names = [...new Set((Array.isArray(officials) ? officials : [])
     .map(official=>String(official.fullName ?? official.displayName ?? '').trim())
     .filter(name=>/\p{L}.*\s+.*\p{L}/u.test(name) && !/^(?:to be announced|not available|not announced|not assigned|unknown|no officials)$/i.test(name)))];
+  const key = JSON.stringify([event.id,year,names]);
+  if (key === crewKey) return;
+  crewKey = key;
+  crewData = {names,event,year};
   $('ref-crew').hidden = !names.length;
-  $('ref-names').textContent = names.join(' · ');
+  $('ref-stats').textContent = names.join(' · ');
+  renderOfficials();
+}
+
+async function renderOfficials() {
+  if (!$('team-profiles').open || !crewData?.names.length) return;
+  const {names,event,year} = crewData;
+  const key = crewKey;
+  const out = $('ref-stats');
+  if (out.renderedCrew === key) return;
+  out.renderedCrew = key;
+  try {
+    if (!Number.isInteger(Number(year))) throw Error('Season unavailable');
+    if (!officialGames.has(year)) {
+      const url = new URL('../fouls/games-'+year+'.json.gz',import.meta.url);
+      const request = fetch(url).then(response=>{
+        if (!response.ok) throw Error('Official assignments unavailable');
+        return new Response(response.body.pipeThrough(new DecompressionStream('gzip'))).json();
+      }).catch(error=>{officialGames.delete(year);throw error;});
+      officialGames.set(year,request);
+    }
+    const games = await officialGames.get(year);
+    if (crewKey !== key) return;
+    const [month,day,y] = easternDay(new Date(event.date)).split('/');
+    const cutoff = [y,month.padStart(2,'0'),day.padStart(2,'0')].join('-');
+    const {officials,crew,average} = crewTendencies(games,names,cutoff,event.id);
+    if (!officials.some(ref=>ref.games)) {
+      out.textContent = names.join(' · ')+' — No prior assignments in this season’s data.';
+      return;
+    }
+    const row = (name,r,summary=false)=>'<tr'+(summary?' class="ref-summary"':'')+'><th scope="row">'+escape(name)+
+      '</th><td>'+r.games+'</td><td>'+fmt(r.fouls)+'</td><td>'+fmt(r.shooting)+
+      (r.shootingGames ? '<small>n='+r.shootingGames+'</small>' : '')+'</td></tr>';
+    out.innerHTML = '<table><thead><tr><th scope="col">Official</th><th scope="col">Games</th><th scope="col">Fouls / 100</th>'+
+      '<th scope="col">Shooting / 100</th></tr></thead><tbody>'+officials.map(ref=>row(ref.name,ref)).join('')+
+      (crew ? row('Crew estimate',crew,true) : '')+row('D-I baseline',average)+'</tbody></table>'+
+      '<p>Both teams’ fouls per 100 possessions in season assignments before game day. Shooting rates use games with verified foul types.'+
+      (crew?' The crew estimate pools distinct games worked by these officials.':'')+'</p>';
+  } catch {
+    if (crewKey !== key) return;
+    out.renderedCrew = null;
+    out.textContent = names.join(' · ')+' — Tendencies unavailable.';
+  }
 }
 
 function renderFactors(teams,samples) {
@@ -395,7 +444,10 @@ async function renderProfiles() {
     out.textContent = 'Profiles unavailable. Reopen to retry.';
   }
 }
-$('team-profiles').ontoggle = renderProfiles;
+$('team-profiles').ontoggle = () => {
+  renderProfiles();
+  renderOfficials();
+};
 $('profile-body').addEventListener('click',event=>{
   const button = event.target.closest('.profile-factor-toggle');
   if (!button) return;
@@ -622,7 +674,7 @@ async function refresh(pushedGame) {
       selectedTeam = md;
       selectedHalf = 0;
       $('analysis').hidden = true;
-      renderOfficials(event.competitions[0].officials);
+      setOfficials(event.competitions[0].officials,event,schedule.season.year);
       renderScore(event,event.competitions[0]);
     }
     if (type(event)?.state === 'pre' && event !== starting) {
@@ -650,7 +702,7 @@ async function refresh(pushedGame) {
       if (revision == null || revision !== renderedRevision) {
         renderScore(event,competition,game.plays ?? [],event.competitions[0]);
         placeProfiles(competition,status?.state === 'pre');
-        renderOfficials(game.officials?.length ? game.officials : competition.officials ?? event.competitions[0].officials);
+        setOfficials(game.officials?.length ? game.officials : competition.officials ?? event.competitions[0].officials,event,schedule.season.year);
         const teams = matchupTeams.map(team=>({team,data:unpack(game,team.id)}));
         if (teams.length === 2 && teams.every(t=>t.data)) {
           const samples = box?.samples ?? new Map();
