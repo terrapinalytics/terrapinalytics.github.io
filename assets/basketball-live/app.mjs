@@ -1,8 +1,8 @@
 import {crewTendencies,refPercentile} from './officials.mjs?v=3';
 import {descriptors,shootingStats,threePointRateColumn,seasonCounts} from './benchmarks.mjs?v=5';
-import {rate,fmt,unpack,clockLabel} from './metrics.mjs?v=5';
+import {rate,fmt,unpack} from './metrics.mjs?v=5';
 import {halfBoxes} from './half-box.mjs?v=6';
-import {scoreTrend,periodLabel,trendSnapshot,recordedPossessionArrow,gameElapsed} from './score-trend.mjs?v=6';
+import {scoreTrend,periodLabel,trendSnapshot,clockSeconds,gameElapsed} from './score-trend.mjs?v=7';
 
 import {feedOrigin as api, gameOnDay, nextEasternMidnight, easternDay} from './game-day.mjs';
 const md = '120';
@@ -201,20 +201,6 @@ function timeoutTicks(remaining) {
     remaining+' timeouts remaining">'+(remaining ? '<i></i>'.repeat(remaining) : '<i class="empty"></i>')+'</span>';
 }
 
-function possessionArrow(competition,fallback,sides,status,plays) {
-  if (status.type?.state !== 'in') return '';
-  const source = [competition,fallback].find(c=>c?.possessionArrowAvailable===true);
-  const teamId = source?.situation?.possessionArrow?.team?.id ?? source?.situation?.possessionArrow?.id;
-  const flagged = source?.competitors?.filter(side=>side.possession===true) ?? [];
-  const official = teamId ?? (flagged.length===1 ? flagged[0].team.id : null);
-  const owner = official ?? recordedPossessionArrow(plays,sides.map(side=>String(side.team.id)),status);
-  const index = sides.findIndex(side=>owner!=null && String(side.team.id)===String(owner));
-  const label = index<0 ? 'Possession arrow unavailable' :
-    (official==null?'Estimated possession arrow: ':'Possession arrow: ')+sides[index].team.abbreviation;
-  return '<span class="possession" role="img" aria-label="'+escape(label)+'" title="'+escape(label)+'">'+
-    '<span aria-hidden="true">'+(index===0?'←':index===1?'→':'↔')+'</span><small>Poss</small></span>';
-}
-
 function renderScore(event,competition,plays=[],fallback={}) {
   const status = {...fallback.status,...competition.status};
   const state = status.type?.state;
@@ -234,8 +220,7 @@ function renderScore(event,competition,plays=[],fallback={}) {
       '<div class="score-number"><b>'+escape(state === 'pre' ? '—' : score ?? '—')+'</b>'+timeoutTicks(remaining)+'</div></div>';
   };
   const label = state === 'pre' ? gameDate(event.date) : status.type?.shortDetail ?? 'Game status pending';
-  const markup = team(sides[0],0)+'<div class="clock">'+escape(label)+
-    possessionArrow(competition,fallback,sides,status,plays)+'</div>'+team(sides[1],1);
+  const markup = team(sides[0],0)+'<div class="clock">'+escape(label)+'</div>'+team(sides[1],1);
   if ($('scoreboard').innerHTML !== markup) $('scoreboard').innerHTML = markup;
   renderTrend(trend,sides);
 }
@@ -567,7 +552,8 @@ function renderPlayers() {
       row('<span class="season-label">Season</span>',averageCounts(average),average.rates,undefined,
         ' id="'+target+'" class="season-row"'+(expanded?'':' hidden'),seasonShotLines(average));
   };
-  const teamStats = selectedHalf ? data.stats : {...data.stats,min:clockLabel(box.elapsed)};
+  const elapsed = selectedHalf ? clockSeconds(data.stats.min) : box.elapsed;
+  const teamStats = {...data.stats,min:elapsed == null ? null : Math.floor(elapsed/60)};
   const teamTotal = withSeason('team','Team','Team total',teamStats,[efg,to,or,defensive,ftr,[],[data.stats.pts,to[1]]],
     reference,sample?.count ? sample.teamSeason : undefined,' class="team-total"');
   const rows = data.players.map(player => {
