@@ -7,6 +7,6 @@ toc: false
 {{< include _maryland-live-dashboard.qmd >}}
 
 ```{=html}
-<link rel="stylesheet" href="../assets/basketball-live/style.css?v=ref-margin">
+<link rel="stylesheet" href="../assets/basketball-live/style.css?v=desktop-layout">
 <script type="module" src="../assets/basketball-live/app.mjs?v=ref-margin"></script>
 ```
