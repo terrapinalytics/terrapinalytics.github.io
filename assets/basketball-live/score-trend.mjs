@@ -1,8 +1,6 @@
 const HALF = 20 * 60;
 const OVERTIME = 5 * 60;
-const MIN_SWING = 8;
-const RUN_WINDOW = 4 * 60;
-const MAX_RUNS = 2;
+const KILLSHOT_POINTS = 10;
 const periodLength = period => period <= 2 ? HALF : OVERTIME;
 const periodStart = period => period <= 2 ? (period-1)*HALF : 2*HALF+(period-3)*OVERTIME;
 export const periodLabel = period => period <= 2 ? period+'H' : period === 3 ? 'OT' : (period-2)+'OT';
@@ -42,27 +40,28 @@ const playScore = (play,side) => {
 };
 
 function scoringRuns(points) {
-  const candidates = [];
+  const runs = [];
+  let team = -1;
+  let total = 0;
   for (let i = 1; i < points.length; i++) {
-    const first = points[i];
-    const before = points[i-1].scores;
-    for (let j = i; j < points.length; j++) {
-      const last = points[j];
-      if (first.period !== last.period || last.time-first.time > RUN_WINDOW) break;
-      const [a,b] = last.scores.map((score,k)=>score-before[k]);
-      const swing = Math.abs(a-b);
-      if (a < 0 || b < 0 || swing < MIN_SWING) continue;
-      candidates.push({team:a>b?0:1,points:Math.max(a,b),allowed:Math.min(a,b),swing,
-        start:first.time,end:last.time,period:last.period,clock:last.clock});
+    const [a,b] = points[i].scores.map((score,k)=>score-points[i-1].scores[k]);
+    const scoringTeam = a > 0 && b === 0 ? 0 : b > 0 && a === 0 ? 1 : -1;
+    if (scoringTeam !== team) {
+      team = scoringTeam;
+      total = 0;
     }
+    if (team === -1) continue;
+
+    const qualified = total >= KILLSHOT_POINTS;
+    total += a+b;
+    if (total < KILLSHOT_POINTS) continue;
+
+    const {time,scores,period,clock} = points[i];
+    const run = {team,points:total,end:time,scores,period,clock};
+    if (qualified) runs[runs.length-1] = run;
+    else runs.push(run);
   }
-  candidates.sort((a,b)=>b.swing-a.swing || (a.end-a.start)-(b.end-b.start) || a.start-b.start);
-  const selected = [];
-  for (const run of candidates) {
-    if (selected.every(other=>run.end<other.start || run.start>other.end)) selected.push(run);
-    if (selected.length === MAX_RUNS) break;
-  }
-  return selected.sort((a,b)=>a.end-b.end);
+  return runs;
 }
 
 export function scoreTrend(plays,sides,status) {
