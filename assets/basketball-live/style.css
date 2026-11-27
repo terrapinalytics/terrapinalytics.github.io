@@ -148,12 +148,8 @@
 .maryland-live .timeout-ticks{min-height:.45rem;display:flex;justify-content:center;gap:.2rem}
 .maryland-live .timeout-ticks i{height:.4rem;width:2px;background:#ffd46d;border-radius:1px}
 .maryland-live .timeout-ticks .empty{height:2px;width:.5rem;align-self:center;background:#9b8187}
-.maryland-live .possession{display:grid;justify-items:center;margin-top:.2rem;color:#ffd46d;line-height:1}
-.maryland-live .possession>span{font-size:1.2rem}
-.maryland-live .possession small{display:block;margin:.06rem 0 0;font-size:.63rem}
 @media(max-width:520px){
 .maryland-live .scoreboard .clock{display:flex;align-items:center;justify-content:center;gap:.7rem}
-.maryland-live .possession{margin:0}
 }
 .maryland-live .trend-plot{cursor:crosshair}
 .maryland-live .trend-plot:focus-visible{outline:2px solid var(--gold);outline-offset:4px;border-radius:3px}
