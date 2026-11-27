@@ -63,6 +63,8 @@ function production(p,t,opp,share) {
   const keep = 1-div(t.orb,scoring)*weight*play;
   const qAst = share*1.14*div(t.ast-p.ast,t.fgm) +
     (1-share)*div(t.ast*share-p.ast,t.fgm*share-p.fgm);
+  // Sparse box scores can produce an impossible estimate of the assisted share.
+  if (!(qAst >= 0 && qAst <= 1)) return [null,null];
   const fgCredit = 1-.5*div(p.pts-p.ftm,2*p.fga)*qAst;
   const astPart = .5*div(t.pts-t.ftm-p.pts+p.ftm,2*(t.fga-p.fga))*p.ast;
   const orbPart = p.orb*weight*play;
@@ -71,6 +73,8 @@ function production(p,t,opp,share) {
     .475*p.fta*(1-div(p.ftm,p.fta))**2+p.to;
   const astPoints = 2*div(t.fgm-p.fgm+.5*(t.threeM-p.threeM),t.fgm-p.fgm)*astPart;
   const produced = ((2*p.fgm+p.threeM)*fgCredit+astPoints+p.ftm)*keep+orbPart*div(t.pts,scoring);
+  const efficiency = produced / possessions;
+  if (possessions < 2 || !(efficiency >= 0 && efficiency <= 4)) return [null,null];
   return [produced,possessions];
 }
 

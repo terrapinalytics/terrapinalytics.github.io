@@ -1,7 +1,7 @@
 import {crewTendencies,refPercentile} from './officials.mjs?v=3';
-import {descriptors,shootingStats,threePointRateColumn,seasonCounts} from './benchmarks.mjs?v=4';
-import {rate,fmt,unpack,clockLabel} from './metrics.mjs?v=4';
-import {halfBoxes} from './half-box.mjs?v=5';
+import {descriptors,shootingStats,threePointRateColumn,seasonCounts} from './benchmarks.mjs?v=5';
+import {rate,fmt,unpack,clockLabel} from './metrics.mjs?v=5';
+import {halfBoxes} from './half-box.mjs?v=6';
 import {scoreTrend,periodLabel,trendSnapshot,recordedPossessionArrow,gameElapsed} from './score-trend.mjs?v=6';
 
 import {feedOrigin as api, gameOnDay, nextEasternMidnight, easternDay} from './game-day.mjs';

@@ -1,5 +1,5 @@
 import {gameElapsed} from './score-trend.mjs?v=6';
-import {rate,fmt,line,unpack,clockLabel} from './metrics.mjs?v=4';
+import {rate,fmt,line,unpack,clockLabel} from './metrics.mjs?v=5';
 
 const percent = n => n == null ? '—' : fmt(n)+'%';
 const type = e => e.competitions?.[0]?.status?.type;
