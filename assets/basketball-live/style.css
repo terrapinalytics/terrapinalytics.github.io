@@ -233,6 +233,40 @@
 .maryland-live #ref-stats .ref-percentile{display:block;font-size:.68rem;font-weight:500}
 .maryland-live .factor-stats .fd-label{white-space:nowrap}
 
+@media (width > 800px) {
+  .maryland-live .trend-plot {
+    height: 76px;
+  }
+
+  .maryland-live #players {
+    white-space: normal;
+  }
+
+  .maryland-live #players th,
+  .maryland-live #players td {
+    padding-inline: .28rem;
+    font-size: .8125rem;
+  }
+
+  .maryland-live #players thead th {
+    line-height: 1.2;
+    vertical-align: bottom;
+  }
+
+  .maryland-live #players .box-long {
+    display: none;
+  }
+
+  .maryland-live #players .box-short {
+    display: inline;
+  }
+
+  .maryland-live #players .player-line,
+  .maryland-live #players .season-row .view-shooting {
+    white-space: normal;
+  }
+}
+
 .maryland-live{--bench-blue:#98bde7;--bench-orange:#f4b472}
 .maryland-live .descriptive-gradient{background:linear-gradient(90deg,var(--bench-blue),var(--bench-neutral),var(--bench-orange))}
 .maryland-live .rate-key-swatch{display:inline-flex;align-items:center;gap:.22rem;font-size:.7rem}
