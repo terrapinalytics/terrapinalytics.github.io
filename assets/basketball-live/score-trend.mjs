@@ -1,8 +1,6 @@
 const HALF = 20 * 60;
 const OVERTIME = 5 * 60;
-const MIN_SWING = 8;
-const RUN_WINDOW = 4 * 60;
-const MAX_RUNS = 2;
+const KILLSHOT_POINTS = 10;
 const periodLength = period => period <= 2 ? HALF : OVERTIME;
 const periodStart = period => period <= 2 ? (period-1)*HALF : 2*HALF+(period-3)*OVERTIME;
 export const periodLabel = period => period <= 2 ? period+'H' : period === 3 ? 'OT' : (period-2)+'OT';
@@ -42,27 +40,28 @@ const playScore = (play,side) => {
 };
 
 function scoringRuns(points) {
-  const candidates = [];
+  const runs = [];
+  let team = -1;
+  let total = 0;
   for (let i = 1; i < points.length; i++) {
-    const first = points[i];
-    const before = points[i-1].scores;
-    for (let j = i; j < points.length; j++) {
-      const last = points[j];
-      if (first.period !== last.period || last.time-first.time > RUN_WINDOW) break;
-      const [a,b] = last.scores.map((score,k)=>score-before[k]);
-      const swing = Math.abs(a-b);
-      if (a < 0 || b < 0 || swing < MIN_SWING) continue;
-      candidates.push({team:a>b?0:1,points:Math.max(a,b),allowed:Math.min(a,b),swing,
-        start:first.time,end:last.time,period:last.period,clock:last.clock});
+    const [a,b] = points[i].scores.map((score,k)=>score-points[i-1].scores[k]);
+    const scoringTeam = a > 0 && b === 0 ? 0 : b > 0 && a === 0 ? 1 : -1;
+    if (scoringTeam !== team) {
+      team = scoringTeam;
+      total = 0;
     }
+    if (team === -1) continue;
+
+    const qualified = total >= KILLSHOT_POINTS;
+    total += a+b;
+    if (total < KILLSHOT_POINTS) continue;
+
+    const {time,scores,period,clock} = points[i];
+    const run = {team,points:total,end:time,scores,period,clock};
+    if (qualified) runs[runs.length-1] = run;
+    else runs.push(run);
   }
-  candidates.sort((a,b)=>b.swing-a.swing || (a.end-a.start)-(b.end-b.start) || a.start-b.start);
-  const selected = [];
-  for (const run of candidates) {
-    if (selected.every(other=>run.end<other.start || run.start>other.end)) selected.push(run);
-    if (selected.length === MAX_RUNS) break;
-  }
-  return selected.sort((a,b)=>a.end-b.end);
+  return runs;
 }
 
 export function scoreTrend(plays,sides,status) {
@@ -123,42 +122,4 @@ export function trendSnapshot(points,time) {
   const clock = Math.floor(remaining/60)+':'+String(remaining%60).padStart(2,'0');
   const scores = points.findLast(point=>point.time<=elapsed).scores;
   return {elapsed,remaining,clock,period,scores};
-}
-
-export function recordedPossessionArrow(plays,teamIds,status) {
-  const other = id => teamIds.find(team=>team!==id);
-  let arrow = null, period = 0;
-  const heldBalls = new Set();
-  for (const play of plays) {
-    const current = Number(play.period?.number);
-    if (!current) continue;
-    if (current > period) {
-      if (current >= 3) arrow = null;
-      else if (current === 2 && arrow) arrow = other(arrow);
-      period = current;
-    }
-    const text = play.text ?? '';
-    const kind = (play.type?.text ?? '').toLowerCase().replace(/[^a-z]/g,'');
-    const clock = clockSeconds(play.clock?.displayValue);
-    const team = String(play.team?.id ?? '');
-    const openingTip = kind==='jumpball' && current!==2 && clock!=null && clock>=periodLength(current)-10;
-    const heldBall = /held\s*ball|alternating possession/i.test(text) || kind.includes('heldball') ||
-      (!openingTip && kind==='jumpball' && /jump ball/i.test(text));
-    if (openingTip && teamIds.includes(team)) {
-      if (/jump ball won by/i.test(text)) arrow = other(team);
-      else if (/jump ball lost by/i.test(text)) arrow = team;
-    } else if (arrow && heldBall) {
-      const key = current+':'+(clock ?? play.id);
-      if (!heldBalls.has(key)) {
-        heldBalls.add(key);
-        arrow = other(arrow);
-      }
-    }
-  }
-  const livePeriod = Number(status.period);
-  if (livePeriod > period && livePeriod>=3) return null;
-  const remaining = clockSeconds(status.displayClock);
-  if (livePeriod===2 && period===1 && arrow && remaining!=null && remaining<HALF &&
-      status.type?.name!=='STATUS_HALFTIME') return other(arrow);
-  return arrow;
 }
