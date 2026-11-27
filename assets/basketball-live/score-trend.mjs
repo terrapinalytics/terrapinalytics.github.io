@@ -1,6 +1,7 @@
 const HALF = 20 * 60;
 const OVERTIME = 5 * 60;
 const KILLSHOT_POINTS = 10;
+const RUN_WINDOW = 4 * 60;
 const periodLength = period => period <= 2 ? HALF : OVERTIME;
 const periodStart = period => period <= 2 ? (period-1)*HALF : 2*HALF+(period-3)*OVERTIME;
 export const periodLabel = period => period <= 2 ? period+'H' : period === 3 ? 'OT' : (period-2)+'OT';
@@ -39,29 +40,58 @@ const playScore = (play,side) => {
   return score != null && /^\d+$/.test(String(score)) ? Number(score) : null;
 };
 
-function scoringRuns(points) {
-  const runs = [];
-  let team = -1;
-  let total = 0;
-  for (let i = 1; i < points.length; i++) {
-    const [a,b] = points[i].scores.map((score,k)=>score-points[i-1].scores[k]);
-    const scoringTeam = a > 0 && b === 0 ? 0 : b > 0 && a === 0 ? 1 : -1;
-    if (scoringTeam !== team) {
-      team = scoringTeam;
-      total = 0;
+function extendRun(points,scoringTeams,team,first,last) {
+  const opponent = 1-team;
+  const period = points[first].period;
+  const duration = (start,end) => points[end].time-points[start].time;
+  const runAt = (start,end) => ({
+    start,end,team,
+    points:points[end].scores[team]-points[start-1].scores[team],
+    allowed:points[end].scores[opponent]-points[start-1].scores[opponent]
+  });
+  let best = runAt(first,last);
+  const swing = run => run.points-run.allowed;
+  const inPeriod = i => points[i]?.period === period && scoringTeams[i] >= 0;
+  if (points[last].period !== period || duration(first,last) > RUN_WINDOW) return best;
+
+  for (let start = first; inPeriod(start) && duration(start,last) <= RUN_WINDOW; start--) {
+    if (scoringTeams[start] !== team) continue;
+    for (let end = last; inPeriod(end) && duration(start,end) <= RUN_WINDOW; end++) {
+      if (scoringTeams[end] !== team) continue;
+      const candidate = runAt(start,end);
+      if (swing(candidate) > swing(best) || (swing(candidate) === swing(best) &&
+          duration(start,end) < duration(best.start,best.end))) best = candidate;
     }
-    if (team === -1) continue;
-
-    const qualified = total >= KILLSHOT_POINTS;
-    total += a+b;
-    if (total < KILLSHOT_POINTS) continue;
-
-    const {time,scores,period,clock} = points[i];
-    const run = {team,points:total,end:time,scores,period,clock};
-    if (qualified) runs[runs.length-1] = run;
-    else runs.push(run);
   }
-  return runs;
+  return best;
+}
+
+function scoringRuns(points) {
+  const scoringTeams = points.map(({scores},i) => {
+    if (i === 0) return -1;
+    const [a,b] = scores.map((score,k)=>score-points[i-1].scores[k]);
+    return a > 0 && b === 0 ? 0 : b > 0 && a === 0 ? 1 : -1;
+  });
+  const runs = new Map();
+  let first = 1;
+  for (let last = 1; last < points.length; last++) {
+    const team = scoringTeams[last];
+    if (team === scoringTeams[last+1]) continue;
+    if (team >= 0) {
+      const unanswered = points[last].scores[team]-points[first-1].scores[team];
+      if (unanswered >= KILLSHOT_POINTS) {
+        const run = extendRun(points,scoringTeams,team,first,last);
+        const key = run.start+':'+run.end;
+        if (!runs.has(key)) runs.set(key,{...run,killshots:[]});
+        runs.get(key).killshots.push(unanswered);
+      }
+    }
+    first = last+1;
+  }
+  return [...runs.values()].sort((a,b)=>a.end-b.end).map(({end,...run}) => {
+    const {time,scores,period,clock} = points[end];
+    return {...run,end:time,scores,period,clock};
+  });
 }
 
 export function scoreTrend(plays,sides,status) {
