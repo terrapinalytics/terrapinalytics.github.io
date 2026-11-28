@@ -333,7 +333,7 @@ async function start() {
         ...filtered.map(row=>[row.rank,row.school,row.conference,row.tier,...exportMetrics.map(metric=>row[metric.key])])];
     const header = (key,label,definition='')=>`<th scope="col"${sortKey===key?' aria-sort="'+(ascending?'ascending':'descending')+'"':''}><button type="button" data-sort="${key}" data-sort-column>${escapeHtml(label)}</button>${definition?'<small>'+escapeHtml(definition)+'</small>':''}</th>`;
     let columns = header('rank','Rank')+header('school','Program')+header('tier','Job tier');
-    if (isOdds) columns = header('school','Program')+header('coach','Coach')+header(checkpoint,'Departure odds')+header('tier','Job tier')+header('buyout_sort','Buyout estimate')+(checkpoint==='dec7_probability_pct'?header('change_sort','Two-week change', 'Reference: '+data.comparison_reference_date+' · Saved forecast: '+data.comparison_source_date):'');
+    if (isOdds) columns = header('school','Program')+header(checkpoint,'Departure odds')+header('coach','Coach')+header('tier','Job tier')+header('buyout_sort','Buyout estimate')+(checkpoint==='dec7_probability_pct'?header('change_sort','Two-week change', 'Reference: '+data.comparison_reference_date+' · Saved forecast: '+data.comparison_source_date):'');
     else columns += metrics.map(m=>header(m.key,m.label,m.definition)).join('');
     document.getElementById('head').innerHTML = '<tr>'+columns+'</tr>';
     document.getElementById('body').innerHTML = filtered.map(row=>{
@@ -341,7 +341,7 @@ async function start() {
       if (isOdds) {
         const probability = row[checkpoint];
         const delta = row.two_week_change_pp;
-        return `<tr><td>${school}<div class="status">${escapeHtml(row.status)}${row.incoming_hire_announced ? ` · Hired ${escapeHtml(row.incoming_hire_announced)}` : ''}</div></td><td>${escapeHtml(row.coach)}</td><td class="bar-cell"><div class="bar-line"><div class="bar-track"><div class="bar-fill" style="width:${probability}%;background:${probability===100?'#c74445':probability>=30?'#d47136':probability>=10?'#c7a63e':'#4a8876'}"></div></div><strong>${format(probability)}%</strong></div></td><td>${tier(row.tier)}</td><td class="number">${buyoutLabel(row)}</td>${checkpoint==='dec7_probability_pct'?'<td class="number delta">'+(delta == null ? '—' : (delta > 0 ? '+' : '') + format(delta) + ' pp')+'</td>':''}</tr>`;
+        return `<tr><td>${school}<div class="status">${escapeHtml(row.status)}${row.incoming_hire_announced ? `<span class="incoming-hire">Hired ${escapeHtml(row.incoming_hire_announced)}</span>` : ''}</div></td><td class="bar-cell"><div class="bar-line"><div class="bar-track"><div class="bar-fill" style="width:${probability}%;background:${probability===100?'#c74445':probability>=30?'#d47136':probability>=10?'#c7a63e':'#4a8876'}"></div></div><strong>${format(probability)}%</strong></div></td><td>${escapeHtml(row.coach)}</td><td>${tier(row.tier)}</td><td class="number">${buyoutLabel(row)}</td>${checkpoint==='dec7_probability_pct'?'<td class="number delta">'+(delta == null ? '—' : (delta > 0 ? '+' : '') + format(delta) + ' pp')+'</td>':''}</tr>`;
       }
       return `<tr><td class="number">${row.rank}</td><td>${school}${group==='Conference and realignment'?'':'<div class="status">'+escapeHtml(row.conference)+'</div>'}</td><td>${tier(row.tier)}</td>${metrics.map(m=>`<td class="${m.format==='text'?'':'number'}">${format(row[m.key],m.format)}</td>`).join('')}</tr>`;
     }).join('') || '<tr><td colspan="10">No matching programs.</td></tr>';

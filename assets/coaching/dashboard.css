@@ -28,3 +28,14 @@
 .comparison-category th small{display:inline;margin-left:.35rem}
 .comparison-table .category-score td,.comparison-table .category-score th{background:#f9ebee;font-weight:750}
 @media(max-width:650px){.comparison-table thead th:first-child,.comparison-table th[scope=row]{width:9rem;max-width:9rem}}
+
+[data-view="odds"] .incoming-hire{display:block}
+@media(max-width:700px){
+  [data-view="odds"] #ranking-table :is(th,td){padding:.45rem .5rem;white-space:normal}
+  [data-view="odds"] #ranking-table tr>:first-child{width:8.5rem;min-width:8.5rem;max-width:8.5rem;overflow-wrap:anywhere}
+  [data-view="odds"] #ranking-table .bar-cell{min-width:5.5rem}
+  [data-view="odds"] #ranking-table .bar-line{flex-direction:column-reverse;gap:.2rem;align-items:flex-start}
+  [data-view="odds"] #ranking-table .bar-line strong{width:auto;text-align:left}
+  [data-view="odds"] #ranking-table .bar-track{width:3.5rem;height:4px}
+  [data-view="odds"] #ranking-table .team-logo{width:18px;height:18px;flex-basis:18px}
+}
