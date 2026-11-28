@@ -379,6 +379,7 @@ async function loadConference() {
 
 async function start() {
   [coverage, conference] = await Promise.all([loadJSON('coverage.json'), loadConference()]);
+  $('coverage-through').textContent = coverage.asOf;
   options('team', coverage.teams);
   const saved = new URLSearchParams(location.search);
   const hasSavedView = [...filterIds, ...scopeIds, 'team', 'unit', 'group', 'counts'].some(id => saved.has(id));

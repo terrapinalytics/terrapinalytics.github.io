@@ -1,0 +1,93 @@
+name: Refresh sports dashboard data
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/refresh-dashboards.yml
+      - scripts/dashboard_sources.py
+      - scripts/build-football-success.py
+      - scripts/refresh-football-success.py
+      - scripts/refresh-officiating.py
+      - scripts/officiating/**
+  schedule:
+    - cron: '17 7,13 * 1-4,11,12 *'
+      timezone: America/New_York
+    - cron: '37 8,14 * 1,8-12 *'
+      timezone: America/New_York
+  workflow_dispatch:
+    inputs:
+      dashboard:
+        description: Dashboard to refresh
+        type: choice
+        default: both
+        options: [both, officiating, football]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-dashboard-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install data dependencies
+        run: python -m pip install pandas==2.3.3 pyarrow==22.0.0
+      - name: Refresh officiating
+        id: officiating
+        if: github.event_name == 'push' || github.event.schedule == '17 7,13 * 1-4,11,12 *' || (github.event_name == 'workflow_dispatch' && inputs.dashboard != 'football')
+        continue-on-error: true
+        run: python scripts/refresh-officiating.py
+      - name: Refresh football success rates
+        id: football
+        if: github.event_name == 'push' || github.event.schedule == '37 8,14 * 1,8-12 *' || (github.event_name == 'workflow_dispatch' && inputs.dashboard != 'officiating')
+        continue-on-error: true
+        run: python scripts/refresh-football-success.py
+      - name: Stage validated snapshots
+        env:
+          OFFICIATING: ${{ steps.officiating.outcome }}
+          FOOTBALL: ${{ steps.football.outcome }}
+        run: |
+          if [[ "$OFFICIATING" == success ]]; then
+            git add assets/fouls/games-2027.json.gz assets/fouls/players-2027.json.gz assets/fouls/meta.json projects/officiating.qmd
+          fi
+          if [[ "$FOOTBALL" == success ]]; then
+            git add assets/football-success/coverage.json assets/football-success/benchmark-teams.json.gz assets/football-success/teams assets/football-success/big-ten-football-plays.zip
+          fi
+          git restore --worktree .
+      - name: Check dashboard data
+        run: |
+          git diff --cached --check
+          node --test tests/*.cjs
+          python scripts/build-spending-explorer.py --check
+          python scripts/build-finance-dashboard.py --check
+      - name: Commit and request Pages deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --cached --quiet; then
+            echo 'No dashboard data changes.'
+            exit 0
+          fi
+          git -c user.name=github-actions -c user.email=41898282+github-actions[bot]@users.noreply.github.com commit -m 'Refresh validated dashboard data'
+          git push origin HEAD:main
+          gh api --method POST "repos/$GITHUB_REPOSITORY/dispatches" -f event_type=dashboard-data-updated
+      - name: Surface failed source checks
+        if: steps.officiating.outcome == 'failure' || steps.football.outcome == 'failure'
+        run: exit 1

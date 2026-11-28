@@ -8,6 +8,8 @@ on:
   schedule:
     - cron: '43 12 * * *'
   workflow_dispatch:
+  repository_dispatch:
+    types: [dashboard-data-updated]
 
 permissions:
   contents: read

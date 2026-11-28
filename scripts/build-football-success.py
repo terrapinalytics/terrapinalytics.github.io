@@ -24,7 +24,6 @@ TEAMS = {
     26: "UCLA", 30: "USC", 264: "Washington", 275: "Wisconsin",
 }
 JOINED_2024 = {2483, 26, 30, 264}
-AS_OF = "2026-11-21"
 MATCHED_GAMES = 11
 # ESPN tags these conference championship games as regular season.
 TITLE_GAMES = {401539475, 401539480, 401673464, 401777353}
@@ -239,7 +238,7 @@ def append_game(data, head, year, team, drives, excluded, withheld, benchmark, l
             cell[1] += 1
 
 
-def build(source):
+def build(source, schedule):
     output = {team: empty_dataset() for team in TEAMS}
     bench = collections.defaultdict(lambda: [0, 0])
     sources = []
@@ -263,12 +262,9 @@ def build(source):
         games = [list(plays.values()) for plays in by_game.values()]
         for records in sorted(games, key=lambda rows: (rows[0]["seasonType"], rows[0]["week"], rows[0]["game_id"])):
             head = records[0]
-            if year == 2026 and head["seasonType"] != 2:
-                continue
-            if year == 2026 and head["week"] > 12:
-                continue
             teams = (head["homeTeamId"], head["awayTeamId"])
-            regular = head["seasonType"] == 2 and head["game_id"] not in TITLE_GAMES
+            regular = (head["seasonType"] == 2 and head["game_id"] not in TITLE_GAMES
+                       and not (year == 2026 and head["week"] > 13))
             league_game = regular and all(team in members for team in teams)
             drives, excluded, withheld = prepare_drives(records)
             for team in teams:
@@ -278,8 +274,18 @@ def build(source):
                     team_games[team] += 1
                 number_in_season = team_games[team] if regular else None
                 append_game(output[team], head, year, team, drives, excluded, withheld, bench, league_game, number_in_season)
-    assert [sum(game[1] == year for game in output[MARYLAND]["games"]) for year in YEARS] == [13, 12, 12, 11]
-    index = {"teams": [[str(team), name] for team, name in TEAMS.items()], "asOf": AS_OF, "matchedGames": MATCHED_GAMES, "joinedIn2024": sorted(JOINED_2024), "sources": sources}
+    latest = {
+        (game[0], str(team)): tuple(game[5:7])
+        for team, data in output.items() for game in data["games"] if game[1] == YEARS[-1]
+    }
+    expected = {(row["id"], row["team"]): tuple(row["scores"]) for row in schedule}
+    if latest != expected:
+        missing = sorted(expected.keys() - latest.keys())
+        unexpected = sorted(latest.keys() - expected.keys())
+        scores = sorted(key for key in latest.keys() & expected.keys() if latest[key] != expected[key])
+        raise ValueError(f"Football schedule mismatch. Missing: {missing}; unexpected: {unexpected}; scores: {scores}")
+    as_of = max(row["date"] for row in schedule)
+    index = {"teams": [[str(team), name] for team, name in TEAMS.items()], "asOf": as_of, "matchedGames": MATCHED_GAMES, "joinedIn2024": sorted(JOINED_2024), "sources": sources}
     return output, [list(key) + totals for key, totals in bench.items()], index
 
 
@@ -289,10 +295,10 @@ CSV_COLUMNS = ["season", "week", "game_id", "team", "opponent", "venue", "team_s
                "team_score_margin_before_play", "description", "play_id", "big_ten_league_game", "regular_season_game_number"]
 
 
-def write_exports(output, path):
+def write_exports(output, path, as_of):
     with zipfile.ZipFile(path, "w", zipfile.ZIP_DEFLATED) as archive:
         archive.writestr("README.txt", (
-            f"Big Ten football play-by-play, 2023–{YEARS[-1]} through {AS_OF}.\n"
+            f"Big Ten football play-by-play, 2023–{YEARS[-1]} through {as_of}.\n"
             "One row per rated snap per current Big Ten team perspective. Games involving two covered teams "
             "appear in both perspectives. For distinct snaps, use game_id and play_id together.\n"
             "team_success is an offensive success or defensive stop for the team column. Thresholds are "
@@ -328,11 +334,13 @@ def write_json(path, value):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("parquet_directory", type=Path)
+    parser.add_argument("--schedule", type=Path, required=True)
+    parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
-    data, benchmark, index = build(args.parquet_directory)
-    build_path = Path(__file__).resolve().parents[1] / "assets" / "football-success"
+    data, benchmark, index = build(args.parquet_directory, json.loads(args.schedule.read_text()))
+    build_path = args.output
     team_path = build_path / "teams"
-    team_path.mkdir(exist_ok=True)
+    team_path.mkdir(parents=True, exist_ok=True)
     for team_id, team_data in data.items():
         write_json(team_path / f"{team_id}.json", team_data)
         counts = collections.Counter(game[1] for game in team_data["games"])
@@ -340,4 +348,4 @@ if __name__ == "__main__":
     write_json(build_path / "coverage.json", index)
     with gzip.open(build_path / "benchmark-teams.json.gz", "wt", encoding="utf-8") as compressed:
         json.dump(benchmark, compressed, separators=(",", ":"))
-    write_exports(data, build_path / "big-ten-football-plays.zip")
+    write_exports(data, build_path / "big-ten-football-plays.zip", index["asOf"])
