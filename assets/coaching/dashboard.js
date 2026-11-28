@@ -13,6 +13,13 @@ function format(value, type = 'number') {
   if (type === 'money') return number.toLocaleString('en-US', {style:'currency',currency:'USD',maximumFractionDigits:0});
   return number.toLocaleString('en-US', {maximumFractionDigits:type === 'integer' ? 0 : 1, minimumFractionDigits:type === 'number' ? 1 : 0});
 }
+function scoreCell(value) {
+  const score = Number(value);
+  const available = value !== null && value !== undefined && value !== '' && Number.isFinite(score);
+  const distance = Math.min(50, Math.abs(score - 50));
+  const scale = available ? ` data-score-tone="${score >= 50 ? 'high' : 'low'}" style="--score-tint:${2 * distance}%"` : '';
+  return `<td class="number score-cell"${scale}>${format(value, 'integer')}</td>`;
+}
 function buyoutLabel(row) {
   return row.dismissal_buyout?.amount_is_lower_bound ? escapeHtml(row.dismissal_buyout.display) : format(row.dismissal_buyout?.amount_usd,'money');
 }
@@ -132,9 +139,13 @@ async function start() {
     if (!metricIndex.has(key)) metricIndex.set(key, {key, label, definition:'FY2025 · nominal dollars', format:'money'});
   }
   metricIndex.set('conference', {key:'conference', format:'text', label:'Conference affiliation', definition:'Current football membership'});
-  for (const [key,label] of [['previous_rank','October rank'],['rank_without_conference','Rank without conference weight']]) metricIndex.set(key,{key,label,format:'integer'});
+  if (!isOdds) metricIndex.set('score', {...metricIndex.get('score'), format:'integer'});
   const componentKeys = ['resources_score','recruiting_score','conference_score','fans_score','ceiling_score'];
-  (data.weights || []).forEach(([label,weight],i)=>metricIndex.set(componentKeys[i],{key:componentKeys[i],label:'Category score',format:'number',definition:label+' · '+weight+'% of overall score'}));
+  const componentLabels = ['Resources', 'Recruiting', 'Conference score', 'Fans & tradition', 'Competitive ceiling'];
+  (data.weights || []).forEach(([label,weight],i)=>metricIndex.set(componentKeys[i],{
+    key:componentKeys[i], label:componentLabels[i], format:'integer', definition:label+' · '+weight+'% of overall score'
+  }));
+  const isScore = key => key === 'score' || componentKeys.includes(key);
   const framework = isOdds ? '' : '<fieldset class="framework"><legend>Ranking framework · compare programs by category</legend>'+
     '<button type="button" data-group="Overview">Overview</button>'+data.weights.map(([label,weight])=>
       '<button type="button" data-group="'+escapeHtml(label)+'">'+escapeHtml(label)+' <small>'+weight+'%</small></button>').join('')+
@@ -193,7 +204,7 @@ async function start() {
   document.getElementById('export-view').onclick=()=>ViewTools.csv(isOdds?'departure-odds-filtered.csv':group===compareGroup?'program-comparison.csv':'program-rankings-filtered.csv',exportRows);
   function selectedMetrics(category = group, expanded = false) {
     const index = (data.weights || []).findIndex(([label])=>label===category);
-    const keys = index < 0 ? ['score','previous_rank','rank_without_conference'] : [componentKeys[index],...frameworkMetrics[category]];
+    const keys = index < 0 ? ['score',...componentKeys] : [componentKeys[index],...frameworkMetrics[category]];
     return [...keys, ...(expanded ? detailMetrics[category] || [] : [])]
       .map(key => metricIndex.get(key)).filter(Boolean);
   }
@@ -231,7 +242,7 @@ async function start() {
       content += `<p><strong>${escapeHtml(row.coach)}</strong> · ${escapeHtml(row.status)}${row.incoming_hire_announced ? ` · Hired ${escapeHtml(row.incoming_hire_announced)}` : ''}</p><div class="metric-grid"><div class="metric">December 7<strong>${row.dec7_probability_pct}%</strong></div><div class="metric">February 1<strong>${row.feb1_probability_pct}%</strong></div><div class="metric">Dismissal buyout estimate<strong>${buyoutLabel(row)}</strong></div></div>${row.two_week_change_pp == null ? '' : `<p><strong>${Number(row.two_week_change_pp)>0?'+':''}${format(row.two_week_change_pp,'number')} percentage points</strong> in December 7 odds since the ${escapeHtml(row.two_week_baseline_source_date || data.comparison_source_date)} forecast.</p>`}<details><summary>What changed and sources</summary><p>${escapeHtml(row.research_note)}</p><p>${sourceLinks(row.research_source)}</p></details>${PeerContext.comparison({value:row.dismissal_buyout.amount_usd,label:'Dismissal buyout estimate · mixed reporting dates; estimates, not synchronized contract valuations',format:v=>format(v,'money'),cohorts:[{label:'Tracked situations ('+rows.length+')',values:rows.map(x=>x.dismissal_buyout.amount_usd)},{label:row.conference+' tracked situations',values:rows.filter(x=>x.conference===row.conference).map(x=>x.dismissal_buyout.amount_usd)}]})}<details><summary>Buyout notes</summary><p>${escapeHtml(row.dismissal_buyout.notes)}</p><p>${escapeHtml(row.dismissal_buyout.applicable_date_or_period)}</p><p>${sourceLinks(row.dismissal_buyout.source_url)}</p></details>`;
     } else {
       content += data.weights.map(([label, weight, definition],i) => `<details class="framework-detail"${label===group?' open':''}>
-        <summary>${escapeHtml(label)} <span>${format(row[componentKeys[i]],'number')} / 100 · ${weight}% weight</span></summary>
+        <summary>${escapeHtml(label)} <span>${format(row[componentKeys[i]],'integer')} / 100 · ${weight}% weight</span></summary>
         <p class="count">${escapeHtml(definition)}.</p>
         <div class="metric-grid">${selectedMetrics(label, true).map(metric=>programMetric(row,metric)).join('')}</div>
       </details>`).join('');
@@ -265,16 +276,16 @@ async function start() {
       const {key, label, definition = '', format: type} = metric;
       exportRows.push([category, label, definition, ...programs.map(row=>row[key])]);
       return `<tr${componentKeys.includes(key) ? ' class="category-score"' : ''}><th scope="row">${escapeHtml(label)}${definition ? `<small>${escapeHtml(definition)}</small>` : ''}</th>${
-        programs.map(row=>`<td class="${type==='text'?'':'number'}">${format(row[key],type)}</td>`).join('')}</tr>`;
+        programs.map(row=>isScore(key) ? scoreCell(row[key]) : `<td class="${type==='text'?'':'number'}">${format(row[key],type)}</td>`).join('')}</tr>`;
     };
     const overview = [
       {key:'rank',label:'FBS rank',format:'integer'}, {key:'tier',label:'Job tier',format:'integer'},
-      metricIndex.get('score'), metricIndex.get('rank_without_conference')
+      metricIndex.get('score')
     ];
     const summary = overview.map(metric=>metricRow('Overview',metric)).join('');
     const categories = data.weights.map(([label, weight],i)=>{
       const metrics = [componentKeys[i], ...comparisonMetrics[label]].map(key=>metricIndex.get(key));
-      metrics[0] = {...metrics[0], definition:'Out of 100'};
+      metrics[0] = {...metrics[0], label:'Category score', definition:'Out of 100'};
       return `<tbody><tr class="comparison-category"><th scope="rowgroup" colspan="${programs.length+1}">${escapeHtml(label)} <small>${weight}% weight</small></th></tr>${
         metrics.map(metric=>metricRow(label,metric)).join('')}</tbody>`;
     });
@@ -291,7 +302,7 @@ async function start() {
       document.getElementById('framework-note').textContent = comparing
         ? 'Compare overall ranks, category scores, and the measures behind them.'
         : group === 'Overview'
-          ? 'Choose a category to compare its key metrics, or select a program to expand its evidence.'
+          ? 'Scores are out of 100. Orange indicates lower scores and blue indicates higher scores.'
           : data.weights.find(([label])=>label===group)[2]+'.';
       if (comparing) {
         renderComparison();
@@ -332,9 +343,9 @@ async function start() {
       : [['Rank','Program','Conference','Tier',...exportMetrics.map(metric=>metric.definition ? metric.label+' ('+metric.definition+')' : metric.label)],
         ...filtered.map(row=>[row.rank,row.school,row.conference,row.tier,...exportMetrics.map(metric=>row[metric.key])])];
     const header = (key,label,definition='')=>`<th scope="col"${sortKey===key?' aria-sort="'+(ascending?'ascending':'descending')+'"':''}><button type="button" data-sort="${key}" data-sort-column>${escapeHtml(label)}</button>${definition?'<small>'+escapeHtml(definition)+'</small>':''}</th>`;
-    let columns = header('rank','Rank')+header('school','Program')+header('tier','Job tier');
+    let columns = header('school','School')+header('rank','Rank')+header('tier','Job tier');
     if (isOdds) columns = header('school','Program')+header(checkpoint,'Departure odds')+header('coach','Coach')+header('tier','Job tier')+header('buyout_sort','Buyout estimate')+(checkpoint==='dec7_probability_pct'?header('change_sort','Two-week change', 'Reference: '+data.comparison_reference_date+' · Saved forecast: '+data.comparison_source_date):'');
-    else columns += metrics.map(m=>header(m.key,m.label,m.definition)).join('');
+    else columns += metrics.map(m=>header(m.key,m.label,group==='Overview'?'':m.definition)).join('');
     document.getElementById('head').innerHTML = '<tr>'+columns+'</tr>';
     document.getElementById('body').innerHTML = filtered.map(row=>{
       const school = `<button class="school" data-school="${escapeHtml(row.school)}">${TeamLogos.label(row.school)}</button>`;
@@ -343,13 +354,14 @@ async function start() {
         const delta = row.two_week_change_pp;
         return `<tr><td>${school}<div class="status">${escapeHtml(row.status)}${row.incoming_hire_announced ? `<span class="incoming-hire">Hired ${escapeHtml(row.incoming_hire_announced)}</span>` : ''}</div></td><td class="bar-cell"><div class="bar-line"><div class="bar-track"><div class="bar-fill" style="width:${probability}%;background:${probability===100?'#c74445':probability>=30?'#d47136':probability>=10?'#c7a63e':'#4a8876'}"></div></div><strong>${format(probability)}%</strong></div></td><td>${escapeHtml(row.coach)}</td><td>${tier(row.tier)}</td><td class="number">${buyoutLabel(row)}</td>${checkpoint==='dec7_probability_pct'?'<td class="number delta">'+(delta == null ? '—' : (delta > 0 ? '+' : '') + format(delta) + ' pp')+'</td>':''}</tr>`;
       }
-      return `<tr><td class="number">${row.rank}</td><td>${school}${group==='Conference and realignment'?'':'<div class="status">'+escapeHtml(row.conference)+'</div>'}</td><td>${tier(row.tier)}</td>${metrics.map(m=>`<td class="${m.format==='text'?'':'number'}">${format(row[m.key],m.format)}</td>`).join('')}</tr>`;
+      return `<tr><td>${school}</td><td class="number">${row.rank}</td><td>${tier(row.tier)}</td>${metrics.map(m=>
+        isScore(m.key) ? scoreCell(row[m.key]) : `<td class="${m.format==='text'?'':'number'}">${format(row[m.key],m.format)}</td>`).join('')}</tr>`;
     }).join('') || '<tr><td colspan="10">No matching programs.</td></tr>';
     document.getElementById('count').textContent = filtered.length+' of '+rows.length+(isOdds?' tracked situations':' ranked programs')+' · Click a school for sources and detail';
     document.querySelectorAll('[data-sort]').forEach(button=>button.onclick=()=>{
       const next = button.dataset.sort;
       if(next===sortKey) ascending=!ascending;
-      else {sortKey=next;ascending=next!==checkpoint;}
+      else {sortKey=next;ascending=next!==checkpoint && !isScore(next);}
       render();
     });
     document.querySelectorAll('[data-school]').forEach(button=>button.onclick=()=>showDetail(rows.find(row=>row.school===button.dataset.school)));

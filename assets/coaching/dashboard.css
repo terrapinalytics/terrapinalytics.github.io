@@ -39,3 +39,22 @@
   [data-view="odds"] #ranking-table .bar-track{width:3.5rem;height:4px}
   [data-view="odds"] #ranking-table .team-logo{width:18px;height:18px;flex-basis:18px}
 }
+
+[data-view="rankings"] #ranking-table table{border-collapse:separate;border-spacing:0}
+[data-view="rankings"] #ranking-table tr>:first-child:not([colspan]){
+  position:sticky;left:0;min-width:8rem;max-width:11rem;white-space:normal;
+  background:#fff;z-index:2;box-shadow:1px 0 var(--line)
+}
+[data-view="rankings"] #ranking-table tbody tr:nth-child(even)>:first-child:not([colspan]){background:#f7f9fb}
+[data-view="rankings"] #ranking-table thead tr>:first-child{background:#edf1f6;z-index:4}
+[data-view="rankings"] #ranking-table .school{text-align:left}
+[data-view="rankings"] td.score-cell[data-score-tone]{
+  background:color-mix(in srgb,var(--score-color) var(--score-tint),#f8fafc);
+  font-weight:700
+}
+[data-view="rankings"] td.score-cell[data-score-tone="low"]{--score-color:#f2b584}
+[data-view="rankings"] td.score-cell[data-score-tone="high"]{--score-color:#83b9e0}
+@media(max-width:700px){
+  [data-view="rankings"] #ranking-table tr>:first-child:not([colspan]){width:8rem;max-width:8rem}
+  [data-view="rankings"] #ranking-table .team-logo{width:18px;height:18px;flex-basis:18px}
+}
