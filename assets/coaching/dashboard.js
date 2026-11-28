@@ -31,7 +31,8 @@ function sourceLinks(value) {
 function options(values) { return values.map(value => `<option>${escapeHtml(value)}</option>`).join(''); }
 const frameworkMetrics = {
   'Football resources': ['evidence_football_spending', 'evidence_football_payroll', 'evidence_contributions'],
-  'Recruiting geography': ['local_top1000_per_class', 'evidence_hs_rank', 'evidence_transfer_rating'],
+  'Recruiting geography': ['evidence_recruits_local', 'evidence_recruits_regional', 'evidence_recruits_adjusted',
+    'evidence_hs_rank', 'evidence_transfer_rating'],
   'Conference and realignment': ['conference', 'evidence_conference_revenue'],
   'Fans and tradition': ['evidence_attendance', 'evidence_ticket_sales', 'all_time_win_pct'],
   'Competitive ceiling': ['evidence_sp_rating']

@@ -4,6 +4,7 @@ from collections import defaultdict
 import csv
 import io
 import json
+from math import cos, radians, sin
 from pathlib import Path
 from statistics import mean
 from zipfile import ZipFile
@@ -52,6 +53,47 @@ def summarize(values, source, factors=None):
     return result
 
 
+def recruiting_markets(programs):
+    """Allocate nearby talent by straight-line distance to the current FBS footprint."""
+    campuses = {}
+    for row in csv_rows(COACHING / 'fbs-campus-locations.csv'):
+        school = row['school']
+        if school in campuses:
+            raise ValueError(f'Duplicate campus for {school}')
+        campuses[school] = radians(float(row['latitude'])), radians(float(row['longitude']))
+    if campuses.keys() != programs.keys():
+        raise ValueError('Recruiting market campuses must match all ranked schools')
+
+    map_data = (ROOT / 'assets/recruiting/data.js').read_text().split('=', 1)[1].strip().rstrip(';')
+    recruits = json.loads(map_data)['players']
+    years = list(range(2022, 2027))
+    local_threshold = sin(100 / (2 * 3958.7613)) ** 2
+    regional_threshold = sin(250 / (2 * 3958.7613)) ** 2
+    totals = {school: [0, 0, 0.0] for school in campuses}
+    for year, _, rank, *_rest, latitude, longitude, _destination, _profile in recruits:
+        if year not in years or not rank or rank > 1000 or latitude is None or longitude is None:
+            continue
+        lat, lon = radians(latitude), radians(longitude)
+        nearby = {}
+        for school, (campus_lat, campus_lon) in campuses.items():
+            distance = sin((lat - campus_lat) / 2) ** 2 + cos(lat) * cos(campus_lat) * sin((lon - campus_lon) / 2) ** 2
+            if distance <= local_threshold:
+                nearby[school] = 1
+                totals[school][0] += 1
+            elif distance <= regional_threshold:
+                nearby[school] = 0.5
+                totals[school][1] += 1
+        denominator = max(1, sum(nearby.values()))
+        for school, weight in nearby.items():
+            totals[school][2] += weight / denominator
+    return [
+        {school: {'value': round(values[i] / len(years), 4), 'years': years,
+                  'source': '247Sports Composite / CFBD locations'}
+         for school, values in totals.items()}
+        for i in range(3)
+    ]
+
+
 def build():
     index = {int(row['fiscal_year']): float(row['index']) for row in
              csv_rows(FINANCE / 'escalation/explorer_series.csv')
@@ -94,6 +136,15 @@ def build():
         'money', financial(payroll, 'football_coaching_compensation_usd'), finance_link)
     add('evidence_contributions', 'Athletics contributions', money_note, 'money',
         financial(ncaa, 'donor_contributions_revenue_usd'), finance_link)
+    local, regional, adjusted = recruiting_markets(programs)
+    recruiting_link = '../../projects/program-rankings.html#recruiting-market-overlap'
+    add('evidence_recruits_local', 'Local recruits', 'Top-1,000 prospects per class within 100 miles · 2022–26',
+        'number', local, recruiting_link)
+    add('evidence_recruits_regional', 'Regional recruits', 'Top-1,000 prospects per class over 100 and within 250 miles · 2022–26',
+        'number', regional, recruiting_link)
+    add('evidence_recruits_adjusted', 'Competition-adjusted supply',
+        'Weighted prospects per class · shares account for nearby FBS campuses · 2022–26',
+        'number', adjusted, recruiting_link)
     add('evidence_hs_rank', 'High-school class rank', '2016–25 class average, excluding the 2021 recruiting cycle',
         'number', summarize(indexed(recruiting, 'rank', set(range(2016, 2026)) - {2021}, 'year'),
                             'CollegeFootballData recruiting classes'), source_link)
