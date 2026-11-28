@@ -104,7 +104,7 @@ async function start() {
   const financePromise = isOdds ? null : fetch('ranking-finance.json')
     .then(response => response.ok ? response.json() : null)
     .catch(() => null);
-  const response = await fetch(isOdds ? 'odds.json?v=20261127-carousel' : 'rankings.json');
+  const response = await fetch(isOdds ? 'odds.json?v=20261127-boards' : 'rankings.json');
   if (!response.ok) throw new Error('Data request failed');
   const data = await response.json();
   const finance = await financePromise;
