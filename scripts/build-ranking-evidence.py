@@ -53,6 +53,19 @@ def summarize(values, source, factors=None):
     return result
 
 
+def rank_highest(values):
+    ranked = {}
+    previous_score = None
+    rank = 0
+    for position, (school, entry) in enumerate(
+            sorted(values.items(), key=lambda item: item[1]['value'], reverse=True), start=1):
+        if entry['value'] != previous_score:
+            rank = position
+            previous_score = entry['value']
+        ranked[school] = {**entry, 'value': rank}
+    return ranked
+
+
 def recruiting_markets(programs):
     """Allocate nearby talent by straight-line distance to the current FBS footprint."""
     campuses = {}
@@ -131,10 +144,10 @@ def build():
     spending_eada = financial(eada, 'football_expenditure_usd', EADA)
     add('evidence_football_spending', 'Football spending',
         money_note + ' · NCAA where at least two years are available, otherwise EADA',
-        'money', spending_eada | spending_ncaa, finance_link)
+        'money-rounded', spending_eada | spending_ncaa, finance_link)
     add('evidence_football_payroll', 'Football coaching payroll', money_note,
-        'money', financial(payroll, 'football_coaching_compensation_usd'), finance_link)
-    add('evidence_contributions', 'Athletics contributions', money_note, 'money',
+        'money-rounded', financial(payroll, 'football_coaching_compensation_usd'), finance_link)
+    add('evidence_contributions', 'Athletics contributions', money_note, 'money-rounded',
         financial(ncaa, 'donor_contributions_revenue_usd'), finance_link)
     local, regional, adjusted = recruiting_markets(programs)
     recruiting_link = '../../projects/program-rankings.html#recruiting-market-overlap'
@@ -142,31 +155,33 @@ def build():
         'number', local, recruiting_link)
     add('evidence_recruits_regional', 'Regional recruits', 'Top-1,000 prospects per class over 100 and within 250 miles · 2022–26',
         'number', regional, recruiting_link)
-    add('evidence_recruits_adjusted', 'Competition-adjusted supply',
-        'Weighted prospects per class · shares account for nearby FBS campuses · 2022–26',
+    add('evidence_recruits_adjusted', 'Nearby talent share',
+        'Recruit equivalents per class after sharing credit with nearby FBS schools · 2022–26',
         'number', adjusted, recruiting_link)
-    add('evidence_hs_rank', 'High-school class rank', '2016–25 class average, excluding the 2021 recruiting cycle',
-        'number', summarize(indexed(recruiting, 'rank', set(range(2016, 2026)) - {2021}, 'year'),
+    add('evidence_hs_rank', 'Avg. high-school class rank', '2016–25 class average, excluding the 2021 recruiting cycle · 1 is best',
+        'integer', summarize(indexed(recruiting, 'rank', set(range(2016, 2026)) - {2021}, 'year'),
                             'CollegeFootballData recruiting classes'), source_link)
-    add('evidence_transfer_rating', 'Incoming transfer rating',
-        '2022–26 average of annual ratings for rated incoming transfers',
-        'rating', summarize(indexed(transfers, 'incoming_mean_rating', set(range(2022, 2027)), 'season'),
-                            'CollegeFootballData transfer portal'), source_link)
+    transfer_ratings = summarize(indexed(transfers, 'incoming_mean_rating', set(range(2022, 2027)), 'season'),
+                                 'CollegeFootballData transfer portal')
+    add('evidence_transfer_rank', 'Transfer recruiting rank',
+        'Ranks schools by average incoming transfer rating, 2022–26 · 1 is best',
+        'integer', rank_highest({school: entry for school, entry in transfer_ratings.items() if school in programs}),
+        source_link)
     same_league = [r for r in ncaa if programs.get(r['school']) and
                    membership.get((r['school'], int(r['fiscal_year']) - 1)) == programs[r['school']]]
-    add('evidence_conference_revenue', 'Conference, NCAA, media and postseason revenue',
-        money_note + ' · football seasons in the current league only',
-        'money', financial(same_league, 'conference_ncaa_media_postseason_revenue_usd'), finance_link)
+    add('evidence_conference_revenue', 'Conference-related revenue',
+        money_note + ' · NCAA, conference, media and postseason receipts · current league only',
+        'money-rounded', financial(same_league, 'conference_ncaa_media_postseason_revenue_usd'), finance_link)
     attendance = [row for row in attendance if row['covid_restricted'].lower() != 'true' and
                   row['fbs_eligible'].lower() == 'true']
     add('evidence_attendance', 'Home attendance per game', '2010–25 season average, excluding 2020 and flagged restricted seasons',
         'integer', summarize(indexed(attendance, 'average_home_attendance', set(range(2010, 2026)) - {2020},
                                      'season'), 'NCAA attendance / reconstructed season reports'), source_link)
-    add('evidence_ticket_sales', 'Athletics ticket sales', money_note, 'money',
+    add('evidence_ticket_sales', 'Athletics ticket sales', money_note, 'money-rounded',
         financial(ncaa, 'ticket_sales_revenue_usd'), finance_link)
-    add('evidence_sp_rating', 'SP+ rating', '2016–25 FBS season average, excluding 2020', 'number',
+    add('evidence_sp_rank', 'Avg. SP+ rank', '2016–25 national FBS rank, excluding 2020 · 1 is best', 'integer',
         summarize(indexed([row for row in sp if row['membership_check'] == 'in_year_fbs_list'],
-                          'rating', SEASONS, 'season'), 'CollegeFootballData SP+'), source_link)
+                          'ranking', SEASONS, 'season'), 'CollegeFootballData SP+'), source_link)
     return json.dumps(dict(metrics=metrics, schools=schools),
                       ensure_ascii=False, separators=(',', ':'), sort_keys=True) + '\n'
 

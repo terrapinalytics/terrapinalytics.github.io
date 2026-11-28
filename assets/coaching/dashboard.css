@@ -52,8 +52,8 @@
   background:color-mix(in srgb,var(--score-color) var(--score-tint),#f8fafc);
   font-weight:700
 }
-[data-view="rankings"] td.score-cell[data-score-tone="low"]{--score-color:#f2b584}
-[data-view="rankings"] td.score-cell[data-score-tone="high"]{--score-color:#83b9e0}
+[data-view="rankings"] td.score-cell[data-score-tone="low"]{--score-color:#efa5a7}
+[data-view="rankings"] td.score-cell[data-score-tone="high"]{--score-color:#86c7a1}
 @media(max-width:700px){
   [data-view="rankings"] #ranking-table tr>:first-child:not([colspan]){width:8rem;max-width:8rem}
   [data-view="rankings"] #ranking-table .team-logo{width:18px;height:18px;flex-basis:18px}
