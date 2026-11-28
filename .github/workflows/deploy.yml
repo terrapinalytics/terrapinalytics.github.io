@@ -33,6 +33,8 @@ jobs:
         run: python scripts/build-spending-explorer.py --check
       - name: Check finance dashboard data
         run: python scripts/build-finance-dashboard.py --check
+      - name: Check program ranking evidence
+        run: python scripts/build-ranking-evidence.py --check
       - name: Build national basketball profiles
         run: python scripts/build-basketball-profiles.py
       - name: Render website

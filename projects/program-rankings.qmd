@@ -46,7 +46,7 @@ Football resources gives 50% of its weight to FY2022–24 football spending, 18%
 
 Recruiting gives 38% to the average number of geocoded top-1,000 prospects per class within 250 miles in 2021–25, 32% to recruiting class rank in those years, 20% to 2026 roster talent and 10% to incoming transfer quality. Nearby prospects can count for competing schools. This favors access to talent and gives national recruiters credit through their actual classes.
 
-Conference platform scores are editorial assumptions about media resources, exposure and stability. The SEC and Big Ten score 100, independent Notre Dame 95, the ACC and Big 12 78, the American and Pac-12 44, the Mountain West and Sun Belt 33, and the MAC and C-USA 26. The dashboard also ranks every job with this component removed, holding the other four scores fixed.
+Conference platform scores are editorial assumptions about media resources, exposure and stability. The SEC and Big Ten score 100, independent Notre Dame 95, the ACC and Big 12 78, the American and Pac-12 44, the Mountain West and Sun Belt 33, and the MAC and C-USA 26. The rankings download includes a scenario that holds the other four scores fixed and removes this component.
 
 Fan support and tradition combines recent home crowds (37%), 2010–19 crowds (16%), stadium capacity (12%), FY2025 ticket revenue (10%) and all-time winning percentage (25%). Winning history includes earlier subdivisions. Competitive ceiling gives 72% to national strength and 28% to standing among current conference peers. National strength blends 2016–25 SP+ and FPI with the November 21 Sagarin rating. Ten historical FBS seasons earn the full 75% historical weight, with older ratings receiving proportionally less weight for shorter histories. Notre Dame uses national standing in both parts.
 
@@ -58,13 +58,17 @@ The November score puts South Florida and Boise State just below Kansas, the low
 
 ### Evidence and limitations
 
-Use **Compare schools** to see the five category scores and their inputs for up to four programs side by side. Select a school in the rankings to expand its sources and peer comparisons. The downloads include the source registry, reporting definitions, coverage, and unresolved conflicts. [Download the full scoring inputs](../assets/coaching/program_inputs.csv).
+Use **Compare schools** to see the five category scores and the multi-year evidence for up to four programs. Select a school in a category to see the exact years and sources. This evidence view uses longer windows than some of the November scoring inputs. [Download the November scoring inputs](../assets/coaching/program_inputs.csv).
 
-School details show the expanded FY2025 NCAA and EADA reports side by side in nominal dollars. Each source retains its own accounting definitions. Across the two panels, every G6 program has a FY2025 football spending observation. EADA has no usable report for the three service academies, whose spending appears in the NCAA panel. Verified FY2025 athletics ticket sales and contributions feed the November model. FY2025 football coaching compensation appears in the school details. The coaching payroll input to the model uses the FY2022–24 average.
+| Evidence | Years and treatment |
+|---|---|
+| Financial measures | FY2016–25, excluding the disrupted FY2020 and FY2021. Each observation is converted to FY2025 athletics-cost dollars before averaging, using the fixed-weight College Athletics Spending Index. |
+| Football spending | NCAA MFRS where at least two comparable annual values are available. EADA supplies the entire average for schools with insufficient MFRS coverage. Peer comparisons use the same source. |
+| Conference-related revenue | Fiscal years whose preceding football season was played in the school's current conference. The NCAA reporting line includes conference, NCAA, media and postseason revenue. |
+| Recruiting | High-school class rank from 2016–25, excluding the 2021 recruiting cycle. Transfer ratings use available 2022–26 classes. Regional prospect access uses the existing 2021–25 geography study. |
+| Attendance and performance | Home attendance from 2010–25 and FBS SP+ from 2016–25. Both omit the 2020 season. Attendance also omits any other observations flagged as COVID-restricted. |
 
-Peer comparisons use the observed sample for each metric across the full rankings, the Power Four, the Group of Six and the school's current conference. Missing figures are excluded from those sample sizes. NCAA athletics-wide coaches compensation, football-only payroll and assistant salary pools cover different scopes. Attendance includes official totals and reconstructed observations. NIL estimates can refer to different measures of spending.
-
-All 137 programs have regional recruiting, high-school class, 2026 roster talent, incoming transfer counts, November Sagarin and 2025 home attendance observations. Incoming transfer quality is available for 134. North Dakota State and Sacramento State have November Sagarin ratings and joined the FBS in 2026, after the 2016–25 SP+ and FPI window. Other recently promoted schools can have shorter FBS histories.
+Multi-year figures give equal weight to each observed year and require at least two observations. Missing disclosure and short histories can leave a blank. The school details show the years used, and peer comparisons exclude missing figures. [College Athletics Spending Index](athletics-spending-index.qmd).
 
 The carousel probabilities are separate editorial forecasts for the stated deadline, informed by attributed reporting, results, contracts and buyout costs, and institutional circumstances. Fan sentiment and unsourced speculation carry less weight than original reporting or official statements. A coach’s intention to return does not establish an institutional guarantee. Announced departures are distinguished from forecasts.
 
