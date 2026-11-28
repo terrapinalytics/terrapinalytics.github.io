@@ -8,6 +8,7 @@ function format(value, type = 'number') {
   if (type === 'text') return escapeHtml(value);
   const number = Number(value);
   if (!Number.isFinite(number)) return escapeHtml(value);
+  if (type === 'rating') return number.toLocaleString('en-US', {minimumFractionDigits:3, maximumFractionDigits:5});
   if (type === 'percent') return number.toLocaleString('en-US', {style:'percent',maximumFractionDigits:1});
   if (type === 'money') return number.toLocaleString('en-US', {style:'currency',currency:'USD',maximumFractionDigits:0});
   return number.toLocaleString('en-US', {maximumFractionDigits:type === 'integer' ? 0 : 1, minimumFractionDigits:type === 'number' ? 1 : 0});
@@ -67,10 +68,32 @@ const detailMetrics = {
   ],
   'Competitive ceiling': ['rated_seasons', 'sp_rating_mean_2016_2025', 'sp_offense_rank_mean_2016_2025', 'sp_defense_rank_mean_2016_2025']
 };
+const compareGroup = 'Compare schools';
+const defaultSchools = ['Maryland', 'Rutgers', 'Virginia Tech'];
+const comparisonMetrics = {
+  'Football resources': [
+    'eada_football_expenses_mean_FY2022_2024_2025usd', 'ncaa_football_expenses_mean_FY2022_2024_usd',
+    'head_coach_total_pay_2025_usd', 'assistant_pool_2024_usd', coachingPayroll,
+    'football_roster_athletic_secondary_2026_estimate', 'football_roster_cbs247_2026_estimate',
+    'football_roster_si_2026_estimate', 'football_direct_revenue_share_FY2026_usd',
+    'eada_2025_total', 'ncaa_2025_total_expenditure_usd', 'ncaa_2025_donor_contributions_revenue_usd'
+  ],
+  'Recruiting geography': ['local_top1000_per_class', 'recruiting_rank_mean_2021_2025', 'roster_talent_rank_2026', 'transfer_rating'],
+  'Conference and realignment': ['conference', 'ncaa_2025_conference_ncaa_media_postseason_usd'],
+  'Fans and tradition': [
+    'attendance_average_mean_2022_2024_phase4', 'attendance_average_2025', 'historical_crowd',
+    'current_venue_capacity_2026_metadata', 'ncaa_2025_ticket_sales_revenue_usd', 'all_time_win_pct'
+  ],
+  'Competitive ceiling': ['sp_rating_mean_2016_2025', 'fpi_rank_mean_2016_2025', 'rated_seasons', 'sagarin_week12']
+};
 const additionalMetrics = [
+  ['eada_2025_total', 'EADA athletics expenses', 'FY2025 · nominal dollars', 'money'],
+  ['football_roster_athletic_secondary_2026_estimate', 'Roster spending estimate', '2026 · Athletic via secondary reporting · model input', 'money'],
+  ['football_roster_cbs247_2026_estimate', 'Roster spending estimate', '2026 · CBS/247 · model input', 'money'],
+  ['football_roster_si_2026_estimate', 'Roster spending estimate', '2026 · Sports Illustrated · model input', 'money'],
   ['head_coach_total_pay_2025_usd', 'Head coach reported pay', '2025 · source-reported total pay', 'money'],
   ['head_coach_guaranteed_salary_2026_phase4_usd', 'Head coach guaranteed salary', '2026 · Phase 4 contract snapshot · before bonuses', 'money'],
-  ['transfer_rating', 'Incoming transfer quality', 'Transfer rating used in the November model', 'number'],
+  ['transfer_rating', 'Incoming transfer quality', '2026 · transfer rating used in the November model', 'rating'],
   ['historical_crowd', 'Historical home attendance', '2010–19 · average per home game', 'integer'],
   ['current_venue_capacity_2026_metadata', 'Stadium capacity', 'Current venue metadata', 'integer'],
   ['all_time_win_pct', 'All-time winning percentage', 'Includes earlier subdivisions', 'percent'],
@@ -99,6 +122,15 @@ async function start() {
   const metricIndex = new Map((data.metrics || []).map(metric => [metric.key, metric]));
   for (const [key, label, definition, format] of additionalMetrics) metricIndex.set(key, {key, label, definition, format});
   for (const metric of finance?.metrics || []) metricIndex.set(metric.key, metric);
+  const compareFinanceMetrics = [
+    ['ncaa_2025_total_expenditure_usd', 'NCAA athletics expenses'],
+    ['ncaa_2025_donor_contributions_revenue_usd', 'NCAA athletics contributions'],
+    ['ncaa_2025_ticket_sales_revenue_usd', 'NCAA athletics ticket revenue'],
+    ['ncaa_2025_conference_ncaa_media_postseason_usd', 'NCAA conference / NCAA / media / postseason revenue']
+  ];
+  for (const [key, label] of compareFinanceMetrics) {
+    if (!metricIndex.has(key)) metricIndex.set(key, {key, label, definition:'FY2025 · nominal dollars', format:'money'});
+  }
   metricIndex.set('conference', {key:'conference', format:'text', label:'Conference affiliation', definition:'Current football membership'});
   for (const [key,label] of [['previous_rank','October rank'],['rank_without_conference','Rank without conference weight']]) metricIndex.set(key,{key,label,format:'integer'});
   const componentKeys = ['resources_score','recruiting_score','conference_score','fans_score','ceiling_score'];
@@ -106,36 +138,59 @@ async function start() {
   const framework = isOdds ? '' : '<fieldset class="framework"><legend>Ranking framework · compare programs by category</legend>'+
     '<button type="button" data-group="Overview">Overview</button>'+data.weights.map(([label,weight])=>
       '<button type="button" data-group="'+escapeHtml(label)+'">'+escapeHtml(label)+' <small>'+weight+'%</small></button>').join('')+
+    '<button type="button" data-group="'+compareGroup+'">'+compareGroup+'</button>'+
     '</fieldset><p id="framework-note" class="count"></p>';
   const controls = isOdds
     ? `<label>Checkpoint<select id="checkpoint"><option value="dec7_probability_pct">December 7, 2026</option><option value="feb1_probability_pct">February 1, 2027</option></select></label>
        <label>Openings<select id="status"><option value="">All tracked situations</option><option value="Announced departure">Announced departures</option><option value="Forecast">Forecasts</option></select></label>
        <label>Minimum odds<select id="minimum-odds"><option value="5">5% or higher</option><option value="0">All odds</option></select></label>`
     : `<label>Find a program<input id="search" type="search" placeholder="School or coach" autocomplete="off"></label><label>Conference<select id="conference"><option value="">All conferences</option>${options([...new Set(rows.map(row=>row.conference))].sort())}</select></label><label>Job tier<select id="tier"><option value="">All tiers</option>${[...new Set(rows.map(r=>r.tier))].sort((a,b)=>a-b).map(n=>`<option value="${n}">Tier ${n}</option>`).join('')}</select></label>`;
-  app.innerHTML = `<div class="tools">${controls}</div>${framework}<div class="tools"><button id="reset-view" type="button">Reset</button><button id="share-view" type="button">Copy view link</button><button id="export-view" type="button">Download filtered data</button></div><p id="snapshot" class="count" hidden></p><p id="count" class="count" aria-live="polite"></p><div class="table-wrap"><table><thead id="head"></thead><tbody id="body"></tbody></table></div><section id="detail" class="detail" hidden aria-live="polite"></section><div class="download">${isOdds ? '<a href="departure_odds.csv" download>Odds CSV</a>' : '<a href="program_rankings.csv" download>Rankings CSV</a><a href="program_inputs.csv" download>All program inputs</a><a href="supporting_data.zip" download>Supporting source tables</a><a href="source_registry.csv" download>Source registry</a>'}</div><div class="notes">${isOdds ? '<p>Announced departures are shown at 100%. The February checkpoint includes later potential departures. The change column uses the latest saved forecast available on the two-week reference date. A dash means no comparable baseline. This dashboard covers tracked situations in the ACC, Big Ten, Big 12 and SEC.</p><p>Buyout estimates represent the school’s gross head-coach dismissal obligation. Click a school for the assessment and contract notes. Reporting dates and confidence vary.</p>' : '<p>Rankings and tiers are subjective judgments informed by source observations and calculated comparisons. Reported estimates retain their uncertainty. Each rank uses the five published category scores and weights. See the <a href="../../projects/program-rankings.html" target="_top">ranking methodology</a> for the framework and limitations.</p><p class="count">'+(finance ? 'FY2025 financial evidence uses the expanded finance panels. The scores include verified FY2025 ticket sales and contributions.' : 'FY2025 financial evidence is temporarily unavailable.')+' <a href="../../projects/finance.html" target="_top">Athletics financials</a></p><p>EADA and NCAA MFRS retain their own definitions. Private-school nondisclosure appears as missing. Attendance mixes official totals and reconstructed observations, and roster-spending amounts are source-specific estimates.</p><details><summary>Data quality and source coverage</summary><p><a href="data_quality.md" target="_blank">Phase 4 validation and limitations</a></p><p>The supporting download contains normalized source tables, the data dictionary, field coverage, provenance, and conflicts. Each source retains its reporting year, unit, and definition.</p></details>'}</div>`;
+  app.innerHTML = `${framework}<div class="tools" id="ranking-filters">${controls}</div><div class="tools"><button id="reset-view" type="button">Reset</button><button id="share-view" type="button">Copy view link</button><button id="export-view" type="button">Download filtered data</button></div><p id="snapshot" class="count" hidden></p><p id="count" class="count" aria-live="polite"></p><div class="table-wrap" id="ranking-table"><table><thead id="head"></thead><tbody id="body"></tbody></table></div><section id="detail" class="detail" hidden aria-live="polite"></section>${isOdds ? '' : '<section id="compare-panel" aria-label="School comparison" hidden></section>'}<div class="download">${isOdds ? '<a href="departure_odds.csv" download>Odds CSV</a>' : '<a href="program_rankings.csv" download>Rankings CSV</a><a href="program_inputs.csv" download>All program inputs</a><a href="supporting_data.zip" download>Supporting source tables</a><a href="source_registry.csv" download>Source registry</a>'}</div><div class="notes">${isOdds ? '<p>Announced departures are shown at 100%. The February checkpoint includes later potential departures. The change column uses the latest saved forecast available on the two-week reference date. A dash means no comparable baseline. This dashboard covers tracked situations in the ACC, Big Ten, Big 12 and SEC.</p><p>Buyout estimates represent the school’s gross head-coach dismissal obligation. Click a school for the assessment and contract notes. Reporting dates and confidence vary.</p>' : '<p>Rankings and tiers are subjective judgments informed by source observations and calculated comparisons. Reported estimates retain their uncertainty. Each rank uses the five published category scores and weights. See the <a href="../../projects/program-rankings.html" target="_top">ranking methodology</a> for the framework and limitations.</p><p class="count">'+(finance ? 'FY2025 financial evidence uses the expanded finance panels. The scores include verified FY2025 ticket sales and contributions.' : 'FY2025 financial evidence is temporarily unavailable.')+' <a href="../../projects/finance.html" target="_top">Athletics financials</a></p><p>EADA and NCAA MFRS retain their own definitions. Private-school nondisclosure appears as missing. Attendance mixes official totals and reconstructed observations, and roster-spending amounts are source-specific estimates.</p><details><summary>Data quality and source coverage</summary><p><a href="data_quality.md" target="_blank">Phase 4 validation and limitations</a></p><p>The supporting download contains normalized source tables, the data dictionary, field coverage, provenance, and conflicts. Each source retains its reporting year, unit, and definition.</p></details>'}</div>`;
   const filterIds = isOdds ? ['checkpoint','status','minimum-odds'] : ['search','conference','tier'];
   const params = new URLSearchParams(location.search);
+  const schoolRows = new Map(rows.map(row=>[row.school,row]));
+  const schoolOptions = options([...schoolRows.keys()].sort((a,b)=>a.localeCompare(b)));
+  const comparePanel = document.getElementById('compare-panel');
+  if (comparePanel) {
+    comparePanel.innerHTML = `<div class="tools compare-pickers">${Array.from({length:4}, (_,i)=>`
+      <label>School ${i+1}<select><option value="">Choose a school</option>${schoolOptions}</select></label>`).join('')}</div>
+      <p id="compare-count" class="count" aria-live="polite"></p>
+      <div class="table-wrap comparison-table" id="compare-table" role="region" aria-label="Side-by-side program metrics" tabindex="0"></div>`;
+  }
+  const schoolPickers = [...(comparePanel?.querySelectorAll('select') || [])];
+  const savedSchools = params.has('school') ? params.getAll('school') : defaultSchools;
+  const validSchools = [...new Set(savedSchools.filter(school=>schoolRows.has(school)))];
+  schoolPickers.forEach((picker,i)=>{
+    picker.value = validSchools[i] || '';
+    picker.onchange = renderComparison;
+  });
   const defaults = Object.fromEntries(filterIds.map(id=>[id,document.getElementById(id).value]));
   for(const id of filterIds)ViewTools.restore(document.getElementById(id),params.get(id));
   if(isOdds)sortKey=document.getElementById('checkpoint').value;
   else {
     const savedGroup = params.get('group');
-    group = Object.hasOwn(frameworkMetrics, savedGroup) ? savedGroup : Object.hasOwn(previousGroups, savedGroup) ? previousGroups[savedGroup] : 'Overview';
+    group = savedGroup === compareGroup || Object.hasOwn(frameworkMetrics, savedGroup) ? savedGroup : Object.hasOwn(previousGroups, savedGroup) ? previousGroups[savedGroup] : 'Overview';
   }
   let exportRows = [];
   document.getElementById('reset-view').onclick=()=>{
     for(const id of filterIds)document.getElementById(id).value=defaults[id];
-    group='Overview';sortKey=isOdds?defaults.checkpoint:'rank';ascending=!isOdds;
+    schoolPickers.forEach((picker,i)=>{picker.value=defaultSchools[i] || '';});
+    if (group !== compareGroup) group='Overview';
+    sortKey=isOdds?defaults.checkpoint:'rank';ascending=!isOdds;
     document.getElementById('detail').hidden=true;render();
   };
   document.getElementById('share-view').onclick=()=>{
     const url=new URL(location.href);
     const view = new URLSearchParams(filterIds.map(id=>[id,document.getElementById(id).value]));
     if (!isOdds && group !== 'Overview') view.set('group', group);
+    if (group === compareGroup) {
+      const selected = schoolPickers.map(picker=>picker.value).filter(Boolean);
+      for (const school of selected.length ? selected : ['']) view.append('school', school);
+    }
     url.search = view;
     ViewTools.copy(document.getElementById('share-view'),url);
   };
-  document.getElementById('export-view').onclick=()=>ViewTools.csv(isOdds?'departure-odds-filtered.csv':'program-rankings-filtered.csv',exportRows);
+  document.getElementById('export-view').onclick=()=>ViewTools.csv(isOdds?'departure-odds-filtered.csv':group===compareGroup?'program-comparison.csv':'program-rankings-filtered.csv',exportRows);
   function selectedMetrics(category = group, expanded = false) {
     const index = (data.weights || []).findIndex(([label])=>label===category);
     const keys = index < 0 ? ['score','previous_rank','rank_without_conference'] : [componentKeys[index],...frameworkMetrics[category]];
@@ -188,7 +243,61 @@ async function start() {
     document.getElementById('close').onclick = ()=>{detail.hidden = true;};
     detail.scrollIntoView({behavior:'smooth',block:'start'});
   }
+  function renderComparison() {
+    const selected = schoolPickers.map(picker=>picker.value).filter(Boolean);
+    for (const picker of schoolPickers) {
+      for (const option of picker.options) {
+        option.disabled = Boolean(option.value && option.value !== picker.value && selected.includes(option.value));
+      }
+    }
+    const programs = selected.map(school=>schoolRows.get(school));
+    const table = document.getElementById('compare-table');
+    document.getElementById('compare-count').textContent = programs.length === 0
+      ? 'Choose schools to see their category scores and supporting data.'
+      : `${programs.length} of 4 schools selected · A dash indicates unavailable data.`;
+    table.hidden = programs.length === 0;
+    exportRows = [['Category', 'Metric', 'Definition', ...selected]];
+    if (!programs.length) {
+      table.innerHTML = '';
+      return;
+    }
+    const metricRow = (category, metric) => {
+      const {key, label, definition = '', format: type} = metric;
+      exportRows.push([category, label, definition, ...programs.map(row=>row[key])]);
+      return `<tr${componentKeys.includes(key) ? ' class="category-score"' : ''}><th scope="row">${escapeHtml(label)}${definition ? `<small>${escapeHtml(definition)}</small>` : ''}</th>${
+        programs.map(row=>`<td class="${type==='text'?'':'number'}">${format(row[key],type)}</td>`).join('')}</tr>`;
+    };
+    const overview = [
+      {key:'rank',label:'FBS rank',format:'integer'}, {key:'tier',label:'Job tier',format:'integer'},
+      metricIndex.get('score'), metricIndex.get('rank_without_conference')
+    ];
+    const summary = overview.map(metric=>metricRow('Overview',metric)).join('');
+    const categories = data.weights.map(([label, weight],i)=>{
+      const metrics = [componentKeys[i], ...comparisonMetrics[label]].map(key=>metricIndex.get(key));
+      metrics[0] = {...metrics[0], definition:'Out of 100'};
+      return `<tbody><tr class="comparison-category"><th scope="rowgroup" colspan="${programs.length+1}">${escapeHtml(label)} <small>${weight}% weight</small></th></tr>${
+        metrics.map(metric=>metricRow(label,metric)).join('')}</tbody>`;
+    });
+    const header = programs.map(row=>`<th scope="col">${TeamLogos.label(row.school)}</th>`).join('');
+    table.innerHTML = `<table><thead><tr><th scope="col">Program metric</th>${header}</tr></thead><tbody>${summary}</tbody>${categories.join('')}</table>`;
+  }
   function render() {
+    if (!isOdds) {
+      const comparing = group === compareGroup;
+      comparePanel.hidden = !comparing;
+      for (const id of ['ranking-filters','ranking-table','count']) document.getElementById(id).hidden = comparing;
+      document.querySelectorAll('[data-group]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.group===group)));
+      document.getElementById('export-view').textContent = comparing ? 'Download comparison' : 'Download filtered data';
+      document.getElementById('framework-note').textContent = comparing
+        ? 'Compare overall ranks, category scores, and the measures behind them.'
+        : group === 'Overview'
+          ? 'Choose a category to compare its key metrics, or select a program to expand its evidence.'
+          : data.weights.find(([label])=>label===group)[2]+'.';
+      if (comparing) {
+        renderComparison();
+        return;
+      }
+    }
     const checkpoint = isOdds ? document.getElementById('checkpoint').value : '';
     let filtered;
     if (isOdds) {
@@ -202,12 +311,6 @@ async function start() {
       filtered = rows.filter(row => (row.school + ' ' + (row.coach || '')).toLowerCase().includes(query)
         && (!conference || row.conference === conference)
         && (!chosenTier || row.tier === Number(chosenTier)));
-    }
-    if (!isOdds) {
-      document.querySelectorAll('[data-group]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.group===group)));
-      document.getElementById('framework-note').textContent = group === 'Overview'
-        ? 'Choose a category to compare its key metrics, or select a program to expand its evidence.'
-        : data.weights.find(([label])=>label===group)[2]+'.';
     }
     const metrics = isOdds ? [] : selectedMetrics();
     const snapshot=document.getElementById('snapshot');
