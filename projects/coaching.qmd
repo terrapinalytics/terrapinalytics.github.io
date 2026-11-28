@@ -1,14 +1,14 @@
 ---
-title: "Coaching Carousel"
+title: "2026 Coaching Carousel"
 page-layout: full
 toc: false
 ---
 
 ```{=html}
 <div class="tool-intro">
-<a href="../assets/coaching/odds.html?v=20261123-p4" target="_blank" rel="noopener">Open full screen</a>
+<a href="../assets/coaching/odds.html?v=20261127-carousel" target="_blank" rel="noopener">Open full screen</a>
 </div>
-<iframe class="tool-frame" data-fit-content src="../assets/coaching/odds.html?v=20261123-p4" title="2026 coaching departure odds" loading="eager"></iframe>
+<iframe class="tool-frame" data-fit-content src="../assets/coaching/odds.html?v=20261127-carousel" title="2026 Coaching Carousel" loading="eager"></iframe>
 <script src="../assets/tool-frame.js" defer></script>
 ```
 

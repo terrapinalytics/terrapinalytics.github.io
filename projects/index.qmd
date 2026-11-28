@@ -9,7 +9,7 @@ toc: false
 - [Big Ten Football Success Rates](football-success.qmd) [Compare your team with the Big Ten by down, play type, or quarter. Drill into drives and individual plays.]{.tool-description}
 - [Recruiting Geography](recruiting.qmd) [See where blue-chip recruits come from and how much talent is within reach of each campus.]{.tool-description}
 - [FBS Program Rankings](program-rankings.qmd) [Compare 137 FBS head-coaching jobs and see how resources, recruiting, and performance factor into the rankings.]{.tool-description}
-- [Coaching Carousel](coaching.qmd) [Track announced openings, changes in departure estimates, and reported buyouts.]{.tool-description}
+- [2026 Coaching Carousel](coaching.qmd) [Track announced openings, changes in departure estimates, and reported buyouts.]{.tool-description}
 :::
 
 ## Basketball {#basketball}

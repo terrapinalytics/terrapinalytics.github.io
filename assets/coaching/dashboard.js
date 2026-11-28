@@ -19,7 +19,7 @@ function buyoutLabel(row) {
 function tier(value) { return `<span class="tier t${Number(value)}">Tier ${Number(value)}</span>`; }
 function sourceLinks(value) {
   const urls = [...new Set(String(value || '').match(/https?:\/\/[^\s|;<>"\[\]]+/g) || [])];
-  return urls.slice(0, 3).map((url, index) => `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">Source ${index + 1}</a>`).join(' · ');
+  return urls.map((url, index) => `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">Source ${index + 1}</a>`).join(' · ');
 }
 function options(values) { return values.map(value => `<option>${escapeHtml(value)}</option>`).join(''); }
 const frameworkMetrics = {
@@ -104,7 +104,7 @@ async function start() {
   const financePromise = isOdds ? null : fetch('ranking-finance.json')
     .then(response => response.ok ? response.json() : null)
     .catch(() => null);
-  const response = await fetch(isOdds ? 'odds.json?v=20261123-p4' : 'rankings.json');
+  const response = await fetch(isOdds ? 'odds.json?v=20261127-carousel' : 'rankings.json');
   if (!response.ok) throw new Error('Data request failed');
   const data = await response.json();
   const finance = await financePromise;
