@@ -75,6 +75,7 @@ toc: false
 
 ::: {.content-band .last-band}
 ::: {.content-container}
+```{=html}
 <div class="section-heading section-heading-tight">
 <h2>From the articles</h2>
 <a class="section-link" href="articles/index.html">All articles</a>
@@ -83,6 +84,7 @@ toc: false
 <a class="article-teaser" href="articles/college-athletics-spending-index.html"><div><h3>How Fast Is College Athletics Spending Growing?</h3><p>Spending growth by sport and the breakdown of an athletics budget.</p></div></a>
 <a class="article-teaser" href="articles/recruiting-distance.html"><div><h3>How Far Do Blue-Chip Recruits Travel?</h3><p>Distance distributions and the Maryland recruiting market.</p></div></a>
 <a class="article-teaser" href="articles/down-14-two-point-conversions.html"><div><h3>Down 14: The 2PA Strategy: Game Theory and Football</h3><p>Fourth-quarter decisions in the NFL and FBS.</p></div></a>
+```
 
 :::
 :::

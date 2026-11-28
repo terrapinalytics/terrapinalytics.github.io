@@ -17,9 +17,12 @@ p,li{line-height:1.72}
 #quarto-header a{text-decoration:none}
 .nav-footer{background:#14191e;color:#b3bac0;border-top:3px solid var(--red);font-size:.82rem;padding:1.15rem 0}
 .nav-footer a{color:#fff}
-body:has(.landing-hero) #quarto-content>.page-columns{display:block}
+body:has(.landing-hero) #quarto-content,body:has(.landing-hero) #quarto-content>.page-columns{display:block}
 body:has(.landing-hero) main.content{padding:0!important;margin:0!important;max-width:none!important}
 body:has(.landing-hero) #title-block-header{display:none}
+body:has(.landing-hero) .nav-footer{padding-block:.5rem;min-height:0}
+body:has(.landing-hero) .nav-footer-left{margin-bottom:0}
+body:has(.landing-hero) .nav-footer :is(.nav-footer-center,.nav-footer-right):not(:has(*)){display:none}
 .landing-hero{background:radial-gradient(ellipse at 80% 35%,#2d343a 0%,#171c21 52%,#101418 100%);color:#fff;position:relative;overflow:hidden}
 .landing-hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(#ffffff05 1px,transparent 1px),linear-gradient(90deg,#ffffff05 1px,transparent 1px);background-size:45px 45px;mask-image:linear-gradient(90deg,transparent 32%,#000 100%);pointer-events:none}
 .hero-inner{max-width:var(--container);margin:0 auto;padding:4.5rem 2rem 4.25rem;display:grid;grid-template-columns:1.18fr .82fr;align-items:center;gap:4rem;position:relative}
@@ -55,7 +58,7 @@ body:has(.landing-hero) #title-block-header{display:none}
 .project-card .eyebrow{color:#8b4b52;font-size:.66rem}
 .project-card h3{font-size:1.2rem;margin:1rem 0 .5rem;font-weight:790}
 .project-card p{font-size:.88rem;line-height:1.62;color:#657078;margin:0}
-.last-band{padding-top:1rem;padding-bottom:5rem}
+.content-band.last-band{padding-block:1rem}
 .section-link{font-size:.9rem;font-weight:750;text-decoration:none}
 .article-teaser{display:flex;justify-content:space-between;gap:2rem;background:#fff;padding:1.4rem 1.7rem;border:1px solid var(--line);text-decoration:none!important;color:var(--ink)!important;transition:border-color .2s,transform .2s}
 .article-teaser:hover{transform:translateY(-3px);border-color:var(--red)}
@@ -171,7 +174,7 @@ iframe.content-fit{min-height:0;border:0}
 .home-categories{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.55rem}
 .home-categories a{display:grid;place-items:center;min-height:44px;padding:.45rem .3rem;border:1px solid var(--line);border-radius:5px;background:white;text-align:center;font-weight:750;line-height:1.18}
 .home-categories a:hover,.home-categories a:focus-visible{border-color:var(--red)}
-.first-band:has(.home-categories),.last-band:has(.article-teaser){padding-block:1.25rem}
+.first-band:has(.home-categories){padding-block:1.25rem}
 .explore-directory{scroll-margin-top:6rem}
 #football,#basketball,#college-athletics{scroll-margin-top:6rem}
 .mobile-menu-category summary{padding:.5rem var(--bs-dropdown-item-padding-x);cursor:pointer;font-weight:700}
