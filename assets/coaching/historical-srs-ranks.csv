@@ -1,0 +1,4000 @@
+school,season,srs_rank
+Air Force,1980,102
+Air Force,1981,103
+Air Force,1982,45
+Air Force,1983,34
+Air Force,1984,28
+Air Force,1985,9
+Air Force,1986,59
+Air Force,1987,36
+Air Force,1988,57
+Air Force,1989,31
+Air Force,1990,54
+Air Force,1991,37
+Air Force,1992,64
+Air Force,1993,83
+Air Force,1994,38
+Air Force,1995,41
+Air Force,1996,37
+Air Force,1997,46
+Air Force,1998,18
+Air Force,1999,49
+Air Force,2000,51
+Air Force,2001,87
+Air Force,2002,54
+Air Force,2003,58
+Air Force,2004,65
+Air Force,2005,81
+Air Force,2006,72
+Air Force,2007,45
+Air Force,2008,52
+Air Force,2009,37
+Air Force,2010,37
+Air Force,2011,67
+Air Force,2012,95
+Air Force,2013,113
+Air Force,2014,56
+Air Force,2015,72
+Akron,1987,101
+Akron,1988,90
+Akron,1989,75
+Akron,1990,92
+Akron,1991,97
+Akron,1992,88
+Akron,1993,99
+Akron,1994,107
+Akron,1995,104
+Akron,1996,104
+Akron,1997,102
+Akron,1998,102
+Akron,1999,91
+Akron,2000,82
+Akron,2001,93
+Akron,2002,94
+Akron,2003,87
+Akron,2004,98
+Akron,2005,85
+Akron,2006,99
+Akron,2007,109
+Akron,2008,93
+Akron,2009,111
+Akron,2010,120
+Akron,2011,117
+Akron,2012,119
+Akron,2013,102
+Akron,2014,106
+Akron,2015,74
+Alabama,1980,3
+Alabama,1981,10
+Alabama,1982,14
+Alabama,1983,6
+Alabama,1984,34
+Alabama,1985,4
+Alabama,1986,9
+Alabama,1987,21
+Alabama,1988,17
+Alabama,1989,11
+Alabama,1990,30
+Alabama,1991,15
+Alabama,1992,4
+Alabama,1993,23
+Alabama,1994,12
+Alabama,1995,29
+Alabama,1996,18
+Alabama,1997,37
+Alabama,1998,38
+Alabama,1999,6
+Alabama,2000,59
+Alabama,2001,24
+Alabama,2002,9
+Alabama,2003,41
+Alabama,2004,34
+Alabama,2005,14
+Alabama,2006,42
+Alabama,2007,27
+Alabama,2008,6
+Alabama,2009,1
+Alabama,2010,5
+Alabama,2011,1
+Alabama,2012,1
+Alabama,2013,3
+Alabama,2014,3
+Alabama,2015,1
+App State,1980,74
+App State,1981,106
+App State,2014,93
+App State,2015,52
+Arizona,1980,66
+Arizona,1981,54
+Arizona,1982,19
+Arizona,1983,33
+Arizona,1984,36
+Arizona,1985,26
+Arizona,1986,10
+Arizona,1987,41
+Arizona,1988,22
+Arizona,1989,21
+Arizona,1990,43
+Arizona,1991,48
+Arizona,1992,14
+Arizona,1993,14
+Arizona,1994,25
+Arizona,1995,52
+Arizona,1996,40
+Arizona,1997,28
+Arizona,1998,10
+Arizona,1999,59
+Arizona,2000,27
+Arizona,2001,72
+Arizona,2002,71
+Arizona,2003,91
+Arizona,2004,66
+Arizona,2005,63
+Arizona,2006,40
+Arizona,2007,41
+Arizona,2008,23
+Arizona,2009,36
+Arizona,2010,31
+Arizona,2011,73
+Arizona,2012,26
+Arizona,2013,22
+Arizona,2014,22
+Arizona,2015,66
+Arizona State,1980,21
+Arizona State,1981,11
+Arizona State,1982,6
+Arizona State,1983,35
+Arizona State,1984,31
+Arizona State,1985,23
+Arizona State,1986,5
+Arizona State,1987,23
+Arizona State,1988,47
+Arizona State,1989,46
+Arizona State,1990,44
+Arizona State,1991,30
+Arizona State,1992,19
+Arizona State,1993,28
+Arizona State,1994,68
+Arizona State,1995,45
+Arizona State,1996,5
+Arizona State,1997,15
+Arizona State,1998,43
+Arizona State,1999,60
+Arizona State,2000,41
+Arizona State,2001,59
+Arizona State,2002,41
+Arizona State,2003,69
+Arizona State,2004,9
+Arizona State,2005,26
+Arizona State,2006,35
+Arizona State,2007,12
+Arizona State,2008,57
+Arizona State,2009,62
+Arizona State,2010,28
+Arizona State,2011,40
+Arizona State,2012,27
+Arizona State,2013,7
+Arizona State,2014,16
+Arizona State,2015,54
+Arkansas,1980,34
+Arkansas,1981,20
+Arkansas,1982,23
+Arkansas,1983,55
+Arkansas,1984,17
+Arkansas,1985,18
+Arkansas,1986,20
+Arkansas,1987,26
+Arkansas,1988,19
+Arkansas,1989,13
+Arkansas,1990,75
+Arkansas,1991,47
+Arkansas,1992,58
+Arkansas,1993,42
+Arkansas,1994,48
+Arkansas,1995,42
+Arkansas,1996,60
+Arkansas,1997,47
+Arkansas,1998,16
+Arkansas,1999,18
+Arkansas,2000,65
+Arkansas,2001,30
+Arkansas,2002,21
+Arkansas,2003,14
+Arkansas,2004,29
+Arkansas,2005,47
+Arkansas,2006,13
+Arkansas,2007,24
+Arkansas,2008,66
+Arkansas,2009,13
+Arkansas,2010,11
+Arkansas,2011,11
+Arkansas,2012,61
+Arkansas,2013,72
+Arkansas,2014,12
+Arkansas,2015,15
+Arkansas State,1980,135
+Arkansas State,1981,72
+Arkansas State,1990,99
+Arkansas State,1991,106
+Arkansas State,1992,106
+Arkansas State,1993,101
+Arkansas State,1994,104
+Arkansas State,1995,94
+Arkansas State,1996,96
+Arkansas State,1997,112
+Arkansas State,1998,106
+Arkansas State,1999,95
+Arkansas State,2000,101
+Arkansas State,2001,117
+Arkansas State,2002,98
+Arkansas State,2003,108
+Arkansas State,2004,112
+Arkansas State,2005,104
+Arkansas State,2006,106
+Arkansas State,2007,90
+Arkansas State,2008,91
+Arkansas State,2009,100
+Arkansas State,2010,92
+Arkansas State,2011,60
+Arkansas State,2012,48
+Arkansas State,2013,74
+Arkansas State,2014,85
+Arkansas State,2015,70
+Army,1980,94
+Army,1981,113
+Army,1982,90
+Army,1983,107
+Army,1984,32
+Army,1985,30
+Army,1986,69
+Army,1987,72
+Army,1988,48
+Army,1989,56
+Army,1990,81
+Army,1991,88
+Army,1992,95
+Army,1993,80
+Army,1994,81
+Army,1995,51
+Army,1996,30
+Army,1997,97
+Army,1998,80
+Army,1999,96
+Army,2000,106
+Army,2001,105
+Army,2002,117
+Army,2003,117
+Army,2004,104
+Army,2005,88
+Army,2006,107
+Army,2007,112
+Army,2008,111
+Army,2009,108
+Army,2010,73
+Army,2011,104
+Army,2012,115
+Army,2013,109
+Army,2014,117
+Army,2015,109
+Auburn,1980,36
+Auburn,1981,34
+Auburn,1982,18
+Auburn,1983,1
+Auburn,1984,10
+Auburn,1985,15
+Auburn,1986,11
+Auburn,1987,6
+Auburn,1988,8
+Auburn,1989,9
+Auburn,1990,29
+Auburn,1991,44
+Auburn,1992,48
+Auburn,1993,17
+Auburn,1994,9
+Auburn,1995,19
+Auburn,1996,23
+Auburn,1997,11
+Auburn,1998,46
+Auburn,1999,43
+Auburn,2000,28
+Auburn,2001,44
+Auburn,2002,16
+Auburn,2003,30
+Auburn,2004,5
+Auburn,2005,11
+Auburn,2006,12
+Auburn,2007,15
+Auburn,2008,61
+Auburn,2009,22
+Auburn,2010,3
+Auburn,2011,46
+Auburn,2012,70
+Auburn,2013,6
+Auburn,2014,10
+Auburn,2015,38
+BYU,1980,12
+BYU,1981,19
+BYU,1982,30
+BYU,1983,8
+BYU,1984,4
+BYU,1985,17
+BYU,1986,34
+BYU,1987,43
+BYU,1988,33
+BYU,1989,20
+BYU,1990,18
+BYU,1991,20
+BYU,1992,24
+BYU,1993,43
+BYU,1994,30
+BYU,1995,48
+BYU,1996,14
+BYU,1997,66
+BYU,1998,39
+BYU,1999,30
+BYU,2000,67
+BYU,2001,31
+BYU,2002,78
+BYU,2003,75
+BYU,2004,46
+BYU,2005,55
+BYU,2006,9
+BYU,2007,18
+BYU,2008,39
+BYU,2009,24
+BYU,2010,61
+BYU,2011,41
+BYU,2012,29
+BYU,2013,24
+BYU,2014,46
+BYU,2015,36
+Ball State,1980,96
+Ball State,1981,121
+Ball State,1982,106
+Ball State,1983,95
+Ball State,1984,105
+Ball State,1985,104
+Ball State,1986,92
+Ball State,1987,97
+Ball State,1988,69
+Ball State,1989,84
+Ball State,1990,86
+Ball State,1991,79
+Ball State,1992,97
+Ball State,1993,82
+Ball State,1994,98
+Ball State,1995,68
+Ball State,1996,72
+Ball State,1997,82
+Ball State,1998,110
+Ball State,1999,113
+Ball State,2000,94
+Ball State,2001,95
+Ball State,2002,91
+Ball State,2003,99
+Ball State,2004,111
+Ball State,2005,92
+Ball State,2006,84
+Ball State,2007,73
+Ball State,2008,35
+Ball State,2009,113
+Ball State,2010,110
+Ball State,2011,81
+Ball State,2012,73
+Ball State,2013,61
+Ball State,2014,102
+Ball State,2015,103
+Baylor,1980,15
+Baylor,1981,58
+Baylor,1982,62
+Baylor,1983,42
+Baylor,1984,51
+Baylor,1985,18
+Baylor,1986,26
+Baylor,1987,62
+Baylor,1988,66
+Baylor,1989,33
+Baylor,1990,41
+Baylor,1991,27
+Baylor,1992,36
+Baylor,1993,69
+Baylor,1994,46
+Baylor,1995,37
+Baylor,1996,63
+Baylor,1997,89
+Baylor,1998,65
+Baylor,1999,107
+Baylor,2000,98
+Baylor,2001,88
+Baylor,2002,100
+Baylor,2003,95
+Baylor,2004,91
+Baylor,2005,61
+Baylor,2006,80
+Baylor,2007,102
+Baylor,2008,51
+Baylor,2009,72
+Baylor,2010,59
+Baylor,2011,12
+Baylor,2012,17
+Baylor,2013,9
+Baylor,2014,11
+Baylor,2015,14
+Boise State,1996,110
+Boise State,1997,99
+Boise State,1998,94
+Boise State,1999,55
+Boise State,2000,35
+Boise State,2001,57
+Boise State,2002,17
+Boise State,2003,28
+Boise State,2004,13
+Boise State,2005,52
+Boise State,2006,10
+Boise State,2007,39
+Boise State,2008,13
+Boise State,2009,11
+Boise State,2010,4
+Boise State,2011,7
+Boise State,2012,34
+Boise State,2013,54
+Boise State,2014,25
+Boise State,2015,47
+Boston College,1980,46
+Boston College,1981,57
+Boston College,1982,31
+Boston College,1983,22
+Boston College,1984,5
+Boston College,1985,59
+Boston College,1986,24
+Boston College,1987,40
+Boston College,1988,68
+Boston College,1989,71
+Boston College,1990,72
+Boston College,1991,38
+Boston College,1992,25
+Boston College,1993,20
+Boston College,1994,20
+Boston College,1995,60
+Boston College,1996,62
+Boston College,1997,84
+Boston College,1998,63
+Boston College,1999,57
+Boston College,2000,38
+Boston College,2001,21
+Boston College,2002,26
+Boston College,2003,38
+Boston College,2004,38
+Boston College,2005,16
+Boston College,2006,22
+Boston College,2007,21
+Boston College,2008,33
+Boston College,2009,43
+Boston College,2010,52
+Boston College,2011,84
+Boston College,2012,93
+Boston College,2013,63
+Boston College,2014,42
+Boston College,2015,80
+Bowling Green,1980,112
+Bowling Green,1981,101
+Bowling Green,1982,80
+Bowling Green,1983,61
+Bowling Green,1984,55
+Bowling Green,1985,50
+Bowling Green,1986,95
+Bowling Green,1987,87
+Bowling Green,1988,102
+Bowling Green,1989,102
+Bowling Green,1990,98
+Bowling Green,1991,43
+Bowling Green,1992,47
+Bowling Green,1993,73
+Bowling Green,1994,65
+Bowling Green,1995,88
+Bowling Green,1996,99
+Bowling Green,1997,87
+Bowling Green,1998,72
+Bowling Green,1999,98
+Bowling Green,2000,105
+Bowling Green,2001,45
+Bowling Green,2002,56
+Bowling Green,2003,43
+Bowling Green,2004,37
+Bowling Green,2005,76
+Bowling Green,2006,111
+Bowling Green,2007,83
+Bowling Green,2008,72
+Bowling Green,2009,73
+Bowling Green,2010,113
+Bowling Green,2011,85
+Bowling Green,2012,67
+Bowling Green,2013,48
+Bowling Green,2014,94
+Bowling Green,2015,34
+Buffalo,1999,114
+Buffalo,2000,113
+Buffalo,2001,108
+Buffalo,2002,115
+Buffalo,2003,114
+Buffalo,2004,119
+Buffalo,2005,118
+Buffalo,2006,116
+Buffalo,2007,98
+Buffalo,2008,68
+Buffalo,2009,93
+Buffalo,2010,118
+Buffalo,2011,106
+Buffalo,2012,101
+Buffalo,2013,73
+Buffalo,2014,107
+Buffalo,2015,94
+California,1980,71
+California,1981,74
+California,1982,29
+California,1983,51
+California,1984,82
+California,1985,67
+California,1986,65
+California,1987,49
+California,1988,42
+California,1989,55
+California,1990,27
+California,1991,7
+California,1992,37
+California,1993,26
+California,1994,57
+California,1995,71
+California,1996,51
+California,1997,58
+California,1998,47
+California,1999,65
+California,2000,56
+California,2001,90
+California,2002,22
+California,2003,26
+California,2004,3
+California,2005,29
+California,2006,8
+California,2007,25
+California,2008,20
+California,2009,47
+California,2010,43
+California,2011,43
+California,2012,69
+California,2013,98
+California,2014,52
+California,2015,29
+Central Michigan,1980,86
+Central Michigan,1981,78
+Central Michigan,1982,92
+Central Michigan,1983,44
+Central Michigan,1984,63
+Central Michigan,1985,78
+Central Michigan,1986,94
+Central Michigan,1987,84
+Central Michigan,1988,65
+Central Michigan,1989,93
+Central Michigan,1990,74
+Central Michigan,1991,65
+Central Michigan,1992,76
+Central Michigan,1993,90
+Central Michigan,1994,79
+Central Michigan,1995,89
+Central Michigan,1996,94
+Central Michigan,1997,107
+Central Michigan,1998,99
+Central Michigan,1999,109
+Central Michigan,2000,111
+Central Michigan,2001,104
+Central Michigan,2002,102
+Central Michigan,2003,111
+Central Michigan,2004,114
+Central Michigan,2005,64
+Central Michigan,2006,55
+Central Michigan,2007,79
+Central Michigan,2008,74
+Central Michigan,2009,45
+Central Michigan,2010,101
+Central Michigan,2011,108
+Central Michigan,2012,98
+Central Michigan,2013,107
+Central Michigan,2014,89
+Central Michigan,2015,71
+Charlotte,2015,127
+Cincinnati,1980,120
+Cincinnati,1981,55
+Cincinnati,1982,53
+Cincinnati,1983,52
+Cincinnati,1984,101
+Cincinnati,1985,63
+Cincinnati,1986,67
+Cincinnati,1987,77
+Cincinnati,1988,92
+Cincinnati,1989,101
+Cincinnati,1990,102
+Cincinnati,1991,74
+Cincinnati,1992,89
+Cincinnati,1993,54
+Cincinnati,1994,92
+Cincinnati,1995,31
+Cincinnati,1996,52
+Cincinnati,1997,56
+Cincinnati,1998,104
+Cincinnati,1999,73
+Cincinnati,2000,63
+Cincinnati,2001,76
+Cincinnati,2002,55
+Cincinnati,2003,86
+Cincinnati,2004,53
+Cincinnati,2005,98
+Cincinnati,2006,44
+Cincinnati,2007,13
+Cincinnati,2008,36
+Cincinnati,2009,8
+Cincinnati,2010,70
+Cincinnati,2011,28
+Cincinnati,2012,31
+Cincinnati,2013,66
+Cincinnati,2014,54
+Cincinnati,2015,67
+Clemson,1980,38
+Clemson,1981,5
+Clemson,1982,20
+Clemson,1983,9
+Clemson,1984,19
+Clemson,1985,39
+Clemson,1986,18
+Clemson,1987,14
+Clemson,1988,9
+Clemson,1989,7
+Clemson,1990,11
+Clemson,1991,19
+Clemson,1992,39
+Clemson,1993,40
+Clemson,1994,59
+Clemson,1995,34
+Clemson,1996,46
+Clemson,1997,26
+Clemson,1998,64
+Clemson,1999,29
+Clemson,2000,14
+Clemson,2001,47
+Clemson,2002,48
+Clemson,2003,22
+Clemson,2004,40
+Clemson,2005,25
+Clemson,2006,28
+Clemson,2007,17
+Clemson,2008,31
+Clemson,2009,17
+Clemson,2010,35
+Clemson,2011,31
+Clemson,2012,11
+Clemson,2013,14
+Clemson,2014,23
+Clemson,2015,3
+Colorado,1980,103
+Colorado,1981,77
+Colorado,1982,81
+Colorado,1983,69
+Colorado,1984,92
+Colorado,1985,32
+Colorado,1986,29
+Colorado,1987,31
+Colorado,1988,30
+Colorado,1989,1
+Colorado,1990,3
+Colorado,1991,17
+Colorado,1992,13
+Colorado,1993,13
+Colorado,1994,5
+Colorado,1995,9
+Colorado,1996,7
+Colorado,1997,38
+Colorado,1998,28
+Colorado,1999,32
+Colorado,2000,48
+Colorado,2001,10
+Colorado,2002,18
+Colorado,2003,56
+Colorado,2004,42
+Colorado,2005,35
+Colorado,2006,87
+Colorado,2007,58
+Colorado,2008,71
+Colorado,2009,81
+Colorado,2010,64
+Colorado,2011,103
+Colorado,2012,113
+Colorado,2013,75
+Colorado,2014,84
+Colorado,2015,87
+Colorado State,1980,79
+Colorado State,1981,123
+Colorado State,1982,78
+Colorado State,1983,94
+Colorado State,1984,81
+Colorado State,1985,64
+Colorado State,1986,51
+Colorado State,1987,85
+Colorado State,1988,91
+Colorado State,1989,52
+Colorado State,1990,42
+Colorado State,1991,87
+Colorado State,1992,82
+Colorado State,1993,65
+Colorado State,1994,24
+Colorado State,1995,44
+Colorado State,1996,47
+Colorado State,1997,17
+Colorado State,1998,36
+Colorado State,1999,35
+Colorado State,2000,32
+Colorado State,2001,55
+Colorado State,2002,40
+Colorado State,2003,42
+Colorado State,2004,67
+Colorado State,2005,73
+Colorado State,2006,93
+Colorado State,2007,85
+Colorado State,2008,80
+Colorado State,2009,99
+Colorado State,2010,103
+Colorado State,2011,110
+Colorado State,2012,112
+Colorado State,2013,70
+Colorado State,2014,43
+Colorado State,2015,93
+Duke,1980,81
+Duke,1981,52
+Duke,1982,39
+Duke,1983,64
+Duke,1984,88
+Duke,1985,73
+Duke,1986,78
+Duke,1987,48
+Duke,1988,51
+Duke,1989,36
+Duke,1990,57
+Duke,1991,67
+Duke,1992,72
+Duke,1993,75
+Duke,1994,27
+Duke,1995,83
+Duke,1996,98
+Duke,1997,74
+Duke,1998,82
+Duke,1999,78
+Duke,2000,104
+Duke,2001,107
+Duke,2002,82
+Duke,2003,76
+Duke,2004,94
+Duke,2005,101
+Duke,2006,112
+Duke,2007,100
+Duke,2008,67
+Duke,2009,75
+Duke,2010,84
+Duke,2011,98
+Duke,2012,68
+Duke,2013,31
+Duke,2014,40
+Duke,2015,57
+East Carolina,1980,90
+East Carolina,1981,80
+East Carolina,1982,67
+East Carolina,1983,28
+East Carolina,1984,93
+East Carolina,1985,79
+East Carolina,1986,82
+East Carolina,1987,56
+East Carolina,1988,64
+East Carolina,1989,63
+East Carolina,1990,61
+East Carolina,1991,22
+East Carolina,1992,81
+East Carolina,1993,95
+East Carolina,1994,42
+East Carolina,1995,33
+East Carolina,1996,32
+East Carolina,1997,69
+East Carolina,1998,76
+East Carolina,1999,33
+East Carolina,2000,34
+East Carolina,2001,54
+East Carolina,2002,84
+East Carolina,2003,109
+East Carolina,2004,105
+East Carolina,2005,90
+East Carolina,2006,63
+East Carolina,2007,63
+East Carolina,2008,58
+East Carolina,2009,52
+East Carolina,2010,82
+East Carolina,2011,88
+East Carolina,2012,83
+East Carolina,2013,51
+East Carolina,2014,55
+East Carolina,2015,78
+Eastern Michigan,1980,137
+Eastern Michigan,1981,136
+Eastern Michigan,1982,111
+Eastern Michigan,1983,110
+Eastern Michigan,1984,104
+Eastern Michigan,1985,108
+Eastern Michigan,1986,98
+Eastern Michigan,1987,60
+Eastern Michigan,1988,79
+Eastern Michigan,1989,88
+Eastern Michigan,1990,103
+Eastern Michigan,1991,91
+Eastern Michigan,1992,107
+Eastern Michigan,1993,102
+Eastern Michigan,1994,96
+Eastern Michigan,1995,81
+Eastern Michigan,1996,101
+Eastern Michigan,1997,86
+Eastern Michigan,1998,109
+Eastern Michigan,1999,103
+Eastern Michigan,2000,108
+Eastern Michigan,2001,116
+Eastern Michigan,2002,116
+Eastern Michigan,2003,112
+Eastern Michigan,2004,113
+Eastern Michigan,2005,93
+Eastern Michigan,2006,117
+Eastern Michigan,2007,105
+Eastern Michigan,2008,114
+Eastern Michigan,2009,120
+Eastern Michigan,2010,117
+Eastern Michigan,2011,94
+Eastern Michigan,2012,120
+Eastern Michigan,2013,123
+Eastern Michigan,2014,127
+Eastern Michigan,2015,125
+Florida,1980,19
+Florida,1981,17
+Florida,1982,25
+Florida,1983,3
+Florida,1984,1
+Florida,1985,7
+Florida,1986,21
+Florida,1987,20
+Florida,1988,41
+Florida,1989,24
+Florida,1990,15
+Florida,1991,6
+Florida,1992,20
+Florida,1993,6
+Florida,1994,2
+Florida,1995,3
+Florida,1996,1
+Florida,1997,3
+Florida,1998,6
+Florida,1999,8
+Florida,2000,6
+Florida,2001,2
+Florida,2002,29
+Florida,2003,21
+Florida,2004,26
+Florida,2005,15
+Florida,2006,3
+Florida,2007,4
+Florida,2008,1
+Florida,2009,2
+Florida,2010,26
+Florida,2011,34
+Florida,2012,5
+Florida,2013,49
+Florida,2014,33
+Florida,2015,27
+Florida Atlantic,2004,87
+Florida Atlantic,2005,116
+Florida Atlantic,2006,97
+Florida Atlantic,2007,72
+Florida Atlantic,2008,90
+Florida Atlantic,2009,102
+Florida Atlantic,2010,112
+Florida Atlantic,2011,120
+Florida Atlantic,2012,105
+Florida Atlantic,2013,82
+Florida Atlantic,2014,109
+Florida Atlantic,2015,107
+Florida International,2004,120
+Florida International,2005,105
+Florida International,2006,119
+Florida International,2007,117
+Florida International,2008,92
+Florida International,2009,105
+Florida International,2010,85
+Florida International,2011,82
+Florida International,2012,102
+Florida International,2013,125
+Florida International,2014,97
+Florida International,2015,101
+Florida State,1980,4
+Florida State,1981,37
+Florida State,1982,11
+Florida State,1983,11
+Florida State,1984,7
+Florida State,1985,22
+Florida State,1986,17
+Florida State,1987,1
+Florida State,1988,4
+Florida State,1989,2
+Florida State,1990,9
+Florida State,1991,4
+Florida State,1992,1
+Florida State,1993,1
+Florida State,1994,3
+Florida State,1995,8
+Florida State,1996,4
+Florida State,1997,1
+Florida State,1998,2
+Florida State,1999,1
+Florida State,2000,2
+Florida State,2001,11
+Florida State,2002,10
+Florida State,2003,4
+Florida State,2004,10
+Florida State,2005,27
+Florida State,2006,36
+Florida State,2007,47
+Florida State,2008,19
+Florida State,2009,40
+Florida State,2010,12
+Florida State,2011,18
+Florida State,2012,14
+Florida State,2013,1
+Florida State,2014,13
+Florida State,2015,12
+Fresno State,1980,109
+Fresno State,1981,110
+Fresno State,1982,47
+Fresno State,1983,78
+Fresno State,1984,74
+Fresno State,1985,36
+Fresno State,1986,44
+Fresno State,1987,61
+Fresno State,1988,52
+Fresno State,1989,43
+Fresno State,1990,59
+Fresno State,1991,46
+Fresno State,1992,21
+Fresno State,1993,29
+Fresno State,1994,70
+Fresno State,1995,82
+Fresno State,1996,84
+Fresno State,1997,65
+Fresno State,1998,62
+Fresno State,1999,50
+Fresno State,2000,55
+Fresno State,2001,23
+Fresno State,2002,62
+Fresno State,2003,71
+Fresno State,2004,27
+Fresno State,2005,37
+Fresno State,2006,85
+Fresno State,2007,57
+Fresno State,2008,77
+Fresno State,2009,58
+Fresno State,2010,67
+Fresno State,2011,97
+Fresno State,2012,37
+Fresno State,2013,46
+Fresno State,2014,88
+Fresno State,2015,111
+Georgia,1980,9
+Georgia,1981,4
+Georgia,1982,5
+Georgia,1983,5
+Georgia,1984,20
+Georgia,1985,16
+Georgia,1986,19
+Georgia,1987,12
+Georgia,1988,18
+Georgia,1989,32
+Georgia,1990,69
+Georgia,1991,21
+Georgia,1992,9
+Georgia,1993,31
+Georgia,1994,29
+Georgia,1995,38
+Georgia,1996,39
+Georgia,1997,8
+Georgia,1998,30
+Georgia,1999,31
+Georgia,2000,20
+Georgia,2001,19
+Georgia,2002,4
+Georgia,2003,5
+Georgia,2004,16
+Georgia,2005,10
+Georgia,2006,21
+Georgia,2007,6
+Georgia,2008,16
+Georgia,2009,26
+Georgia,2010,39
+Georgia,2011,21
+Georgia,2012,4
+Georgia,2013,21
+Georgia,2014,5
+Georgia,2015,31
+Georgia Southern,2014,60
+Georgia Southern,2015,50
+Georgia State,2013,120
+Georgia State,2014,128
+Georgia State,2015,99
+Georgia Tech,1980,80
+Georgia Tech,1981,104
+Georgia Tech,1982,58
+Georgia Tech,1983,60
+Georgia Tech,1984,25
+Georgia Tech,1985,21
+Georgia Tech,1986,47
+Georgia Tech,1987,70
+Georgia Tech,1988,59
+Georgia Tech,1989,34
+Georgia Tech,1990,4
+Georgia Tech,1991,24
+Georgia Tech,1992,46
+Georgia Tech,1993,57
+Georgia Tech,1994,77
+Georgia Tech,1995,61
+Georgia Tech,1996,48
+Georgia Tech,1997,27
+Georgia Tech,1998,19
+Georgia Tech,1999,17
+Georgia Tech,2000,16
+Georgia Tech,2001,34
+Georgia Tech,2002,45
+Georgia Tech,2003,39
+Georgia Tech,2004,30
+Georgia Tech,2005,33
+Georgia Tech,2006,34
+Georgia Tech,2007,54
+Georgia Tech,2008,32
+Georgia Tech,2009,10
+Georgia Tech,2010,63
+Georgia Tech,2011,48
+Georgia Tech,2012,47
+Georgia Tech,2013,35
+Georgia Tech,2014,8
+Georgia Tech,2015,65
+Hawai'i,1980,72
+Hawai'i,1981,28
+Hawai'i,1982,63
+Hawai'i,1983,71
+Hawai'i,1984,47
+Hawai'i,1985,60
+Hawai'i,1986,55
+Hawai'i,1987,71
+Hawai'i,1988,38
+Hawai'i,1989,38
+Hawai'i,1990,47
+Hawai'i,1991,68
+Hawai'i,1992,28
+Hawai'i,1993,76
+Hawai'i,1994,72
+Hawai'i,1995,91
+Hawai'i,1996,105
+Hawai'i,1997,90
+Hawai'i,1998,111
+Hawai'i,1999,62
+Hawai'i,2000,100
+Hawai'i,2001,46
+Hawai'i,2002,57
+Hawai'i,2003,62
+Hawai'i,2004,64
+Hawai'i,2005,87
+Hawai'i,2006,20
+Hawai'i,2007,38
+Hawai'i,2008,82
+Hawai'i,2009,98
+Hawai'i,2010,38
+Hawai'i,2011,96
+Hawai'i,2012,114
+Hawai'i,2013,105
+Hawai'i,2014,105
+Hawai'i,2015,118
+Houston,1980,27
+Houston,1981,26
+Houston,1982,57
+Houston,1983,88
+Houston,1984,49
+Houston,1985,71
+Houston,1986,85
+Houston,1987,50
+Houston,1988,14
+Houston,1989,5
+Houston,1990,16
+Houston,1991,49
+Houston,1992,62
+Houston,1993,91
+Houston,1994,103
+Houston,1995,84
+Houston,1996,45
+Houston,1997,94
+Houston,1998,71
+Houston,1999,56
+Houston,2000,95
+Houston,2001,109
+Houston,2002,89
+Houston,2003,79
+Houston,2004,84
+Houston,2005,74
+Houston,2006,43
+Houston,2007,69
+Houston,2008,54
+Houston,2009,48
+Houston,2010,72
+Houston,2011,16
+Houston,2012,87
+Houston,2013,47
+Houston,2014,66
+Houston,2015,17
+Illinois,1980,67
+Illinois,1981,33
+Illinois,1982,28
+Illinois,1983,14
+Illinois,1984,23
+Illinois,1985,29
+Illinois,1986,56
+Illinois,1987,63
+Illinois,1988,39
+Illinois,1989,15
+Illinois,1990,24
+Illinois,1991,28
+Illinois,1992,45
+Illinois,1993,33
+Illinois,1994,10
+Illinois,1995,25
+Illinois,1996,78
+Illinois,1997,101
+Illinois,1998,87
+Illinois,1999,15
+Illinois,2000,53
+Illinois,2001,12
+Illinois,2002,57
+Illinois,2003,92
+Illinois,2004,79
+Illinois,2005,95
+Illinois,2006,86
+Illinois,2007,28
+Illinois,2008,49
+Illinois,2009,80
+Illinois,2010,32
+Illinois,2011,51
+Illinois,2012,107
+Illinois,2013,87
+Illinois,2014,80
+Illinois,2015,68
+Indiana,1980,51
+Indiana,1981,100
+Indiana,1982,48
+Indiana,1983,83
+Indiana,1984,90
+Indiana,1985,66
+Indiana,1986,40
+Indiana,1987,24
+Indiana,1988,21
+Indiana,1989,50
+Indiana,1990,38
+Indiana,1991,26
+Indiana,1992,57
+Indiana,1993,27
+Indiana,1994,33
+Indiana,1995,63
+Indiana,1996,59
+Indiana,1997,81
+Indiana,1998,54
+Indiana,1999,66
+Indiana,2000,76
+Indiana,2001,48
+Indiana,2002,97
+Indiana,2003,97
+Indiana,2004,81
+Indiana,2005,78
+Indiana,2006,76
+Indiana,2007,64
+Indiana,2008,100
+Indiana,2009,90
+Indiana,2010,83
+Indiana,2011,107
+Indiana,2012,86
+Indiana,2013,50
+Indiana,2014,87
+Indiana,2015,59
+Iowa,1980,62
+Iowa,1981,23
+Iowa,1982,37
+Iowa,1983,13
+Iowa,1984,22
+Iowa,1985,8
+Iowa,1986,22
+Iowa,1987,19
+Iowa,1988,31
+Iowa,1989,62
+Iowa,1990,17
+Iowa,1991,18
+Iowa,1992,50
+Iowa,1993,53
+Iowa,1994,36
+Iowa,1995,17
+Iowa,1996,14
+Iowa,1997,23
+Iowa,1998,70
+Iowa,1999,84
+Iowa,2000,74
+Iowa,2001,22
+Iowa,2002,8
+Iowa,2003,9
+Iowa,2004,11
+Iowa,2005,20
+Iowa,2006,56
+Iowa,2007,76
+Iowa,2008,17
+Iowa,2009,22
+Iowa,2010,22
+Iowa,2011,44
+Iowa,2012,76
+Iowa,2013,34
+Iowa,2014,64
+Iowa,2015,24
+Iowa State,1980,33
+Iowa State,1981,60
+Iowa State,1982,56
+Iowa State,1983,76
+Iowa State,1984,84
+Iowa State,1985,74
+Iowa State,1986,53
+Iowa State,1987,86
+Iowa State,1988,71
+Iowa State,1989,58
+Iowa State,1990,52
+Iowa State,1991,76
+Iowa State,1992,65
+Iowa State,1993,61
+Iowa State,1994,94
+Iowa State,1995,77
+Iowa State,1996,71
+Iowa State,1997,96
+Iowa State,1998,67
+Iowa State,1999,63
+Iowa State,2000,36
+Iowa State,2001,49
+Iowa State,2002,38
+Iowa State,2003,98
+Iowa State,2004,54
+Iowa State,2005,30
+Iowa State,2006,100
+Iowa State,2007,88
+Iowa State,2008,97
+Iowa State,2009,67
+Iowa State,2010,66
+Iowa State,2011,54
+Iowa State,2012,46
+Iowa State,2013,83
+Iowa State,2014,104
+Iowa State,2015,82
+Kansas,1980,35
+Kansas,1981,38
+Kansas,1982,84
+Kansas,1983,59
+Kansas,1984,68
+Kansas,1985,46
+Kansas,1986,88
+Kansas,1987,95
+Kansas,1988,95
+Kansas,1989,80
+Kansas,1990,60
+Kansas,1991,29
+Kansas,1992,22
+Kansas,1993,39
+Kansas,1994,47
+Kansas,1995,13
+Kansas,1996,53
+Kansas,1997,78
+Kansas,1998,61
+Kansas,1999,74
+Kansas,2000,73
+Kansas,2001,86
+Kansas,2002,109
+Kansas,2003,66
+Kansas,2004,41
+Kansas,2005,40
+Kansas,2006,59
+Kansas,2007,10
+Kansas,2008,22
+Kansas,2009,60
+Kansas,2010,95
+Kansas,2011,85
+Kansas,2012,92
+Kansas,2013,98
+Kansas,2014,96
+Kansas,2015,119
+Kansas State,1980,75
+Kansas State,1981,91
+Kansas State,1982,41
+Kansas State,1983,89
+Kansas State,1984,78
+Kansas State,1985,101
+Kansas State,1986,96
+Kansas State,1987,100
+Kansas State,1988,98
+Kansas State,1989,98
+Kansas State,1990,63
+Kansas State,1991,32
+Kansas State,1992,68
+Kansas State,1993,25
+Kansas State,1994,20
+Kansas State,1995,11
+Kansas State,1996,16
+Kansas State,1997,12
+Kansas State,1998,4
+Kansas State,1999,9
+Kansas State,2000,9
+Kansas State,2001,25
+Kansas State,2002,7
+Kansas State,2003,7
+Kansas State,2004,55
+Kansas State,2005,67
+Kansas State,2006,60
+Kansas State,2007,55
+Kansas State,2008,76
+Kansas State,2009,69
+Kansas State,2010,47
+Kansas State,2011,17
+Kansas State,2012,7
+Kansas State,2013,25
+Kansas State,2014,17
+Kansas State,2015,62
+Kent State,1980,134
+Kent State,1981,116
+Kent State,1982,113
+Kent State,1983,102
+Kent State,1984,100
+Kent State,1985,102
+Kent State,1986,101
+Kent State,1987,78
+Kent State,1988,86
+Kent State,1989,106
+Kent State,1990,105
+Kent State,1991,100
+Kent State,1992,105
+Kent State,1993,106
+Kent State,1994,105
+Kent State,1995,107
+Kent State,1996,108
+Kent State,1997,106
+Kent State,1998,112
+Kent State,1999,110
+Kent State,2000,115
+Kent State,2001,85
+Kent State,2002,111
+Kent State,2003,93
+Kent State,2004,92
+Kent State,2005,113
+Kent State,2006,103
+Kent State,2007,107
+Kent State,2008,106
+Kent State,2009,104
+Kent State,2010,96
+Kent State,2011,91
+Kent State,2012,58
+Kent State,2013,101
+Kent State,2014,118
+Kent State,2015,105
+Kentucky,1980,68
+Kentucky,1981,68
+Kentucky,1982,89
+Kentucky,1983,37
+Kentucky,1984,27
+Kentucky,1985,47
+Kentucky,1986,49
+Kentucky,1987,35
+Kentucky,1988,40
+Kentucky,1989,49
+Kentucky,1990,79
+Kentucky,1991,70
+Kentucky,1992,71
+Kentucky,1993,41
+Kentucky,1994,80
+Kentucky,1995,49
+Kentucky,1996,70
+Kentucky,1997,43
+Kentucky,1998,31
+Kentucky,1999,46
+Kentucky,2000,81
+Kentucky,2001,69
+Kentucky,2002,49
+Kentucky,2003,64
+Kentucky,2004,89
+Kentucky,2005,96
+Kentucky,2006,32
+Kentucky,2007,22
+Kentucky,2008,46
+Kentucky,2009,41
+Kentucky,2010,54
+Kentucky,2011,74
+Kentucky,2012,84
+Kentucky,2013,81
+Kentucky,2014,63
+Kentucky,2015,90
+LSU,1980,29
+LSU,1981,82
+LSU,1982,13
+LSU,1983,38
+LSU,1984,10
+LSU,1985,24
+LSU,1986,13
+LSU,1987,7
+LSU,1988,20
+LSU,1989,30
+LSU,1990,66
+LSU,1991,50
+LSU,1992,72
+LSU,1993,56
+LSU,1994,41
+LSU,1995,20
+LSU,1996,22
+LSU,1997,14
+LSU,1998,37
+LSU,1999,67
+LSU,2000,37
+LSU,2001,8
+LSU,2002,32
+LSU,2003,2
+LSU,2004,19
+LSU,2005,9
+LSU,2006,4
+LSU,2007,2
+LSU,2008,37
+LSU,2009,15
+LSU,2010,10
+LSU,2011,2
+LSU,2012,10
+LSU,2013,16
+LSU,2014,24
+LSU,2015,8
+Louisiana,1980,87
+Louisiana,1981,118
+Louisiana,1982,87
+Louisiana,1983,96
+Louisiana,1984,83
+Louisiana,1985,95
+Louisiana,1986,75
+Louisiana,1987,75
+Louisiana,1988,60
+Louisiana,1989,65
+Louisiana,1990,78
+Louisiana,1991,93
+Louisiana,1992,102
+Louisiana,1993,71
+Louisiana,1994,87
+Louisiana,1995,74
+Louisiana,1996,81
+Louisiana,1997,109
+Louisiana,1998,107
+Louisiana,1999,111
+Louisiana,2000,114
+Louisiana,2001,112
+Louisiana,2002,107
+Louisiana,2003,105
+Louisiana,2004,108
+Louisiana,2005,97
+Louisiana,2006,95
+Louisiana,2007,110
+Louisiana,2008,88
+Louisiana,2009,101
+Louisiana,2010,114
+Louisiana,2011,77
+Louisiana,2012,56
+Louisiana,2013,76
+Louisiana,2014,75
+Louisiana,2015,113
+Louisiana Tech,1980,108
+Louisiana Tech,1981,97
+Louisiana Tech,1988,78
+Louisiana Tech,1989,59
+Louisiana Tech,1990,48
+Louisiana Tech,1991,57
+Louisiana Tech,1992,67
+Louisiana Tech,1993,103
+Louisiana Tech,1994,102
+Louisiana Tech,1995,90
+Louisiana Tech,1996,83
+Louisiana Tech,1997,60
+Louisiana Tech,1998,60
+Louisiana Tech,1999,39
+Louisiana Tech,2000,96
+Louisiana Tech,2001,67
+Louisiana Tech,2002,101
+Louisiana Tech,2003,81
+Louisiana Tech,2004,69
+Louisiana Tech,2005,77
+Louisiana Tech,2006,113
+Louisiana Tech,2007,92
+Louisiana Tech,2008,78
+Louisiana Tech,2009,76
+Louisiana Tech,2010,77
+Louisiana Tech,2011,55
+Louisiana Tech,2012,37
+Louisiana Tech,2013,114
+Louisiana Tech,2014,44
+Louisiana Tech,2015,62
+Louisville,1980,57
+Louisville,1981,92
+Louisville,1982,86
+Louisville,1983,85
+Louisville,1984,99
+Louisville,1985,106
+Louisville,1986,90
+Louisville,1987,90
+Louisville,1988,49
+Louisville,1989,47
+Louisville,1990,28
+Louisville,1991,96
+Louisville,1992,52
+Louisville,1993,19
+Louisville,1994,62
+Louisville,1995,50
+Louisville,1996,55
+Louisville,1997,104
+Louisville,1998,59
+Louisville,1999,41
+Louisville,2000,31
+Louisville,2001,29
+Louisville,2002,61
+Louisville,2003,57
+Louisville,2004,8
+Louisville,2005,24
+Louisville,2006,2
+Louisville,2007,47
+Louisville,2008,79
+Louisville,2009,82
+Louisville,2010,51
+Louisville,2011,53
+Louisville,2012,44
+Louisville,2013,26
+Louisville,2014,26
+Louisville,2015,39
+Marshall,1980,133
+Marshall,1981,132
+Marshall,1997,29
+Marshall,1998,58
+Marshall,1999,20
+Marshall,2000,71
+Marshall,2001,37
+Marshall,2002,53
+Marshall,2003,55
+Marshall,2004,80
+Marshall,2005,99
+Marshall,2006,82
+Marshall,2007,99
+Marshall,2008,96
+Marshall,2009,79
+Marshall,2010,100
+Marshall,2011,83
+Marshall,2012,88
+Marshall,2013,58
+Marshall,2014,19
+Marshall,2015,61
+Maryland,1980,26
+Maryland,1981,31
+Maryland,1982,9
+Maryland,1983,15
+Maryland,1984,9
+Maryland,1985,11
+Maryland,1986,32
+Maryland,1987,53
+Maryland,1988,46
+Maryland,1989,53
+Maryland,1990,37
+Maryland,1991,80
+Maryland,1992,54
+Maryland,1993,84
+Maryland,1994,71
+Maryland,1995,62
+Maryland,1996,75
+Maryland,1997,83
+Maryland,1998,81
+Maryland,1999,52
+Maryland,2000,60
+Maryland,2001,20
+Maryland,2002,15
+Maryland,2003,13
+Maryland,2004,48
+Maryland,2005,41
+Maryland,2006,52
+Maryland,2007,52
+Maryland,2008,49
+Maryland,2009,92
+Maryland,2010,36
+Maryland,2011,102
+Maryland,2012,91
+Maryland,2013,65
+Maryland,2014,62
+Maryland,2015,81
+Massachusetts,2012,124
+Massachusetts,2013,121
+Massachusetts,2014,116
+Massachusetts,2015,104
+Memphis,1980,110
+Memphis,1981,107
+Memphis,1982,96
+Memphis,1983,32
+Memphis,1984,62
+Memphis,1985,65
+Memphis,1986,103
+Memphis,1987,59
+Memphis,1988,56
+Memphis,1989,89
+Memphis,1990,73
+Memphis,1991,54
+Memphis,1992,31
+Memphis,1993,52
+Memphis,1994,66
+Memphis,1995,79
+Memphis,1996,67
+Memphis,1997,80
+Memphis,1998,91
+Memphis,1999,42
+Memphis,2000,86
+Memphis,2001,78
+Memphis,2002,88
+Memphis,2003,49
+Memphis,2004,60
+Memphis,2005,69
+Memphis,2006,102
+Memphis,2007,91
+Memphis,2008,89
+Memphis,2009,107
+Memphis,2010,119
+Memphis,2011,115
+Memphis,2012,109
+Memphis,2013,96
+Memphis,2014,36
+Memphis,2015,41
+Miami,1980,18
+Miami,1981,7
+Miami,1982,26
+Miami,1983,4
+Miami,1984,16
+Miami,1985,5
+Miami,1986,3
+Miami,1987,2
+Miami,1988,2
+Miami,1989,4
+Miami,1990,1
+Miami,1991,2
+Miami,1992,8
+Miami,1993,15
+Miami,1994,6
+Miami,1995,27
+Miami,1996,19
+Miami,1997,64
+Miami,1998,21
+Miami,1999,12
+Miami,2000,1
+Miami,2001,1
+Miami,2002,2
+Miami,2003,10
+Miami,2004,7
+Miami,2005,7
+Miami,2006,50
+Miami,2007,67
+Miami,2008,40
+Miami,2009,16
+Miami,2010,30
+Miami,2011,38
+Miami,2012,52
+Miami,2013,38
+Miami,2014,35
+Miami,2015,49
+Miami (OH),1980,91
+Miami (OH),1981,65
+Miami (OH),1982,82
+Miami (OH),1983,84
+Miami (OH),1984,86
+Miami (OH),1985,70
+Miami (OH),1986,63
+Miami (OH),1987,76
+Miami (OH),1988,104
+Miami (OH),1989,103
+Miami (OH),1990,95
+Miami (OH),1991,64
+Miami (OH),1992,85
+Miami (OH),1993,100
+Miami (OH),1994,91
+Miami (OH),1995,36
+Miami (OH),1996,69
+Miami (OH),1997,30
+Miami (OH),1998,52
+Miami (OH),1999,76
+Miami (OH),2000,89
+Miami (OH),2001,70
+Miami (OH),2002,65
+Miami (OH),2003,11
+Miami (OH),2004,74
+Miami (OH),2005,56
+Miami (OH),2006,110
+Miami (OH),2007,96
+Miami (OH),2008,118
+Miami (OH),2009,117
+Miami (OH),2010,90
+Miami (OH),2011,87
+Miami (OH),2012,111
+Miami (OH),2013,124
+Miami (OH),2014,119
+Miami (OH),2015,110
+Michigan,1980,7
+Michigan,1981,9
+Michigan,1982,10
+Michigan,1983,7
+Michigan,1984,39
+Michigan,1985,1
+Michigan,1986,8
+Michigan,1987,17
+Michigan,1988,6
+Michigan,1989,8
+Michigan,1990,5
+Michigan,1991,5
+Michigan,1992,5
+Michigan,1993,9
+Michigan,1994,7
+Michigan,1995,10
+Michigan,1996,17
+Michigan,1997,5
+Michigan,1998,20
+Michigan,1999,7
+Michigan,2000,12
+Michigan,2001,13
+Michigan,2002,13
+Michigan,2003,6
+Michigan,2004,17
+Michigan,2005,8
+Michigan,2006,7
+Michigan,2007,30
+Michigan,2008,84
+Michigan,2009,70
+Michigan,2010,60
+Michigan,2011,8
+Michigan,2012,21
+Michigan,2013,41
+Michigan,2014,61
+Michigan,2015,6
+Michigan State,1980,61
+Michigan State,1981,53
+Michigan State,1982,54
+Michigan State,1983,57
+Michigan State,1984,54
+Michigan State,1985,25
+Michigan State,1986,27
+Michigan State,1987,11
+Michigan State,1988,23
+Michigan State,1989,17
+Michigan State,1990,19
+Michigan State,1991,72
+Michigan State,1992,41
+Michigan State,1993,30
+Michigan State,1994,26
+Michigan State,1995,28
+Michigan State,1996,29
+Michigan State,1997,20
+Michigan State,1998,29
+Michigan State,1999,10
+Michigan State,2000,52
+Michigan State,2001,39
+Michigan State,2002,70
+Michigan State,2003,32
+Michigan State,2004,52
+Michigan State,2005,31
+Michigan State,2006,74
+Michigan State,2007,36
+Michigan State,2008,26
+Michigan State,2009,55
+Michigan State,2010,23
+Michigan State,2011,22
+Michigan State,2012,42
+Michigan State,2013,15
+Michigan State,2014,7
+Michigan State,2015,7
+Middle Tennessee,1999,108
+Middle Tennessee,2000,80
+Middle Tennessee,2001,77
+Middle Tennessee,2002,93
+Middle Tennessee,2003,100
+Middle Tennessee,2004,99
+Middle Tennessee,2005,100
+Middle Tennessee,2006,66
+Middle Tennessee,2007,81
+Middle Tennessee,2008,99
+Middle Tennessee,2009,59
+Middle Tennessee,2010,102
+Middle Tennessee,2011,116
+Middle Tennessee,2012,75
+Middle Tennessee,2013,85
+Middle Tennessee,2014,82
+Middle Tennessee,2015,85
+Minnesota,1980,55
+Minnesota,1981,56
+Minnesota,1982,73
+Minnesota,1983,100
+Minnesota,1984,77
+Minnesota,1985,28
+Minnesota,1986,43
+Minnesota,1987,51
+Minnesota,1988,75
+Minnesota,1989,48
+Minnesota,1990,46
+Minnesota,1991,84
+Minnesota,1992,75
+Minnesota,1993,60
+Minnesota,1994,44
+Minnesota,1995,47
+Minnesota,1996,57
+Minnesota,1997,79
+Minnesota,1998,42
+Minnesota,1999,14
+Minnesota,2000,50
+Minnesota,2001,65
+Minnesota,2002,42
+Minnesota,2003,16
+Minnesota,2004,35
+Minnesota,2005,19
+Minnesota,2006,57
+Minnesota,2007,104
+Minnesota,2008,64
+Minnesota,2009,63
+Minnesota,2010,86
+Minnesota,2011,92
+Minnesota,2012,78
+Minnesota,2013,43
+Minnesota,2014,37
+Minnesota,2015,58
+Mississippi State,1980,22
+Mississippi State,1981,25
+Mississippi State,1982,34
+Mississippi State,1983,45
+Mississippi State,1984,61
+Mississippi State,1985,52
+Mississippi State,1986,64
+Mississippi State,1987,65
+Mississippi State,1988,89
+Mississippi State,1989,51
+Mississippi State,1990,62
+Mississippi State,1991,36
+Mississippi State,1992,33
+Mississippi State,1993,51
+Mississippi State,1994,31
+Mississippi State,1995,72
+Mississippi State,1996,54
+Mississippi State,1997,22
+Mississippi State,1998,33
+Mississippi State,1999,13
+Mississippi State,2000,19
+Mississippi State,2001,56
+Mississippi State,2002,85
+Mississippi State,2003,96
+Mississippi State,2004,86
+Mississippi State,2005,91
+Mississippi State,2006,70
+Mississippi State,2007,49
+Mississippi State,2008,86
+Mississippi State,2009,42
+Mississippi State,2010,27
+Mississippi State,2011,39
+Mississippi State,2012,43
+Mississippi State,2013,32
+Mississippi State,2014,9
+Mississippi State,2015,12
+Missouri,1980,16
+Missouri,1981,24
+Missouri,1982,44
+Missouri,1983,24
+Missouri,1984,56
+Missouri,1985,82
+Missouri,1986,74
+Missouri,1987,38
+Missouri,1988,67
+Missouri,1989,82
+Missouri,1990,51
+Missouri,1991,71
+Missouri,1992,61
+Missouri,1993,49
+Missouri,1994,75
+Missouri,1995,76
+Missouri,1996,61
+Missouri,1997,39
+Missouri,1998,14
+Missouri,1999,71
+Missouri,2000,75
+Missouri,2001,73
+Missouri,2002,51
+Missouri,2003,35
+Missouri,2004,61
+Missouri,2005,45
+Missouri,2006,29
+Missouri,2007,7
+Missouri,2008,11
+Missouri,2009,46
+Missouri,2010,15
+Missouri,2011,19
+Missouri,2012,45
+Missouri,2013,4
+Missouri,2014,21
+Missouri,2015,73
+NC State,1980,47
+NC State,1981,48
+NC State,1982,42
+NC State,1983,67
+NC State,1984,75
+NC State,1985,80
+NC State,1986,31
+NC State,1987,66
+NC State,1988,28
+NC State,1989,42
+NC State,1990,33
+NC State,1991,31
+NC State,1992,17
+NC State,1993,46
+NC State,1994,39
+NC State,1995,73
+NC State,1996,77
+NC State,1997,32
+NC State,1998,40
+NC State,1999,69
+NC State,2000,47
+NC State,2001,36
+NC State,2002,14
+NC State,2003,23
+NC State,2004,33
+NC State,2005,36
+NC State,2006,79
+NC State,2007,75
+NC State,2008,59
+NC State,2009,68
+NC State,2010,20
+NC State,2011,52
+NC State,2012,64
+NC State,2013,92
+NC State,2014,47
+NC State,2015,51
+Navy,1980,40
+Navy,1981,44
+Navy,1982,51
+Navy,1983,80
+Navy,1984,60
+Navy,1985,56
+Navy,1986,91
+Navy,1987,99
+Navy,1988,74
+Navy,1989,86
+Navy,1990,87
+Navy,1991,101
+Navy,1992,100
+Navy,1993,89
+Navy,1994,97
+Navy,1995,67
+Navy,1996,42
+Navy,1997,50
+Navy,1998,97
+Navy,1999,69
+Navy,2000,107
+Navy,2001,106
+Navy,2002,104
+Navy,2003,72
+Navy,2004,62
+Navy,2005,53
+Navy,2006,54
+Navy,2007,74
+Navy,2008,47
+Navy,2009,44
+Navy,2010,48
+Navy,2011,72
+Navy,2012,74
+Navy,2013,53
+Navy,2014,57
+Navy,2015,21
+Nebraska,1980,1
+Nebraska,1981,3
+Nebraska,1982,2
+Nebraska,1983,2
+Nebraska,1984,2
+Nebraska,1985,13
+Nebraska,1986,6
+Nebraska,1987,3
+Nebraska,1988,13
+Nebraska,1989,10
+Nebraska,1990,10
+Nebraska,1991,10
+Nebraska,1992,6
+Nebraska,1993,3
+Nebraska,1994,4
+Nebraska,1995,1
+Nebraska,1996,3
+Nebraska,1997,2
+Nebraska,1998,8
+Nebraska,1999,2
+Nebraska,2000,5
+Nebraska,2001,6
+Nebraska,2002,50
+Nebraska,2003,18
+Nebraska,2004,59
+Nebraska,2005,32
+Nebraska,2006,26
+Nebraska,2007,62
+Nebraska,2008,18
+Nebraska,2009,19
+Nebraska,2010,17
+Nebraska,2011,25
+Nebraska,2012,23
+Nebraska,2013,44
+Nebraska,2014,27
+Nebraska,2015,40
+Nevada,1992,86
+Nevada,1993,74
+Nevada,1994,60
+Nevada,1995,55
+Nevada,1996,49
+Nevada,1997,69
+Nevada,1998,75
+Nevada,1999,101
+Nevada,2000,112
+Nevada,2001,98
+Nevada,2002,79
+Nevada,2003,82
+Nevada,2004,101
+Nevada,2005,84
+Nevada,2006,48
+Nevada,2007,84
+Nevada,2008,53
+Nevada,2009,56
+Nevada,2010,18
+Nevada,2011,63
+Nevada,2012,81
+Nevada,2013,84
+Nevada,2014,71
+Nevada,2015,96
+New Mexico,1980,93
+New Mexico,1981,79
+New Mexico,1982,32
+New Mexico,1983,73
+New Mexico,1984,89
+New Mexico,1985,86
+New Mexico,1986,73
+New Mexico,1987,102
+New Mexico,1988,99
+New Mexico,1989,76
+New Mexico,1990,90
+New Mexico,1991,99
+New Mexico,1992,84
+New Mexico,1993,55
+New Mexico,1994,56
+New Mexico,1995,86
+New Mexico,1996,64
+New Mexico,1997,52
+New Mexico,1998,103
+New Mexico,1999,82
+New Mexico,2000,79
+New Mexico,2001,64
+New Mexico,2002,72
+New Mexico,2003,44
+New Mexico,2004,45
+New Mexico,2005,72
+New Mexico,2006,77
+New Mexico,2007,59
+New Mexico,2008,83
+New Mexico,2009,114
+New Mexico,2010,115
+New Mexico,2011,119
+New Mexico,2012,106
+New Mexico,2013,112
+New Mexico,2014,101
+New Mexico,2015,97
+New Mexico State,1980,107
+New Mexico State,1981,128
+New Mexico State,1982,99
+New Mexico State,1983,108
+New Mexico State,1984,109
+New Mexico State,1985,110
+New Mexico State,1986,104
+New Mexico State,1987,104
+New Mexico State,1988,105
+New Mexico State,1989,105
+New Mexico State,1990,104
+New Mexico State,1991,103
+New Mexico State,1992,98
+New Mexico State,1993,92
+New Mexico State,1994,101
+New Mexico State,1995,93
+New Mexico State,1996,109
+New Mexico State,1997,110
+New Mexico State,1998,98
+New Mexico State,1999,87
+New Mexico State,2000,92
+New Mexico State,2001,99
+New Mexico State,2002,75
+New Mexico State,2003,103
+New Mexico State,2004,82
+New Mexico State,2005,119
+New Mexico State,2006,89
+New Mexico State,2007,108
+New Mexico State,2008,108
+New Mexico State,2009,118
+New Mexico State,2010,116
+New Mexico State,2011,109
+New Mexico State,2012,123
+New Mexico State,2013,119
+New Mexico State,2014,125
+New Mexico State,2015,122
+North Carolina,1980,10
+North Carolina,1981,12
+North Carolina,1982,12
+North Carolina,1983,21
+North Carolina,1984,58
+North Carolina,1985,51
+North Carolina,1986,36
+North Carolina,1987,42
+North Carolina,1988,82
+North Carolina,1989,85
+North Carolina,1990,36
+North Carolina,1991,40
+North Carolina,1992,29
+North Carolina,1993,24
+North Carolina,1994,37
+North Carolina,1995,45
+North Carolina,1996,6
+North Carolina,1997,10
+North Carolina,1998,49
+North Carolina,1999,77
+North Carolina,2000,54
+North Carolina,2001,33
+North Carolina,2002,77
+North Carolina,2003,80
+North Carolina,2004,44
+North Carolina,2005,47
+North Carolina,2006,94
+North Carolina,2007,70
+North Carolina,2008,27
+North Carolina,2009,30
+North Carolina,2010,44
+North Carolina,2011,47
+North Carolina,2012,51
+North Carolina,2013,40
+North Carolina,2014,68
+North Carolina,2015,16
+North Texas,1980,58
+North Texas,1981,108
+North Texas,1982,104
+North Texas,1995,106
+North Texas,1996,97
+North Texas,1997,103
+North Texas,1998,100
+North Texas,1999,112
+North Texas,2000,102
+North Texas,2001,94
+North Texas,2002,63
+North Texas,2003,68
+North Texas,2004,85
+North Texas,2005,115
+North Texas,2006,114
+North Texas,2007,117
+North Texas,2008,120
+North Texas,2009,109
+North Texas,2010,109
+North Texas,2011,105
+North Texas,2012,100
+North Texas,2013,59
+North Texas,2014,115
+North Texas,2015,128
+Northern Illinois,1980,98
+Northern Illinois,1981,125
+Northern Illinois,1982,98
+Northern Illinois,1983,41
+Northern Illinois,1984,96
+Northern Illinois,1985,98
+Northern Illinois,1986,102
+Northern Illinois,1987,88
+Northern Illinois,1988,85
+Northern Illinois,1989,66
+Northern Illinois,1990,67
+Northern Illinois,1991,102
+Northern Illinois,1992,94
+Northern Illinois,1993,93
+Northern Illinois,1994,78
+Northern Illinois,1995,99
+Northern Illinois,1996,111
+Northern Illinois,1997,108
+Northern Illinois,1998,108
+Northern Illinois,1999,102
+Northern Illinois,2000,66
+Northern Illinois,2001,79
+Northern Illinois,2002,67
+Northern Illinois,2003,54
+Northern Illinois,2004,68
+Northern Illinois,2005,49
+Northern Illinois,2006,68
+Northern Illinois,2007,120
+Northern Illinois,2008,73
+Northern Illinois,2009,83
+Northern Illinois,2010,46
+Northern Illinois,2011,36
+Northern Illinois,2012,50
+Northern Illinois,2013,56
+Northern Illinois,2014,72
+Northern Illinois,2015,64
+Northwestern,1980,125
+Northwestern,1981,127
+Northwestern,1982,88
+Northwestern,1983,97
+Northwestern,1984,87
+Northwestern,1985,84
+Northwestern,1986,68
+Northwestern,1987,80
+Northwestern,1988,81
+Northwestern,1989,95
+Northwestern,1990,82
+Northwestern,1991,82
+Northwestern,1992,77
+Northwestern,1993,62
+Northwestern,1994,64
+Northwestern,1995,4
+Northwestern,1996,28
+Northwestern,1997,48
+Northwestern,1998,78
+Northwestern,1999,86
+Northwestern,2000,24
+Northwestern,2001,68
+Northwestern,2002,90
+Northwestern,2003,63
+Northwestern,2004,56
+Northwestern,2005,28
+Northwestern,2006,92
+Northwestern,2007,78
+Northwestern,2008,41
+Northwestern,2009,64
+Northwestern,2010,68
+Northwestern,2011,58
+Northwestern,2012,28
+Northwestern,2013,64
+Northwestern,2014,67
+Northwestern,2015,37
+Notre Dame,1980,13
+Notre Dame,1981,27
+Notre Dame,1982,24
+Notre Dame,1983,19
+Notre Dame,1984,26
+Notre Dame,1985,20
+Notre Dame,1986,16
+Notre Dame,1987,10
+Notre Dame,1988,1
+Notre Dame,1989,3
+Notre Dame,1990,8
+Notre Dame,1991,8
+Notre Dame,1992,2
+Notre Dame,1993,2
+Notre Dame,1994,17
+Notre Dame,1995,7
+Notre Dame,1996,11
+Notre Dame,1997,35
+Notre Dame,1998,26
+Notre Dame,1999,34
+Notre Dame,2000,13
+Notre Dame,2001,40
+Notre Dame,2002,20
+Notre Dame,2003,52
+Notre Dame,2004,32
+Notre Dame,2005,6
+Notre Dame,2006,19
+Notre Dame,2007,82
+Notre Dame,2008,48
+Notre Dame,2009,38
+Notre Dame,2010,21
+Notre Dame,2011,20
+Notre Dame,2012,6
+Notre Dame,2013,27
+Notre Dame,2014,31
+Notre Dame,2015,10
+Ohio,1980,105
+Ohio,1981,111
+Ohio,1982,103
+Ohio,1983,99
+Ohio,1984,102
+Ohio,1985,109
+Ohio,1986,105
+Ohio,1987,103
+Ohio,1988,97
+Ohio,1989,104
+Ohio,1990,107
+Ohio,1991,98
+Ohio,1992,104
+Ohio,1993,104
+Ohio,1994,106
+Ohio,1995,102
+Ohio,1996,82
+Ohio,1997,55
+Ohio,1998,85
+Ohio,1999,100
+Ohio,2000,70
+Ohio,2001,102
+Ohio,2002,99
+Ohio,2003,106
+Ohio,2004,106
+Ohio,2005,103
+Ohio,2006,81
+Ohio,2007,95
+Ohio,2008,101
+Ohio,2009,71
+Ohio,2010,89
+Ohio,2011,59
+Ohio,2012,77
+Ohio,2013,94
+Ohio,2014,110
+Ohio,2015,75
+Ohio State,1980,14
+Ohio State,1981,22
+Ohio State,1982,14
+Ohio State,1983,10
+Ohio State,1984,12
+Ohio State,1985,14
+Ohio State,1986,12
+Ohio State,1987,22
+Ohio State,1988,50
+Ohio State,1989,29
+Ohio State,1990,22
+Ohio State,1991,23
+Ohio State,1992,10
+Ohio State,1993,11
+Ohio State,1994,8
+Ohio State,1995,2
+Ohio State,1996,2
+Ohio State,1997,9
+Ohio State,1998,1
+Ohio State,1999,28
+Ohio State,2000,18
+Ohio State,2001,27
+Ohio State,2002,5
+Ohio State,2003,12
+Ohio State,2004,22
+Ohio State,2005,3
+Ohio State,2006,5
+Ohio State,2007,9
+Ohio State,2008,8
+Ohio State,2009,7
+Ohio State,2010,7
+Ohio State,2011,42
+Ohio State,2012,13
+Ohio State,2013,12
+Ohio State,2014,2
+Ohio State,2015,2
+Oklahoma,1980,5
+Oklahoma,1981,16
+Oklahoma,1982,17
+Oklahoma,1983,26
+Oklahoma,1984,8
+Oklahoma,1985,2
+Oklahoma,1986,1
+Oklahoma,1987,5
+Oklahoma,1988,15
+Oklahoma,1989,26
+Oklahoma,1990,7
+Oklahoma,1991,11
+Oklahoma,1992,34
+Oklahoma,1993,8
+Oklahoma,1994,43
+Oklahoma,1995,56
+Oklahoma,1996,80
+Oklahoma,1997,76
+Oklahoma,1998,48
+Oklahoma,1999,19
+Oklahoma,2000,3
+Oklahoma,2001,7
+Oklahoma,2002,3
+Oklahoma,2003,3
+Oklahoma,2004,4
+Oklahoma,2005,21
+Oklahoma,2006,15
+Oklahoma,2007,8
+Oklahoma,2008,2
+Oklahoma,2009,12
+Oklahoma,2010,8
+Oklahoma,2011,4
+Oklahoma,2012,12
+Oklahoma,2013,20
+Oklahoma,2014,28
+Oklahoma,2015,5
+Oklahoma State,1980,63
+Oklahoma State,1981,45
+Oklahoma State,1982,60
+Oklahoma State,1983,30
+Oklahoma State,1984,6
+Oklahoma State,1985,34
+Oklahoma State,1986,62
+Oklahoma State,1987,18
+Oklahoma State,1988,11
+Oklahoma State,1989,73
+Oklahoma State,1990,64
+Oklahoma State,1991,85
+Oklahoma State,1992,66
+Oklahoma State,1993,63
+Oklahoma State,1994,74
+Oklahoma State,1995,66
+Oklahoma State,1996,74
+Oklahoma State,1997,40
+Oklahoma State,1998,35
+Oklahoma State,1999,58
+Oklahoma State,2000,78
+Oklahoma State,2001,63
+Oklahoma State,2002,43
+Oklahoma State,2003,27
+Oklahoma State,2004,24
+Oklahoma State,2005,89
+Oklahoma State,2006,37
+Oklahoma State,2007,37
+Oklahoma State,2008,12
+Oklahoma State,2009,32
+Oklahoma State,2010,9
+Oklahoma State,2011,3
+Oklahoma State,2012,15
+Oklahoma State,2013,10
+Oklahoma State,2014,65
+Oklahoma State,2015,33
+Old Dominion,2014,90
+Old Dominion,2015,120
+Ole Miss,1980,48
+Ole Miss,1981,62
+Ole Miss,1982,50
+Ole Miss,1983,46
+Ole Miss,1984,57
+Ole Miss,1985,55
+Ole Miss,1986,33
+Ole Miss,1987,67
+Ole Miss,1988,53
+Ole Miss,1989,40
+Ole Miss,1990,45
+Ole Miss,1991,52
+Ole Miss,1992,27
+Ole Miss,1993,37
+Ole Miss,1994,50
+Ole Miss,1995,58
+Ole Miss,1996,68
+Ole Miss,1997,16
+Ole Miss,1998,51
+Ole Miss,1999,16
+Ole Miss,2000,46
+Ole Miss,2001,42
+Ole Miss,2002,47
+Ole Miss,2003,19
+Ole Miss,2004,76
+Ole Miss,2005,94
+Ole Miss,2006,65
+Ole Miss,2007,68
+Ole Miss,2008,15
+Ole Miss,2009,18
+Ole Miss,2010,69
+Ole Miss,2011,95
+Ole Miss,2012,32
+Ole Miss,2013,23
+Ole Miss,2014,6
+Ole Miss,2015,9
+Oregon,1980,20
+Oregon,1981,96
+Oregon,1982,52
+Oregon,1983,79
+Oregon,1984,59
+Oregon,1985,49
+Oregon,1986,39
+Oregon,1987,39
+Oregon,1988,36
+Oregon,1989,23
+Oregon,1990,23
+Oregon,1991,56
+Oregon,1992,30
+Oregon,1993,38
+Oregon,1994,16
+Oregon,1995,30
+Oregon,1996,41
+Oregon,1997,21
+Oregon,1998,22
+Oregon,1999,26
+Oregon,2000,11
+Oregon,2001,5
+Oregon,2002,46
+Oregon,2003,40
+Oregon,2004,43
+Oregon,2005,12
+Oregon,2006,38
+Oregon,2007,5
+Oregon,2008,14
+Oregon,2009,6
+Oregon,2010,2
+Oregon,2011,5
+Oregon,2012,2
+Oregon,2013,2
+Oregon,2014,1
+Oregon,2015,22
+Oregon State,1980,124
+Oregon State,1981,129
+Oregon State,1982,72
+Oregon State,1983,100
+Oregon State,1984,80
+Oregon State,1985,91
+Oregon State,1986,60
+Oregon State,1987,78
+Oregon State,1988,37
+Oregon State,1989,64
+Oregon State,1990,96
+Oregon State,1991,90
+Oregon State,1992,79
+Oregon State,1993,47
+Oregon State,1994,51
+Oregon State,1995,95
+Oregon State,1996,95
+Oregon State,1997,72
+Oregon State,1998,50
+Oregon State,1999,48
+Oregon State,2000,7
+Oregon State,2001,51
+Oregon State,2002,25
+Oregon State,2003,31
+Oregon State,2004,20
+Oregon State,2005,66
+Oregon State,2006,23
+Oregon State,2007,20
+Oregon State,2008,21
+Oregon State,2009,28
+Oregon State,2010,33
+Oregon State,2011,80
+Oregon State,2012,16
+Oregon State,2013,29
+Oregon State,2014,73
+Oregon State,2015,100
+Penn State,1980,8
+Penn State,1981,1
+Penn State,1982,1
+Penn State,1983,29
+Penn State,1984,40
+Penn State,1985,10
+Penn State,1986,2
+Penn State,1987,30
+Penn State,1988,29
+Penn State,1989,19
+Penn State,1990,13
+Penn State,1991,3
+Penn State,1992,23
+Penn State,1993,7
+Penn State,1994,1
+Penn State,1995,6
+Penn State,1996,9
+Penn State,1997,18
+Penn State,1998,13
+Penn State,1999,5
+Penn State,2000,62
+Penn State,2001,43
+Penn State,2002,11
+Penn State,2003,59
+Penn State,2004,49
+Penn State,2005,4
+Penn State,2006,31
+Penn State,2007,23
+Penn State,2008,5
+Penn State,2009,9
+Penn State,2010,50
+Penn State,2011,32
+Penn State,2012,25
+Penn State,2013,57
+Penn State,2014,53
+Penn State,2015,43
+Pittsburgh,1980,2
+Pittsburgh,1981,2
+Pittsburgh,1982,7
+Pittsburgh,1983,16
+Pittsburgh,1984,65
+Pittsburgh,1985,42
+Pittsburgh,1986,28
+Pittsburgh,1987,25
+Pittsburgh,1988,24
+Pittsburgh,1989,28
+Pittsburgh,1990,49
+Pittsburgh,1991,39
+Pittsburgh,1992,90
+Pittsburgh,1993,79
+Pittsburgh,1994,73
+Pittsburgh,1995,75
+Pittsburgh,1996,76
+Pittsburgh,1997,77
+Pittsburgh,1998,89
+Pittsburgh,1999,54
+Pittsburgh,2000,43
+Pittsburgh,2001,38
+Pittsburgh,2002,23
+Pittsburgh,2003,37
+Pittsburgh,2004,50
+Pittsburgh,2005,60
+Pittsburgh,2006,45
+Pittsburgh,2007,61
+Pittsburgh,2008,24
+Pittsburgh,2009,14
+Pittsburgh,2010,34
+Pittsburgh,2011,61
+Pittsburgh,2012,62
+Pittsburgh,2013,55
+Pittsburgh,2014,51
+Pittsburgh,2015,45
+Purdue,1980,23
+Purdue,1981,49
+Purdue,1982,70
+Purdue,1983,62
+Purdue,1984,41
+Purdue,1985,35
+Purdue,1986,76
+Purdue,1987,69
+Purdue,1988,80
+Purdue,1989,70
+Purdue,1990,71
+Purdue,1991,60
+Purdue,1992,55
+Purdue,1993,67
+Purdue,1994,40
+Purdue,1995,21
+Purdue,1996,58
+Purdue,1997,25
+Purdue,1998,10
+Purdue,1999,20
+Purdue,2000,23
+Purdue,2001,52
+Purdue,2002,33
+Purdue,2003,20
+Purdue,2004,23
+Purdue,2005,34
+Purdue,2006,64
+Purdue,2007,53
+Purdue,2008,69
+Purdue,2009,61
+Purdue,2010,88
+Purdue,2011,70
+Purdue,2012,72
+Purdue,2013,110
+Purdue,2014,91
+Purdue,2015,95
+Rice,1980,42
+Rice,1981,88
+Rice,1982,101
+Rice,1983,109
+Rice,1984,95
+Rice,1985,75
+Rice,1986,87
+Rice,1987,93
+Rice,1988,93
+Rice,1989,72
+Rice,1990,55
+Rice,1991,77
+Rice,1992,60
+Rice,1993,68
+Rice,1994,69
+Rice,1995,85
+Rice,1996,43
+Rice,1997,62
+Rice,1998,56
+Rice,1999,75
+Rice,2000,88
+Rice,2001,83
+Rice,2002,95
+Rice,2003,89
+Rice,2004,100
+Rice,2005,108
+Rice,2006,78
+Rice,2007,114
+Rice,2008,45
+Rice,2009,116
+Rice,2010,105
+Rice,2011,101
+Rice,2012,80
+Rice,2013,67
+Rice,2014,69
+Rice,2015,108
+Rutgers,1980,43
+Rutgers,1981,73
+Rutgers,1982,75
+Rutgers,1983,81
+Rutgers,1984,30
+Rutgers,1985,72
+Rutgers,1986,35
+Rutgers,1987,54
+Rutgers,1988,43
+Rutgers,1989,83
+Rutgers,1990,89
+Rutgers,1991,61
+Rutgers,1992,49
+Rutgers,1993,66
+Rutgers,1994,63
+Rutgers,1995,78
+Rutgers,1996,90
+Rutgers,1997,111
+Rutgers,1998,88
+Rutgers,1999,105
+Rutgers,2000,90
+Rutgers,2001,101
+Rutgers,2002,112
+Rutgers,2003,70
+Rutgers,2004,96
+Rutgers,2005,57
+Rutgers,2006,14
+Rutgers,2007,35
+Rutgers,2008,34
+Rutgers,2009,39
+Rutgers,2010,91
+Rutgers,2011,33
+Rutgers,2012,55
+Rutgers,2013,93
+Rutgers,2014,50
+Rutgers,2015,88
+SMU,1980,17
+SMU,1981,6
+SMU,1982,21
+SMU,1983,36
+SMU,1984,18
+SMU,1985,27
+SMU,1986,50
+SMU,1989,87
+SMU,1990,97
+SMU,1991,94
+SMU,1992,83
+SMU,1993,77
+SMU,1994,86
+SMU,1995,97
+SMU,1996,66
+SMU,1997,61
+SMU,1998,66
+SMU,1999,94
+SMU,2000,103
+SMU,2001,92
+SMU,2002,110
+SMU,2003,115
+SMU,2004,102
+SMU,2005,82
+SMU,2006,83
+SMU,2007,116
+SMU,2008,115
+SMU,2009,78
+SMU,2010,71
+SMU,2011,62
+SMU,2012,63
+SMU,2013,97
+SMU,2014,124
+SMU,2015,112
+San Diego State,1980,106
+San Diego State,1981,59
+San Diego State,1982,46
+San Diego State,1983,98
+San Diego State,1984,64
+San Diego State,1985,54
+San Diego State,1986,41
+San Diego State,1987,68
+San Diego State,1988,83
+San Diego State,1989,60
+San Diego State,1990,40
+San Diego State,1991,45
+San Diego State,1992,40
+San Diego State,1993,50
+San Diego State,1994,67
+San Diego State,1995,43
+San Diego State,1996,44
+San Diego State,1997,73
+San Diego State,1998,57
+San Diego State,1999,53
+San Diego State,2000,85
+San Diego State,2001,97
+San Diego State,2002,87
+San Diego State,2003,73
+San Diego State,2004,77
+San Diego State,2005,68
+San Diego State,2006,105
+San Diego State,2007,86
+San Diego State,2008,116
+San Diego State,2009,96
+San Diego State,2010,40
+San Diego State,2011,66
+San Diego State,2012,59
+San Diego State,2013,89
+San Diego State,2014,78
+San Diego State,2015,46
+San José State,1980,65
+San José State,1981,42
+San José State,1982,43
+San José State,1983,77
+San José State,1984,66
+San José State,1985,105
+San José State,1986,25
+San José State,1987,34
+San José State,1988,87
+San José State,1989,67
+San José State,1990,26
+San José State,1991,58
+San José State,1992,74
+San José State,1993,85
+San José State,1994,99
+San José State,1995,101
+San José State,1996,103
+San José State,1997,91
+San José State,1998,84
+San José State,1999,99
+San José State,2000,69
+San José State,2001,100
+San José State,2002,83
+San José State,2003,101
+San José State,2004,109
+San José State,2005,110
+San José State,2006,62
+San José State,2007,93
+San José State,2008,94
+San José State,2009,110
+San José State,2010,107
+San José State,2011,90
+San José State,2012,33
+San José State,2013,80
+San José State,2014,108
+San José State,2015,92
+South Alabama,2012,118
+South Alabama,2013,77
+South Alabama,2014,99
+South Alabama,2015,106
+South Carolina,1980,24
+South Carolina,1981,36
+South Carolina,1982,64
+South Carolina,1983,40
+South Carolina,1984,15
+South Carolina,1985,58
+South Carolina,1986,37
+South Carolina,1987,9
+South Carolina,1988,35
+South Carolina,1989,41
+South Carolina,1990,32
+South Carolina,1991,53
+South Carolina,1992,52
+South Carolina,1993,48
+South Carolina,1994,35
+South Carolina,1995,59
+South Carolina,1996,38
+South Carolina,1997,33
+South Carolina,1998,83
+South Carolina,1999,93
+South Carolina,2000,21
+South Carolina,2001,14
+South Carolina,2002,60
+South Carolina,2003,51
+South Carolina,2004,47
+South Carolina,2005,39
+South Carolina,2006,23
+South Carolina,2007,32
+South Carolina,2008,38
+South Carolina,2009,35
+South Carolina,2010,16
+South Carolina,2011,13
+South Carolina,2012,8
+South Carolina,2013,11
+South Carolina,2014,39
+South Carolina,2015,83
+South Florida,2000,93
+South Florida,2001,58
+South Florida,2002,36
+South Florida,2003,78
+South Florida,2004,88
+South Florida,2005,42
+South Florida,2006,38
+South Florida,2007,14
+South Florida,2008,44
+South Florida,2009,50
+South Florida,2010,52
+South Florida,2011,49
+South Florida,2012,89
+South Florida,2013,111
+South Florida,2014,112
+South Florida,2015,48
+Southern Miss,1980,31
+Southern Miss,1981,18
+Southern Miss,1982,33
+Southern Miss,1983,25
+Southern Miss,1984,85
+Southern Miss,1985,43
+Southern Miss,1986,71
+Southern Miss,1987,58
+Southern Miss,1988,27
+Southern Miss,1989,45
+Southern Miss,1990,39
+Southern Miss,1991,78
+Southern Miss,1992,42
+Southern Miss,1993,87
+Southern Miss,1994,45
+Southern Miss,1995,54
+Southern Miss,1996,25
+Southern Miss,1997,24
+Southern Miss,1998,32
+Southern Miss,1999,22
+Southern Miss,2000,30
+Southern Miss,2001,61
+Southern Miss,2002,66
+Southern Miss,2003,48
+Southern Miss,2004,72
+Southern Miss,2005,58
+Southern Miss,2006,47
+Southern Miss,2007,71
+Southern Miss,2008,63
+Southern Miss,2009,65
+Southern Miss,2010,55
+Southern Miss,2011,24
+Southern Miss,2012,122
+Southern Miss,2013,122
+Southern Miss,2014,113
+Southern Miss,2015,60
+Stanford,1980,32
+Stanford,1981,50
+Stanford,1982,27
+Stanford,1983,92
+Stanford,1984,52
+Stanford,1985,69
+Stanford,1986,14
+Stanford,1987,37
+Stanford,1988,26
+Stanford,1989,57
+Stanford,1990,34
+Stanford,1991,13
+Stanford,1992,7
+Stanford,1993,44
+Stanford,1994,61
+Stanford,1995,39
+Stanford,1996,34
+Stanford,1997,41
+Stanford,1998,68
+Stanford,1999,27
+Stanford,2000,42
+Stanford,2001,17
+Stanford,2002,73
+Stanford,2003,74
+Stanford,2004,31
+Stanford,2005,59
+Stanford,2006,98
+Stanford,2007,66
+Stanford,2008,65
+Stanford,2009,20
+Stanford,2010,1
+Stanford,2011,6
+Stanford,2012,9
+Stanford,2013,5
+Stanford,2014,20
+Stanford,2015,4
+Syracuse,1980,44
+Syracuse,1981,43
+Syracuse,1982,65
+Syracuse,1983,43
+Syracuse,1984,29
+Syracuse,1985,37
+Syracuse,1986,52
+Syracuse,1987,8
+Syracuse,1988,10
+Syracuse,1989,37
+Syracuse,1990,25
+Syracuse,1991,12
+Syracuse,1992,11
+Syracuse,1993,45
+Syracuse,1994,49
+Syracuse,1995,15
+Syracuse,1996,8
+Syracuse,1997,36
+Syracuse,1998,25
+Syracuse,1999,37
+Syracuse,2000,33
+Syracuse,2001,9
+Syracuse,2002,74
+Syracuse,2003,46
+Syracuse,2004,70
+Syracuse,2005,102
+Syracuse,2006,67
+Syracuse,2007,101
+Syracuse,2008,102
+Syracuse,2009,85
+Syracuse,2010,62
+Syracuse,2011,78
+Syracuse,2012,40
+Syracuse,2013,60
+Syracuse,2014,86
+Syracuse,2015,79
+TCU,1980,83
+TCU,1981,64
+TCU,1982,77
+TCU,1983,90
+TCU,1984,38
+TCU,1985,92
+TCU,1986,83
+TCU,1987,44
+TCU,1988,76
+TCU,1989,61
+TCU,1990,58
+TCU,1991,59
+TCU,1992,95
+TCU,1993,78
+TCU,1994,53
+TCU,1995,64
+TCU,1996,89
+TCU,1997,105
+TCU,1998,45
+TCU,1999,44
+TCU,2000,17
+TCU,2001,80
+TCU,2002,39
+TCU,2003,53
+TCU,2004,78
+TCU,2005,23
+TCU,2006,25
+TCU,2007,50
+TCU,2008,10
+TCU,2009,5
+TCU,2010,6
+TCU,2011,23
+TCU,2012,35
+TCU,2013,62
+TCU,2014,4
+TCU,2015,19
+Temple,1980,101
+Temple,1981,39
+Temple,1982,55
+Temple,1983,63
+Temple,1984,50
+Temple,1985,57
+Temple,1986,30
+Temple,1987,82
+Temple,1988,72
+Temple,1989,94
+Temple,1990,50
+Temple,1991,89
+Temple,1992,101
+Temple,1993,105
+Temple,1994,89
+Temple,1995,87
+Temple,1996,92
+Temple,1997,100
+Temple,1998,101
+Temple,1999,92
+Temple,2000,77
+Temple,2001,84
+Temple,2002,76
+Temple,2003,104
+Temple,2004,103
+Temple,2005,112
+Temple,2006,118
+Temple,2007,115
+Temple,2008,75
+Temple,2009,74
+Temple,2010,76
+Temple,2011,35
+Temple,2012,97
+Temple,2013,103
+Temple,2014,79
+Temple,2015,44
+Tennessee,1980,30
+Tennessee,1981,51
+Tennessee,1982,35
+Tennessee,1983,17
+Tennessee,1984,13
+Tennessee,1985,3
+Tennessee,1986,48
+Tennessee,1987,16
+Tennessee,1988,54
+Tennessee,1989,12
+Tennessee,1990,12
+Tennessee,1991,16
+Tennessee,1992,15
+Tennessee,1993,4
+Tennessee,1994,13
+Tennessee,1995,5
+Tennessee,1996,10
+Tennessee,1997,4
+Tennessee,1998,3
+Tennessee,1999,3
+Tennessee,2000,26
+Tennessee,2001,3
+Tennessee,2002,34
+Tennessee,2003,17
+Tennessee,2004,21
+Tennessee,2005,43
+Tennessee,2006,11
+Tennessee,2007,16
+Tennessee,2008,56
+Tennessee,2009,27
+Tennessee,2010,56
+Tennessee,2011,45
+Tennessee,2012,52
+Tennessee,2013,52
+Tennessee,2014,32
+Tennessee,2015,11
+Texas,1980,28
+Texas,1981,8
+Texas,1982,16
+Texas,1983,12
+Texas,1984,33
+Texas,1985,31
+Texas,1986,46
+Texas,1987,33
+Texas,1988,73
+Texas,1989,39
+Texas,1990,6
+Texas,1991,35
+Texas,1992,51
+Texas,1993,34
+Texas,1994,32
+Texas,1995,18
+Texas,1996,21
+Texas,1997,75
+Texas,1998,12
+Texas,1999,25
+Texas,2000,10
+Texas,2001,4
+Texas,2002,6
+Texas,2003,8
+Texas,2004,6
+Texas,2005,1
+Texas,2006,17
+Texas,2007,19
+Texas,2008,3
+Texas,2009,3
+Texas,2010,57
+Texas,2011,15
+Texas,2012,18
+Texas,2013,33
+Texas,2014,48
+Texas,2015,69
+Texas A&M,1980,52
+Texas A&M,1981,29
+Texas A&M,1982,69
+Texas A&M,1983,56
+Texas A&M,1984,53
+Texas A&M,1985,12
+Texas A&M,1986,23
+Texas A&M,1987,13
+Texas A&M,1988,32
+Texas A&M,1989,16
+Texas A&M,1990,20
+Texas A&M,1991,9
+Texas A&M,1992,12
+Texas A&M,1993,5
+Texas A&M,1994,11
+Texas A&M,1995,16
+Texas A&M,1996,36
+Texas A&M,1997,31
+Texas A&M,1998,7
+Texas A&M,1999,24
+Texas A&M,2000,15
+Texas A&M,2001,41
+Texas A&M,2002,37
+Texas A&M,2003,77
+Texas A&M,2004,18
+Texas A&M,2005,51
+Texas A&M,2006,33
+Texas A&M,2007,44
+Texas A&M,2008,87
+Texas A&M,2009,53
+Texas A&M,2010,19
+Texas A&M,2011,14
+Texas A&M,2012,3
+Texas A&M,2013,19
+Texas A&M,2014,29
+Texas A&M,2015,30
+Texas State,2012,99
+Texas State,2013,104
+Texas State,2014,92
+Texas State,2015,116
+Texas Tech,1980,45
+Texas Tech,1981,83
+Texas Tech,1982,66
+Texas Tech,1983,87
+Texas Tech,1984,67
+Texas Tech,1985,61
+Texas Tech,1986,42
+Texas Tech,1987,47
+Texas Tech,1988,58
+Texas Tech,1989,22
+Texas Tech,1990,56
+Texas Tech,1991,51
+Texas Tech,1992,59
+Texas Tech,1993,36
+Texas Tech,1994,34
+Texas Tech,1995,23
+Texas Tech,1996,24
+Texas Tech,1997,45
+Texas Tech,1998,34
+Texas Tech,1999,68
+Texas Tech,2000,44
+Texas Tech,2001,27
+Texas Tech,2002,24
+Texas Tech,2003,33
+Texas Tech,2004,15
+Texas Tech,2005,18
+Texas Tech,2006,46
+Texas Tech,2007,26
+Texas Tech,2008,7
+Texas Tech,2009,21
+Texas Tech,2010,49
+Texas Tech,2011,56
+Texas Tech,2012,37
+Texas Tech,2013,42
+Texas Tech,2014,83
+Texas Tech,2015,56
+Toledo,1980,120
+Toledo,1981,71
+Toledo,1982,91
+Toledo,1983,49
+Toledo,1984,76
+Toledo,1985,100
+Toledo,1986,84
+Toledo,1987,96
+Toledo,1988,88
+Toledo,1989,97
+Toledo,1990,76
+Toledo,1991,69
+Toledo,1992,70
+Toledo,1993,94
+Toledo,1994,90
+Toledo,1995,35
+Toledo,1996,93
+Toledo,1997,49
+Toledo,1998,73
+Toledo,1999,80
+Toledo,2000,25
+Toledo,2001,50
+Toledo,2002,52
+Toledo,2003,61
+Toledo,2004,73
+Toledo,2005,46
+Toledo,2006,104
+Toledo,2007,106
+Toledo,2008,110
+Toledo,2009,106
+Toledo,2010,77
+Toledo,2011,30
+Toledo,2012,66
+Toledo,2013,69
+Toledo,2014,76
+Toledo,2015,25
+Troy,2001,82
+Troy,2002,96
+Troy,2003,90
+Troy,2004,71
+Troy,2005,111
+Troy,2006,75
+Troy,2007,43
+Troy,2008,62
+Troy,2009,54
+Troy,2010,79
+Troy,2011,113
+Troy,2012,79
+Troy,2013,91
+Troy,2014,120
+Troy,2015,98
+Tulane,1980,37
+Tulane,1981,41
+Tulane,1982,61
+Tulane,1983,53
+Tulane,1984,70
+Tulane,1985,94
+Tulane,1986,86
+Tulane,1987,46
+Tulane,1988,77
+Tulane,1989,69
+Tulane,1990,70
+Tulane,1991,95
+Tulane,1992,92
+Tulane,1993,97
+Tulane,1994,95
+Tulane,1995,96
+Tulane,1996,65
+Tulane,1997,42
+Tulane,1998,23
+Tulane,1999,89
+Tulane,2000,84
+Tulane,2001,96
+Tulane,2002,59
+Tulane,2003,94
+Tulane,2004,95
+Tulane,2005,109
+Tulane,2006,100
+Tulane,2007,111
+Tulane,2008,117
+Tulane,2009,115
+Tulane,2010,108
+Tulane,2011,117
+Tulane,2012,115
+Tulane,2013,79
+Tulane,2014,114
+Tulane,2015,115
+Tulsa,1980,50
+Tulsa,1981,46
+Tulsa,1982,40
+Tulsa,1983,65
+Tulsa,1984,71
+Tulsa,1985,62
+Tulsa,1986,57
+Tulsa,1987,94
+Tulsa,1988,63
+Tulsa,1989,68
+Tulsa,1990,91
+Tulsa,1991,34
+Tulsa,1992,80
+Tulsa,1993,70
+Tulsa,1994,84
+Tulsa,1995,80
+Tulsa,1996,85
+Tulsa,1997,98
+Tulsa,1998,74
+Tulsa,1999,104
+Tulsa,2000,91
+Tulsa,2001,111
+Tulsa,2002,114
+Tulsa,2003,67
+Tulsa,2004,93
+Tulsa,2005,44
+Tulsa,2006,53
+Tulsa,2007,65
+Tulsa,2008,30
+Tulsa,2009,84
+Tulsa,2010,45
+Tulsa,2011,37
+Tulsa,2012,41
+Tulsa,2013,106
+Tulsa,2014,121
+Tulsa,2015,91
+UAB,1996,88
+UAB,1997,93
+UAB,1998,92
+UAB,1999,64
+UAB,2000,68
+UAB,2001,75
+UAB,2002,92
+UAB,2003,83
+UAB,2004,75
+UAB,2005,80
+UAB,2006,91
+UAB,2007,113
+UAB,2008,104
+UAB,2009,90
+UAB,2010,97
+UAB,2011,112
+UAB,2012,110
+UAB,2013,115
+UAB,2014,70
+UCF,1996,86
+UCF,1997,44
+UCF,1998,44
+UCF,1999,84
+UCF,2000,72
+UCF,2001,60
+UCF,2002,64
+UCF,2003,110
+UCF,2004,118
+UCF,2005,79
+UCF,2006,90
+UCF,2007,40
+UCF,2008,98
+UCF,2009,66
+UCF,2010,41
+UCF,2011,75
+UCF,2012,36
+UCF,2013,28
+UCF,2014,59
+UCF,2015,126
+UCLA,1980,11
+UCLA,1981,15
+UCLA,1982,3
+UCLA,1983,23
+UCLA,1984,37
+UCLA,1985,6
+UCLA,1986,4
+UCLA,1987,4
+UCLA,1988,7
+UCLA,1989,44
+UCLA,1990,35
+UCLA,1991,14
+UCLA,1992,35
+UCLA,1993,12
+UCLA,1994,52
+UCLA,1995,32
+UCLA,1996,33
+UCLA,1997,6
+UCLA,1998,5
+UCLA,1999,72
+UCLA,2000,29
+UCLA,2001,15
+UCLA,2002,27
+UCLA,2003,60
+UCLA,2004,25
+UCLA,2005,22
+UCLA,2006,27
+UCLA,2007,29
+UCLA,2008,81
+UCLA,2009,49
+UCLA,2010,65
+UCLA,2011,71
+UCLA,2012,30
+UCLA,2013,8
+UCLA,2014,14
+UCLA,2015,32
+UL Monroe,1980,85
+UL Monroe,1981,99
+UL Monroe,1994,85
+UL Monroe,1995,103
+UL Monroe,1996,100
+UL Monroe,1997,85
+UL Monroe,1998,93
+UL Monroe,1999,97
+UL Monroe,2000,116
+UL Monroe,2001,115
+UL Monroe,2002,107
+UL Monroe,2003,113
+UL Monroe,2004,107
+UL Monroe,2005,107
+UL Monroe,2006,88
+UL Monroe,2007,87
+UL Monroe,2008,105
+UL Monroe,2009,97
+UL Monroe,2010,104
+UL Monroe,2011,99
+UL Monroe,2012,65
+UL Monroe,2013,95
+UL Monroe,2014,111
+UL Monroe,2015,123
+UNLV,1980,53
+UNLV,1981,102
+UNLV,1982,94
+UNLV,1983,68
+UNLV,1984,46
+UNLV,1985,93
+UNLV,1986,70
+UNLV,1987,91
+UNLV,1988,101
+UNLV,1989,90
+UNLV,1990,101
+UNLV,1991,104
+UNLV,1992,92
+UNLV,1993,96
+UNLV,1994,82
+UNLV,1995,108
+UNLV,1996,102
+UNLV,1997,88
+UNLV,1998,105
+UNLV,1999,106
+UNLV,2000,58
+UNLV,2001,71
+UNLV,2002,80
+UNLV,2003,65
+UNLV,2004,97
+UNLV,2005,105
+UNLV,2006,109
+UNLV,2007,94
+UNLV,2008,95
+UNLV,2009,89
+UNLV,2010,106
+UNLV,2011,114
+UNLV,2012,117
+UNLV,2013,88
+UNLV,2014,123
+UNLV,2015,102
+USC,1980,6
+USC,1981,13
+USC,1982,4
+USC,1983,47
+USC,1984,24
+USC,1985,33
+USC,1986,15
+USC,1987,15
+USC,1988,3
+USC,1989,6
+USC,1990,21
+USC,1991,33
+USC,1992,16
+USC,1993,18
+USC,1994,14
+USC,1995,14
+USC,1996,31
+USC,1997,19
+USC,1998,17
+USC,1999,38
+USC,2000,45
+USC,2001,26
+USC,2002,1
+USC,2003,1
+USC,2004,1
+USC,2005,2
+USC,2006,1
+USC,2007,3
+USC,2008,4
+USC,2009,25
+USC,2010,24
+USC,2011,10
+USC,2012,20
+USC,2013,18
+USC,2014,15
+USC,2015,18
+UTEP,1980,129
+UTEP,1981,130
+UTEP,1982,95
+UTEP,1983,106
+UTEP,1984,103
+UTEP,1985,103
+UTEP,1986,77
+UTEP,1987,55
+UTEP,1988,34
+UTEP,1989,92
+UTEP,1990,93
+UTEP,1991,73
+UTEP,1992,99
+UTEP,1993,98
+UTEP,1994,83
+UTEP,1995,105
+UTEP,1996,106
+UTEP,1997,95
+UTEP,1998,90
+UTEP,1999,88
+UTEP,2000,49
+UTEP,2001,110
+UTEP,2002,113
+UTEP,2003,116
+UTEP,2004,36
+UTEP,2005,71
+UTEP,2006,96
+UTEP,2007,97
+UTEP,2008,85
+UTEP,2009,95
+UTEP,2010,94
+UTEP,2011,100
+UTEP,2012,103
+UTEP,2013,116
+UTEP,2014,81
+UTEP,2015,121
+UTSA,2012,96
+UTSA,2013,78
+UTSA,2014,103
+UTSA,2015,117
+Utah,1980,73
+Utah,1981,47
+Utah,1982,49
+Utah,1983,66
+Utah,1984,45
+Utah,1985,45
+Utah,1986,81
+Utah,1987,83
+Utah,1988,55
+Utah,1989,77
+Utah,1990,84
+Utah,1991,63
+Utah,1992,44
+Utah,1993,58
+Utah,1994,15
+Utah,1995,40
+Utah,1996,56
+Utah,1997,68
+Utah,1998,55
+Utah,1999,23
+Utah,2000,64
+Utah,2001,32
+Utah,2002,69
+Utah,2003,25
+Utah,2004,2
+Utah,2005,49
+Utah,2006,49
+Utah,2007,31
+Utah,2008,9
+Utah,2009,34
+Utah,2010,29
+Utah,2011,50
+Utah,2012,60
+Utah,2013,36
+Utah,2014,30
+Utah,2015,19
+Utah State,1980,77
+Utah State,1981,84
+Utah State,1982,97
+Utah State,1983,75
+Utah State,1984,98
+Utah State,1985,99
+Utah State,1986,93
+Utah State,1987,81
+Utah State,1988,96
+Utah State,1989,91
+Utah State,1990,80
+Utah State,1991,83
+Utah State,1992,78
+Utah State,1993,72
+Utah State,1994,100
+Utah State,1995,92
+Utah State,1996,79
+Utah State,1997,67
+Utah State,1998,95
+Utah State,1999,90
+Utah State,2000,97
+Utah State,2001,91
+Utah State,2002,103
+Utah State,2003,102
+Utah State,2004,110
+Utah State,2005,114
+Utah State,2006,115
+Utah State,2007,103
+Utah State,2008,103
+Utah State,2009,94
+Utah State,2010,93
+Utah State,2011,76
+Utah State,2012,19
+Utah State,2013,37
+Utah State,2014,49
+Utah State,2015,77
+Vanderbilt,1980,95
+Vanderbilt,1981,61
+Vanderbilt,1982,38
+Vanderbilt,1983,48
+Vanderbilt,1984,43
+Vanderbilt,1985,76
+Vanderbilt,1986,89
+Vanderbilt,1987,52
+Vanderbilt,1988,70
+Vanderbilt,1989,81
+Vanderbilt,1990,100
+Vanderbilt,1991,62
+Vanderbilt,1992,56
+Vanderbilt,1993,64
+Vanderbilt,1994,57
+Vanderbilt,1995,70
+Vanderbilt,1996,73
+Vanderbilt,1997,63
+Vanderbilt,1998,96
+Vanderbilt,1999,51
+Vanderbilt,2000,83
+Vanderbilt,2001,89
+Vanderbilt,2002,86
+Vanderbilt,2003,85
+Vanderbilt,2004,90
+Vanderbilt,2005,65
+Vanderbilt,2006,58
+Vanderbilt,2007,56
+Vanderbilt,2008,43
+Vanderbilt,2009,88
+Vanderbilt,2010,99
+Vanderbilt,2011,29
+Vanderbilt,2012,22
+Vanderbilt,2013,30
+Vanderbilt,2014,98
+Vanderbilt,2015,84
+Virginia,1980,78
+Virginia,1981,94
+Virginia,1982,85
+Virginia,1983,58
+Virginia,1984,14
+Virginia,1985,38
+Virginia,1986,80
+Virginia,1987,32
+Virginia,1988,45
+Virginia,1989,18
+Virginia,1990,14
+Virginia,1991,25
+Virginia,1992,26
+Virginia,1993,32
+Virginia,1994,18
+Virginia,1995,22
+Virginia,1996,20
+Virginia,1997,34
+Virginia,1998,24
+Virginia,1999,45
+Virginia,2000,61
+Virginia,2001,74
+Virginia,2002,28
+Virginia,2003,24
+Virginia,2004,14
+Virginia,2005,38
+Virginia,2006,69
+Virginia,2007,42
+Virginia,2008,60
+Virginia,2009,77
+Virginia,2010,75
+Virginia,2011,65
+Virginia,2012,82
+Virginia,2013,90
+Virginia,2014,45
+Virginia,2015,76
+Virginia Tech,1980,39
+Virginia Tech,1981,35
+Virginia Tech,1982,59
+Virginia Tech,1983,20
+Virginia Tech,1984,35
+Virginia Tech,1985,47
+Virginia Tech,1986,38
+Virginia Tech,1987,64
+Virginia Tech,1988,62
+Virginia Tech,1989,35
+Virginia Tech,1990,31
+Virginia Tech,1991,42
+Virginia Tech,1992,63
+Virginia Tech,1993,22
+Virginia Tech,1994,28
+Virginia Tech,1995,12
+Virginia Tech,1996,13
+Virginia Tech,1997,59
+Virginia Tech,1998,15
+Virginia Tech,1999,4
+Virginia Tech,2000,4
+Virginia Tech,2001,16
+Virginia Tech,2002,19
+Virginia Tech,2003,29
+Virginia Tech,2004,12
+Virginia Tech,2005,5
+Virginia Tech,2006,16
+Virginia Tech,2007,11
+Virginia Tech,2008,25
+Virginia Tech,2009,4
+Virginia Tech,2010,13
+Virginia Tech,2011,27
+Virginia Tech,2012,57
+Virginia Tech,2013,39
+Virginia Tech,2014,38
+Virginia Tech,2015,53
+Wake Forest,1980,41
+Wake Forest,1981,81
+Wake Forest,1982,83
+Wake Forest,1983,70
+Wake Forest,1984,72
+Wake Forest,1985,68
+Wake Forest,1986,58
+Wake Forest,1987,45
+Wake Forest,1988,44
+Wake Forest,1989,78
+Wake Forest,1990,77
+Wake Forest,1991,92
+Wake Forest,1992,38
+Wake Forest,1993,81
+Wake Forest,1994,93
+Wake Forest,1995,98
+Wake Forest,1996,91
+Wake Forest,1997,57
+Wake Forest,1998,79
+Wake Forest,1999,40
+Wake Forest,2000,99
+Wake Forest,2001,62
+Wake Forest,2002,43
+Wake Forest,2003,45
+Wake Forest,2004,57
+Wake Forest,2005,62
+Wake Forest,2006,30
+Wake Forest,2007,33
+Wake Forest,2008,28
+Wake Forest,2009,57
+Wake Forest,2010,87
+Wake Forest,2011,69
+Wake Forest,2012,90
+Wake Forest,2013,68
+Wake Forest,2014,100
+Wake Forest,2015,89
+Washington,1980,25
+Washington,1981,21
+Washington,1982,8
+Washington,1983,31
+Washington,1984,3
+Washington,1985,41
+Washington,1986,7
+Washington,1987,28
+Washington,1988,25
+Washington,1989,14
+Washington,1990,2
+Washington,1991,1
+Washington,1992,3
+Washington,1993,21
+Washington,1994,23
+Washington,1995,24
+Washington,1996,12
+Washington,1997,7
+Washington,1998,41
+Washington,1999,36
+Washington,2000,8
+Washington,2001,35
+Washington,2002,31
+Washington,2003,50
+Washington,2004,83
+Washington,2005,75
+Washington,2006,51
+Washington,2007,51
+Washington,2008,109
+Washington,2009,51
+Washington,2010,42
+Washington,2011,57
+Washington,2012,49
+Washington,2013,13
+Washington,2014,41
+Washington,2015,26
+Washington State,1980,54
+Washington State,1981,30
+Washington State,1982,68
+Washington State,1983,39
+Washington State,1984,44
+Washington State,1985,44
+Washington State,1986,45
+Washington State,1987,57
+Washington State,1988,12
+Washington State,1989,25
+Washington State,1990,65
+Washington State,1991,55
+Washington State,1992,18
+Washington State,1993,35
+Washington State,1994,19
+Washington State,1995,65
+Washington State,1996,50
+Washington State,1997,13
+Washington State,1998,77
+Washington State,1999,79
+Washington State,2000,57
+Washington State,2001,18
+Washington State,2002,12
+Washington State,2003,15
+Washington State,2004,51
+Washington State,2005,54
+Washington State,2006,41
+Washington State,2007,60
+Washington State,2008,113
+Washington State,2009,112
+Washington State,2010,81
+Washington State,2011,89
+Washington State,2012,94
+Washington State,2013,45
+Washington State,2014,74
+Washington State,2015,41
+West Virginia,1980,49
+West Virginia,1981,14
+West Virginia,1982,22
+West Virginia,1983,18
+West Virginia,1984,21
+West Virginia,1985,40
+West Virginia,1986,61
+West Virginia,1987,27
+West Virginia,1988,5
+West Virginia,1989,27
+West Virginia,1990,68
+West Virginia,1991,41
+West Virginia,1992,32
+West Virginia,1993,16
+West Virginia,1994,54
+West Virginia,1995,53
+West Virginia,1996,27
+West Virginia,1997,54
+West Virginia,1998,27
+West Virginia,1999,61
+West Virginia,2000,39
+West Virginia,2001,66
+West Virginia,2002,35
+West Virginia,2003,34
+West Virginia,2004,39
+West Virginia,2005,13
+West Virginia,2006,6
+West Virginia,2007,1
+West Virginia,2008,29
+West Virginia,2009,33
+West Virginia,2010,25
+West Virginia,2011,26
+West Virginia,2012,54
+West Virginia,2013,86
+West Virginia,2014,34
+West Virginia,2015,35
+Western Kentucky,2007,80
+Western Kentucky,2008,112
+Western Kentucky,2009,119
+Western Kentucky,2010,111
+Western Kentucky,2011,93
+Western Kentucky,2012,71
+Western Kentucky,2013,71
+Western Kentucky,2014,58
+Western Kentucky,2015,28
+Western Michigan,1980,99
+Western Michigan,1981,105
+Western Michigan,1982,79
+Western Michigan,1983,91
+Western Michigan,1984,91
+Western Michigan,1985,89
+Western Michigan,1986,100
+Western Michigan,1987,98
+Western Michigan,1988,61
+Western Michigan,1989,99
+Western Michigan,1990,85
+Western Michigan,1991,75
+Western Michigan,1992,87
+Western Michigan,1993,86
+Western Michigan,1994,88
+Western Michigan,1995,69
+Western Michigan,1996,107
+Western Michigan,1997,71
+Western Michigan,1998,86
+Western Michigan,1999,81
+Western Michigan,2000,40
+Western Michigan,2001,81
+Western Michigan,2002,81
+Western Michigan,2003,88
+Western Michigan,2004,116
+Western Michigan,2005,86
+Western Michigan,2006,71
+Western Michigan,2007,89
+Western Michigan,2008,70
+Western Michigan,2009,103
+Western Michigan,2010,79
+Western Michigan,2011,64
+Western Michigan,2012,104
+Western Michigan,2013,117
+Western Michigan,2014,76
+Western Michigan,2015,55
+Wisconsin,1980,64
+Wisconsin,1981,40
+Wisconsin,1982,36
+Wisconsin,1983,27
+Wisconsin,1984,42
+Wisconsin,1985,53
+Wisconsin,1986,66
+Wisconsin,1987,74
+Wisconsin,1988,94
+Wisconsin,1989,79
+Wisconsin,1990,83
+Wisconsin,1991,66
+Wisconsin,1992,43
+Wisconsin,1993,10
+Wisconsin,1994,22
+Wisconsin,1995,26
+Wisconsin,1996,26
+Wisconsin,1997,53
+Wisconsin,1998,9
+Wisconsin,1999,11
+Wisconsin,2000,22
+Wisconsin,2001,53
+Wisconsin,2002,30
+Wisconsin,2003,36
+Wisconsin,2004,28
+Wisconsin,2005,17
+Wisconsin,2006,18
+Wisconsin,2007,46
+Wisconsin,2008,55
+Wisconsin,2009,29
+Wisconsin,2010,14
+Wisconsin,2011,9
+Wisconsin,2012,24
+Wisconsin,2013,17
+Wisconsin,2014,18
+Wisconsin,2015,23
+Wyoming,1980,59
+Wyoming,1981,32
+Wyoming,1982,71
+Wyoming,1983,54
+Wyoming,1984,73
+Wyoming,1985,83
+Wyoming,1986,54
+Wyoming,1987,29
+Wyoming,1988,16
+Wyoming,1989,54
+Wyoming,1990,53
+Wyoming,1991,81
+Wyoming,1992,69
+Wyoming,1993,59
+Wyoming,1994,55
+Wyoming,1995,57
+Wyoming,1996,35
+Wyoming,1997,51
+Wyoming,1998,53
+Wyoming,1999,47
+Wyoming,2000,109
+Wyoming,2001,103
+Wyoming,2002,105
+Wyoming,2003,84
+Wyoming,2004,58
+Wyoming,2005,83
+Wyoming,2006,61
+Wyoming,2007,77
+Wyoming,2008,107
+Wyoming,2009,86
+Wyoming,2010,98
+Wyoming,2011,79
+Wyoming,2012,108
+Wyoming,2013,100
+Wyoming,2014,95
+Wyoming,2015,124

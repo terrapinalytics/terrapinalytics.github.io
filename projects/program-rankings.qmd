@@ -64,11 +64,20 @@ Use **Compare schools** to see the five category scores and the multi-year evide
 |---|---|
 | Financial measures | FY2016–25, excluding the disrupted FY2020 and FY2021. Each observation is converted to FY2025 athletics-cost dollars before averaging, using the fixed-weight College Athletics Spending Index. Displayed dollar figures are rounded to the nearest $100,000. |
 | Football spending | NCAA MFRS where at least two comparable annual values are available. EADA supplies the entire average for schools with insufficient MFRS coverage. Peer comparisons use the same source. |
-| Conference-related revenue | Fiscal years whose preceding football season was played in the school's current conference. The NCAA reporting line includes conference, NCAA, media and postseason revenue. |
+| Conference-related revenue | Use the school’s NCAA conference, media and postseason receipts from its current league. Show one verified season if it is the only one. If the school line is unavailable, use a clearly labeled conference Form 990 cash payment when it identifies the recipient and comparable scope. |
+| NIL and roster spending | Published 2026 football estimates or ranges in reported dollars. The school detail links each available estimate and preserves differences in scope and wording. |
 | Recruiting | High-school class rank from 2016–25, excluding the 2021 recruiting cycle. Transfer recruiting rank compares schools by their average incoming rating across available 2022–26 classes. The highest average ranks first. The recruiting tab shows local and regional supply and a competition adjustment for the 2022–26 classes. |
-| Attendance and performance | Home attendance from 2010–25 and average national SP+ rank from 2016–25. Both omit the 2020 season. Attendance also omits any other observations flagged as COVID-restricted. |
+| Attendance and performance | Home attendance from 2010–25 and average national SP+ rank from 2016–25, plus historical SRS rank from 1980–2015. Both omit the 2020 season. Attendance also omits any other observations flagged as COVID-restricted. |
 
 Multi-year figures give equal weight to each observed year and require at least two observations. Missing disclosure and short histories can leave a blank. The school details show the years used, and peer comparisons exclude missing figures. [College Athletics Spending Index](athletics-spending-index.qmd).
+
+### Historical performance
+
+The Competitive Ceiling tab adds a separate average of annual Simple Rating System (SRS) ranks for 1980–2015. SRS adjusts scoring margin for strength of schedule. Each season is ranked against the major-college teams in that season’s table, with ties sharing a rank. Schools without at least two seasons in the archive have a blank. [Sports Reference season archive](https://www.sports-reference.com/cfb/years/) · [Source snapshot](https://github.com/ssitari/NCAAFSRSTimeline/blob/9ed52612f6d8b8253f1a858974ea17049402862a/srs_ratings.csv) · [Annual ranks used](../assets/coaching/historical-srs-ranks.csv)
+
+### Conference revenue coverage
+
+Many school reports omit this line, and a program may have only recently joined its current league. League names are standardized across sources. The Form 990 fallback uses reported recipient cash payments from the ACC, Big Ten and Big 12. SEC filings in this snapshot list school-level NCAA assistance only, so those figures are excluded from the fallback. Independents have no football-conference comparison. Source labels distinguish the broader school-reported receipts from conference-reported cash, and peer comparisons use matching sources.
 
 ### Recruiting market overlap
 

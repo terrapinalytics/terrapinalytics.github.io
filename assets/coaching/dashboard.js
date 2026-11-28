@@ -34,12 +34,12 @@ function sourceLinks(value) {
 }
 function options(values) { return values.map(value => `<option>${escapeHtml(value)}</option>`).join(''); }
 const frameworkMetrics = {
-  'Football resources': ['evidence_football_spending', 'evidence_football_payroll', 'evidence_contributions'],
+  'Football resources': ['evidence_football_spending', 'evidence_football_payroll', 'evidence_roster_estimate', 'evidence_contributions'],
   'Recruiting geography': ['evidence_recruits_local', 'evidence_recruits_regional', 'evidence_recruits_adjusted',
     'evidence_hs_rank', 'evidence_transfer_rank'],
   'Conference and realignment': ['conference', 'evidence_conference_revenue'],
-  'Fans and tradition': ['evidence_attendance', 'evidence_ticket_sales', 'all_time_win_pct'],
-  'Competitive ceiling': ['evidence_sp_rank']
+  'Fans and tradition': ['evidence_attendance', 'evidence_ticket_sales'],
+  'Competitive ceiling': ['evidence_sp_rank', 'evidence_historical_srs_rank']
 };
 const previousGroups = {
   Finance:'Football resources', 'Roster spending':'Football resources', Recruiting:'Recruiting geography',
@@ -70,8 +70,6 @@ async function start() {
   let ascending = !isOdds;
   const metricIndex = new Map((data.metrics || []).map(metric => [metric.key, metric]));
   for (const metric of evidence?.metrics || []) metricIndex.set(metric.key, metric);
-  metricIndex.set('all_time_win_pct', {key:'all_time_win_pct', label:'All-time win percentage',
-    definition:'Includes earlier subdivisions', format:'percent'});
   metricIndex.set('conference', {key:'conference', format:'text', label:'Conference affiliation', definition:'Current football membership'});
   if (!isOdds) metricIndex.set('score', {...metricIndex.get('score'), format:'integer'});
   const componentKeys = ['resources_score','recruiting_score','conference_score','fans_score','ceiling_score'];
@@ -153,6 +151,26 @@ async function start() {
       cohorts:groups.map(g=>({label:g.label,shortLabel:g.shortLabel,values:g.members.filter(sameSource).map(x=>x[metric.key]),includesSelected:g.members.some(x=>x.school===row.school&&sameSource(x))}))};
     return PeerContext.badges(comparison)+'<details><summary>Peer details</summary>'+PeerContext.comparison(comparison)+'</details>';
   }
+  function metricValue(row, metric) {
+    const reported = row.observations[metric.key]?.reported;
+    return reported ? escapeHtml(reported) : format(row[metric.key], metric.format);
+  }
+  function exportValue(row, key) {
+    return row.observations[key]?.reported ?? row[key];
+  }
+  function metricCell(row, metric, comparison = false) {
+    if (isScore(metric.key)) return scoreCell(row[metric.key]);
+    const observation = row.observations[metric.key];
+    let note = '';
+    if (observation) {
+      const labelSource = ['evidence_football_spending', 'evidence_conference_revenue', 'evidence_roster_estimate'].includes(metric.key);
+      const period = observation.years.length === 1 ? String(observation.years[0]) : observation.years.length+' yrs';
+      if (comparison || metric.key === 'evidence_conference_revenue' || observation.reported) {
+        note = `<small class="observation-period" title="${observation.years.join(', ')}">${period}${labelSource ? ' · '+escapeHtml(observation.source) : ''}</small>`;
+      }
+    }
+    return `<td class="${metric.format==='text'?'':'number'}">${metricValue(row,metric)}${note}</td>`;
+  }
   function programMetric(row, metric) {
     if (metric.key === 'conference') {
       return `<div class="metric">${metric.label}<strong>${format(row.conference,'text')}</strong><small>Media revenue, playoff access, and league stability inform the editorial assessment.</small></div>`;
@@ -162,10 +180,11 @@ async function start() {
     const observation = row.observations[metric.key];
     const averageSource = metric.url
       ? observation
-        ? `<p>${escapeHtml(observation.source)} · Years used: ${observation.years.join(', ')}. <a href="${escapeHtml(metric.url)}" target="_blank" rel="noopener">Source data</a></p>`
-        : '<p>Fewer than two comparable observations in the selected window.</p>'
+        ? `<p>${escapeHtml(observation.source)} · Years used: ${observation.years.join(', ')}. <a href="${escapeHtml(observation.url || metric.url)}" target="_blank" rel="noopener">Source data</a></p>`
+        : '<p>No qualifying source observations in the selected window.</p>'
       : '';
-    return `<div class="metric">${escapeHtml(metric.label)}<strong>${format(row[metric.key],metric.format)}</strong>${metricPeers(row,metric)}<details><summary>Definition and sources</summary><p>${escapeHtml(metric.definition)}</p>${averageSource || provenance || '<p>See the supporting tables for source coverage.</p>'}</details></div>`;
+    const estimates = observation?.alternatives?.map(entry=>`<p><strong>${escapeHtml(entry.reported)}</strong> <a href="${escapeHtml(entry.url)}" target="_blank" rel="noopener">${escapeHtml(entry.source)}</a>${entry.note ? ' · '+escapeHtml(entry.note) : ''}</p>`).join('');
+    return `<div class="metric">${escapeHtml(metric.label)}<strong>${metricValue(row,metric)}</strong>${metric.key === 'evidence_roster_estimate' ? '' : metricPeers(row,metric)}<details><summary>Definition and sources</summary><p>${escapeHtml(metric.definition)}</p>${estimates || averageSource || provenance || '<p>See the supporting tables for source coverage.</p>'}</details></div>`;
   }
   function showDetail(row) {
     const detail = document.getElementById('detail');
@@ -206,15 +225,10 @@ async function start() {
       return;
     }
     const metricRow = (category, metric) => {
-      const {key, label, definition = '', format: type} = metric;
-      exportRows.push([category, label, definition, ...programs.map(row=>row[key])]);
+      const {key, label, definition = ''} = metric;
+      exportRows.push([category, label, definition, ...programs.map(row=>exportValue(row,key))]);
       return `<tr${componentKeys.includes(key) ? ' class="category-score"' : ''}><th scope="row">${escapeHtml(label)}${definition ? `<small>${escapeHtml(definition)}</small>` : ''}</th>${
-        programs.map(row=>{
-          if (isScore(key)) return scoreCell(row[key]);
-          const observation = row.observations[key];
-          const period = observation ? `<small class="observation-period" title="${observation.years.join(', ')}">${observation.years.length} yrs${key === 'evidence_football_spending' ? ' · '+escapeHtml(observation.source) : ''}</small>` : '';
-          return `<td class="${type==='text'?'':'number'}">${format(row[key],type)}${period}</td>`;
-        }).join('')}</tr>`;
+        programs.map(row=>metricCell(row,metric,true)).join('')}</tr>`;
     };
     const overview = [
       {key:'rank',label:'FBS rank',format:'integer'}, {key:'tier',label:'Job tier',format:'integer'},
@@ -279,7 +293,7 @@ async function start() {
           row[checkpoint],row.buyout_sort,data.as_of,checkpoint==='dec7_probability_pct'?row.two_week_change_pp:null,
           checkpoint==='dec7_probability_pct'?data.comparison_source_date:null])]
       : [['Rank','Program','Conference','Tier',...exportMetrics.map(metric=>metric.definition ? metric.label+' ('+metric.definition+')' : metric.label)],
-        ...filtered.map(row=>[row.rank,row.school,row.conference,row.tier,...exportMetrics.map(metric=>row[metric.key])])];
+        ...filtered.map(row=>[row.rank,row.school,row.conference,row.tier,...exportMetrics.map(metric=>exportValue(row,metric.key))])];
     const header = (key,label,definition='')=>`<th scope="col"${sortKey===key?' aria-sort="'+(ascending?'ascending':'descending')+'"':''}><button type="button" data-sort="${key}" data-sort-column>${escapeHtml(label)}</button>${definition?'<small>'+escapeHtml(definition)+'</small>':''}</th>`;
     let columns = header('school','School')+header('rank','Rank')+header('tier','Job tier');
     if (isOdds) columns = header('school','Program')+header(checkpoint,'Departure odds')+header('coach','Coach')+header('tier','Job tier')+header('buyout_sort','Buyout estimate')+(checkpoint==='dec7_probability_pct'?header('change_sort','Two-week change', 'Reference: '+data.comparison_reference_date+' · Saved forecast: '+data.comparison_source_date):'');
@@ -292,8 +306,7 @@ async function start() {
         const delta = row.two_week_change_pp;
         return `<tr><td>${school}<div class="status">${escapeHtml(row.status)}${row.incoming_hire_announced ? `<span class="incoming-hire">Hired ${escapeHtml(row.incoming_hire_announced)}</span>` : ''}</div></td><td class="bar-cell"><div class="bar-line"><div class="bar-track"><div class="bar-fill" style="width:${probability}%;background:${probability===100?'#c74445':probability>=30?'#d47136':probability>=10?'#c7a63e':'#4a8876'}"></div></div><strong>${format(probability)}%</strong></div></td><td>${escapeHtml(row.coach)}</td><td>${tier(row.tier)}</td><td class="number">${buyoutLabel(row)}</td>${checkpoint==='dec7_probability_pct'?'<td class="number delta">'+(delta == null ? '—' : (delta > 0 ? '+' : '') + format(delta) + ' pp')+'</td>':''}</tr>`;
       }
-      return `<tr><td>${school}</td><td class="number">${row.rank}</td><td>${tier(row.tier)}</td>${metrics.map(m=>
-        isScore(m.key) ? scoreCell(row[m.key]) : `<td class="${m.format==='text'?'':'number'}">${format(row[m.key],m.format)}</td>`).join('')}</tr>`;
+      return `<tr><td>${school}</td><td class="number">${row.rank}</td><td>${tier(row.tier)}</td>${metrics.map(metric=>metricCell(row,metric)).join('')}</tr>`;
     }).join('') || '<tr><td colspan="10">No matching programs.</td></tr>';
     document.getElementById('count').textContent = filtered.length+' of '+rows.length+(isOdds?' tracked situations':' ranked programs')+' · Click a school for sources and detail';
     document.querySelectorAll('[data-sort]').forEach(button=>button.onclick=()=>{
