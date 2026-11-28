@@ -58,7 +58,7 @@ The November score puts South Florida and Boise State just below Kansas, the low
 
 ### Evidence and limitations
 
-Use the five framework categories to compare key metrics across programs. Select a school to expand the evidence behind each category. The downloads include the source registry, reporting definitions, coverage, and unresolved conflicts. [Download the full scoring inputs](../assets/coaching/program_inputs.csv).
+Use **Compare schools** to see the five category scores and their inputs for up to four programs side by side. Select a school in the rankings to expand its sources and peer comparisons. The downloads include the source registry, reporting definitions, coverage, and unresolved conflicts. [Download the full scoring inputs](../assets/coaching/program_inputs.csv).
 
 School details show the expanded FY2025 NCAA and EADA reports side by side in nominal dollars. Each source retains its own accounting definitions. Across the two panels, every G6 program has a FY2025 football spending observation. EADA has no usable report for the three service academies, whose spending appears in the NCAA panel. Verified FY2025 athletics ticket sales and contributions feed the November model. FY2025 football coaching compensation appears in the school details. The coaching payroll input to the model uses the FY2022–24 average.
 
