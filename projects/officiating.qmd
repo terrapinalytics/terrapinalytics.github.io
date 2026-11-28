@@ -16,4 +16,4 @@ toc: false
 
 Team and referee all-foul rates use box-score totals per 100 estimated possessions. Type-specific rates and foul mixes use games where the type counts reconcile to both team totals. Technicals count when the box-score totals include them. Referee rates describe three-person crews.
 
-Player rates use recorded events per 100 tracked on-court possessions. Player coverage extends to 2018–19 where the source has tracked lineups. For 2026–27, box scores, referee crews, reconciled foul types, and tracked player possessions extend through November 26.
+Player rates use recorded events per 100 tracked on-court possessions. Player coverage extends to 2018–19 where the source has tracked lineups. For 2026–27, box scores, referee crews, reconciled foul types, and tracked player possessions extend through November 27.
