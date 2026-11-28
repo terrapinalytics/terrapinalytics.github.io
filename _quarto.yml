@@ -4,6 +4,7 @@ project:
     - "**/*.qmd"
     - "assets/**/*.md"
   resources:
+    - styles.css
     - assets/peer-context.js
     - assets/view-tools.js
     - assets/tool-frame.js

@@ -6,9 +6,9 @@ toc: false
 
 ```{=html}
 <div class="tool-intro">
-<a href="../assets/coaching/rankings.html" target="_blank" rel="noopener">Open full screen</a>
+<a href="../assets/coaching/rankings.html?v=20261128-tabs" target="_blank" rel="noopener">Open full screen</a>
 </div>
-<iframe class="tool-frame" data-fit-content src="../assets/coaching/rankings.html" title="FBS program rankings and supporting data" loading="eager"></iframe>
+<iframe class="tool-frame" style="width:100%" data-fit-content src="../assets/coaching/rankings.html?v=20261128-tabs" title="FBS program rankings and supporting data" loading="eager"></iframe>
 <script src="../assets/tool-frame.js" defer></script>
 ```
 
