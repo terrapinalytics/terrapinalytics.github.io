@@ -83,7 +83,7 @@ website:
 format:
   html:
     theme: cosmo
-    css: styles.css
+    css: assets/site.css
     include-after-body:
       - text: <script src="/assets/menu-categories.js?v=home-links1" defer></script>
     toc: true
